@@ -35,7 +35,7 @@ public class PortalSize : MonoBehaviour
     private void OnValidate()
     {
         //log that this has been called
-        Debug.Log("PortalSize OnValidate");
+        //Debug.Log("PortalSize OnValidate");
 
         //scale xSize to meters or feet
         float scaledXSize =

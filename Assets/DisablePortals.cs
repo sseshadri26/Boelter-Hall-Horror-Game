@@ -21,10 +21,13 @@ public class DisablePortals : MonoBehaviour
     [SerializeReference]
     Collider Portal2Collider;
 
+    [SerializeReference]
+    PortalTeleporter Portal1Teleporter;
+    [SerializeReference]
+    PortalTeleporter Portal2Teleporter;
 
-    [SerializeReference]
+
     Material Portal1Material;
-    [SerializeReference]
     Material Portal2Material;
     [SerializeReference]
     Material TransparentMaterial;
@@ -37,6 +40,8 @@ public class DisablePortals : MonoBehaviour
 
     public bool inFrontOfScreens;
 
+    public bool portalsColliding;
+
     [SerializeReference]
     bool screensAreEnabled;
 
@@ -48,6 +53,9 @@ public class DisablePortals : MonoBehaviour
         screensAreOnScreen = Portal1Visibility.isVisible && Portal2Visibility.isVisible;
         previousScreensAreOnScreen = screensAreOnScreen;
         inFrontOfScreens = Portal1Visibility.playerIsInFrontOfPortal && Portal2Visibility.playerIsInFrontOfPortal;
+        Portal1Material = GetComponent<PortalTextureSetup>().cameraMatA;
+        Portal2Material = GetComponent<PortalTextureSetup>().cameraMatB;
+
     }
 
     // Update is called once per frame
@@ -59,7 +67,11 @@ public class DisablePortals : MonoBehaviour
         inFrontOfScreens = Portal1Visibility.playerIsInFrontOfPortal && Portal2Visibility.playerIsInFrontOfPortal;
 
         screensAreOnScreen = Portal1Visibility.isVisible || Portal2Visibility.isVisible;
-        if (screensAreOnScreen == false && previousScreensAreOnScreen == true)
+
+        portalsColliding = Portal1Teleporter.playerIsOverlapping || Portal2Teleporter.playerIsOverlapping;
+
+
+        if (screensAreOnScreen == false && previousScreensAreOnScreen == true && !portalsColliding)
         {
             screensAreEnabled = !screensAreEnabled;
             //randomly enable screens with frequency 0.5
@@ -69,7 +81,7 @@ public class DisablePortals : MonoBehaviour
         }
         previousScreensAreOnScreen = screensAreOnScreen;
 
-        if (!inFrontOfScreens)
+        if (!inFrontOfScreens && !portalsColliding)
         {
             screensAreEnabled = false;
         }
@@ -77,17 +89,22 @@ public class DisablePortals : MonoBehaviour
 
         if (screensAreEnabled)
         {
+
             Portal1Screen.material = Portal2Material;
             Portal2Screen.material = Portal1Material;
-            Portal1Collider.enabled = true;
-            Portal2Collider.enabled = true;
+
+            Portal1Teleporter.teleportingEnabled = true;
+            Portal2Teleporter.teleportingEnabled = true;
         }
         else
         {
             Portal1Screen.material = TransparentMaterial;
             Portal2Screen.material = TransparentMaterial;
-            Portal1Collider.enabled = false;
-            Portal2Collider.enabled = false;
+            Portal1Teleporter.teleportingEnabled = false;
+            Portal2Teleporter.teleportingEnabled = false;
+
+
+
         }
 
     }

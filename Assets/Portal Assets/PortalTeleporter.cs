@@ -10,8 +10,9 @@ public class PortalTeleporter : MonoBehaviour
     public Transform reciever;
     public Transform transmitter;
 
-    [SerializeField]
-    private bool playerIsOverlapping = false;
+    public bool playerIsOverlapping = false;
+
+    public bool teleportingEnabled;
 
 
     // set player Transform on Start if it is null in the editor
@@ -21,12 +22,13 @@ public class PortalTeleporter : MonoBehaviour
         {
             player = GameObject.FindWithTag("Player").transform;
         }
+        teleportingEnabled = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (playerIsOverlapping)
+        if (teleportingEnabled && playerIsOverlapping)
         {
             Vector3 portalToPlayer = player.position - transform.position;
             float dotProduct = Vector3.Dot(transform.up, portalToPlayer);
