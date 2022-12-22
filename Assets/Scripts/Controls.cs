@@ -82,7 +82,16 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Sprint"",
+                    ""name"": ""SprintToggle"",
+                    ""type"": ""Button"",
+                    ""id"": ""7ce68980-93c4-417e-b5aa-3c33e566bacf"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SprintHold"",
                     ""type"": ""Button"",
                     ""id"": ""84402f2f-16a7-4055-8737-607b467865ad"",
                     ""expectedControlType"": ""Button"",
@@ -218,7 +227,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""id"": ""23ce4c7c-d449-497a-8a13-ab3f77757d20"",
                     ""path"": ""<Mouse>/delta"",
                     ""interactions"": """",
-                    ""processors"": """",
+                    ""processors"": ""ScaleVector2(x=0.25,y=0.25)"",
                     ""groups"": """",
                     ""action"": ""Camera"",
                     ""isComposite"": false,
@@ -281,23 +290,23 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""caf159c0-d207-4d92-a6c8-441c4b554c0b"",
-                    ""path"": ""<Gamepad>/leftStickPress"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Sprint"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""723c86f4-b9c0-4753-b802-daf312501cc2"",
                     ""path"": ""<Keyboard>/leftShift"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Sprint"",
+                    ""action"": ""SprintHold"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2b71d23d-100d-4a36-9b56-9e5ff2fcfb13"",
+                    ""path"": ""<Gamepad>/leftStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SprintToggle"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -314,7 +323,8 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m_FirstPerson_Zoom = m_FirstPerson.FindAction("Zoom", throwIfNotFound: true);
         m_FirstPerson_Jump = m_FirstPerson.FindAction("Jump", throwIfNotFound: true);
         m_FirstPerson_Crouch = m_FirstPerson.FindAction("Crouch", throwIfNotFound: true);
-        m_FirstPerson_Sprint = m_FirstPerson.FindAction("Sprint", throwIfNotFound: true);
+        m_FirstPerson_SprintToggle = m_FirstPerson.FindAction("SprintToggle", throwIfNotFound: true);
+        m_FirstPerson_SprintHold = m_FirstPerson.FindAction("SprintHold", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -380,7 +390,8 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private readonly InputAction m_FirstPerson_Zoom;
     private readonly InputAction m_FirstPerson_Jump;
     private readonly InputAction m_FirstPerson_Crouch;
-    private readonly InputAction m_FirstPerson_Sprint;
+    private readonly InputAction m_FirstPerson_SprintToggle;
+    private readonly InputAction m_FirstPerson_SprintHold;
     public struct FirstPersonActions
     {
         private @Controls m_Wrapper;
@@ -391,7 +402,8 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         public InputAction @Zoom => m_Wrapper.m_FirstPerson_Zoom;
         public InputAction @Jump => m_Wrapper.m_FirstPerson_Jump;
         public InputAction @Crouch => m_Wrapper.m_FirstPerson_Crouch;
-        public InputAction @Sprint => m_Wrapper.m_FirstPerson_Sprint;
+        public InputAction @SprintToggle => m_Wrapper.m_FirstPerson_SprintToggle;
+        public InputAction @SprintHold => m_Wrapper.m_FirstPerson_SprintHold;
         public InputActionMap Get() { return m_Wrapper.m_FirstPerson; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -419,9 +431,12 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Crouch.started -= m_Wrapper.m_FirstPersonActionsCallbackInterface.OnCrouch;
                 @Crouch.performed -= m_Wrapper.m_FirstPersonActionsCallbackInterface.OnCrouch;
                 @Crouch.canceled -= m_Wrapper.m_FirstPersonActionsCallbackInterface.OnCrouch;
-                @Sprint.started -= m_Wrapper.m_FirstPersonActionsCallbackInterface.OnSprint;
-                @Sprint.performed -= m_Wrapper.m_FirstPersonActionsCallbackInterface.OnSprint;
-                @Sprint.canceled -= m_Wrapper.m_FirstPersonActionsCallbackInterface.OnSprint;
+                @SprintToggle.started -= m_Wrapper.m_FirstPersonActionsCallbackInterface.OnSprintToggle;
+                @SprintToggle.performed -= m_Wrapper.m_FirstPersonActionsCallbackInterface.OnSprintToggle;
+                @SprintToggle.canceled -= m_Wrapper.m_FirstPersonActionsCallbackInterface.OnSprintToggle;
+                @SprintHold.started -= m_Wrapper.m_FirstPersonActionsCallbackInterface.OnSprintHold;
+                @SprintHold.performed -= m_Wrapper.m_FirstPersonActionsCallbackInterface.OnSprintHold;
+                @SprintHold.canceled -= m_Wrapper.m_FirstPersonActionsCallbackInterface.OnSprintHold;
             }
             m_Wrapper.m_FirstPersonActionsCallbackInterface = instance;
             if (instance != null)
@@ -444,9 +459,12 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Crouch.started += instance.OnCrouch;
                 @Crouch.performed += instance.OnCrouch;
                 @Crouch.canceled += instance.OnCrouch;
-                @Sprint.started += instance.OnSprint;
-                @Sprint.performed += instance.OnSprint;
-                @Sprint.canceled += instance.OnSprint;
+                @SprintToggle.started += instance.OnSprintToggle;
+                @SprintToggle.performed += instance.OnSprintToggle;
+                @SprintToggle.canceled += instance.OnSprintToggle;
+                @SprintHold.started += instance.OnSprintHold;
+                @SprintHold.performed += instance.OnSprintHold;
+                @SprintHold.canceled += instance.OnSprintHold;
             }
         }
     }
@@ -459,6 +477,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         void OnZoom(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnCrouch(InputAction.CallbackContext context);
-        void OnSprint(InputAction.CallbackContext context);
+        void OnSprintToggle(InputAction.CallbackContext context);
+        void OnSprintHold(InputAction.CallbackContext context);
     }
 }
