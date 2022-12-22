@@ -133,7 +133,7 @@ MonoBehaviour:
   fov: 60
   invertCamera: 0
   cameraCanMove: 1
-  mouseSensitivity: 2
+  mouseSensitivity: 1
   maxLookAngle: 50
   lockCursor: 1
   crosshair: 1
@@ -141,15 +141,13 @@ MonoBehaviour:
   crosshairColor: {r: 1, g: 1, b: 1, a: 1}
   enableZoom: 1
   holdToZoom: 1
-  zoomKey: 324
   zoomFOV: 30
   zoomStepTime: 5
   playerCanMove: 1
   walkSpeed: 5
   maxVelocityChange: 10
   enableSprint: 1
-  unlimitedSprint: 1
-  sprintKey: 304
+  unlimitedSprint: 0
   sprintSpeed: 7
   sprintDuration: 5
   sprintCooldown: 0.5
@@ -162,17 +160,15 @@ MonoBehaviour:
   sprintBarWidthPercent: 0.3
   sprintBarHeightPercent: 0.02
   enableJump: 1
-  jumpKey: 32
   jumpPower: 5
   enableCrouch: 1
-  holdToCrouch: 1
-  crouchKey: 306
+  holdToCrouch: 0
   crouchHeight: 0.75
   speedReduction: 0.5
   enableHeadBob: 1
   joint: {fileID: 4459864851508666808}
   bobSpeed: 10
-  bobAmount: {x: 0, y: 0.1, z: 0}
+  bobAmount: {x: 0, y: 0.05, z: 0}
 --- !u!1 &4459864850190357393
 GameObject:
   m_ObjectHideFlags: 0
