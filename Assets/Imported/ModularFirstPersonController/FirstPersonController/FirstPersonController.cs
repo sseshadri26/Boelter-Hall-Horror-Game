@@ -19,7 +19,7 @@ using UnityEngine.UI;
 public class FirstPersonController : MonoBehaviour
 {
     private Rigidbody rb;
-    private Controls.FirstPersonActions controls;
+    public Controls.FirstPersonActions controls;
 
     #region Camera Movement Variables
 
@@ -150,16 +150,6 @@ public class FirstPersonController : MonoBehaviour
             sprintRemaining = sprintDuration;
             sprintCooldownReset = sprintCooldown;
         }
-
-        // Input events
-        controls.Zoom.started  += ctx => Zoom(true);
-        controls.Zoom.canceled += ctx => Zoom(false);
-        controls.Jump.started  += ctx => Jump();
-        controls.Crouch.started  += ctx => Crouch(true);
-        controls.Crouch.canceled += ctx => Crouch(false);
-        controls.SprintToggle.started  += ctx => isSprintPressed = !isSprintPressed;
-        controls.SprintHold.started  += ctx => isSprintPressed = true;
-        controls.SprintHold.canceled += ctx => isSprintPressed = false;
     }
 
     void OnEnable()
@@ -219,6 +209,16 @@ public class FirstPersonController : MonoBehaviour
         }
 
         #endregion
+        
+        // Input events
+        controls.Zoom.started  += ctx => Zoom(true);
+        controls.Zoom.canceled += ctx => Zoom(false);
+        controls.Jump.started  += ctx => Jump();
+        controls.Crouch.started  += ctx => Crouch(true);
+        controls.Crouch.canceled += ctx => Crouch(false);
+        controls.SprintToggle.started  += ctx => isSprintPressed = !isSprintPressed;
+        controls.SprintHold.started  += ctx => isSprintPressed = true;
+        controls.SprintHold.canceled += ctx => isSprintPressed = false;
     }
 
     float camRotation;
