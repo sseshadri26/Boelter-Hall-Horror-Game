@@ -1,9 +1,7 @@
 ﻿// CHANGE LOG
 // 
 // CHANGES || version VERSION
-// 
-// "Cole Strain: Implemented Input System events to save frames, sprint toggleable for controllers, crouch->sprint speed fix" || version 2.1.0
-// "Cole Strain: Modified to support only Unity's new Input System so that gamepads work" || version 2.0.0
+//
 // "Enable/Disable Headbob, Changed look rotations - should result in reduced camera jitters" || version 1.0.1
 
 using System.Collections;
@@ -19,7 +17,6 @@ using UnityEngine.UI;
 public class FirstPersonController : MonoBehaviour
 {
     private Rigidbody rb;
-    public Controls.FirstPersonActions controls;
 
     #region Camera Movement Variables
 
@@ -46,6 +43,7 @@ public class FirstPersonController : MonoBehaviour
 
     public bool enableZoom = true;
     public bool holdToZoom = false;
+    public KeyCode zoomKey = KeyCode.Mouse1;
     public float zoomFOV = 30f;
     public float zoomStepTime = 5f;
 
@@ -63,12 +61,12 @@ public class FirstPersonController : MonoBehaviour
 
     // Internal Variables
     private bool isWalking = false;
-    private float originalWalkSpeed;
 
     #region Sprint
 
     public bool enableSprint = true;
     public bool unlimitedSprint = false;
+    public KeyCode sprintKey = KeyCode.LeftShift;
     public float sprintSpeed = 7f;
     public float sprintDuration = 5f;
     public float sprintCooldown = .5f;
@@ -91,13 +89,13 @@ public class FirstPersonController : MonoBehaviour
     private float sprintBarHeight;
     private bool isSprintCooldown = false;
     private float sprintCooldownReset;
-    private bool isSprintPressed = false;
 
     #endregion
 
     #region Jump
 
     public bool enableJump = true;
+    public KeyCode jumpKey = KeyCode.Space;
     public float jumpPower = 5f;
 
     // Internal Variables
@@ -109,6 +107,7 @@ public class FirstPersonController : MonoBehaviour
 
     public bool enableCrouch = true;
     public bool holdToCrouch = true;
+    public KeyCode crouchKey = KeyCode.LeftControl;
     public float crouchHeight = .75f;
     public float speedReduction = .5f;
 
@@ -142,24 +141,12 @@ public class FirstPersonController : MonoBehaviour
         playerCamera.fieldOfView = fov;
         originalScale = transform.localScale;
         jointOriginalPos = joint.localPosition;
-        controls = new Controls.FirstPersonActions(new Controls());
-        originalWalkSpeed = walkSpeed;
 
         if (!unlimitedSprint)
         {
             sprintRemaining = sprintDuration;
             sprintCooldownReset = sprintCooldown;
         }
-    }
-
-    void OnEnable()
-    {
-        controls.Enable();
-    }
-
-    void OnDisable()
-    {
-        controls.Disable();
     }
 
     void Start()
@@ -209,16 +196,6 @@ public class FirstPersonController : MonoBehaviour
         }
 
         #endregion
-        
-        // Input events
-        controls.Zoom.started  += ctx => Zoom(true);
-        controls.Zoom.canceled += ctx => Zoom(false);
-        controls.Jump.started  += ctx => Jump();
-        controls.Crouch.started  += ctx => Crouch(true);
-        controls.Crouch.canceled += ctx => Crouch(false);
-        controls.SprintToggle.started  += ctx => isSprintPressed = !isSprintPressed;
-        controls.SprintHold.started  += ctx => isSprintPressed = true;
-        controls.SprintHold.canceled += ctx => isSprintPressed = false;
     }
 
     float camRotation;
@@ -230,17 +207,16 @@ public class FirstPersonController : MonoBehaviour
         // Control camera movement
         if(cameraCanMove)
         {
-            Vector2 cam = controls.Camera.ReadValue<Vector2>();
-            yaw = transform.localEulerAngles.y + cam.x * mouseSensitivity;
+            yaw = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * mouseSensitivity;
 
             if (!invertCamera)
             {
-                pitch -= mouseSensitivity * cam.y;
+                pitch -= mouseSensitivity * Input.GetAxis("Mouse Y");
             }
             else
             {
                 // Inverted Y
-                pitch += mouseSensitivity * cam.y;
+                pitch += mouseSensitivity * Input.GetAxis("Mouse Y");
             }
 
             // Clamp pitch between lookAngle
@@ -254,6 +230,34 @@ public class FirstPersonController : MonoBehaviour
 
         if (enableZoom)
         {
+            // Changes isZoomed when key is pressed
+            // Behavior for toogle zoom
+            if(Input.GetKeyDown(zoomKey) && !holdToZoom && !isSprinting)
+            {
+                if (!isZoomed)
+                {
+                    isZoomed = true;
+                }
+                else
+                {
+                    isZoomed = false;
+                }
+            }
+
+            // Changes isZoomed when key is pressed
+            // Behavior for hold to zoom
+            if(holdToZoom && !isSprinting)
+            {
+                if(Input.GetKeyDown(zoomKey))
+                {
+                    isZoomed = true;
+                }
+                else if(Input.GetKeyUp(zoomKey))
+                {
+                    isZoomed = false;
+                }
+            }
+
             // Lerps camera.fieldOfView to allow for a smooth transistion
             if(isZoomed)
             {
@@ -319,37 +323,44 @@ public class FirstPersonController : MonoBehaviour
 
         #endregion
 
+        #region Jump
+
+        // Gets input and calls jump method
+        if(enableJump && Input.GetKeyDown(jumpKey) && isGrounded)
+        {
+            Jump();
+        }
+
+        #endregion
+
+        #region Crouch
+
+        if (enableCrouch)
+        {
+            if(Input.GetKeyDown(crouchKey) && !holdToCrouch)
+            {
+                Crouch();
+            }
+            
+            if(Input.GetKeyDown(crouchKey) && holdToCrouch)
+            {
+                isCrouched = false;
+                Crouch();
+            }
+            else if(Input.GetKeyUp(crouchKey) && holdToCrouch)
+            {
+                isCrouched = true;
+                Crouch();
+            }
+        }
+
+        #endregion
+
         CheckGround();
 
         if(enableHeadBob)
         {
             HeadBob();
-        }
-    }
-
-    void Zoom(bool pressed)
-    {
-        if (isSprinting) return;
-
-        // Changes isZoomed when key is pressed
-        // Behavior for toogle zoom
-        if(pressed && !holdToZoom)
-        {
-            if (!isZoomed)
-            {
-                isZoomed = true;
-            }
-            else
-            {
-                isZoomed = false;
-            }
-        }
-
-        // Changes isZoomed when key is pressed
-        // Behavior for hold to zoom
-        else if(holdToZoom)
-        {
-            isZoomed = pressed;
         }
     }
 
@@ -360,8 +371,7 @@ public class FirstPersonController : MonoBehaviour
         if (playerCanMove)
         {
             // Calculate how fast we should be moving
-            Vector2 movement = controls.Movement.ReadValue<Vector2>();
-            Vector3 targetVelocity = new Vector3(movement.x, 0, movement.y);
+            Vector3 targetVelocity = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 
             // Checks if player is walking and isGrounded
             // Will allow head bob
@@ -374,8 +384,8 @@ public class FirstPersonController : MonoBehaviour
                 isWalking = false;
             }
 
-            // All movement calculations while sprint is active
-            if (enableSprint && isSprintPressed && sprintRemaining > 0f && !isSprintCooldown && movement.magnitude > float.Epsilon)
+            // All movement calculations shile sprint is active
+            if (enableSprint && Input.GetKey(sprintKey) && sprintRemaining > 0f && !isSprintCooldown)
             {
                 targetVelocity = transform.TransformDirection(targetVelocity) * sprintSpeed;
 
@@ -386,16 +396,16 @@ public class FirstPersonController : MonoBehaviour
                 velocityChange.z = Mathf.Clamp(velocityChange.z, -maxVelocityChange, maxVelocityChange);
                 velocityChange.y = 0;
 
-                // Player is only moving when velocity change != 0
+                // Player is only moving when valocity change != 0
                 // Makes sure fov change only happens during movement
                 if (velocityChange.x != 0 || velocityChange.z != 0)
                 {
+                    isSprinting = true;
+
                     if (isCrouched)
                     {
-                        Crouch(false, true);
+                        Crouch();
                     }
-
-                    isSprinting = true;
 
                     if (hideBarWhenFull && !unlimitedSprint)
                     {
@@ -409,12 +419,6 @@ public class FirstPersonController : MonoBehaviour
             else
             {
                 isSprinting = false;
-
-                // If sprint was toggled by a controller but movement stops, we need to press sprint again to sprint
-                if (isSprintCooldown || (!controls.SprintHold.IsPressed() && movement.magnitude <= float.Epsilon))
-                {
-                    isSprintPressed = false;
-                }
 
                 if (hideBarWhenFull && sprintRemaining == sprintDuration)
                 {
@@ -457,8 +461,6 @@ public class FirstPersonController : MonoBehaviour
 
     private void Jump()
     {
-        if(!enableJump || !isGrounded) return;
-
         // Adds force to the player rigidbody to jump
         if (isGrounded)
         {
@@ -469,26 +471,18 @@ public class FirstPersonController : MonoBehaviour
         // When crouched and using toggle system, will uncrouch for a jump
         if(isCrouched && !holdToCrouch)
         {
-            Crouch(true);
+            Crouch();
         }
     }
 
-    private void Crouch(bool pressed, bool sprintCancel = false)
+    private void Crouch()
     {
-        if (!enableCrouch || isSprinting) return;
-
-        if(holdToCrouch)
-        {
-            isCrouched = !pressed;
-        }
-        else if(!pressed && !holdToCrouch && !sprintCancel) return;
-
         // Stands player up to full height
         // Brings walkSpeed back up to original speed
         if(isCrouched)
         {
             transform.localScale = new Vector3(originalScale.x, originalScale.y, originalScale.z);
-            walkSpeed = originalWalkSpeed;
+            walkSpeed /= speedReduction;
 
             isCrouched = false;
         }
@@ -497,7 +491,7 @@ public class FirstPersonController : MonoBehaviour
         else
         {
             transform.localScale = new Vector3(originalScale.x, crouchHeight, originalScale.z);
-            walkSpeed = originalWalkSpeed * speedReduction;
+            walkSpeed *= speedReduction;
 
             isCrouched = true;
         }
@@ -605,6 +599,7 @@ public class FirstPersonController : MonoBehaviour
 
         GUI.enabled = fpc.enableZoom;
         fpc.holdToZoom = EditorGUILayout.ToggleLeft(new GUIContent("Hold to Zoom", "Requires the player to hold the zoom key instead if pressing to zoom and unzoom."), fpc.holdToZoom);
+        fpc.zoomKey = (KeyCode)EditorGUILayout.EnumPopup(new GUIContent("Zoom Key", "Determines what key is used to zoom."), fpc.zoomKey);
         fpc.zoomFOV = EditorGUILayout.Slider(new GUIContent("Zoom FOV", "Determines the field of view the camera zooms to."), fpc.zoomFOV, .1f, fpc.fov);
         fpc.zoomStepTime = EditorGUILayout.Slider(new GUIContent("Step Time", "Determines how fast the FOV transitions while zooming in."), fpc.zoomStepTime, .1f, 10f);
         GUI.enabled = true;
@@ -635,6 +630,7 @@ public class FirstPersonController : MonoBehaviour
 
         GUI.enabled = fpc.enableSprint;
         fpc.unlimitedSprint = EditorGUILayout.ToggleLeft(new GUIContent("Unlimited Sprint", "Determines if 'Sprint Duration' is enabled. Turning this on will allow for unlimited sprint."), fpc.unlimitedSprint);
+        fpc.sprintKey = (KeyCode)EditorGUILayout.EnumPopup(new GUIContent("Sprint Key", "Determines what key is used to sprint."), fpc.sprintKey);
         fpc.sprintSpeed = EditorGUILayout.Slider(new GUIContent("Sprint Speed", "Determines how fast the player will move while sprinting."), fpc.sprintSpeed, fpc.walkSpeed, 20f);
 
         //GUI.enabled = !fpc.unlimitedSprint;
@@ -689,6 +685,7 @@ public class FirstPersonController : MonoBehaviour
         fpc.enableJump = EditorGUILayout.ToggleLeft(new GUIContent("Enable Jump", "Determines if the player is allowed to jump."), fpc.enableJump);
 
         GUI.enabled = fpc.enableJump;
+        fpc.jumpKey = (KeyCode)EditorGUILayout.EnumPopup(new GUIContent("Jump Key", "Determines what key is used to jump."), fpc.jumpKey);
         fpc.jumpPower = EditorGUILayout.Slider(new GUIContent("Jump Power", "Determines how high the player will jump."), fpc.jumpPower, .1f, 20f);
         GUI.enabled = true;
 
@@ -704,6 +701,7 @@ public class FirstPersonController : MonoBehaviour
 
         GUI.enabled = fpc.enableCrouch;
         fpc.holdToCrouch = EditorGUILayout.ToggleLeft(new GUIContent("Hold To Crouch", "Requires the player to hold the crouch key instead if pressing to crouch and uncrouch."), fpc.holdToCrouch);
+        fpc.crouchKey = (KeyCode)EditorGUILayout.EnumPopup(new GUIContent("Crouch Key", "Determines what key is used to crouch."), fpc.crouchKey);
         fpc.crouchHeight = EditorGUILayout.Slider(new GUIContent("Crouch Height", "Determines the y scale of the player object when crouched."), fpc.crouchHeight, .1f, 1);
         fpc.speedReduction = EditorGUILayout.Slider(new GUIContent("Speed Reduction", "Determines the percent 'Walk Speed' is reduced by. 1 being no reduction, and .5 being half."), fpc.speedReduction, .1f, 1);
         GUI.enabled = true;
