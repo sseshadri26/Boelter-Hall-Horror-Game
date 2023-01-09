@@ -55,7 +55,6 @@ public class CameraClipping : MonoBehaviour
             Vector4 clipPlaneCameraSpace = new Vector4(camSpaceNormal.x, camSpaceNormal.y, camSpaceNormal.z, camSpaceDst);
 
             projectionMatrix = playerCamera.CalculateObliqueMatrix(clipPlaneCameraSpace);
-            Debug.Log(clipPlaneCameraSpace);
             portalCamera.projectionMatrix = projectionMatrix;
             // Update projection based on new clip plane
             // Calculate matrix with player cam so that player camera settings (fov, etc) are used
