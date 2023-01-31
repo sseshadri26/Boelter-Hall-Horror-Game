@@ -8,6 +8,8 @@ public class CameraAnimation : MonoBehaviour
     public GameObject playerCamera;
     public GameObject jumpCamera;
 
+    // Update is called once per frame
+
     private void Start()
     {
         playerCamera.SetActive(true);
