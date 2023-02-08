@@ -43,12 +43,19 @@ public class InteractionReceiver : MonoBehaviour
     [SerializeField]
     private GameObject[] objectsWithActions;
 
+    [SerializeField]
+    private bool destroyOnUse;
+
 
     public void Activate()
     {
         
         foreach (GameObject o in objectsWithActions) {
             o.GetComponent<IAction>().Activate();
+        }
+
+        if (destroyOnUse) {
+            Destroy(this);
         }
 
     }
