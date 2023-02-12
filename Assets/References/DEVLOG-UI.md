@@ -5,6 +5,11 @@ This is a simple log for tracking the current and past challenges taken on by th
 
 ## Log
 
+### (2/12)
+**Problem:** Making scripts that interface with the controls on a UI Document is tedious!
+- It's a tedious process of scanning through all the buttons or text fields (or whatever) and explicitly writing code to address each one.
+- **Resolution**: Make an editor tool that auto-generates a script for a specified UI Document. While this will require a lot of effort up front, we believe it will pay back huge dividends later on, especially for some of the more complex UI in the game.
+
 ### (2/6)
 **Problem:** What strategy do we employ to wire up the UI events to the main game?
 - For buttons/input widgets that interact with the game, such as resume, restart, main menu, etc., we could send out a message through a `ScriptableObject` channel that the game listens to. 
