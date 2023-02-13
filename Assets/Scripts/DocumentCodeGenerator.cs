@@ -5,39 +5,40 @@ using UnityEngine.UIElements;
 using System.Linq;
 using UnityEngine.Events;
 using System;
-using System.Text.RegularExpressions;
 using System.IO;
 
 public class DocumentCodeGenerator : MonoBehaviour
 {
     [SerializeField] string scriptName = "NewScript";
+    [SerializeField] string scriptFolderPath = "Assets/Scripts/Generated";
     [SerializeField] UIDocument document;
     [SerializeField] TextAsset scriptTemplateFile;
 
-    // STRINGS
-    // DESIGN CHOICE: Include entire namespace so that it doesn't depend on the base
-    // script template to include them
-
-    // TAGS
-    const string TAG_FIELDS = "#FIELDS#";
-    const string TAG_AWAKE = "#AWAKE#";
-    const string TAG_CLASS_NAME = "#CLASSNAME#";
-
-    const string TAG_NAME = "#NAME#";
-
+    // INSERTIONS
+    const string INSERTIONTAG_NAME = "<NAME>";
 
     // FIELDS
-    const string FIELD_UI_DOCUMENT = "[SerializeField] UnityEngine.UIElements.UIDocument document";
+    const string FIELD_UI_DOCUMENT = "[SerializeField] UIDocument document";
 
     // CONTENT TEMPLATES
-    const string TEMPLATE_UNITY_EVENT = "[SerializeField] UnityEngine.Events.UnityEvent On#NAME#Pressed";
-    const string TEMPLATE_QUERY = "document.rootVisualElement.Query<Button>().Where((Button b) => b.parent.name == \"#NAME#\").First().RegisterCallback<ClickEvent>(ev => On#NAME#Pressed.Invoke())";
+    const string TEMPLATE_UNITY_EVENT = "[SerializeField] UnityEvent On<NAME>Pressed";
+    const string TEMPLATE_QUERY = "document.rootVisualElement.Query<Button>().Where((Button b) => b.parent.name == \"<NAME>\").First().RegisterCallback<ClickEvent>(ev => On<NAME>Pressed.Invoke())";
     
+    List<string> namespaceNames = new List<string>
+    {
+        "UnityEngine",
+        "UnityEngine.UIElements",
+        "UnityEngine.Events"
+    };
     
     // Start is called before the first frame update
     void Start()
     {
-        
+        GenerateScript(scriptName, scriptTemplateFile, document, scriptFolderPath);
+    }
+
+    public void GenerateScript(string scriptName, TextAsset scriptTemplate, UIDocument document, string scriptFolderPath)
+    {
         // Get list of all buttons in the doc
         List<string> buttonNames = document.rootVisualElement.Query<Button>().ForEach<string>((Button b) => b.parent.name);
 
@@ -45,49 +46,22 @@ public class DocumentCodeGenerator : MonoBehaviour
         List<string> buttonQueryStrings = buttonNames.Select(buttonName => GenerateStringByTemplate(TEMPLATE_QUERY, buttonName)).ToList<string>();
 
         // Use new set of lists, since these may become concatenations of other lists
-        List<string> fieldsStrings = buttonEventStrings.Append(FIELD_UI_DOCUMENT).ToList();
-        List<string> awakeStrings = buttonQueryStrings;
+        List<string> externalStrings = new List<string>().Concat(namespaceNames.Select(namespaceName => "using " + namespaceName)).ToList();
+        List<string> fieldsStrings = new List<string>().Append(FIELD_UI_DOCUMENT).Concat(buttonEventStrings).ToList();
+        List<string> awakeStrings = new List<string>().Concat(buttonQueryStrings).ToList();
 
-        List<Section> sections = new List<Section>
+        List<ScriptGenerationUtils.ContentInsertionData> sections = new List<ScriptGenerationUtils.ContentInsertionData>
         {
-            new Section{sectionTag = TAG_FIELDS, sectionContent = fieldsStrings},
-            new Section{sectionTag = TAG_AWAKE, sectionContent = awakeStrings}
+            new ScriptGenerationUtils.ContentInsertionData{block = ScriptGenerationUtils.TemplateBlock.EXTERNAL, content = externalStrings},
+            new ScriptGenerationUtils.ContentInsertionData{block = ScriptGenerationUtils.TemplateBlock.FIELDS, content = fieldsStrings},
+            new ScriptGenerationUtils.ContentInsertionData{block = ScriptGenerationUtils.TemplateBlock.AWAKE, content = awakeStrings}
         };
 
-        string generatedScript = GenerateScriptFromTemplate(scriptTemplateFile.text, scriptName, sections);
+        string generatedScript = ScriptGenerationUtils.GenerateScriptFromTemplate(scriptTemplateFile.text, scriptName, sections);
 
-        File.WriteAllText(string.Format("Assets/Scripts/Generated/{0}.cs", scriptName), generatedScript);
+        File.WriteAllText(string.Format("{0}/{1}.cs", scriptFolderPath, scriptName), generatedScript);
     }
 
-    private string GenerateStringByTemplate(string template, string text) => template.Replace(TAG_NAME, text);
-
-    private string GenerateScriptFromTemplate(string scriptTemplate, string scriptName, List<Section> sections)
-    {
-        foreach(Section s in sections)
-        {
-            scriptTemplate = GetUpdatedTemplateWithContent(scriptTemplate, s.sectionTag, s.sectionContent);
-        }
-
-        scriptTemplate = scriptTemplate.Replace(TAG_CLASS_NAME, scriptName);
-        return scriptTemplate;
-    }
-
-    // Fill in a specific tag with new content (takes into account indent of tag)
-    private string GetUpdatedTemplateWithContent(string scriptTemplate, string tag, List<string> content)
-    {
-        Match m = Regex.Match(scriptTemplate, string.Format(" *{0}", tag));
-        if(m.Success)
-        {
-            int indentSize = m.Value.Length - tag.Length;
-            string section = content.Aggregate("", (accum, curElem) => accum + new String(' ', indentSize) + curElem + ";\n");
-            return scriptTemplate.Replace(m.Value, section);
-        }
-        return scriptTemplate;
-    }
+    private string GenerateStringByTemplate(string template, string text) => template.Replace(INSERTIONTAG_NAME, text);
 }
 
-class Section
-{
-    public string sectionTag;
-    public List<string> sectionContent;
-}

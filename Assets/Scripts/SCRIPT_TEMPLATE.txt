@@ -1,10 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.UIElements;
+#EXTERNAL#
 
-public class #CLASSNAME# : MonoBehaviour
+public class <CLASSNAME> : MonoBehaviour
 {
     #FIELDS#
 
