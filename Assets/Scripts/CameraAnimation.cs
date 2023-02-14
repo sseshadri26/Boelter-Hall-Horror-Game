@@ -8,15 +8,12 @@ using UnityEngine.EventSystems;
 
 public class CameraAnimation : MonoBehaviour
 {
-
-    //public Camera mainCam;
     public Camera secondCamera;
     bool switched = false;
 
     void Start()
     {
-        //mainCam = Camera.main;
-        
+
     }
 
     void Update()
@@ -30,12 +27,9 @@ public class CameraAnimation : MonoBehaviour
         {
             UnityEngine.Debug.Log("Camera switched");
         }       
-
-
     }
     private void OnTriggerEnter()
     {
-        UnityEngine.Debug.Log("Trigger Entered");
         if (!switched)
         {
             SwitchToSecondCam();
@@ -44,12 +38,7 @@ public class CameraAnimation : MonoBehaviour
     void SwitchToSecondCam()
     {     
         secondCamera.CopyFrom(Camera.main);
-        //secondCamera.SetReplacementShader(replacementShader, null);
         
-        
-        //mainCam.enabled = false;
         switched = true;
     }
-
-
 }
