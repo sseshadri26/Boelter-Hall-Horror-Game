@@ -2,29 +2,21 @@ using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class CameraAnimation : MonoBehaviour
 {
-    //public GameObject playerCamera;
 
-    //// Update is called once per frame
-
-    //private void Start()
-    //{
-    //    playerCamera.SetActive(true);
-    //    if (playerCamera.activeSelf)
-    //    {
-    //        UnityEngine.Debug.Log("player cam active");
-    //    }
-    //}
-    Camera mainCam;
-    Camera secondCamera;
+    //public Camera mainCam;
+    public Camera secondCamera;
     bool switched = false;
 
     void Start()
     {
-        mainCam = Camera.main;
+        //mainCam = Camera.main;
+        
     }
 
     void Update()
@@ -37,22 +29,25 @@ public class CameraAnimation : MonoBehaviour
         if (switched)
         {
             UnityEngine.Debug.Log("Camera switched");
-        }
+        }       
 
 
-        // if trigger is entered and camera is not switched run function SwitchToSecondCam()
-
-        if (Input.GetKeyDown(KeyCode.Space) && !switched)
+    }
+    private void OnTriggerEnter()
+    {
+        UnityEngine.Debug.Log("Trigger Entered");
+        if (!switched)
         {
             SwitchToSecondCam();
         }
     }
-
     void SwitchToSecondCam()
     {     
-        secondCamera.CopyFrom(mainCam);
+        secondCamera.CopyFrom(Camera.main);
         //secondCamera.SetReplacementShader(replacementShader, null);
-        mainCam.enabled = false;
+        
+        
+        //mainCam.enabled = false;
         switched = true;
     }
 
