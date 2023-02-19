@@ -185,6 +185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scriptName: PauseUI
+  scriptFolderPath: Assets/Scripts/UI/Generated
   document: {fileID: 255780283}
   scriptTemplateFile: {fileID: 4900000, guid: fa26101fce9688a44a3144982f90ca9a, type: 3}
 --- !u!1 &2055903754

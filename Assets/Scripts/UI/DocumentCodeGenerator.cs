@@ -34,6 +34,7 @@ public class DocumentCodeGenerator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // This should probably be called through some callback triggered through a button press in the editor UI
         GenerateScript(scriptName, scriptTemplateFile, document, scriptFolderPath);
     }
 
