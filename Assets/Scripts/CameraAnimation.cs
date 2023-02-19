@@ -1,33 +1,44 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class CameraAnimation : MonoBehaviour
 {
-    public GameObject playerCamera;
-    public GameObject jumpCamera;
+    public Camera secondCamera;
+    bool switched = false;
 
-    // Update is called once per frame
-
-    private void Start()
+    void Start()
     {
-        playerCamera.SetActive(true);
-        jumpCamera.SetActive(false);
-        if (playerCamera.activeSelf)
-        {
-            UnityEngine.Debug.Log("player cam active");
-        }
+
     }
 
-    // if player enters trigger, set jump cam active and player cam inactive
-    private void OnTriggerEnter(Collider other)
+    void Update()
     {
-        if (other.gameObject.CompareTag("Player"))
+        // if camera is switched, output to the debug log that the camera is switched
+        if (!switched)
         {
-            playerCamera.SetActive(false);
-            jumpCamera.SetActive(true);
-            UnityEngine.Debug.Log("jump cam active");
+            UnityEngine.Debug.Log("Camera not switched");
         }
+        if (switched)
+        {
+            UnityEngine.Debug.Log("Camera switched");
+        }       
+    }
+    private void OnTriggerEnter()
+    {
+        if (!switched)
+        {
+            SwitchToSecondCam();
+        }
+    }
+    void SwitchToSecondCam()
+    {     
+        secondCamera.CopyFrom(Camera.main);
+        
+        switched = true;
     }
 }
