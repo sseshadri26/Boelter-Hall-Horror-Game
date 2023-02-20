@@ -1,19 +1,12 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 using System.Linq;
-using UnityEngine.Events;
-using System;
 using System.IO;
 
-public class DocumentCodeGenerator : MonoBehaviour
-{
-    [SerializeField] string scriptName = "NewScript";
-    [SerializeField] string scriptFolderPath = "Assets/Scripts/Generated";
-    [SerializeField] UIDocument document;
-    [SerializeField] TextAsset scriptTemplateFile;
 
+public class UIScriptGenerator
+{
     // INSERTIONS
     const string INSERTIONTAG_NAME = "<NAME>";
 
@@ -31,17 +24,20 @@ public class DocumentCodeGenerator : MonoBehaviour
         "UnityEngine.Events"
     };
     
-    // Start is called before the first frame update
-    void Start()
+    /// <summary>
+    /// Create a script called "<paramref name="scriptName"/>.cs" at path <paramref name = "scriptFolderPath"/> 
+    /// that fills in <paramref name = "scriptTemplate"/> 
+    /// using the 
+    /// </summary>
+    public void GenerateScript(string scriptName, TextAsset scriptTemplate, VisualTreeAsset visualTreeAsset, string scriptFolderPath)
     {
-        // This should probably be called through some callback triggered through a button press in the editor UI
-        GenerateScript(scriptName, scriptTemplateFile, document, scriptFolderPath);
-    }
+        // Fill in root 
+        VisualElement root = new VisualElement();
+        TemplateContainer instance = visualTreeAsset.CloneTree();
+        root.Add(instance);
 
-    public void GenerateScript(string scriptName, TextAsset scriptTemplate, UIDocument document, string scriptFolderPath)
-    {
         // Get list of all buttons in the doc
-        List<string> buttonNames = document.rootVisualElement.Query<Button>().ForEach<string>((Button b) => b.parent.name);
+        List<string> buttonNames = root.Query<Button>().ForEach<string>((Button b) => b.parent.name);
 
         List<string> buttonEventStrings = buttonNames.Select(buttonName => GenerateStringByTemplate(TEMPLATE_UNITY_EVENT, buttonName)).ToList<string>();
         List<string> buttonQueryStrings = buttonNames.Select(buttonName => GenerateStringByTemplate(TEMPLATE_QUERY, buttonName)).ToList<string>();
@@ -58,9 +54,9 @@ public class DocumentCodeGenerator : MonoBehaviour
             new ScriptGenerationUtils.ContentInsertionData{block = ScriptGenerationUtils.TemplateBlock.AWAKE, content = awakeStrings}
         };
 
-        string generatedScript = ScriptGenerationUtils.GenerateScriptFromTemplate(scriptTemplateFile.text, scriptName, sections);
+        string generatedScript = ScriptGenerationUtils.GenerateScriptFromTemplate(scriptName, scriptTemplate.text, sections);
 
-        File.WriteAllText(string.Format("{0}/{1}.cs", scriptFolderPath, scriptName), generatedScript);
+        File.WriteAllText(string.Format("{0}{1}.cs", scriptFolderPath, scriptName), generatedScript);
     }
 
     private string GenerateStringByTemplate(string template, string text) => template.Replace(INSERTIONTAG_NAME, text);

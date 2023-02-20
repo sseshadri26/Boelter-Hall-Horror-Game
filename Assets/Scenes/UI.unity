@@ -181,13 +181,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 255780282}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 091a56f729beb99429cda35a2ffc98d4, type: 3}
+  m_Script: {fileID: 11500000, guid: 3fb5c60f8a8c12d4ebdf5923ae7d862b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scriptName: PauseUI
-  scriptFolderPath: Assets/Scripts/UI/Generated
-  document: {fileID: 255780283}
-  scriptTemplateFile: {fileID: 4900000, guid: fa26101fce9688a44a3144982f90ca9a, type: 3}
+  document: {fileID: 0}
+  OnResumeButtonPressed:
+    m_PersistentCalls:
+      m_Calls: []
+  OnRestartButtonPressed:
+    m_PersistentCalls:
+      m_Calls: []
+  OnMainMenuButtonPressed:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSettingsButtonPressed:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &2055903754
 GameObject:
   m_ObjectHideFlags: 0

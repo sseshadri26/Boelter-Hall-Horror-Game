@@ -1,0 +1,22 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <ui:VisualElement name="Border-top" style="height: 20px;" />
+    <ui:VisualElement name="Row1" style="flex-direction: row; justify-content: space-around;">
+        <ui:VisualElement name="Title" style="background-color: rgb(77, 77, 77); padding-left: 10px; padding-right: 10px; padding-bottom: 10px; width: 100%; align-items: center; padding-top: 10px;">
+            <ui:Label text="UI Script Generator" display-tooltip-when-elided="true" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:VisualElement name="Row2" style="padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px;">
+        <uie:ObjectField label="UI UXML" type="UnityEngine.UIElements.VisualTreeAsset, UnityEngine.UIElementsModule" name="FieldUXML" />
+        <uie:ObjectField label="C# Script Template" name="FieldTemplate" type="UnityEngine.TextAsset, UnityEngine.CoreModule" />
+        <ui:TextField picking-mode="Ignore" label="C# Script Name" value="filler text" text="DefaultUI" name="FieldScriptName" />
+    </ui:VisualElement>
+    <ui:VisualElement name="Row3" style="padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px;">
+        <ui:Button text="Generate!" display-tooltip-when-elided="true" name="GenerateScriptButton" />
+        <ui:VisualElement name="FieldGenerationInfo" style="flex-direction: row; padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px;">
+            <ui:Label text="Generation Path:" display-tooltip-when-elided="true" name="FieldGenerationPrefix" style="padding-right: 57px;" />
+            <ui:Label text="Assets/Scripts/UI/Generated/DefaultUI.cs" display-tooltip-when-elided="true" name="FieldGenerationPath" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:VisualElement name="RowFill" style="flex-grow: 1;" />
+    <ui:VisualElement name="Border-bot" style="height: 20px;" />
+</ui:UXML>

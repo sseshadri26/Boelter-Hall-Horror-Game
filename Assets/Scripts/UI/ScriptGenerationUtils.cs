@@ -40,7 +40,7 @@ public static class ScriptGenerationUtils
     /// <summary>
     /// Generate the content of a script using the provided template and content (scriptName, sections).
     /// </summary>
-    public static string GenerateScriptFromTemplate(string scriptTemplate, string scriptName, List<ContentInsertionData> data)
+    public static string GenerateScriptFromTemplate(string scriptName, string scriptTemplate, List<ContentInsertionData> data)
     {
         foreach(ContentInsertionData d in data)
         {

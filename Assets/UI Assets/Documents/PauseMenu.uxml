@@ -3,10 +3,12 @@
     <ui:Template name="BasicButton" src="project://database/Assets/UI%20Assets/Documents/BasicButton.uxml?fileID=9197481963319205126&amp;guid=82b6642437e1cf049a678dad720f463d&amp;type=3#BasicButton" />
     <ui:VisualElement name="Panel" style="width: 1920px; height: 1080px; background-color: rgb(38, 39, 38); border-top-left-radius: 10px; border-bottom-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px;">
         <ui:VisualElement name="Border-top" style="height: 40px;" />
-        <ui:VisualElement name="Row1" style="height: auto;">
-            <ui:Instance template="TitleBlock" name="PauseMenuTitleBlock" style="align-items: center;">
+        <ui:VisualElement name="Row1" style="height: auto; flex-direction: row;">
+            <ui:VisualElement name="Spacer-Left" style="width: 35%;" />
+            <ui:Instance template="TitleBlock" name="PauseMenuTitleBlock" style="flex-grow: 1;">
                 <AttributeOverrides element-name="TitleText" text="Paused" />
             </ui:Instance>
+            <ui:VisualElement name="Spacer-Right" style="width: 35%;" />
         </ui:VisualElement>
         <ui:VisualElement name="Row2" style="flex-grow: 1; align-items: center;">
             <ui:VisualElement name="ButtonsBox" style="width: 1649px; height: auto; margin-left: 20px; margin-right: 20px; margin-top: 20px; margin-bottom: 20px; border-left-color: rgb(152, 152, 152); border-right-color: rgb(152, 152, 152); border-top-color: rgb(152, 152, 152); border-bottom-color: rgb(152, 152, 152); border-left-width: 2px; border-right-width: 2px; border-top-width: 2px; border-bottom-width: 2px;">
