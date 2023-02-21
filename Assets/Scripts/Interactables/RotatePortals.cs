@@ -8,7 +8,7 @@ using DG.Tweening;
 public class RotatePortals : MonoBehaviour, IAction
 {
     private bool activated = false;
-    private int curPortalPair = 0;
+    private int curPortalPair = Globals.portalPosition5F;
 
     // If door is activated, load next scene.
     public void Activate()
@@ -23,7 +23,8 @@ public class RotatePortals : MonoBehaviour, IAction
         transform.DOBlendableRotateBy(Vector3.zero, 1).OnComplete(() => activated = false);
 
         curPortalPair++;
-        if (curPortalPair == 4) curPortalPair = 0;
+        Globals.portalPosition5F++;
+        if (curPortalPair == 4) curPortalPair = Globals.portalPosition5F = 0;
 
         // Disable each portal pair then enable only the portal pair we want
         foreach (Transform child in transform)
