@@ -7,11 +7,11 @@ using System;
 public class UIScriptGeneratorTool : EditorWindow
 {
     private UIScriptGenerator generator = default;
+
+    // File Paths
     private string editorWindowUXMLPath => "Assets/UI Assets/Documents/" + this.GetType().Name + ".uxml";
     private string editorWindowCSSPath => "Assets/UI Assets/Styles/" + this.GetType().Name + ".uss";
-
     private string GENERATION_FOLDER_PATH = "Assets/Scripts/UI/Generated/";
-
 
 
     // UI References
@@ -19,7 +19,7 @@ public class UIScriptGeneratorTool : EditorWindow
     private ObjectField visualTreeAssetUXMLField = default;
     private ObjectField textAssetScriptTemplateField = default;
     private TextField scriptNameField = default;
-    private Label scriptPathNameField = default;
+    private TextField scriptPathNameField = default;
     private Button generateScriptButton = default;
 
 
@@ -50,13 +50,14 @@ public class UIScriptGeneratorTool : EditorWindow
         visualTreeAssetUXMLField = root.Q<ObjectField>("FieldUXML");
         textAssetScriptTemplateField = root.Q<ObjectField>("FieldTemplate");
         scriptNameField = root.Q<TextField>("FieldScriptName");
-        scriptPathNameField = root.Q<Label>("FieldGenerationPath");
+        scriptPathNameField = root.Q<TextField>("FieldGenerationPath");
         generateScriptButton = root.Q<Button>("GenerateScriptButton");
 
         // Restore values from before reload
         visualTreeAssetUXMLField.value = EditorUtility.InstanceIDToObject(EditorPrefs.GetInt("UIGEN_UXML", -1));
         textAssetScriptTemplateField.value = EditorUtility.InstanceIDToObject(EditorPrefs.GetInt("UIGEN_Template", -1));
         scriptNameField.value = EditorPrefs.GetString("UIGEN_ScriptName", "");
+        scriptPathNameField.value = ScriptPathName;
 
         scriptNameField.RegisterValueChangedCallback<string>(HandleScriptNameChanged);
         generateScriptButton.RegisterCallback<ClickEvent>(HandleGenerateButtonPressed);
@@ -64,6 +65,7 @@ public class UIScriptGeneratorTool : EditorWindow
 
     private void OnDisable()
     {
+        // Save values before destroy (to restore them later)
         if(visualTreeAssetUXMLField.value != null)
             EditorPrefs.SetInt("UIGEN_UXML", visualTreeAssetUXMLField.value.GetInstanceID());
         if(textAssetScriptTemplateField.value != null)
@@ -73,7 +75,7 @@ public class UIScriptGeneratorTool : EditorWindow
 
     private void HandleScriptNameChanged(ChangeEvent<string> evt)
     {
-        scriptPathNameField.text = ScriptPathName;
+        scriptPathNameField.value = ScriptPathName;
     }
 
     private void HandleGenerateButtonPressed(ClickEvent evt)
@@ -85,5 +87,5 @@ public class UIScriptGeneratorTool : EditorWindow
         AssetDatabase.Refresh();
     }
 
-    private string ScriptPathName => GENERATION_FOLDER_PATH + scriptNameField.value;
+    private string ScriptPathName => GENERATION_FOLDER_PATH + scriptNameField.value + ".cs";
 }
