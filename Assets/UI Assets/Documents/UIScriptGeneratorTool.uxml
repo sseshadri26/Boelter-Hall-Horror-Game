@@ -8,7 +8,7 @@
     <ui:VisualElement name="Row2" style="padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px;">
         <uie:ObjectField label="UI UXML" type="UnityEngine.UIElements.VisualTreeAsset, UnityEngine.UIElementsModule" name="FieldUXML" />
         <uie:ObjectField label="C# Script Template" name="FieldTemplate" type="UnityEngine.TextAsset, UnityEngine.CoreModule" />
-        <ui:TextField picking-mode="Ignore" label="C# Script Name" value="filler text" text="DefaultUI" name="FieldScriptName" />
+        <ui:TextField picking-mode="Ignore" label="C# Script Name" name="FieldScriptName" value="DefaultUI" />
     </ui:VisualElement>
     <ui:VisualElement name="Row3" style="padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px;">
         <ui:Button text="Generate!" display-tooltip-when-elided="true" name="GenerateScriptButton" />
