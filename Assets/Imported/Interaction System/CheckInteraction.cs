@@ -69,16 +69,12 @@ public class CheckInteraction : MonoBehaviour
                     Debug.Log(currentReceiver.GetInteractionMessage());
  
                     canInteract = true;
-                   
-                }
-                else
-                {
-                    canInteract = false;
+                    return;
                 }
             }
         }
-
-      
+                    
+        canInteract = false;      
     }
 
 }

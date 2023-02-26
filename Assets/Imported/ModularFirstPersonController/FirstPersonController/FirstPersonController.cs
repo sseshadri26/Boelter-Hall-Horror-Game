@@ -126,14 +126,25 @@ public class FirstPersonController : MonoBehaviour
     public float bobSpeed = 10f;
     public Vector3 bobAmount = new Vector3(.15f, .05f, 0f);
 
+    #endregion
+
     // Internal Variables
+    public static FirstPersonController instance { get; private set; }
     private Vector3 jointOriginalPos;
     private float timer = 0;
 
-    #endregion
-
     private void Awake()
     {
+        // If there is an instance, and it's not me, delete myself.
+        if (instance != null && instance != this) 
+        { 
+            Destroy(this); 
+        } 
+        else 
+        { 
+            instance = this; 
+        } 
+
         rb = GetComponent<Rigidbody>();
 
         crosshairObject = GetComponentInChildren<Image>();

@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4459864850019384741}
   - component: {fileID: 4459864850019384740}
   - component: {fileID: 606056294597865301}
+  - component: {fileID: 7130859633087567194}
   m_Layer: 0
   m_Name: FirstPersonController
   m_TagString: Player
@@ -184,6 +185,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minInteractionDistance: 2
   rayOrigin: {fileID: 4459864851310106424}
+--- !u!114 &7130859633087567194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4459864850019384750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e152e1e65d3ab6142a615e70cd7b8cee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4459864850190357393
 GameObject:
   m_ObjectHideFlags: 0
@@ -400,6 +413,7 @@ GameObject:
   - component: {fileID: 4459864851310106427}
   - component: {fileID: 6871063879107326662}
   - component: {fileID: 5451960167254787631}
+  - component: {fileID: 5298269343066325622}
   m_Layer: 0
   m_Name: PlayerCamera
   m_TagString: MainCamera
@@ -473,7 +487,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4459864851310106424}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!114 &6871063879107326662
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -515,6 +529,19 @@ MonoBehaviour:
   _PostProcessShader: {fileID: 4800000, guid: 56d52fd5b7c6911468179e5a7359ce0e, type: 3}
   _PostProcessShaderAccurate: {fileID: 4800000, guid: 2ebed186567d3c244a87538744a62920, type: 3}
   _InterlacingShader: {fileID: 4800000, guid: 03ebd34214b41ef459d7ee6753b062be, type: 3}
+--- !u!114 &5298269343066325622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4459864851310106424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ebdf9b30a9818844874769b511ffbdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  secondCamera: {fileID: 0}
 --- !u!1 &4459864851397454630
 GameObject:
   m_ObjectHideFlags: 0
