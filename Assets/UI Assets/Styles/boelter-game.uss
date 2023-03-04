@@ -1,0 +1,26 @@
+.boelter-simple-button {
+    background-color: rgb(20, 20, 20);
+    -unity-font-definition: url('project://database/Assets/UI%20Assets/Fonts/SquaresBold%20SDF.asset?fileID=11400000&guid=d4a6889cdb07a7543b902df6b2faeec8&type=2#SquaresBold SDF');
+    -unity-font: url('project://database/Assets/UI%20Assets/Fonts/SquaresBold.otf?fileID=12800000&guid=74602914dcab8c549873e0c3a9258386&type=3#SquaresBold');
+    font-size: 29px;
+    color: rgba(255, 255, 255, 255);
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+}
+
+.boelter-simple-button:hover {
+    background-color: rgb(113, 113, 113);
+    -unity-font-definition: url('project://database/Assets/UI%20Assets/Fonts/SquaresBold%20SDF.asset?fileID=11400000&guid=d4a6889cdb07a7543b902df6b2faeec8&type=2#SquaresBold SDF');
+    -unity-font: url('project://database/Assets/UI%20Assets/Fonts/SquaresBold.otf?fileID=12800000&guid=74602914dcab8c549873e0c3a9258386&type=3#SquaresBold');
+    color: rgba(255, 255, 255, 255);
+    -unity-font-style: bold;
+}
+
+.boelter-simple-button:active {
+    background-color: rgb(77, 77, 77);
+    -unity-font-definition: url('project://database/Assets/UI%20Assets/Fonts/SquaresBold%20SDF.asset?fileID=11400000&guid=d4a6889cdb07a7543b902df6b2faeec8&type=2#SquaresBold SDF');
+    -unity-font: url('project://database/Assets/UI%20Assets/Fonts/SquaresBold.otf?fileID=12800000&guid=74602914dcab8c549873e0c3a9258386&type=3#SquaresBold');
+    -unity-font-style: normal;
+}
