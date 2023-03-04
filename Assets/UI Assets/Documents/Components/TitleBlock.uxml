@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:VisualElement name="TitleBlock" style="width: auto; height: 100px;">
+        <ui:Label text="&lt;TITLE&gt;" display-tooltip-when-elided="true" name="TitleText" enable-rich-text="true" style="flex-grow: 1; flex-shrink: 1; -unity-text-align: middle-center; -unity-font: url(&apos;project://database/Assets/UI%20Assets/Fonts/SquaresBold.otf?fileID=12800000&amp;guid=74602914dcab8c549873e0c3a9258386&amp;type=3#SquaresBold&apos;); -unity-font-definition: url(&apos;project://database/Assets/UI%20Assets/Fonts/SquaresBold%20SDF.asset?fileID=11400000&amp;guid=d4a6889cdb07a7543b902df6b2faeec8&amp;type=2#SquaresBold SDF&apos;); color: rgb(255, 255, 255); overflow: hidden; font-size: 67px;" />
+        <ui:VisualElement name="Underline" style="width: 100%; margin-left: auto; margin-right: auto; background-color: rgb(164, 164, 164); flex-direction: row; flex-grow: 0; height: 7px;" />
+    </ui:VisualElement>
+</ui:UXML>
