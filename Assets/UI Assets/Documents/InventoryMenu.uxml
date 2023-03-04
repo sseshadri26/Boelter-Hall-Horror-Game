@@ -1,6 +1,6 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <ui:Template name="TitleBlock" src="project://database/Assets/UI%20Assets/Documents/Components/TitleBlock.uxml?fileID=9197481963319205126&amp;guid=9ea99844e54943a4f808804ab30e1bd8&amp;type=3#TitleBlock" />
-    <ui:VisualElement name="Main" style="width: 1920px; height: 1080px; padding-left: 60px; padding-right: 60px; padding-top: 40px; padding-bottom: 60px;">
+    <ui:VisualElement name="Main" style="width: 1920px; height: 1080px; padding-left: 60px; padding-right: 60px; padding-top: 40px; padding-bottom: 60px; background-color: rgb(38, 39, 38);">
         <ui:VisualElement name="row-1" style="align-items: center;">
             <ui:Instance template="TitleBlock" name="TitleBlock" style="width: 506px;">
                 <AttributeOverrides element-name="TitleText" text="INVENTORY" />
@@ -9,9 +9,9 @@
         <ui:VisualElement name="row-2" style="flex-grow: 1;">
             <ui:VisualElement name="content" style="flex-grow: 1; flex-direction: row; padding-top: 70px; padding-bottom: 18px;">
                 <ui:VisualElement name="left" style="width: 527px; margin-right: 43px; max-height: 828px; border-left-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-top-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-width: 2px; border-right-width: 2px; border-top-width: 2px; border-bottom-width: 2px;">
-                    <ui:ListView focusable="true" name="item-list" style="flex-grow: 1;" />
+                    <ui:ScrollView name="item-list" picking-mode="Ignore" style="flex-grow: 1;" />
                 </ui:VisualElement>
-                <ui:VisualElement name="middle" style="flex-grow: 1; border-left-width: 2px; border-right-width: 2px; border-top-width: 2px; border-bottom-width: 2px; border-left-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-top-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255);">
+                <ui:VisualElement name="middle" style="flex-grow: 1; border-left-width: 2px; border-right-width: 2px; border-top-width: 2px; border-bottom-width: 2px; border-left-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-top-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); background-image: none; -unity-background-scale-mode: scale-to-fit;">
                     <ui:VisualElement name="item-visual" style="flex-grow: 1;" />
                 </ui:VisualElement>
                 <ui:VisualElement name="right" style="width: 466px; margin-left: 42px; border-left-width: 2px; border-right-width: 2px; border-top-width: 2px; border-bottom-width: 2px; border-left-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-top-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); padding-left: 32px; padding-right: 32px; padding-top: 32px; padding-bottom: 32px;">
