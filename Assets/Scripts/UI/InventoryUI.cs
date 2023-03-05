@@ -17,7 +17,7 @@ public class InventoryUI : MonoBehaviour
     const string k_ItemDesc = "item-desc";
 
     // UI Tags (Inventory Item)
-    const string k_ItemRoot = "Main";
+    const string k_ItemRoot = "item-root";
     const string k_ItemName = "item-name";
     const string k_ItemGraphic = "item-graphic";
     const string k_ItemTint = "item-tint";
@@ -64,21 +64,48 @@ public class InventoryUI : MonoBehaviour
         // TODO: Fade inventory out
     }
 
+    IEnumerator DelayedScroll()
+    {
+        int curItem = 0;
+        while(true)
+        {
+            m_ItemList.ScrollTo(GetInventoryItems().AtIndex(curItem).parent);
+            curItem = (curItem + 1) % m_ItemList.childCount;
+            yield return new WaitForSecondsRealtime(2);
+        }
+    }
+
+    void Start()
+    {
+        //StartCoroutine(DelayedScroll());
+    }
+    void Update()
+    {
+        //if(Input.GetKeyDown(KeyCode.Space))
+        //Debug.Log(GetInventoryItems().AtIndex(2).parent.name);
+        //m_ItemList.ScrollTo(GetInventoryItems().AtIndex(2).parent);
+        //m_ItemList.verticalScroller.ScrollPageDown();
+    }
+
     private void UpdateDisplay(List<InventoryItemSO> itemList)
     {
         bool isFirstItem = true;
-        foreach(InventoryItemSO item in itemList)
+        foreach(InventoryItemSO itemData in itemList)
         {
             TemplateContainer instance = inventoryItemUI.Instantiate();
-            InitializeItemElement(instance, item);
+            InitializeItemElement(instance, itemData);
 
+            m_ItemList.Add(instance);
+
+            // DESIGN CHOICE: Inventory item should be fully initialized and
+            // already inside of the list by the time the initial "click" is
+            // simulated, since the logic expects it to be in the list
             if(isFirstItem)
             {
-                HandleInventoryItemClicked(instance, item);
+                HandleInventoryItemClicked(instance, itemData);
                 isFirstItem = false;
             }
-                
-            m_ItemList.Add(instance);
+            
 
         }
     }
@@ -102,7 +129,7 @@ public class InventoryUI : MonoBehaviour
     {
         // Visually select item
         HighlightItem(item);
-
+        m_ItemList.ScrollTo(item);
         DisplayItemInformation(itemData);
     }
 

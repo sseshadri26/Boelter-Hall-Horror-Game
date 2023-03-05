@@ -54,3 +54,28 @@
     color: rgb(255, 255, 255);
     background-color: rgba(200, 186, 142, 0.07);
 }
+
+#unity-dragger {
+    background-image: url('project://database/Assets/UI Assets/Icons/knob.png');
+    -unity-background-scale-mode: scale-to-fit;
+    background-color: rgba(0, 0, 0, 0);
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+    flex-shrink: 0;
+    flex-grow: 0;
+    max-width: 60px;
+    max-height: 60px;
+    width: 60px;
+    height: 60px;
+}
+
+#unity-low-button
+{
+
+}
+
+#item-list {
+    --unity-metrics-single_line-height: 500px;
+}
