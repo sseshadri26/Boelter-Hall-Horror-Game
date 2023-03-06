@@ -9,6 +9,8 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] UIDocument document = default;
     [SerializeField] VisualTreeAsset inventoryItemUI = default;
     [SerializeField] InventorySO inventory = default;
+    [SerializeField] float scrollSpeed = 300;
+    [SerializeField] float scrollButtonJumpSize = 100;
 
     // UI Tags
     const string k_ItemList = "item-list";
@@ -61,10 +63,19 @@ public class InventoryUI : MonoBehaviour
 
         // Register Callbacks
         m_InventoryScrollUpButton.RegisterCallback<ClickEvent>(ev => m_ItemList.verticalScroller.ScrollPageUp());
-        m_InventoryScrollDownButton.RegisterCallback<ClickEvent>(ev => m_ItemList.verticalScroller.ScrollPageDown());
+        m_InventoryScrollDownButton.RegisterCallback<ClickEvent>(ev => m_ItemList.verticalScroller.ScrollPageDown()); 
 
+        m_ItemList.RegisterCallback<WheelEvent>(SpeedUpScroll);
+        m_ItemList.verticalPageSize = scrollButtonJumpSize;
         UpdateDisplay(inventory.items);
 
+    }
+
+    // This is a function to accelerate the scroll speed, and is a work-around for Unity's currently slightly
+    // buggy scrolling system. Here's the post that inspired it: https://forum.unity.com/threads/listview-mousewheel-scrolling-speed.1167404/ -- Specifically in leanon00's reply
+    private void SpeedUpScroll(WheelEvent ev)
+    {
+        m_ItemList.scrollOffset = new Vector2(0, m_ItemList.scrollOffset.y + scrollSpeed * ev.delta.y);
     }
 
     public void OpenInventory()
@@ -96,7 +107,6 @@ public class InventoryUI : MonoBehaviour
                 HandleInventoryItemClicked(instance, itemData);
                 isFirstItem = false;
             }
-            
 
         }
     }
