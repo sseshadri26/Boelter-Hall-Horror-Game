@@ -51,6 +51,7 @@ public class InventoryUI : MonoBehaviour
         m_ItemDesc = m_Root.Q<Label>(k_ItemDesc);
 
         UpdateDisplay(inventory.items);
+
     }
 
     public void OpenInventory()
@@ -62,29 +63,6 @@ public class InventoryUI : MonoBehaviour
     public void CloseInventory()
     {
         // TODO: Fade inventory out
-    }
-
-    IEnumerator DelayedScroll()
-    {
-        int curItem = 0;
-        while(true)
-        {
-            m_ItemList.ScrollTo(GetInventoryItems().AtIndex(curItem).parent);
-            curItem = (curItem + 1) % m_ItemList.childCount;
-            yield return new WaitForSecondsRealtime(2);
-        }
-    }
-
-    void Start()
-    {
-        //StartCoroutine(DelayedScroll());
-    }
-    void Update()
-    {
-        //if(Input.GetKeyDown(KeyCode.Space))
-        //Debug.Log(GetInventoryItems().AtIndex(2).parent.name);
-        //m_ItemList.ScrollTo(GetInventoryItems().AtIndex(2).parent);
-        //m_ItemList.verticalScroller.ScrollPageDown();
     }
 
     private void UpdateDisplay(List<InventoryItemSO> itemList)
