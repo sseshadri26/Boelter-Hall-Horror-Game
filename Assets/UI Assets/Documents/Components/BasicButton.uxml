@@ -1,0 +1,4 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Assets/Styles/boelter-game.uss?fileID=7433441132597879392&amp;guid=1206311c1593adc44a6dea0891905f54&amp;type=3#boelter-game" />
+    <ui:Button text="Button" display-tooltip-when-elided="true" name="Button" class="boelter-simple-button" style="font-size: 65px; height: 199px;" />
+</ui:UXML>
