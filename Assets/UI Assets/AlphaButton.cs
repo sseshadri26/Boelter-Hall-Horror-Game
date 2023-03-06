@@ -12,7 +12,9 @@ public class AlphaButton : Button
     // This is useful for buttons that appear to have non-square shapes.
     public override bool ContainsPoint(Vector2 localPoint)
     {
-        
+        // NOTE: the property "Scale Mode" property must be on "stretch-to-fit" for now, since
+        // this implementation is hard-wired to work for this specific mode. Perhaps it would be
+        // a good idea to adjust for this later.
 
         // The given localPoint is in the button's coordinate space, which is different from the texture's.
         // For this reason, we must map the button space to the texture space and then locate the color

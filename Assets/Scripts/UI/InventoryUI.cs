@@ -15,6 +15,8 @@ public class InventoryUI : MonoBehaviour
     const string k_ItemTitle = "item-title";
     const string k_ItemVisual = "item-visual";
     const string k_ItemDesc = "item-desc";
+    const string k_InventoryScrollUpButton = "scroll-up-button";
+    const string k_InventoryScrollDownButton = "scroll-down-button";
 
     // UI Tags (Inventory Item)
     const string k_ItemRoot = "item-root";
@@ -39,6 +41,9 @@ public class InventoryUI : MonoBehaviour
     VisualElement m_ItemVisual = default;
     Label m_ItemDesc = default;
 
+    Button m_InventoryScrollUpButton = default;
+    Button m_InventoryScrollDownButton = default;
+
     private void Awake()
     {
         if(document != null)
@@ -49,6 +54,14 @@ public class InventoryUI : MonoBehaviour
         m_ItemTitle = m_Root.Q<Label>(k_ItemTitle);
         m_ItemVisual = m_Root.Q<VisualElement>(k_ItemVisual);
         m_ItemDesc = m_Root.Q<Label>(k_ItemDesc);
+
+        m_InventoryScrollUpButton = m_Root.Q<Button>(k_InventoryScrollUpButton);
+        m_InventoryScrollDownButton = m_Root.Q<Button>(k_InventoryScrollDownButton);
+
+
+        // Register Callbacks
+        m_InventoryScrollUpButton.RegisterCallback<ClickEvent>(ev => m_ItemList.verticalScroller.ScrollPageUp());
+        m_InventoryScrollDownButton.RegisterCallback<ClickEvent>(ev => m_ItemList.verticalScroller.ScrollPageDown());
 
         UpdateDisplay(inventory.items);
 
