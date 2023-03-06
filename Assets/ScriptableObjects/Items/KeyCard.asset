@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Key Card
   description: Unlocks a super secret door... I wonder which one?
-  graphic: {fileID: 21300000, guid: d207bf2c15bb8104a86c7d7ed76f05ed, type: 3}
+  graphic: {fileID: 21300000, guid: 829d7206285484e488a6c869c3eb6cf9, type: 3}
+  itemStatus: 1

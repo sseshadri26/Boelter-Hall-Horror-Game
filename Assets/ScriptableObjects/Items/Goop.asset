@@ -15,3 +15,4 @@ MonoBehaviour:
   itemName: Goop
   description: Gross... why do I have this?
   graphic: {fileID: 21300000, guid: 617a110185906a74da000185ff371eb1, type: 3}
+  itemStatus: 0

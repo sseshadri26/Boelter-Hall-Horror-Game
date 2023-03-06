@@ -15,3 +15,4 @@ MonoBehaviour:
   itemName: Crowbar
   description: How could you go wrong with a crowbar?
   graphic: {fileID: 21300000, guid: 9727b477c7479124a9058252609344ac, type: 3}
+  itemStatus: 0

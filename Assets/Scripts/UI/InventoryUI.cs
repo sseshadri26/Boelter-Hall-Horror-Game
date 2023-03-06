@@ -11,6 +11,14 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] InventorySO inventory = default;
     [SerializeField] float scrollSpeed = 300;
     [SerializeField] float scrollButtonJumpSize = 100;
+    
+    [Header("Item Name Colors")]
+    // DESIGN CHOICE: Make a separate field for each, instead of using some kind of
+    // list containing data structures that pair an item status with a color since
+    // it is unlikely that very many more item statuses will be introduced, thus making
+    // it not really worth the cost of the added complexity
+    [SerializeField] Color normalItemColor = Color.white;
+    [SerializeField] Color keyItemColor = Color.blue;
 
     // UI Tags
     const string k_ItemList = "item-list";
@@ -114,6 +122,7 @@ public class InventoryUI : MonoBehaviour
     private void InitializeItemElement(VisualElement item, InventoryItemSO itemData)
     {
         item.Q<Label>(k_ItemName).text = itemData.itemName;
+        item.Q<Label>(k_ItemName).style.color = GetItemStatusColor(itemData);
         item.Q<VisualElement>(k_ItemGraphic).style.backgroundImage = new StyleBackground(itemData.graphic);
 
         // Reset item highlight
@@ -174,7 +183,26 @@ public class InventoryUI : MonoBehaviour
     private void DisplayItemInformation(InventoryItemSO item)
     {
         m_ItemTitle.text = item.itemName;
+        m_ItemTitle.style.color = GetItemStatusColor(item);
         m_ItemDesc.text = item.description;
         m_ItemVisual.style.backgroundImage = new StyleBackground(item.graphic);
+    }
+
+    ///<summary>
+    /// Get the color corresponding to the status of this item
+    ///</summary>
+    private Color GetItemStatusColor(InventoryItemSO item)
+    {
+        // DESIGN CHOICE: Use a method to ensure consistent assignment of colors
+        // DESIGN CHOICE: Use switch statement instead of dictionary for simplicity; probably won't have any additional item statuses anyways
+        switch (item.itemStatus)
+        {
+            case InventoryItemSO.ItemStatus.NORMAL:
+                return normalItemColor;
+            case InventoryItemSO.ItemStatus.KEY_ITEM:
+                return keyItemColor;
+            default:
+                return normalItemColor;
+        }
     }
 }

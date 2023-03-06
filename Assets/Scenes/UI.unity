@@ -232,6 +232,8 @@ MonoBehaviour:
   inventory: {fileID: 11400000, guid: 0dc6866fbd204d14cb7e1cb5e419e5f4, type: 2}
   scrollSpeed: 300
   scrollButtonJumpSize: 200
+  normalItemColor: {r: 1, g: 1, b: 1, a: 1}
+  keyItemColor: {r: 0.24705884, g: 0.45882356, b: 1, a: 1}
 --- !u!114 &1041981934
 MonoBehaviour:
   m_ObjectHideFlags: 0
