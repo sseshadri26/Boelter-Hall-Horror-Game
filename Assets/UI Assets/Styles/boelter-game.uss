@@ -8,6 +8,10 @@
     border-right-color: rgba(0, 0, 0, 0);
     border-top-color: rgba(0, 0, 0, 0);
     border-bottom-color: rgba(0, 0, 0, 0);
+    padding-left: 60px;
+    padding-right: 60px;
+    padding-top: 60px;
+    padding-bottom: 60px;
 }
 
 .boelter-simple-button:hover {

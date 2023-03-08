@@ -92,6 +92,13 @@ public class InventoryUI : PanelUI
 
     private void UpdateDisplay(List<InventoryItemSO> itemList)
     {
+        // DESIGN CHOICE: Update display by clearing every single item then reinstantiating
+        // new list instead of pooling items. Why? Well it's simple, and we probably
+        // won't be calling this function A LOT, making it not too bad of a cost.
+
+        m_ItemList.Clear();
+        m_ItemList.scrollOffset = Vector2.zero;
+
         bool isFirstItem = true;
         foreach(InventoryItemSO itemData in itemList)
         {

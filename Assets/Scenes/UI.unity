@@ -181,14 +181,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 255780282}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3fb5c60f8a8c12d4ebdf5923ae7d862b, type: 3}
+  m_Script: {fileID: 11500000, guid: 53d4d2c8f3e04de4e93b8386dff90a92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   document: {fileID: 255780283}
-  OnResumeButtonPressed:
+  startPosition: 4
+  panelOpenStateChanged: {fileID: 11400000, guid: c354295335cbfad40abde8d0229bf468, type: 2}
+  OnRestartButtonPressed:
     m_PersistentCalls:
       m_Calls: []
-  OnRestartButtonPressed:
+  OnResumeButtonPressed:
     m_PersistentCalls:
       m_Calls: []
   OnMainMenuButtonPressed:

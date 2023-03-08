@@ -66,12 +66,14 @@ public abstract class PanelUI : MonoBehaviour
         root.AddToClassList(panelPositionClasses[startPosition]);
         currentPosition = startPosition;
 
-        panelOpenStateChanged.OnEventRaised += HandlePanelOpenStateChanged;
+        if(panelOpenStateChanged != null)
+            panelOpenStateChanged.OnEventRaised += HandlePanelOpenStateChanged;
     }
 
     void OnDestroy()
     {
-        panelOpenStateChanged.OnEventRaised -= HandlePanelOpenStateChanged;
+        if(panelOpenStateChanged != null)
+            panelOpenStateChanged.OnEventRaised -= HandlePanelOpenStateChanged;
     }
 
     private void HandlePanelOpenStateChanged(bool isOpen)
