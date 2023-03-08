@@ -1,6 +1,6 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:Template name="TitleBlock" src="project://database/Assets/UI%20Assets/Documents/TitleBlock.uxml?fileID=9197481963319205126&amp;guid=9ea99844e54943a4f808804ab30e1bd8&amp;type=3#TitleBlock" />
-    <ui:Template name="BasicButton" src="project://database/Assets/UI%20Assets/Documents/BasicButton.uxml?fileID=9197481963319205126&amp;guid=82b6642437e1cf049a678dad720f463d&amp;type=3#BasicButton" />
+    <ui:Template name="TitleBlock" src="project://database/Assets/UI%20Assets/Documents/ComponentsUXML/TitleBlock.uxml?fileID=9197481963319205126&amp;guid=9ea99844e54943a4f808804ab30e1bd8&amp;type=3#TitleBlock" />
+    <Style src="project://database/Assets/UI%20Assets/Styles/boelter-game.uss?fileID=7433441132597879392&amp;guid=1206311c1593adc44a6dea0891905f54&amp;type=3#boelter-game" />
     <ui:VisualElement name="Panel" style="width: 1920px; height: 1080px; background-color: rgb(38, 39, 38); border-top-left-radius: 10px; border-bottom-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px;">
         <ui:VisualElement name="Border-top" style="height: 40px;" />
         <ui:VisualElement name="Row1" style="height: auto; flex-direction: row;">
@@ -12,18 +12,10 @@
         </ui:VisualElement>
         <ui:VisualElement name="Row2" style="flex-grow: 1; align-items: center;">
             <ui:VisualElement name="ButtonsBox" style="width: 1649px; height: auto; margin-left: 20px; margin-right: 20px; margin-top: 20px; margin-bottom: 20px; border-left-color: rgb(152, 152, 152); border-right-color: rgb(152, 152, 152); border-top-color: rgb(152, 152, 152); border-bottom-color: rgb(152, 152, 152); border-left-width: 2px; border-right-width: 2px; border-top-width: 2px; border-bottom-width: 2px;">
-                <ui:Instance template="BasicButton" name="ResumeButton">
-                    <AttributeOverrides element-name="Button" text="Resume" />
-                </ui:Instance>
-                <ui:Instance template="BasicButton" name="RestartButton">
-                    <AttributeOverrides element-name="Button" text="Restart" />
-                </ui:Instance>
-                <ui:Instance template="BasicButton" name="MainMenuButton">
-                    <AttributeOverrides element-name="Button" text="Main Menu" />
-                </ui:Instance>
-                <ui:Instance template="BasicButton" name="SettingsButton">
-                    <AttributeOverrides element-name="Button" text="Settings" />
-                </ui:Instance>
+                <ui:Button text="Resume" display-tooltip-when-elided="true" name="resume-button" class="boelter-simple-button" style="font-size: 65px;" />
+                <ui:Button text="Restart" display-tooltip-when-elided="true" name="restart-button" class="boelter-simple-button" style="font-size: 65px;" />
+                <ui:Button text="Main Menu" display-tooltip-when-elided="true" name="main-menu-button" class="boelter-simple-button" style="font-size: 65px;" />
+                <ui:Button text="Settings" display-tooltip-when-elided="true" name="settings-button" class="boelter-simple-button" style="font-size: 65px;" />
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="Border-bot" style="height: 40px;" />
