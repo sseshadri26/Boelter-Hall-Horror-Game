@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/5F/5F Courtyard.unity
     guid: 89737b329dc42a24d9c46e9a410e763c
+  - enabled: 1
+    path: Assets/Scenes/UI.unity
+    guid: 72f53eb6218657f4b8f46c0351972bca
   m_configObjects: {}
