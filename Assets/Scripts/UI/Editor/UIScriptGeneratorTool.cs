@@ -9,7 +9,7 @@ public class UIScriptGeneratorTool : EditorWindow
     private UIScriptGenerator generator = default;
 
     // File Paths
-    private string editorWindowUXMLPath => "Assets/UI Assets/Documents/" + this.GetType().Name + ".uxml";
+    private string editorWindowUXMLPath => "Assets/UI Assets/Documents/EditorUXML/" + this.GetType().Name + ".uxml";
     private string editorWindowCSSPath => "Assets/UI Assets/Styles/" + this.GetType().Name + ".uss";
     private string GENERATION_FOLDER_PATH = "Assets/Scripts/UI/Generated/";
 

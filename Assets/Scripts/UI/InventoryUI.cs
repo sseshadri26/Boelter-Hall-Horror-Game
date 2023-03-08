@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class InventoryUI : MonoBehaviour
+public class InventoryUI : PanelUI
 {
-    [SerializeField] UIDocument document = default;
+    [Header("Inventory Properties")]
     [SerializeField] VisualTreeAsset inventoryItemUI = default;
     [SerializeField] InventorySO inventory = default;
     [SerializeField] float scrollSpeed = 300;
@@ -41,10 +41,9 @@ public class InventoryUI : MonoBehaviour
     const string c_InventoryItemTintClass = "inventory-item-tint";
     const string c_InventoryItemTintSelectedClass = "inventory-item-tint-selected";
 
-    
+
 
     // UI References
-    VisualElement m_Root = default;
     ScrollView m_ItemList = default;
 
     Label m_ItemTitle = default;
@@ -54,19 +53,18 @@ public class InventoryUI : MonoBehaviour
     Button m_InventoryScrollUpButton = default;
     Button m_InventoryScrollDownButton = default;
 
-    private void Awake()
+    protected override void Awake()
     {
-        if(document != null)
-            m_Root = document.rootVisualElement;
+        base.Awake();
 
-        m_ItemList = m_Root.Q<ScrollView>(k_ItemList);
+        m_ItemList = root.Q<ScrollView>(k_ItemList);
 
-        m_ItemTitle = m_Root.Q<Label>(k_ItemTitle);
-        m_ItemVisual = m_Root.Q<VisualElement>(k_ItemVisual);
-        m_ItemDesc = m_Root.Q<Label>(k_ItemDesc);
+        m_ItemTitle = root.Q<Label>(k_ItemTitle);
+        m_ItemVisual = root.Q<VisualElement>(k_ItemVisual);
+        m_ItemDesc = root.Q<Label>(k_ItemDesc);
 
-        m_InventoryScrollUpButton = m_Root.Q<Button>(k_InventoryScrollUpButton);
-        m_InventoryScrollDownButton = m_Root.Q<Button>(k_InventoryScrollDownButton);
+        m_InventoryScrollUpButton = root.Q<Button>(k_InventoryScrollUpButton);
+        m_InventoryScrollDownButton = root.Q<Button>(k_InventoryScrollDownButton);
 
 
         // Register Callbacks
@@ -76,8 +74,8 @@ public class InventoryUI : MonoBehaviour
         m_ItemList.RegisterCallback<WheelEvent>(SpeedUpScroll);
         m_ItemList.verticalPageSize = scrollButtonJumpSize;
         UpdateDisplay(inventory.items);
-
     }
+
 
     // This is a function to accelerate the scroll speed, and is a work-around for Unity's currently slightly
     // buggy scrolling system. Here's the post that inspired it: https://forum.unity.com/threads/listview-mousewheel-scrolling-speed.1167404/ -- Specifically in leanon00's reply
@@ -86,15 +84,10 @@ public class InventoryUI : MonoBehaviour
         m_ItemList.scrollOffset = new Vector2(0, m_ItemList.scrollOffset.y + scrollSpeed * ev.delta.y);
     }
 
-    public void OpenInventory()
+    protected override void OnOpenPanel()
     {
+        // Instead of registering callback to inventory, simply activate when panel opens
         UpdateDisplay(inventory.items);
-        // TODO: Fade inventory in
-    }
-
-    public void CloseInventory()
-    {
-        // TODO: Fade inventory out
     }
 
     private void UpdateDisplay(List<InventoryItemSO> itemList)
@@ -158,7 +151,7 @@ public class InventoryUI : MonoBehaviour
         if(elem != null)
         {
             // Unhighlight all currently selected items
-            m_Root.Query<VisualElement>(k_ItemTint).
+            root.Query<VisualElement>(k_ItemTint).
                 Where(i => i.ClassListContains(c_InventoryItemTintSelectedClass)).
                 ForEach(UnhighlightElement);
 
@@ -174,7 +167,7 @@ public class InventoryUI : MonoBehaviour
             elem.RemoveFromClassList(c_InventoryItemTintSelectedClass);
     }
 
-    private UQueryBuilder<VisualElement> GetInventoryItems() => m_Root.Query<VisualElement>(k_ItemRoot);
+    private UQueryBuilder<VisualElement> GetInventoryItems() => root.Query<VisualElement>(k_ItemRoot);
 
 
     ///<summary>

@@ -79,7 +79,7 @@
 }
 
 .arrow-button {
-    -unity-background-image-tint-color: rgba(255, 255, 255, 255);
+    -unity-background-image-tint-color: rgb(255, 255, 255);
     border-left-width: 0;
     border-right-width: 0;
     border-top-width: 0;
@@ -92,7 +92,7 @@
 }
 
 .arrow-button:hover {
-    -unity-background-image-tint-color: rgba(164, 164, 164, 255);
+    -unity-background-image-tint-color: rgb(164, 164, 164);
 }
 
 .arrow-button:active {

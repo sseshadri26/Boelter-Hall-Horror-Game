@@ -1,0 +1,20 @@
+.center {
+    translate: 0 0;
+    transition-property: translate;
+    transition-duration: 1s;
+    transition-timing-function: ease-in-out;
+}
+
+.offscreen-left {
+    translate: -102% 0;
+    transition-property: translate;
+    transition-duration: 1s;
+    transition-timing-function: ease-in-out;
+}
+
+.offscreen-right {
+    translate: 102% 0;
+    transition-property: translate;
+    transition-duration: 1s;
+    transition-timing-function: ease-in-out;
+}
