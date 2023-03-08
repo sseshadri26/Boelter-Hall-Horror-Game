@@ -156,7 +156,7 @@ MonoBehaviour:
   m_PanelSettings: {fileID: 11400000, guid: ea380dad236b3a1469bf1765840c6002, type: 2}
   m_ParentUI: {fileID: 0}
   sourceAsset: {fileID: 9197481963319205126, guid: f1f051fbb62fb064aae9a868fed12a82, type: 3}
-  m_SortingOrder: 0
+  m_SortingOrder: 99
 --- !u!4 &255780284
 Transform:
   m_ObjectHideFlags: 0
@@ -185,7 +185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   document: {fileID: 255780283}
-  startPosition: 4
+  startPosition: 2
   panelOpenStateChanged: {fileID: 11400000, guid: c354295335cbfad40abde8d0229bf468, type: 2}
   OnRestartButtonPressed:
     m_PersistentCalls:
