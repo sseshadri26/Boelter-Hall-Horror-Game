@@ -14,7 +14,7 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
-  m_Fog: 0
+  m_Fog: 1
   m_FogColor: {r: 0.08627451, g: 0.08627451, b: 0.08627451, a: 1}
   m_FogMode: 3
   m_FogDensity: 0.08
@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: b0c80d75eda027a47a5e194e68959e02, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.012400697, g: 0.010739996, b: 0.013548322, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1431,7 +1431,7 @@ Transform:
   - {fileID: 1678023384}
   - {fileID: 118709875}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &85597279
 PrefabInstance:
@@ -2156,13 +2156,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 141890500}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a6b404bf8c1abe48b9be16b74c30dff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flickeringChance: 0.2
-  onChance: 0.5
+  flickeringChance: 0
+  onChance: 1
   changeChance: 0.05
   affectShader: 1
   offShader: {fileID: 4800000, guid: 35a500d816bc28c409f8ca20c3d0c93d, type: 3}
@@ -2525,13 +2525,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 173044392}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a6b404bf8c1abe48b9be16b74c30dff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flickeringChance: 0.2
-  onChance: 0.5
+  flickeringChance: 0
+  onChance: 1
   changeChance: 0.05
   affectShader: 1
   offShader: {fileID: 4800000, guid: 35a500d816bc28c409f8ca20c3d0c93d, type: 3}
@@ -3616,7 +3616,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4896745525543505890, guid: a99d72c18967ef749b409ccbaf8d110f, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4896745525543505890, guid: a99d72c18967ef749b409ccbaf8d110f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4293,13 +4293,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330196503}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a6b404bf8c1abe48b9be16b74c30dff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flickeringChance: 0.2
-  onChance: 0.5
+  flickeringChance: 0
+  onChance: 1
   changeChance: 0.05
   affectShader: 1
   offShader: {fileID: 4800000, guid: 35a500d816bc28c409f8ca20c3d0c93d, type: 3}
@@ -6580,13 +6580,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 547832282}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a6b404bf8c1abe48b9be16b74c30dff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flickeringChance: 0.2
-  onChance: 0.5
+  flickeringChance: 0
+  onChance: 1
   changeChance: 0.05
   affectShader: 1
   offShader: {fileID: 4800000, guid: 35a500d816bc28c409f8ca20c3d0c93d, type: 3}
@@ -7227,13 +7227,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 621517309}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a6b404bf8c1abe48b9be16b74c30dff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flickeringChance: 0.2
-  onChance: 0.5
+  flickeringChance: 0
+  onChance: 1
   changeChance: 0.05
   affectShader: 1
   offShader: {fileID: 4800000, guid: 35a500d816bc28c409f8ca20c3d0c93d, type: 3}
@@ -8768,13 +8768,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 751270911}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a6b404bf8c1abe48b9be16b74c30dff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flickeringChance: 0.2
-  onChance: 0.5
+  flickeringChance: 0
+  onChance: 1
   changeChance: 0.05
   affectShader: 1
   offShader: {fileID: 4800000, guid: 35a500d816bc28c409f8ca20c3d0c93d, type: 3}
@@ -9612,7 +9612,7 @@ Transform:
   - {fileID: 94010150}
   - {fileID: 1816794019}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &837963313 stripped
 Transform:
@@ -10757,13 +10757,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 995828909}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a6b404bf8c1abe48b9be16b74c30dff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flickeringChance: 0.2
-  onChance: 0.5
+  flickeringChance: 0
+  onChance: 1
   changeChance: 0.05
   affectShader: 1
   offShader: {fileID: 4800000, guid: 35a500d816bc28c409f8ca20c3d0c93d, type: 3}
@@ -17726,23 +17726,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2065096491856477355, guid: 790c59671d2901343a8c15a24dbeb169, type: 3}
   m_PrefabInstance: {fileID: 1570281885}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1576305230 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4459864851310106424, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
-  m_PrefabInstance: {fileID: 1846035902}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1576305237
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1576305230}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54f9f5a4947cc8044a50a3aa5cd7d401, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1584918575
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18273,7 +18256,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!23 &1633544660
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -19871,13 +19854,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1788071625}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a6b404bf8c1abe48b9be16b74c30dff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flickeringChance: 0.2
-  onChance: 0.5
+  flickeringChance: 0
+  onChance: 1
   changeChance: 0.05
   affectShader: 1
   offShader: {fileID: 4800000, guid: 35a500d816bc28c409f8ca20c3d0c93d, type: 3}
@@ -20694,7 +20677,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4459864851310106426, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
       propertyPath: m_RenderingPath
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4459864851310106426, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
       propertyPath: m_projectionMatrixMode
@@ -20723,18 +20706,6 @@ PrefabInstance:
     - target: {fileID: 6871063879107326662, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
       propertyPath: m_Enabled
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6871063879107326662, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
-      propertyPath: _TextureWarpingFactor
-      value: 0.108
-      objectReference: {fileID: 0}
-    - target: {fileID: 6871063879107326662, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
-      propertyPath: _RetroLightFalloffStart
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 6871063879107326662, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
-      propertyPath: _RetroLightingNormalFactor
-      value: 0.62
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
@@ -23421,7 +23392,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4896745525543505890, guid: a99d72c18967ef749b409ccbaf8d110f, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4896745525543505890, guid: a99d72c18967ef749b409ccbaf8d110f, type: 3}
       propertyPath: m_LocalPosition.x
