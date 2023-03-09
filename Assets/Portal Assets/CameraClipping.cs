@@ -47,15 +47,30 @@ public class CameraClipping : MonoBehaviour
         float camSpaceDst = -Vector3.Dot(camSpacePos, camSpaceNormal);
 
         //// Don't use oblique clip plane if very close to portal as it seems this can cause some visual artifacts
-        if (Mathf.Abs(camSpaceDst) > nearClipLimit)
-        {
+        //if (Mathf.Abs(camSpaceDst) > nearClipLimit)
+        //{
+
+
+
             //Vector4 clipPlaneCameraSpace = new Vector4(camSpaceNormal.x, camSpaceNormal.y, camSpaceNormal.z, camSpaceDst);
 
             //Vector4 clipPlaneCameraSpace = new Vector4(camSpaceNormal.x, camSpaceNormal.y, camSpaceNormal.z, camSpaceDst);
-            Vector4 clipPlaneCameraSpace = new Vector4(camSpaceNormal.x, camSpaceNormal.y, camSpaceNormal.z, camSpaceDst);
 
-            projectionMatrix = playerCamera.CalculateObliqueMatrix(clipPlaneCameraSpace);
-            portalCamera.projectionMatrix = projectionMatrix;
+
+
+            ////keeep!!!
+            ///
+
+            //Vector4 clipPlaneCameraSpace = new Vector4(camSpaceNormal.x, camSpaceNormal.y, camSpaceNormal.z, camSpaceDst);
+
+            //projectionMatrix = playerCamera.CalculateObliqueMatrix(clipPlaneCameraSpace);
+            //portalCamera.projectionMatrix = projectionMatrix;
+
+
+
+            /////keep!
+            ///
+
             // Update projection based on new clip plane
             // Calculate matrix with player cam so that player camera settings (fov, etc) are used
             //try catch this
@@ -72,12 +87,12 @@ public class CameraClipping : MonoBehaviour
             //    portalCamera.projectionMatrix = playerCamera.projectionMatrix;
             //}
 
-        }
-        else
-        {
-            projectionMatrix = playerCamera.projectionMatrix;
-            portalCamera.projectionMatrix = playerCamera.projectionMatrix;
-        }
+        //}
+        //else
+        //{
+            //projectionMatrix = playerCamera.projectionMatrix;
+            //portalCamera.projectionMatrix = playerCamera.projectionMatrix;
+        //}
 
         //float d = 10;
         //if (camSpaceDst < d && camSpaceDst > 0)
