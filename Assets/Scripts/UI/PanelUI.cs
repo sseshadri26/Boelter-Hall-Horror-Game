@@ -37,7 +37,7 @@ public abstract class PanelUI : MonoBehaviour
     const string c_OffscreenBot = "offscreen-bot";
 
     // PATHS
-    const string ANIMATIONS_USS_PATH = "Assets/UI Assets/Styles/panel.uss";
+    const string ANIMATIONS_USS_PATH = "UI Styles/panel";
 
     // Enum for setting where the panel should start
     public enum PanelPosition
@@ -67,7 +67,7 @@ public abstract class PanelUI : MonoBehaviour
     protected virtual void Awake()
     {
         // Load in styles that define the animations
-        StyleSheet styleSheet = UnityEditor.AssetDatabase.LoadAssetAtPath<StyleSheet>(ANIMATIONS_USS_PATH);
+        StyleSheet styleSheet = Resources.Load<StyleSheet>(ANIMATIONS_USS_PATH);
         root.styleSheets.Add(styleSheet);
 
         root.AddToClassList(panelPositionClasses[startPosition]);
