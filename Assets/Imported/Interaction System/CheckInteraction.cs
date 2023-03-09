@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 [RequireComponent(typeof(FirstPersonController))]
 public class CheckInteraction : MonoBehaviour
@@ -20,6 +21,8 @@ public class CheckInteraction : MonoBehaviour
     [SerializeField]
     private GameObject rayOrigin;
 
+    [SerializeField]
+    private TextMeshProUGUI displayText;
 
     private Ray ray;
 
@@ -66,7 +69,11 @@ public class CheckInteraction : MonoBehaviour
                 {
                     //Here you can make something with the interact message
 
-                    Debug.Log(currentReceiver.GetInteractionMessage());
+                    // Debug.Log(currentReceiver.GetInteractionMessage());
+                    if (displayText)
+                    {
+                        displayText.text = currentReceiver.GetInteractionMessage();
+                    }
  
                     canInteract = true;
                     return;
@@ -74,7 +81,8 @@ public class CheckInteraction : MonoBehaviour
             }
         }
                     
-        canInteract = false;      
+        canInteract = false;
+        displayText.text = "";
     }
 
 }
