@@ -17,7 +17,11 @@ public class DoorSetup : MonoBehaviour
         Door1_RoundHandle,
         Door2_RoundHandle_Chalkboard,
         Door2b_ComplexHandleChalkboard,
-        Glass_Door
+        Glass_Door,
+        Double_Door_No_Frame,
+        Double_Door_Frame,
+        Giant_Door,
+        Small_Big_Door
     };
 
     [SerializeField]
