@@ -26,8 +26,11 @@ public class PortalTextureSetup : MonoBehaviour
         {
             cameraA.targetTexture.Release();
         }
+        float ppppp = 1;
+        //cameraA.targetTexture = new RenderTexture(Screen.width, Screen.height, 24);
+        //cameraA.targetTexture = new RenderTexture(384, 216, 24);
+        cameraA.targetTexture = new RenderTexture((int)(384/ppppp), (int)(216/ ppppp), 64);
 
-        cameraA.targetTexture = new RenderTexture(Screen.width, Screen.height, 24);
 
         cameraMatA = new Material(ScreenCutoutShader);
         cameraMatA.mainTexture = cameraA.targetTexture;
@@ -38,7 +41,10 @@ public class PortalTextureSetup : MonoBehaviour
         {
             cameraB.targetTexture.Release();
         }
-        cameraB.targetTexture = new RenderTexture(Screen.width, Screen.height, 24);
+        //cameraB.targetTexture = new RenderTexture(Screen.width, Screen.height, 24);
+        //cameraB.targetTexture = new RenderTexture(384, 216, 24);
+        cameraB.targetTexture = new RenderTexture((int)(384 / ppppp), (int)(216 / ppppp), 64);
+
 
         cameraMatB = new Material(ScreenCutoutShader);
         cameraMatB.mainTexture = cameraB.targetTexture;
