@@ -44,72 +44,29 @@ public class CameraClipping : MonoBehaviour
 
         Vector3 camSpacePos = portalCamera.worldToCameraMatrix.MultiplyPoint(clipPlane.position);
         Vector3 camSpaceNormal = portalCamera.worldToCameraMatrix.MultiplyVector(clipPlane.forward) * dot;
-        float camSpaceDst = -Vector3.Dot(camSpacePos, camSpaceNormal);
+        float camSpaceDst = -Vector3.Dot(camSpacePos, camSpaceNormal)+nearClipOffset;
 
-        //// Don't use oblique clip plane if very close to portal as it seems this can cause some visual artifacts
+        projectionMatrix = playerCamera.projectionMatrix;
+        portalCamera.projectionMatrix = projectionMatrix;
+        
+        ////// Don't use oblique clip plane if very close to portal as it seems this can cause some visual artifacts
         //if (Mathf.Abs(camSpaceDst) > nearClipLimit)
         //{
 
+        //    Vector4 clipPlaneCameraSpace = new Vector4(camSpaceNormal.x, camSpaceNormal.y, camSpaceNormal.z, camSpaceDst);
 
-
-            //Vector4 clipPlaneCameraSpace = new Vector4(camSpaceNormal.x, camSpaceNormal.y, camSpaceNormal.z, camSpaceDst);
-
-            //Vector4 clipPlaneCameraSpace = new Vector4(camSpaceNormal.x, camSpaceNormal.y, camSpaceNormal.z, camSpaceDst);
-
-
-
-            ////keeep!!!
-            ///
-
-            //Vector4 clipPlaneCameraSpace = new Vector4(camSpaceNormal.x, camSpaceNormal.y, camSpaceNormal.z, camSpaceDst);
-
-            //projectionMatrix = playerCamera.CalculateObliqueMatrix(clipPlaneCameraSpace);
-            //portalCamera.projectionMatrix = projectionMatrix;
-
-
-
-            /////keep!
-            ///
-
-            // Update projection based on new clip plane
-            // Calculate matrix with player cam so that player camera settings (fov, etc) are used
-            //try catch this
-            //try
-            //{
-            //    projectionMatrix = playerCamera.CalculateObliqueMatrix(clipPlaneCameraSpace);
-            //    Debug.Log(projectionMatrix);
-            //    portalCamera.projectionMatrix = projectionMatrix;
-            //}
-
-            //catch
-            //{
-            //    Debug.Log(projectionMatrix);
-            //    portalCamera.projectionMatrix = playerCamera.projectionMatrix;
-            //}
+        //    projectionMatrix = playerCamera.CalculateObliqueMatrix(clipPlaneCameraSpace);
+            
+            
+        //    portalCamera.projectionMatrix = projectionMatrix;
 
         //}
         //else
         //{
-            //projectionMatrix = playerCamera.projectionMatrix;
-            //portalCamera.projectionMatrix = playerCamera.projectionMatrix;
+        //    projectionMatrix = playerCamera.projectionMatrix;
+        //    portalCamera.projectionMatrix = projectionMatrix;
         //}
 
-        //float d = 10;
-        //if (camSpaceDst < d && camSpaceDst > 0)
-        //{
-        //    camSpaceDst = d;
-        //}
-        //if (camSpaceDst > -d && camSpaceDst < 0)
-        //{
-        //    camSpaceDst = -d;
-        //}
-
-
-        //Vector4 clipPlaneCameraSpace = new Vector4(camSpaceNormal.x, camSpaceNormal.y, camSpaceNormal.z, camSpaceDst);
-        //portalCamera.projectionMatrix = playerCamera.CalculateObliqueMatrix(clipPlaneCameraSpace);
-
-        // Update projection based on new clip plane
-        // Calculate matrix with player cam so that player camera settings (fov, etc) are used
 
 
 

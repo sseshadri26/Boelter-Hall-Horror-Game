@@ -14,9 +14,10 @@ public class DoorSetup : MonoBehaviour
     
     enum DoorNumber // your custom enumeration
     {
-        Door1,
-        Door2,
-        Door2b
+        Door1_RoundHandle,
+        Door2_RoundHandle_Chalkboard,
+        Door2b_ComplexHandleChalkboard,
+        Glass_Door
     };
 
     [SerializeField]
