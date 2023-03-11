@@ -22462,6 +22462,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2065096491856477355, guid: 790c59671d2901343a8c15a24dbeb169, type: 3}
   m_PrefabInstance: {fileID: 1872617194}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &594454980 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 6e81bb298fd23814786d38f1ee72d287, type: 3}
+  m_PrefabInstance: {fileID: 784608371}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &595160007 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4383258444604287699, guid: 88b11e6ded2127c4fb39785f8bedd32b, type: 3}
@@ -27958,6 +27963,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8792077507724165562, guid: d97fa81dfcfb4a940a8b645560cbbcde, type: 3}
   m_PrefabInstance: {fileID: 732014343}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &735217525 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 6e81bb298fd23814786d38f1ee72d287, type: 3}
+  m_PrefabInstance: {fileID: 1354496266}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &738747832
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30042,6 +30052,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 6e81bb298fd23814786d38f1ee72d287, type: 3}
       propertyPath: m_Name
       value: starshipbot (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6e81bb298fd23814786d38f1ee72d287, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e81bb298fd23814786d38f1ee72d287, type: 3}
@@ -50647,6 +50661,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: starshipbot
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6e81bb298fd23814786d38f1ee72d287, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e81bb298fd23814786d38f1ee72d287, type: 3}
 --- !u!1001 &1357564769
@@ -66566,6 +66584,7 @@ MonoBehaviour:
   - {fileID: 791491207}
   - {fileID: 1066416753}
   - {fileID: 731003776}
+  - {fileID: 594454980}
   portalGroup2:
   - {fileID: 1081901484}
   - {fileID: 61316420}
@@ -66576,6 +66595,7 @@ MonoBehaviour:
   - {fileID: 1107984202}
   - {fileID: 299384776}
   - {fileID: 501969647}
+  - {fileID: 735217525}
 --- !u!1001 &1768553768
 PrefabInstance:
   m_ObjectHideFlags: 0
