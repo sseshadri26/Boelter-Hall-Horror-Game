@@ -16,12 +16,16 @@ public class PosterSnapToWall : MonoBehaviour
     [SerializeField]
     FilePicker fp;
 
+    MeshCollider mc;
+    
     private Vector3 oldPos;
 
     private void Awake()
     {
+        
         // Get all colliders attached to this poster (including children)
         oldPos = Vector3.up;
+        mc = GetComponent<MeshCollider>();
     }
 
     private void Update()
@@ -68,9 +72,10 @@ public class PosterSnapToWall : MonoBehaviour
 
                 if (Physics.Raycast(ray, out RaycastHit hit, snapDistance))
                 {
-                    //Debug.Log(hit.distance);
-                    if (hit.distance < closestDistance)
+                    if (hit.distance < closestDistance && hit.distance > 0.005f && hit.collider!=mc)
                     {
+                        //Debug.Log(hit.collider);
+
                         closestDistance = hit.distance;
                         normal = hit.normal;
                         
@@ -85,6 +90,9 @@ public class PosterSnapToWall : MonoBehaviour
 
     private void SnapToWall(float distance, Vector3 normal)
     {
-        transform.SetPositionAndRotation(transform.position + Vector3.forward * (distance - distanceFromWall), Quaternion.FromToRotation(-Vector3.forward, normal));
+        transform.SetPositionAndRotation(transform.position + transform.forward * (distance - distanceFromWall), Quaternion.FromToRotation(-Vector3.forward, normal));
+        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, 0); 
+
+
     }
 }

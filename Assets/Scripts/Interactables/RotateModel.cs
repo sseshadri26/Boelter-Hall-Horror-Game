@@ -8,7 +8,7 @@ using DG.Tweening;
 public class RotateModel : MonoBehaviour, IAction
 {
     private bool activated = false;
-    private Vector3 rotateBy = new Vector3(0f, 90f, 0f);
+    private Vector3 rotateBy = new Vector3(0f, 180f, 0f);
     private Vector3 jumpBy = new Vector3(0, 0.25f, 0f);
 
     // If door is activated, load next scene.
