@@ -381,16 +381,16 @@ MonoBehaviour:
   sprintBar: {fileID: 4459864850888339820}
   sprintBarWidthPercent: 0.3
   sprintBarHeightPercent: 0.02
-  enableJump: 1
+  enableJump: 0
   jumpPower: 5
   enableCrouch: 1
   holdToCrouch: 0
   crouchHeight: 0.75
   speedReduction: 0.5
-  enableHeadBob: 1
+  enableHeadBob: 0
   joint: {fileID: 4459864851508666808}
   bobSpeed: 10
-  bobAmount: {x: 0, y: 0.05, z: 0}
+  bobAmount: {x: 0, y: 0.1, z: 0}
 --- !u!114 &606056294597865301
 MonoBehaviour:
   m_ObjectHideFlags: 0
