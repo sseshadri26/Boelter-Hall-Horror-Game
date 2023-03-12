@@ -13,9 +13,18 @@ public class ToNextScene : MonoBehaviour, IAction
     [Tooltip("Which spawn point the player will start at in the next scene")]
     public int spawnPoint;
 
+    void Awake()
+    {
+        if (SceneManager.GetSceneByName(nextScene) == null)
+        {
+            Debug.LogError("There is no scene with the name \"" + nextScene + "\". Make sure that it's listed in Build Settings!");
+        }
+    }
+
     // If door is activated, load next scene.
     public void Activate()
     {
+        // Debug.Log("Loading scene");
         Globals.curSpawnPoint = spawnPoint;
         SceneManager.LoadScene(nextScene);
     }
