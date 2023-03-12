@@ -113,7 +113,7 @@ public class FirstPersonController : MonoBehaviour
     public float speedReduction = .5f;
 
     // Internal Variables
-    private bool isCrouched = false;
+    public bool isCrouched = false;
     private Vector3 originalScale;
 
     #endregion

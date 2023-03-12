@@ -162,7 +162,7 @@ Transform:
   m_GameObject: {fileID: 2010629725549880854}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 956.5, y: 535.875, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: -1.95, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4459864850019384738}
@@ -190,7 +190,7 @@ Camera:
     x: 0
     y: 0
     width: 1
-    height: 1
+    height: 7.4
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 26.991467
@@ -235,7 +235,7 @@ GameObject:
   - component: {fileID: 4459864850019384740}
   - component: {fileID: 606056294597865301}
   - component: {fileID: 7130859633087567194}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: FirstPersonController-UI-COMPATIBLE
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -251,7 +251,7 @@ Transform:
   m_GameObject: {fileID: 4459864850019384750}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 2, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8198849255963769556}
@@ -320,7 +320,7 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
-  m_Height: 3
+  m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &4459864850019384741
@@ -387,6 +387,7 @@ MonoBehaviour:
   holdToCrouch: 0
   crouchHeight: 0.75
   speedReduction: 0.5
+  isCrouched: 0
   enableHeadBob: 0
   joint: {fileID: 4459864851508666808}
   bobSpeed: 10
@@ -418,6 +419,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e152e1e65d3ab6142a615e70cd7b8cee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  obstacleLayers:
+    serializedVersion: 2
+    m_Bits: 1
 --- !u!1 &4459864850190357393
 GameObject:
   m_ObjectHideFlags: 0
