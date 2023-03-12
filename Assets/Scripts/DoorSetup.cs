@@ -32,16 +32,10 @@ public class DoorSetup : MonoBehaviour
     {
         // Find all the TextMeshPro components in the children of this object and store them in the _texts array.
         _texts = GetComponentsInChildren<TextMeshPro>();
-
-        // Set the initial door to be displayed.
     }
 
     private void Update()
     {
-
-        if (Application.isPlaying)
-            return;
-
         _texts = GetComponentsInChildren<TextMeshPro>();
 
         // Update the text of all the TextMeshPro components with the value of _num.
@@ -67,6 +61,8 @@ public class DoorSetup : MonoBehaviour
             }
         }
         
-
+        // Disable this script so it's not calling Update every frame
+        if (Application.isPlaying)
+            this.enabled = false;
     }   
 }
