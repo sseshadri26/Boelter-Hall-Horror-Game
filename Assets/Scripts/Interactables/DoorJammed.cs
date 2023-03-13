@@ -11,6 +11,6 @@ public class DoorJammed : MonoBehaviour, IAction
     // If door is activated, load next scene.
     public void Activate()
     {
-        Debug.Log("The door is jammed!");
+        Notification.instance.ShowMessage("The door is jammed");
     }
 }

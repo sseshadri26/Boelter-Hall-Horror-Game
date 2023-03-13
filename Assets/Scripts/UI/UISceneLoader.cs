@@ -11,5 +11,7 @@ public class UISceneLoader : MonoBehaviour
         // DESIGN CHOICE: Don't want to do async for the guarantee that UI
         // will be ready before Start is called
         SceneManager.LoadScene("UI", LoadSceneMode.Additive);
+
+        Screen.SetResolution(384, 216, true, 60);
     }
 }
