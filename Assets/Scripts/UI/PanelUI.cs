@@ -22,7 +22,7 @@ public abstract class PanelUI : MonoBehaviour
 
     [Header("Panel Properties")]
     [SerializeField] UIDocument document = default;
-    [SerializeField] PanelPosition startPosition = PanelPosition.CENTER;
+    [SerializeField] PanelAnimationType animationType = PanelAnimationType.NONE;
 
     // DESIGN CHOICE: Use a single bool channel for this event instead of
     // separate events for open and close to reduce number of scriptable
@@ -62,6 +62,23 @@ public abstract class PanelUI : MonoBehaviour
         {PanelPosition.INVISIBLE, c_Invisible}
     };
 
+        // Enum to make it easier for designer to select type of animation instead of worrying about panel position
+    public enum PanelAnimationType
+    {
+        NONE, FROM_ABOVE, FROM_BELOW, FROM_LEFT, FROM_RIGHT, APPEAR
+    }
+
+    private Dictionary<PanelAnimationType, PanelPosition> panelStartPosition = new Dictionary<PanelAnimationType, PanelPosition>()
+    {
+        {PanelAnimationType.NONE, PanelPosition.CENTER},
+        {PanelAnimationType.FROM_ABOVE, PanelPosition.TOP},
+        {PanelAnimationType.FROM_BELOW, PanelPosition.BOTTOM},
+        {PanelAnimationType.FROM_LEFT, PanelPosition.LEFT},
+        {PanelAnimationType.FROM_RIGHT, PanelPosition.RIGHT},
+        {PanelAnimationType.APPEAR, PanelPosition.INVISIBLE}
+    };
+
+    private PanelPosition startPosition = PanelPosition.CENTER;
     private PanelPosition currentPosition = default;
 
     protected VisualElement root
@@ -79,6 +96,9 @@ public abstract class PanelUI : MonoBehaviour
         StyleSheet styleSheet = Resources.Load<StyleSheet>(ANIMATIONS_USS_PATH);
         root.styleSheets.Add(styleSheet);
 
+        // DESIGN CHOICE: Use a layer of abstraction between animation type and start position
+        // to make it easier for designer to understand the animation that will be played
+        startPosition = panelStartPosition[animationType];
         root.AddToClassList(panelPositionClasses[startPosition]);
         currentPosition = startPosition;
 

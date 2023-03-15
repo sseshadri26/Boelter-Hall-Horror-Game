@@ -185,7 +185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   document: {fileID: 255780283}
-  startPosition: 5
+  animationType: 5
   panelOpenStateChanged: {fileID: 11400000, guid: c354295335cbfad40abde8d0229bf468, type: 2}
   OnRestartButtonPressed:
     m_PersistentCalls:
@@ -230,7 +230,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   document: {fileID: 1041981934}
-  startPosition: 4
+  animationType: 4
   panelOpenStateChanged: {fileID: 11400000, guid: 3fbd3e357294c734c9300f54e76c6a38, type: 2}
   inventoryItemUI: {fileID: 9197481963319205126, guid: 109df5a9a67e9104ba3dd43d942e4cba, type: 3}
   inventory: {fileID: 11400000, guid: 0dc6866fbd204d14cb7e1cb5e419e5f4, type: 2}
