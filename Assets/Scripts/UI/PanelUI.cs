@@ -35,6 +35,7 @@ public abstract class PanelUI : MonoBehaviour
     const string c_OffscreenLeft = "offscreen-left";
     const string c_OffscreenTop = "offscreen-top";
     const string c_OffscreenBot = "offscreen-bot";
+    const string c_Invisible = "invisible";
 
     // PATHS
     const string ANIMATIONS_USS_PATH = "UI Styles/panel";
@@ -42,7 +43,14 @@ public abstract class PanelUI : MonoBehaviour
     // Enum for setting where the panel should start
     public enum PanelPosition
     {
-        CENTER, TOP, BOTTOM, LEFT, RIGHT
+        // Correspond with the different starting locations of the panel. If one of these options is selected,
+        // the panel will slide in from a particular part of the screen.
+        CENTER, TOP, BOTTOM, LEFT, RIGHT, 
+
+        // Invisible means the panel does not start from any particular point in the screen and is simply invisible.
+        // If this option is selected, the panel will instantly appear at the center of the screen upon opening.
+        // This is useful for panels that should be opened quickly and simply, such as the pause menu.
+        INVISIBLE 
     }
     private Dictionary<PanelPosition, string> panelPositionClasses = new Dictionary<PanelPosition, string>()
     {
@@ -50,7 +58,8 @@ public abstract class PanelUI : MonoBehaviour
         {PanelPosition.LEFT, c_OffscreenLeft},
         {PanelPosition.RIGHT, c_OffscreenRight},
         {PanelPosition.TOP, c_OffscreenTop},
-        {PanelPosition.BOTTOM, c_OffscreenBot}
+        {PanelPosition.BOTTOM, c_OffscreenBot},
+        {PanelPosition.INVISIBLE, c_Invisible}
     };
 
     private PanelPosition currentPosition = default;
