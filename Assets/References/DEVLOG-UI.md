@@ -5,10 +5,22 @@ This is a simple log for tracking the current and past challenges taken on by th
 
 ## Log
 
+### (3/16)
+**Problem:** Both Inventory and Journal UI panels essentially have the same functionality but just different visual representations (a list of items that let you view each in more detail). How do we reduce code repeat?
+- Need a strategy for separating visuals from functionality.
+- The whole point of `UIElements` is to cleanly separate UI design from UI code. How can we leverage this separation? Well it seems like the paradigm is to simply agree to use the same class names. But what about slight differences between Inventory and Journal like the ability to highlight names in the Inventory? As long as there aren't too many of these differences, we can just have special class names that only appear in some UI designs but not others.
+- **Resolution:** Standardize the class names used in almanac-style UI. For example, there should be a `main-title` class for representing the text component for the currently selected item. We can use a single class to provide the functionality for both the Inventory and Journal panels called `AlamanacUI.cs` or something like that. This class would also leave the individual item card UIs to be injected just like `InventoryUI.cs` currently does. Note that we don't want to just be injecting everything since that would make the code more complex, far too complex for the scale of code reuse we need (probably only used for Inventory, Journal, and maybe one or two more in the future).
+
+### (3/9)
+**Problem:** All panels will need functionality to enter/exit the screen. How do we implement this efficiently?
+- This is a design choice between inheritance and components. Components are great for building highly-variable behaviors that may use widely different combinations of behaviors. However, you pay for this flexibility with complexity -- you need a system for communication between components and a system for storing them (Unity already does this for you with `GameObject`). Inheritance is simpler to implement but does come with the downside of forcing all derived classes to have certain functionality.
+
+- **Resolution:** Write a base class for all UI panels in the game that has built-in animation functionality. All derived classes need not worry about how to animate the panel in or out. Even though inheritance tightly couples animating to panels, this is fine because pretty much all panels will need some way to animate in. Inheritance is simpler to implement and understand than other options, so it seemed like a reasonable choice.
+
 ### (2/12)
 **Problem:** Making scripts that interface with the controls on a UI Document is tedious!
 - It's a tedious process of scanning through all the buttons or text fields (or whatever) and explicitly writing code to address each one.
-- **Resolution**: Make an editor tool that auto-generates a script for a specified UI Document. While this will require a lot of effort up front, we believe it will pay back huge dividends later on, especially for some of the more complex UI in the game.
+- **Resolution:** Make an editor tool that auto-generates a script for a specified UI Document. While this will require a lot of effort up front, we believe it will pay back huge dividends later on, especially for some of the more complex UI in the game.
 
 ### (2/6)
 **Problem:** What strategy do we employ to wire up the UI events to the main game?
