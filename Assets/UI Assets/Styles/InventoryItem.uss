@@ -1,0 +1,26 @@
+.selected .inventory-item-tint {
+    overflow: hidden;
+    width: 100%;
+    position: absolute;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.28);
+    visibility: visible;
+}
+
+.not-selected .inventory-item-tint {
+    overflow: hidden;
+    width: 100%;
+    position: absolute;
+    height: 100%;
+    color: rgb(255, 255, 255);
+    background-color: rgba(0, 0, 0, 0);
+    visibility: visible;
+}
+
+.marked .inventory-item-text {
+    color: rgb(63, 117, 255);
+}
+
+.not-marked .inventory-item-text {
+    color: rgb(255, 255, 255);
+}

@@ -5,6 +5,11 @@ This is a simple log for tracking the current and past challenges taken on by th
 
 ## Log
 
+### (3/21)
+**Problem:** The inventory UI panel has a special feature where key items are marked in a special color. How do we allow this unique functionality to be injected into the main `AlamancUI.cs` code?
+- It's important to keep in mind the pattern of separating visuals from behavior. A good solution would be one that shifted the changing of the item colors to the UI itself. Sounds like USS classes could be used here?
+- **Resolution:** Define an AlamanacUI USS class called `marked` or something in order to apply the special formatting to the given item. While this does inherently couple the marking feature to being an AlmanacUI even when not all alamanacs will use it, I think it's small enough of a feature that the coupling won't be too significant even in the worst case where no other almanac uses it.
+
 ### (3/16)
 **Problem:** Both Inventory and Journal UI panels essentially have the same functionality but just different visual representations (a list of items that let you view each in more detail). How do we reduce code repeat?
 - Need a strategy for separating visuals from functionality.
