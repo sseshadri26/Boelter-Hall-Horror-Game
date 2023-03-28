@@ -32,22 +32,16 @@ public class AlmanacUI : PanelUI
     const string k_ItemRoot = "item-root";
     const string k_ItemName = "item-name";
     const string k_ItemGraphic = "item-graphic";
-    const string k_ItemTint = "item-tint";
 
 
+    // AlmanacUI USS Classes
 
-    // UI USS Classes
     // DESIGN CHOIE: Using USS classes to change the appearance of UI instead
     // of hard-coding it in here is a great way to maintain separation of
     // visuals and functionality -- the code isn't tightly coupled to the
     // way the UI looks, which opens up the possibility of switching out the visuals
     // to something new. This pattern was taken from Unity's open source project "Dragon Crashers"
-    const string c_InventoryItemClass = "inventory-item";
-    const string c_InventoryItemTintClass = "inventory-item-tint";
-    const string c_InventoryItemTintSelectedClass = "inventory-item-tint-selected";
 
-
-    // AlmanacUI Classes
     const string c_Selected = "selected";
     const string c_NotSelected = "not-selected";
     const string c_Marked = "marked";
@@ -135,10 +129,6 @@ public class AlmanacUI : PanelUI
         item.Q<Label>(k_ItemName).style.color = GetItemStatusColor(itemData);
         item.Q<VisualElement>(k_ItemGraphic).style.backgroundImage = new StyleBackground(itemData.graphic);
 
-        // Reset item highlight
-        // item.Q<VisualElement>(k_ItemTint).ClearClassList();
-        // item.Q<VisualElement>(k_ItemTint).AddToClassList(c_InventoryItemTintClass);
-
         // DESIGN CHOICE: Store item reference in callback instead of using generic
         // callback and searching for item index within function to reduce chances
         // of erroneously selecting wrong item
@@ -153,7 +143,10 @@ public class AlmanacUI : PanelUI
         DisplayItemInformation(itemData);
     }
 
-
+    /// <summary>
+    /// Play the animation tied to selecting an item, and at the same time play the animation
+    /// to deselect all other items (if any are selected).
+    /// </summary>
     private void VisuallySelectOne(VisualElement item)
     {
         GetInventoryItems().ForEach(VisuallyUnselect);
