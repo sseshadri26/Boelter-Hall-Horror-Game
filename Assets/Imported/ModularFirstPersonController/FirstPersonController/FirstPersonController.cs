@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using Yarn.Unity;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -26,6 +27,7 @@ public class FirstPersonController : MonoBehaviour
     // in order to access the input
     public FirstPersonActionsSO firstPersonActionsSO;
     public Controls.FirstPersonActions controls;
+    public DialogueRunner dialogueRunner;
 
     #region Camera Movement Variables
 
@@ -154,8 +156,9 @@ public class FirstPersonController : MonoBehaviour
         } 
 
         rb = GetComponent<Rigidbody>();
+        dialogueRunner = FindObjectOfType<DialogueRunner>();
 
-        crosshairObject = GetComponentInChildren<Image>();
+        // crosshairObject = GetComponentInChildren<Image>();
 
         // Set internal variables
         playerCamera.fieldOfView = fov;
@@ -188,19 +191,19 @@ public class FirstPersonController : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
         }
 
-        if(crosshair)
-        {
-            crosshairObject.sprite = crosshairImage;
-            crosshairObject.color = crosshairColor;
-        }
-        else
-        {
-            crosshairObject.gameObject.SetActive(false);
-        }
+        // if(crosshair)
+        // {
+        //     crosshairObject.sprite = crosshairImage;
+        //     crosshairObject.color = crosshairColor;
+        // }
+        // else
+        // {
+        //     crosshairObject.gameObject.SetActive(false);
+        // }
 
         #region Sprint Bar
 
-        sprintBarCG = GetComponentInChildren<CanvasGroup>();
+        sprintBarCG = sprintBar.transform.parent.GetComponent<CanvasGroup>();
 
         if(useSprintBar)
         {
@@ -240,6 +243,9 @@ public class FirstPersonController : MonoBehaviour
         controls.SprintHold.canceled += ctx => isSprintPressed = false;
         controls.Pause.started += ctx => Pause();
         controls.Inventory.started += ctx => Inventory();
+
+        // Yarn events
+        dialogueRunner.onDialogueComplete.AddListener(() => controls.Enable());
     }
 
     float camRotation;
