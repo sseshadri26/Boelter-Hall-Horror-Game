@@ -5,15 +5,17 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Playables;
 
 public class CameraAnimation : MonoBehaviour
 {
     public Camera secondCamera;
     bool switched = false;
+    PlayableDirector director;
 
     void Start()
     {
-
+        director = GetComponent<PlayableDirector>();
     }
 
     void Update()
@@ -26,6 +28,7 @@ public class CameraAnimation : MonoBehaviour
         if (switched)
         {
             UnityEngine.Debug.Log("Camera switched");
+            director.Play();
         }       
     }
     private void OnTriggerEnter()
