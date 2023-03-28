@@ -16,10 +16,13 @@ public class SprintAccelerationTuning : MonoBehaviour
     private bool isMovingStraight = false;
     private float currentSprintSpeed;
 
+    public bool atFullSpeed;
+
     // Start is called before the first frame update
     void Start()
     {
         currentSprintSpeed = startSprintSpeed;
+        atFullSpeed = false;
     }
 
     // Update is called once per frame
@@ -54,7 +57,12 @@ public class SprintAccelerationTuning : MonoBehaviour
             }
             if (currentSprintSpeed >= maxSprintSpeed)
             {
+                atFullSpeed = true;
                 firstPersonController.sprintFOV = zoomedFOV;
+            }
+            else
+            {
+                atFullSpeed = false;
             }
 
             firstPersonController.sprintSpeed = currentSprintSpeed;
