@@ -34,7 +34,7 @@ public class UIController : MonoBehaviour
     private InputActionMap panelManagementMap;
     void Awake()
     {
-        panelManagementMap = input.FindActionMap(a_PanelManagement);
+        panelManagementMap = FirstPersonController.instance.controls;
 
         // Ensure all panels are closed
         panelOpenState[inventoryPanel] = false;

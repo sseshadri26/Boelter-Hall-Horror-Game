@@ -10,9 +10,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 #if UNITY_EDITOR
-    using UnityEditor;
+using UnityEditor;
     using System.Net;
 #endif
 
@@ -132,6 +133,8 @@ public class FirstPersonController : MonoBehaviour
     public static FirstPersonController instance { get; private set; }
     private Vector3 jointOriginalPos;
     private float timer = 0;
+    private bool isPaused = false;
+    private bool isInventory = false;
 
     private void Awake()
     {
@@ -230,6 +233,8 @@ public class FirstPersonController : MonoBehaviour
         controls.SprintToggle.started  += ctx => isSprintPressed = !isSprintPressed;
         controls.SprintHold.started  += ctx => isSprintPressed = true;
         controls.SprintHold.canceled += ctx => isSprintPressed = false;
+        controls.Pause.started += ctx => Pause();
+        controls.Inventory.started += ctx => Inventory();
     }
 
     float camRotation;
@@ -541,6 +546,50 @@ public class FirstPersonController : MonoBehaviour
             // Resets when play stops moving
             timer = 0;
             joint.localPosition = new Vector3(Mathf.Lerp(joint.localPosition.x, jointOriginalPos.x, Time.deltaTime * bobSpeed), Mathf.Lerp(joint.localPosition.y, jointOriginalPos.y, Time.deltaTime * bobSpeed), Mathf.Lerp(joint.localPosition.z, jointOriginalPos.z, Time.deltaTime * bobSpeed));
+        }
+    }
+
+    private void Pause()
+    {
+        isPaused = !isPaused;
+
+        if (isPaused) // If pause menu should be open, allow mouse controls and pause time
+        {
+            Time.timeScale = 0f;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            cameraCanMove = playerCanMove = false;
+            controls.Inventory.Disable();
+        }
+        else // If pause menu should be closed, disable mouse controls and unpause time
+        {
+            Time.timeScale = 1f;
+            controls.Inventory.Enable();
+
+            if (!isInventory) // If inventory is open, we don't want to disable mouse controls yet
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+                cameraCanMove = playerCanMove = true;
+            }
+        }
+    }
+
+    private void Inventory()
+    {
+        isInventory = !isInventory;
+
+        if (isInventory)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            cameraCanMove = playerCanMove = false;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+            cameraCanMove = playerCanMove = true;
         }
     }
 }
