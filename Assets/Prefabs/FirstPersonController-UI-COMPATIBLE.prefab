@@ -500,6 +500,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d90ba6530d9bfda47abb4610956b2f44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 0}
   firstPersonActionsSO: {fileID: 11400000, guid: bb6a48d6bb2fd8d408b27a197299a2fa, type: 2}
   dialogueRunner: {fileID: 0}
   playerCamera: {fileID: 4459864851310106426}
@@ -519,6 +520,7 @@ MonoBehaviour:
   playerCanMove: 1
   walkSpeed: 5
   maxVelocityChange: 10
+  isSprinting: 0
   enableSprint: 1
   unlimitedSprint: 0
   sprintSpeed: 7
@@ -1234,12 +1236,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 627922297033703906, guid: a610399082f2b2e4886d4f3f2075a8f8, type: 3}
       propertyPath: m_fontSize
-      value: 13
+      value: 11.75
       objectReference: {fileID: 0}
     - target: {fileID: 627922297033703906, guid: a610399082f2b2e4886d4f3f2075a8f8, type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+      objectReference: {fileID: 11400000, guid: 6b6316095a6ff6645b4bb4a778ebfc84, type: 2}
     - target: {fileID: 627922297033703906, guid: a610399082f2b2e4886d4f3f2075a8f8, type: 3}
       propertyPath: m_fontSizeMin
       value: 8
@@ -1247,7 +1249,7 @@ PrefabInstance:
     - target: {fileID: 627922297033703906, guid: a610399082f2b2e4886d4f3f2075a8f8, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+      objectReference: {fileID: -5066727663958743241, guid: 6b6316095a6ff6645b4bb4a778ebfc84, type: 2}
     - target: {fileID: 627922297787029891, guid: a610399082f2b2e4886d4f3f2075a8f8, type: 3}
       propertyPath: m_SizeDelta.x
       value: 354.8758
@@ -1271,7 +1273,7 @@ PrefabInstance:
     - target: {fileID: 627922297787029900, guid: a610399082f2b2e4886d4f3f2075a8f8, type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+      objectReference: {fileID: 11400000, guid: 6b6316095a6ff6645b4bb4a778ebfc84, type: 2}
     - target: {fileID: 627922297787029900, guid: a610399082f2b2e4886d4f3f2075a8f8, type: 3}
       propertyPath: m_fontSizeBase
       value: 8
@@ -1279,7 +1281,7 @@ PrefabInstance:
     - target: {fileID: 627922297787029900, guid: a610399082f2b2e4886d4f3f2075a8f8, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+      objectReference: {fileID: -5066727663958743241, guid: 6b6316095a6ff6645b4bb4a778ebfc84, type: 2}
     - target: {fileID: 627922297846926871, guid: a610399082f2b2e4886d4f3f2075a8f8, type: 3}
       propertyPath: m_SizeDelta.x
       value: 358.47
@@ -1385,9 +1387,13 @@ PrefabInstance:
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5689725286772173738, guid: a610399082f2b2e4886d4f3f2075a8f8, type: 3}
+      propertyPath: m_margin.z
+      value: 66.24396
+      objectReference: {fileID: 0}
+    - target: {fileID: 5689725286772173738, guid: a610399082f2b2e4886d4f3f2075a8f8, type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+      objectReference: {fileID: 11400000, guid: 6b6316095a6ff6645b4bb4a778ebfc84, type: 2}
     - target: {fileID: 5689725286772173738, guid: a610399082f2b2e4886d4f3f2075a8f8, type: 3}
       propertyPath: m_fontSizeBase
       value: 8
@@ -1395,7 +1401,7 @@ PrefabInstance:
     - target: {fileID: 5689725286772173738, guid: a610399082f2b2e4886d4f3f2075a8f8, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+      objectReference: {fileID: -5066727663958743241, guid: 6b6316095a6ff6645b4bb4a778ebfc84, type: 2}
     - target: {fileID: 5689725286772173738, guid: a610399082f2b2e4886d4f3f2075a8f8, type: 3}
       propertyPath: m_enableAutoSizing
       value: 0
@@ -1422,7 +1428,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5689725287279364036, guid: a610399082f2b2e4886d4f3f2075a8f8, type: 3}
       propertyPath: m_Padding.m_Top
-      value: -112
+      value: -80
+      objectReference: {fileID: 0}
+    - target: {fileID: 5689725287279364036, guid: a610399082f2b2e4886d4f3f2075a8f8, type: 3}
+      propertyPath: m_Padding.m_Left
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 5689725287279364036, guid: a610399082f2b2e4886d4f3f2075a8f8, type: 3}
       propertyPath: m_ChildControlWidth

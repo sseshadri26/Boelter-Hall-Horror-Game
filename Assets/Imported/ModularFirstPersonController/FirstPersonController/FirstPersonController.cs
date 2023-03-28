@@ -2,6 +2,7 @@
 // 
 // CHANGES || version VERSION
 // 
+// "Cole Strain: Put in Yarn event and band-aid fixed the weirdness with obtaining the sprint bar canvas group" || version 2.6.0
 // "Sudarshan Seshadri: Implemented the acceleration system - player can speed up while running, and script SpringAccelerationTuning controls this and interfaces with this script" || version 2.5.0
 // "Cole Strain: Implemented Input System events to save frames, sprint toggleable for controllers, crouch->sprint speed fix" || version 2.1.0
 // "Cole Strain: Modified to support only Unity's new Input System so that gamepads work" || version 2.0.0
@@ -246,7 +247,11 @@ public class FirstPersonController : MonoBehaviour
         controls.Inventory.started += ctx => Inventory();
 
         // Yarn events
-        dialogueRunner.onDialogueComplete.AddListener(() => controls.Enable());
+        dialogueRunner.onDialogueComplete.AddListener(() => {
+            controls.Enable();
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        });
     }
 
     float camRotation;
