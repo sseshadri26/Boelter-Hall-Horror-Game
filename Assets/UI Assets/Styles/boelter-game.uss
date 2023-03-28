@@ -1,0 +1,74 @@
+.boelter-simple-button {
+    background-color: rgb(20, 20, 20);
+    -unity-font-definition: url('project://database/Assets/UI%20Assets/Fonts/SquaresBold%20SDF.asset?fileID=11400000&guid=d4a6889cdb07a7543b902df6b2faeec8&type=2#SquaresBold SDF');
+    -unity-font: url('project://database/Assets/UI%20Assets/Fonts/SquaresBold.otf?fileID=12800000&guid=74602914dcab8c549873e0c3a9258386&type=3#SquaresBold');
+    font-size: 29px;
+    color: rgb(255, 255, 255);
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+    padding-left: 60px;
+    padding-right: 60px;
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+.boelter-simple-button:hover {
+    background-color: rgb(113, 113, 113);
+    -unity-font-definition: url('project://database/Assets/UI%20Assets/Fonts/SquaresBold%20SDF.asset?fileID=11400000&guid=d4a6889cdb07a7543b902df6b2faeec8&type=2#SquaresBold SDF');
+    -unity-font: url('project://database/Assets/UI%20Assets/Fonts/SquaresBold.otf?fileID=12800000&guid=74602914dcab8c549873e0c3a9258386&type=3#SquaresBold');
+    color: rgb(255, 255, 255);
+    -unity-font-style: bold;
+}
+
+.boelter-simple-button:active {
+    background-color: rgb(77, 77, 77);
+    -unity-font-definition: url('project://database/Assets/UI%20Assets/Fonts/SquaresBold%20SDF.asset?fileID=11400000&guid=d4a6889cdb07a7543b902df6b2faeec8&type=2#SquaresBold SDF');
+    -unity-font: url('project://database/Assets/UI%20Assets/Fonts/SquaresBold.otf?fileID=12800000&guid=74602914dcab8c549873e0c3a9258386&type=3#SquaresBold');
+    -unity-font-style: normal;
+}
+
+#unity-dragger {
+    background-image: url('project://database/Assets/UI%20Assets/Icons/knob.png?fileID=21300000&guid=1ce6dede02dec02479f23984118d0a52&type=3#knob');
+    -unity-background-scale-mode: scale-to-fit;
+    background-color: rgba(0, 0, 0, 0);
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+    flex-shrink: 0;
+    flex-grow: 0;
+    max-width: 60px;
+    max-height: 60px;
+    width: 60px;
+    height: 60px;
+}
+
+#unity-low-button {
+}
+
+#item-list {
+    --unity-metrics-single_line-height: 500px;
+}
+
+.arrow-button {
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.arrow-button:hover {
+    -unity-background-image-tint-color: rgb(164, 164, 164);
+}
+
+.arrow-button:active {
+    -unity-background-image-tint-color: rgb(108, 108, 108);
+}

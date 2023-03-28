@@ -1,0 +1,11 @@
+#EXTERNAL#
+
+public class <CLASSNAME> : MonoBehaviour
+{
+    #FIELDS#
+
+    void Awake()
+    {
+        #AWAKE#
+    }
+}

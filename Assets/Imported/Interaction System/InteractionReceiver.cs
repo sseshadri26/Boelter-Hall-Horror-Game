@@ -5,17 +5,6 @@ using UnityEngine;
 [RequireComponent(typeof(Collider))]
 public class InteractionReceiver : MonoBehaviour
 {
-
-    /*ESPAÑOL
-     *Solución por GameDevTraum
-    * 
-    * Artículo: https://gamedevtraum.com/gdt-short/sistema-de-interaccion-base-para-unity/
-    * Página: https://gamedevtraum.com/es/
-    * Canal: https://youtube.com/c/GameDevTraum
-    * 
-    * Visita la página para encontrar más soluciones, Assets y artículos
-   */
-
     /*ENGLISH
     *Solution by GameDevTraum
     * 
@@ -26,17 +15,6 @@ public class InteractionReceiver : MonoBehaviour
     * Visit the website to find more articles, solutions and assets
     */
 
-    /*DEUTSCH
-    *Lösung von GameDevTraum
-    * 
-    * Artikel: https://gamedevtraum.com/gdt-short/grundlegendes-interaktionssystem-fuer-unity/
-    * Webseite: https://gamedevtraum.com/de/
-    * Kanal: https://youtube.com/c/GameDevTraum
-    * 
-    * Besuch die Website, um weitere Artikel, Lösungen und Hilfsmittel zu finden. 
-    *
-    */
-
     [SerializeField]
     private string interactMessage;
 
@@ -45,6 +23,14 @@ public class InteractionReceiver : MonoBehaviour
 
     [SerializeField]
     private bool destroyOnUse;
+
+    void Start()
+    {
+        if (gameObject.activeSelf && (objectsWithActions.Length == 0 || objectsWithActions[0] == null))
+        {
+            Debug.LogError(name + " (parent: " + transform.parent.name + ") has no Objects With Actions listed!");
+        }
+    }
 
 
     public void Activate()

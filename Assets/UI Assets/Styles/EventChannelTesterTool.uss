@@ -1,0 +1,4 @@
+.unity-object-field {
+    width: 279px;
+    min-width: 0;
+}
