@@ -87,7 +87,7 @@ MonoBehaviour:
   Path: FMOD/Boelter/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638138328583284748
+  lastModified: 638134848551330165
   FileSizes:
   - Name: Desktop
     Value: 15592
@@ -290,7 +290,7 @@ MonoBehaviour:
   Path: FMOD/Boelter/Build/Desktop/Dialogue_JP.bank
   Name: Dialogue_JP
   StudioPath: bank:/Dialogue_JP
-  lastModified: 638138328583284748
+  lastModified: 638134848551330165
   FileSizes:
   - Name: Desktop
     Value: 66560
@@ -1233,7 +1233,7 @@ MonoBehaviour:
   Path: FMOD/Boelter/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638138328585615647
+  lastModified: 638134848552646189
   FileSizes:
   - Name: Desktop
     Value: 21580064
@@ -1383,7 +1383,7 @@ MonoBehaviour:
   Path: FMOD/Boelter/Build/Desktop/Vehicles.bank
   Name: Vehicles
   StudioPath: bank:/Vehicles
-  lastModified: 638138328585650761
+  lastModified: 638134848552666225
   FileSizes:
   - Name: Desktop
     Value: 222464
@@ -1403,7 +1403,7 @@ MonoBehaviour:
   Path: FMOD/Boelter/Build/Desktop/Dialogue_CN.bank
   Name: Dialogue_CN
   StudioPath: bank:/Dialogue_CN
-  lastModified: 638138328583264735
+  lastModified: 638134848551305003
   FileSizes:
   - Name: Desktop
     Value: 52416
@@ -1605,7 +1605,7 @@ MonoBehaviour:
   Path: FMOD/Boelter/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638138328583284748
+  lastModified: 638134848551340162
   FileSizes:
   - Name: Desktop
     Value: 4014
@@ -1712,7 +1712,7 @@ MonoBehaviour:
   - {fileID: -8863561674149004046}
   StringsBanks:
   - {fileID: -640569256181905880}
-  cacheTime: 638138328585650761
+  cacheTime: 638134848552666225
   cacheVersion: 131601
 --- !u!114 &42909343629357425
 MonoBehaviour:
@@ -1729,7 +1729,7 @@ MonoBehaviour:
   Path: FMOD/Boelter/Build/Desktop/Dialogue_EN.bank
   Name: Dialogue_EN
   StudioPath: bank:/Dialogue_EN
-  lastModified: 638138328583274924
+  lastModified: 638134848551320041
   FileSizes:
   - Name: Desktop
     Value: 61120
@@ -2749,7 +2749,7 @@ MonoBehaviour:
   Path: FMOD/Boelter/Build/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 638138328584001963
+  lastModified: 638134848551850191
   FileSizes:
   - Name: Desktop
     Value: 10454368
@@ -3047,7 +3047,7 @@ MonoBehaviour:
   Path: FMOD/Boelter/Build/Desktop/VO.bank
   Name: VO
   StudioPath: bank:/VO
-  lastModified: 638138328585625651
+  lastModified: 638134848552646189
   FileSizes:
   - Name: Desktop
     Value: 38624
