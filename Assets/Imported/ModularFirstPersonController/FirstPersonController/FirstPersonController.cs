@@ -20,6 +20,11 @@ using UnityEditor;
 public class FirstPersonController : MonoBehaviour
 {
     private Rigidbody rb;
+
+    // AARON EDIT: Inject input into module instead of instantiating it
+    // here so that other objects don't need this object to be instantiated
+    // in order to access the input
+    public FirstPersonActionsSO firstPersonActionsSO;
     public Controls.FirstPersonActions controls;
 
     #region Camera Movement Variables
@@ -156,7 +161,7 @@ public class FirstPersonController : MonoBehaviour
         playerCamera.fieldOfView = fov;
         originalScale = transform.localScale;
         jointOriginalPos = joint.localPosition;
-        controls = new Controls.FirstPersonActions(new Controls());
+        controls = firstPersonActionsSO.controls;
         originalWalkSpeed = walkSpeed;
 
         if (!unlimitedSprint)
@@ -619,6 +624,11 @@ public class FirstPersonController : MonoBehaviour
         GUILayout.Label("By Jess Case", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontStyle = FontStyle.Normal, fontSize = 12 });
         GUILayout.Label("version 1.0.1", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontStyle = FontStyle.Normal, fontSize = 12 });
         EditorGUILayout.Space();
+
+        EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
+        GUILayout.Label("Modifications", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontStyle = FontStyle.Bold, fontSize = 13 }, GUILayout.ExpandWidth(true));
+        EditorGUILayout.Space();
+        fpc.firstPersonActionsSO = (FirstPersonActionsSO)EditorGUILayout.ObjectField(new GUIContent("First Person Actions", "Persistent reference to the player input"), fpc.firstPersonActionsSO, typeof(FirstPersonActionsSO), true);
 
         #region Camera Setup
 

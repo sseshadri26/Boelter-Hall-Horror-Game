@@ -15,7 +15,7 @@ public class UIController : MonoBehaviour
     // the actions by name, which is more prone to error since strings are prone
     // to error.
 
-    [SerializeField] InputActionAsset input;
+    [SerializeField] FirstPersonActionsSO firstPersonActionsSO;
 
     [SerializeField] AlmanacUI inventoryPanel;
     [SerializeField] PauseUI pausePanel;
@@ -34,7 +34,7 @@ public class UIController : MonoBehaviour
     private InputActionMap panelManagementMap;
     void Awake()
     {
-        panelManagementMap = FirstPersonController.instance.controls;
+        panelManagementMap = firstPersonActionsSO.controls;
 
         // Ensure all panels are closed
         panelOpenState[inventoryPanel] = false;
