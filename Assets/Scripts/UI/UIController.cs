@@ -6,35 +6,23 @@ using UnityEngine.InputSystem;
 
 public class UIController : MonoBehaviour
 {
-    // DESIGN CHOICE: Base input off of generic input asset to make it
-    // a lot simpler to swap in the game's input asset. Ideally, we would have
-    // a centralized source of input (just one input ScriptableObject that has all
-    // the input callbacks in the game), but because we did not establish any
-    // kind of standard for how input should be passed around, I will use the
-    // most generic option, which is to take a generic input asset and search for
-    // the actions by name, which is more prone to error since strings are prone
-    // to error.
-
-    [SerializeField] InputActionAsset input;
+    // DESIGN CHOICE: Inject persistent input asset into UI controls so that it does not
+    // rely on runtime reference to input (preventing it from running properly without its owner being instantiated)
+    [SerializeField] FirstPersonActionsSO firstPersonActionsSO;
 
     [SerializeField] AlmanacUI inventoryPanel;
     [SerializeField] PauseUI pausePanel;
 
-
-    // ACTION NAMES
-    const string a_PanelManagement = "FirstPerson";
-    const string a_Inventory = "Inventory";
-    const string a_Pause = "Pause";
 
     // DESIGN CHOICE: Use dictionary as a simple way to keep track of the open/close
     // state of every panel. Dictionaries are more scalable than making a new bool
     // every time we want to keep track of a new panel. 
     Dictionary<PanelUI, bool> panelOpenState = new Dictionary<PanelUI, bool>();
 
-    private InputActionMap panelManagementMap;
+    private Controls.FirstPersonActions firstPersonActions;
     void Awake()
     {
-        panelManagementMap = FirstPersonController.instance.controls;
+        firstPersonActions = firstPersonActionsSO.controls;
 
         // Ensure all panels are closed
         panelOpenState[inventoryPanel] = false;
@@ -44,20 +32,18 @@ public class UIController : MonoBehaviour
         {
             panel.ClosePanel();
         }
-
-        panelManagementMap.Enable();
     }
 
     void OnEnable()
     {
-        panelManagementMap.FindAction(a_Inventory).performed += HandleToggleInventory;
-        panelManagementMap.FindAction(a_Pause).performed += HandleTogglePause;
+        firstPersonActions.Inventory.performed += HandleToggleInventory;
+        firstPersonActions.Pause.performed += HandleTogglePause;
     }
 
     void OnDisable()
     {
-        panelManagementMap.FindAction(a_Inventory).performed -= HandleToggleInventory;
-        panelManagementMap.FindAction(a_Pause).performed -= HandleTogglePause;
+        firstPersonActions.Inventory.performed -= HandleToggleInventory;
+        firstPersonActions.Pause.performed -= HandleTogglePause;
     }
 
     private void HandleTogglePause(InputAction.CallbackContext obj)
