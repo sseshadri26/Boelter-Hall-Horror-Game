@@ -19,5 +19,7 @@ public class TV : MonoBehaviour, IAction
     {
         fpc.controls.Disable();
         fpc.dialogueRunner.StartDialogue("Intro");
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 }
