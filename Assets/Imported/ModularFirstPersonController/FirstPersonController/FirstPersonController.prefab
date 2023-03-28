@@ -401,6 +401,7 @@ GameObject:
   - component: {fileID: 6871063879107326662}
   - component: {fileID: 5451960167254787631}
   - component: {fileID: 5298269343066325622}
+  - component: {fileID: 7217726683035467011}
   m_Layer: 0
   m_Name: PlayerCamera
   m_TagString: MainCamera
@@ -528,6 +529,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ebdf9b30a9818844874769b511ffbdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  secondCamera: {fileID: 0}
+--- !u!114 &7217726683035467011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4459864851310106424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72ece51f2901e7445ab60da3685d6b5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShowDebugText: 0
+  m_ShowCameraFrustum: 1
+  m_IgnoreTimeScale: 0
+  m_WorldUpOverride: {fileID: 0}
+  m_UpdateMethod: 2
+  m_BlendUpdateMethod: 1
+  m_DefaultBlend:
+    m_Style: 1
+    m_Time: 2
+    m_CustomCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  m_CustomBlends: {fileID: 0}
+  m_CameraCutEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_CameraActivatedEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &4459864851397454630
 GameObject:
   m_ObjectHideFlags: 0
