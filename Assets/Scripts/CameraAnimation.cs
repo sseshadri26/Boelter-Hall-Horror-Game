@@ -39,7 +39,7 @@ public class CameraAnimation : MonoBehaviour
         //SwitchToSecondCam();
         //}
         UnityEngine.Debug.Log("Player entered trigger");
-        if (other.tag == "Player")
+        if (other.tag == "jumpscare")
         {
             _cutscene.SetActive(true);
             
