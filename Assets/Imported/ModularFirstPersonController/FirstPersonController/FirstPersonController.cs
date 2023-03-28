@@ -59,7 +59,7 @@ public class FirstPersonController : MonoBehaviour
     public float zoomStepTime = 5f;
 
     // Internal Variables
-    private bool isZoomed = false;
+    public bool isZoomed = false;
 
     #endregion
     #endregion

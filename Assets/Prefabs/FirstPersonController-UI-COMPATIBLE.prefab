@@ -383,6 +383,7 @@ GameObject:
   - component: {fileID: 4459864850019384740}
   - component: {fileID: 606056294597865301}
   - component: {fileID: 7130859633087567194}
+  - component: {fileID: 1630818031}
   m_Layer: 2
   m_Name: FirstPersonController-UI-COMPATIBLE
   m_TagString: Player
@@ -500,6 +501,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d90ba6530d9bfda47abb4610956b2f44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 0}
   firstPersonActionsSO: {fileID: 11400000, guid: bb6a48d6bb2fd8d408b27a197299a2fa, type: 2}
   dialogueRunner: {fileID: 0}
   playerCamera: {fileID: 4459864851310106426}
@@ -513,17 +515,19 @@ MonoBehaviour:
   crosshairImage: {fileID: 21300000, guid: be4ce60e2c9768c44b9b10b9c5258045, type: 3}
   crosshairColor: {r: 1, g: 1, b: 1, a: 1}
   enableZoom: 1
-  holdToZoom: 1
+  holdToZoom: 0
   zoomFOV: 30
   zoomStepTime: 5
+  isZoomed: 0
   playerCanMove: 1
   walkSpeed: 5
   maxVelocityChange: 10
+  isSprinting: 0
   enableSprint: 1
   unlimitedSprint: 0
-  sprintSpeed: 7
+  sprintSpeed: 5
   sprintDuration: 5
-  sprintCooldown: 0.5
+  sprintCooldown: 0.25
   sprintFOV: 60
   sprintFOVStepTime: 10
   useSprintBar: 1
@@ -573,6 +577,24 @@ MonoBehaviour:
   obstacleLayers:
     serializedVersion: 2
     m_Bits: 1
+--- !u!114 &1630818031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4459864850019384750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a43122dc367c824bb9e9d99c951808f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firstPersonController: {fileID: 4459864850019384740}
+  startSprintSpeed: 5
+  maxSprintSpeed: 12
+  sprintAcceleration: 2
+  unZoomedFOV: 60
+  zoomedFOV: 80
 --- !u!1 &4459864850190357393
 GameObject:
   m_ObjectHideFlags: 0
@@ -840,7 +862,7 @@ Camera:
   field of view: 60
   orthographic: 0
   orthographic size: 5
-  m_Depth: -1
+  m_Depth: 100
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
