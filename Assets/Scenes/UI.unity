@@ -185,7 +185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   document: {fileID: 255780283}
-  startPosition: 2
+  animationType: 5
   panelOpenStateChanged: {fileID: 11400000, guid: c354295335cbfad40abde8d0229bf468, type: 2}
   OnRestartButtonPressed:
     m_PersistentCalls:
@@ -209,7 +209,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1041981935}
   - component: {fileID: 1041981934}
-  - component: {fileID: 1041981933}
+  - component: {fileID: 1041981936}
   m_Layer: 5
   m_Name: Inventory Menu
   m_TagString: Untagged
@@ -217,27 +217,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1041981933
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1041981932}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3de4eed4741766c498ec8c948b52f6ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  document: {fileID: 1041981934}
-  startPosition: 4
-  panelOpenStateChanged: {fileID: 11400000, guid: 3fbd3e357294c734c9300f54e76c6a38, type: 2}
-  inventoryItemUI: {fileID: 9197481963319205126, guid: 109df5a9a67e9104ba3dd43d942e4cba, type: 3}
-  inventory: {fileID: 11400000, guid: 0dc6866fbd204d14cb7e1cb5e419e5f4, type: 2}
-  scrollSpeed: 300
-  scrollButtonJumpSize: 200
-  normalItemColor: {r: 1, g: 1, b: 1, a: 1}
-  keyItemColor: {r: 0.24705884, g: 0.45882356, b: 1, a: 1}
 --- !u!114 &1041981934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -269,6 +248,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1041981936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1041981932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02e66bcec089c11448ddff51b5e3fad8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  document: {fileID: 1041981934}
+  animationType: 3
+  panelOpenStateChanged: {fileID: 11400000, guid: 3fbd3e357294c734c9300f54e76c6a38, type: 2}
+  inventoryItemUI: {fileID: 9197481963319205126, guid: 109df5a9a67e9104ba3dd43d942e4cba, type: 3}
+  inventory: {fileID: 11400000, guid: 0dc6866fbd204d14cb7e1cb5e419e5f4, type: 2}
+  scrollSpeed: 300
+  scrollButtonJumpSize: 100
+  normalItemColor: {r: 1, g: 1, b: 1, a: 1}
+  keyItemColor: {r: 0, g: 0, b: 1, a: 1}
 --- !u!1 &1761737791
 GameObject:
   m_ObjectHideFlags: 0
@@ -299,7 +299,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   input: {fileID: -944628639613478452, guid: fa04d1da8dc04844b923b3365faf308e, type: 3}
-  inventoryPanel: {fileID: 1041981933}
+  inventoryPanel: {fileID: 1041981936}
   pausePanel: {fileID: 255780285}
 --- !u!4 &1761737793
 Transform:

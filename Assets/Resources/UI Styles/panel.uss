@@ -10,6 +10,7 @@
     transition-property: translate;
     transition-duration: 1s;
     transition-timing-function: ease-in-out;
+    visibility: visible;
 }
 
 .offscreen-left {
@@ -31,4 +32,8 @@
     transition-duration: 1s;
     transition-timing-function: ease-in-out;
     translate: 0% -102%;
+}
+
+.invisible {
+    visibility: hidden;
 }

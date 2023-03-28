@@ -22,7 +22,7 @@ public abstract class PanelUI : MonoBehaviour
 
     [Header("Panel Properties")]
     [SerializeField] UIDocument document = default;
-    [SerializeField] PanelPosition startPosition = PanelPosition.CENTER;
+    [SerializeField] PanelAnimationType animationType = PanelAnimationType.NONE;
 
     // DESIGN CHOICE: Use a single bool channel for this event instead of
     // separate events for open and close to reduce number of scriptable
@@ -35,6 +35,7 @@ public abstract class PanelUI : MonoBehaviour
     const string c_OffscreenLeft = "offscreen-left";
     const string c_OffscreenTop = "offscreen-top";
     const string c_OffscreenBot = "offscreen-bot";
+    const string c_Invisible = "invisible";
 
     // PATHS
     const string ANIMATIONS_USS_PATH = "UI Styles/panel";
@@ -42,7 +43,14 @@ public abstract class PanelUI : MonoBehaviour
     // Enum for setting where the panel should start
     public enum PanelPosition
     {
-        CENTER, TOP, BOTTOM, LEFT, RIGHT
+        // Correspond with the different starting locations of the panel. If one of these options is selected,
+        // the panel will slide in from a particular part of the screen.
+        CENTER, TOP, BOTTOM, LEFT, RIGHT, 
+
+        // Invisible means the panel does not start from any particular point in the screen and is simply invisible.
+        // If this option is selected, the panel will instantly appear at the center of the screen upon opening.
+        // This is useful for panels that should be opened quickly and simply, such as the pause menu.
+        INVISIBLE 
     }
     private Dictionary<PanelPosition, string> panelPositionClasses = new Dictionary<PanelPosition, string>()
     {
@@ -50,9 +58,27 @@ public abstract class PanelUI : MonoBehaviour
         {PanelPosition.LEFT, c_OffscreenLeft},
         {PanelPosition.RIGHT, c_OffscreenRight},
         {PanelPosition.TOP, c_OffscreenTop},
-        {PanelPosition.BOTTOM, c_OffscreenBot}
+        {PanelPosition.BOTTOM, c_OffscreenBot},
+        {PanelPosition.INVISIBLE, c_Invisible}
     };
 
+        // Enum to make it easier for designer to select type of animation instead of worrying about panel position
+    public enum PanelAnimationType
+    {
+        NONE, FROM_ABOVE, FROM_BELOW, FROM_LEFT, FROM_RIGHT, APPEAR
+    }
+
+    private Dictionary<PanelAnimationType, PanelPosition> panelStartPosition = new Dictionary<PanelAnimationType, PanelPosition>()
+    {
+        {PanelAnimationType.NONE, PanelPosition.CENTER},
+        {PanelAnimationType.FROM_ABOVE, PanelPosition.TOP},
+        {PanelAnimationType.FROM_BELOW, PanelPosition.BOTTOM},
+        {PanelAnimationType.FROM_LEFT, PanelPosition.LEFT},
+        {PanelAnimationType.FROM_RIGHT, PanelPosition.RIGHT},
+        {PanelAnimationType.APPEAR, PanelPosition.INVISIBLE}
+    };
+
+    private PanelPosition startPosition = PanelPosition.CENTER;
     private PanelPosition currentPosition = default;
 
     protected VisualElement root
@@ -70,6 +96,9 @@ public abstract class PanelUI : MonoBehaviour
         StyleSheet styleSheet = Resources.Load<StyleSheet>(ANIMATIONS_USS_PATH);
         root.styleSheets.Add(styleSheet);
 
+        // DESIGN CHOICE: Use a layer of abstraction between animation type and start position
+        // to make it easier for designer to understand the animation that will be played
+        startPosition = panelStartPosition[animationType];
         root.AddToClassList(panelPositionClasses[startPosition]);
         currentPosition = startPosition;
 

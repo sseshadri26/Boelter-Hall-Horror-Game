@@ -17,7 +17,7 @@ public class UIController : MonoBehaviour
 
     [SerializeField] InputActionAsset input;
 
-    [SerializeField] InventoryUI inventoryPanel;
+    [SerializeField] AlmanacUI inventoryPanel;
     [SerializeField] PauseUI pausePanel;
 
 
