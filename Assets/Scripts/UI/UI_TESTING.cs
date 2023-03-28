@@ -44,6 +44,15 @@ public partial class @UI_TESTING : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Journal"",
+                    ""type"": ""Button"",
+                    ""id"": ""d37e00f6-0400-46ea-9a80-26160f144f57"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -51,6 +60,17 @@ public partial class @UI_TESTING : IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""45bca378-452d-426b-8041-641a2c8f7ce9"",
                     ""path"": ""<Keyboard>/i"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Inventory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d1e13ac5-97ad-468a-8f99-125933dab86d"",
+                    ""path"": ""<Gamepad>/select"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -68,6 +88,39 @@ public partial class @UI_TESTING : IInputActionCollection2, IDisposable
                     ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0c06c338-c986-4f19-8bf6-b8f76ec2134b"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""68e63245-c1f9-4e4c-843a-652ad0a7e5be"",
+                    ""path"": ""<Keyboard>/j"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Journal"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2b23f41e-5763-4e4c-bf44-6a62a6940765"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Journal"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -78,6 +131,7 @@ public partial class @UI_TESTING : IInputActionCollection2, IDisposable
         m_PanelManagement = asset.FindActionMap("PanelManagement", throwIfNotFound: true);
         m_PanelManagement_Inventory = m_PanelManagement.FindAction("Inventory", throwIfNotFound: true);
         m_PanelManagement_Pause = m_PanelManagement.FindAction("Pause", throwIfNotFound: true);
+        m_PanelManagement_Journal = m_PanelManagement.FindAction("Journal", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -139,12 +193,14 @@ public partial class @UI_TESTING : IInputActionCollection2, IDisposable
     private IPanelManagementActions m_PanelManagementActionsCallbackInterface;
     private readonly InputAction m_PanelManagement_Inventory;
     private readonly InputAction m_PanelManagement_Pause;
+    private readonly InputAction m_PanelManagement_Journal;
     public struct PanelManagementActions
     {
         private @UI_TESTING m_Wrapper;
         public PanelManagementActions(@UI_TESTING wrapper) { m_Wrapper = wrapper; }
         public InputAction @Inventory => m_Wrapper.m_PanelManagement_Inventory;
         public InputAction @Pause => m_Wrapper.m_PanelManagement_Pause;
+        public InputAction @Journal => m_Wrapper.m_PanelManagement_Journal;
         public InputActionMap Get() { return m_Wrapper.m_PanelManagement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -160,6 +216,9 @@ public partial class @UI_TESTING : IInputActionCollection2, IDisposable
                 @Pause.started -= m_Wrapper.m_PanelManagementActionsCallbackInterface.OnPause;
                 @Pause.performed -= m_Wrapper.m_PanelManagementActionsCallbackInterface.OnPause;
                 @Pause.canceled -= m_Wrapper.m_PanelManagementActionsCallbackInterface.OnPause;
+                @Journal.started -= m_Wrapper.m_PanelManagementActionsCallbackInterface.OnJournal;
+                @Journal.performed -= m_Wrapper.m_PanelManagementActionsCallbackInterface.OnJournal;
+                @Journal.canceled -= m_Wrapper.m_PanelManagementActionsCallbackInterface.OnJournal;
             }
             m_Wrapper.m_PanelManagementActionsCallbackInterface = instance;
             if (instance != null)
@@ -170,6 +229,9 @@ public partial class @UI_TESTING : IInputActionCollection2, IDisposable
                 @Pause.started += instance.OnPause;
                 @Pause.performed += instance.OnPause;
                 @Pause.canceled += instance.OnPause;
+                @Journal.started += instance.OnJournal;
+                @Journal.performed += instance.OnJournal;
+                @Journal.canceled += instance.OnJournal;
             }
         }
     }
@@ -178,5 +240,6 @@ public partial class @UI_TESTING : IInputActionCollection2, IDisposable
     {
         void OnInventory(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
+        void OnJournal(InputAction.CallbackContext context);
     }
 }

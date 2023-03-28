@@ -82,6 +82,33 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Journal"",
+                    ""type"": ""Button"",
+                    ""id"": ""efacb290-a258-42bc-8082-e336b2b170fa"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""ab07d57b-7d5e-41ce-8b03-2c320c57a993"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Inventory"",
+                    ""type"": ""Button"",
+                    ""id"": ""9bc61e58-cb08-425c-960a-8b535c2db37f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""SprintToggle"",
                     ""type"": ""Button"",
                     ""id"": ""7ce68980-93c4-417e-b5aa-3c33e566bacf"",
@@ -224,6 +251,17 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""1f720dd9-9008-4591-81f7-20b3b974ed6a"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""b74274e9-4430-463e-bfe7-d7f74d7b7512"",
                     ""path"": ""<Gamepad>/rightStick"",
                     ""interactions"": """",
@@ -258,7 +296,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""51e23d93-8f94-4257-a7f8-270fd7413d8f"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""path"": ""<Gamepad>/dpad/up"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -320,6 +358,72 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""action"": ""SprintToggle"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ee7142b1-baf1-49d7-8d45-fa01f2c38183"",
+                    ""path"": ""<Keyboard>/i"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Inventory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cfcb5581-439e-4872-b4ff-4090b2824f75"",
+                    ""path"": ""<Gamepad>/select"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Inventory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5f0a1374-7ec4-422a-9435-d7facb9e2b39"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""17a31edf-d882-43e2-bb6a-7d2537058837"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2857e36c-54f8-42c3-bd0f-a81bba263cf5"",
+                    ""path"": ""<Keyboard>/j"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Journal"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""530b03e4-2b19-42c6-bef3-01ba1316a84b"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Journal"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -334,6 +438,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m_FirstPerson_Zoom = m_FirstPerson.FindAction("Zoom", throwIfNotFound: true);
         m_FirstPerson_Jump = m_FirstPerson.FindAction("Jump", throwIfNotFound: true);
         m_FirstPerson_Crouch = m_FirstPerson.FindAction("Crouch", throwIfNotFound: true);
+        m_FirstPerson_Journal = m_FirstPerson.FindAction("Journal", throwIfNotFound: true);
+        m_FirstPerson_Pause = m_FirstPerson.FindAction("Pause", throwIfNotFound: true);
+        m_FirstPerson_Inventory = m_FirstPerson.FindAction("Inventory", throwIfNotFound: true);
         m_FirstPerson_SprintToggle = m_FirstPerson.FindAction("SprintToggle", throwIfNotFound: true);
         m_FirstPerson_SprintHold = m_FirstPerson.FindAction("SprintHold", throwIfNotFound: true);
     }
@@ -401,6 +508,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private readonly InputAction m_FirstPerson_Zoom;
     private readonly InputAction m_FirstPerson_Jump;
     private readonly InputAction m_FirstPerson_Crouch;
+    private readonly InputAction m_FirstPerson_Journal;
+    private readonly InputAction m_FirstPerson_Pause;
+    private readonly InputAction m_FirstPerson_Inventory;
     private readonly InputAction m_FirstPerson_SprintToggle;
     private readonly InputAction m_FirstPerson_SprintHold;
     public struct FirstPersonActions
@@ -413,6 +523,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         public InputAction @Zoom => m_Wrapper.m_FirstPerson_Zoom;
         public InputAction @Jump => m_Wrapper.m_FirstPerson_Jump;
         public InputAction @Crouch => m_Wrapper.m_FirstPerson_Crouch;
+        public InputAction @Journal => m_Wrapper.m_FirstPerson_Journal;
+        public InputAction @Pause => m_Wrapper.m_FirstPerson_Pause;
+        public InputAction @Inventory => m_Wrapper.m_FirstPerson_Inventory;
         public InputAction @SprintToggle => m_Wrapper.m_FirstPerson_SprintToggle;
         public InputAction @SprintHold => m_Wrapper.m_FirstPerson_SprintHold;
         public InputActionMap Get() { return m_Wrapper.m_FirstPerson; }
@@ -442,6 +555,15 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Crouch.started -= m_Wrapper.m_FirstPersonActionsCallbackInterface.OnCrouch;
                 @Crouch.performed -= m_Wrapper.m_FirstPersonActionsCallbackInterface.OnCrouch;
                 @Crouch.canceled -= m_Wrapper.m_FirstPersonActionsCallbackInterface.OnCrouch;
+                @Journal.started -= m_Wrapper.m_FirstPersonActionsCallbackInterface.OnJournal;
+                @Journal.performed -= m_Wrapper.m_FirstPersonActionsCallbackInterface.OnJournal;
+                @Journal.canceled -= m_Wrapper.m_FirstPersonActionsCallbackInterface.OnJournal;
+                @Pause.started -= m_Wrapper.m_FirstPersonActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_FirstPersonActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_FirstPersonActionsCallbackInterface.OnPause;
+                @Inventory.started -= m_Wrapper.m_FirstPersonActionsCallbackInterface.OnInventory;
+                @Inventory.performed -= m_Wrapper.m_FirstPersonActionsCallbackInterface.OnInventory;
+                @Inventory.canceled -= m_Wrapper.m_FirstPersonActionsCallbackInterface.OnInventory;
                 @SprintToggle.started -= m_Wrapper.m_FirstPersonActionsCallbackInterface.OnSprintToggle;
                 @SprintToggle.performed -= m_Wrapper.m_FirstPersonActionsCallbackInterface.OnSprintToggle;
                 @SprintToggle.canceled -= m_Wrapper.m_FirstPersonActionsCallbackInterface.OnSprintToggle;
@@ -470,6 +592,15 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Crouch.started += instance.OnCrouch;
                 @Crouch.performed += instance.OnCrouch;
                 @Crouch.canceled += instance.OnCrouch;
+                @Journal.started += instance.OnJournal;
+                @Journal.performed += instance.OnJournal;
+                @Journal.canceled += instance.OnJournal;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
+                @Inventory.started += instance.OnInventory;
+                @Inventory.performed += instance.OnInventory;
+                @Inventory.canceled += instance.OnInventory;
                 @SprintToggle.started += instance.OnSprintToggle;
                 @SprintToggle.performed += instance.OnSprintToggle;
                 @SprintToggle.canceled += instance.OnSprintToggle;
@@ -488,6 +619,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         void OnZoom(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnCrouch(InputAction.CallbackContext context);
+        void OnJournal(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
+        void OnInventory(InputAction.CallbackContext context);
         void OnSprintToggle(InputAction.CallbackContext context);
         void OnSprintHold(InputAction.CallbackContext context);
     }
