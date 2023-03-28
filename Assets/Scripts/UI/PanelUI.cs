@@ -92,7 +92,11 @@ public abstract class PanelUI : MonoBehaviour
 
     protected virtual void Awake()
     {
-        // Load in styles that define the animations
+        // DESIGN CHOICE: Load in styles that define the animations at runtime.
+        // Why not just load it at compile time by specifying it in the UXML?
+        // We can keep the logic/animations of PanelUI separate from its derivations.
+        // For example, the Inventory shouldn't need to know about how it appears on the screen,
+        // which is PanelUI's responsibility. 
         StyleSheet styleSheet = Resources.Load<StyleSheet>(ANIMATIONS_USS_PATH);
         root.styleSheets.Add(styleSheet);
 
