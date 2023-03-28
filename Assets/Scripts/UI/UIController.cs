@@ -22,7 +22,7 @@ public class UIController : MonoBehaviour
 
 
     // ACTION NAMES
-    const string a_PanelManagement = "PanelManagement";
+    const string a_PanelManagement = "FirstPerson";
     const string a_Inventory = "Inventory";
     const string a_Pause = "Pause";
 

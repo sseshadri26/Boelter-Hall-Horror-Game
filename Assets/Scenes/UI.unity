@@ -298,7 +298,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e492b3f9c37c0d44b2fa910cec88baf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  input: {fileID: -944628639613478452, guid: fa04d1da8dc04844b923b3365faf308e, type: 3}
+  input: {fileID: -944628639613478452, guid: 71c4a86121f51ec42a03ed0149f6cd6c, type: 3}
   inventoryPanel: {fileID: 1041981936}
   pausePanel: {fileID: 255780285}
 --- !u!4 &1761737793
