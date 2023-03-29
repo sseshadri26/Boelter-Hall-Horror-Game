@@ -2570,7 +2570,7 @@ GameObject:
   - component: {fileID: 251166672}
   - component: {fileID: 251166671}
   - component: {fileID: 251166670}
-  - component: {fileID: 251166669}
+  - component: {fileID: 251166674}
   m_Layer: 0
   m_Name: Quad
   m_TagString: Untagged
@@ -2593,20 +2593,6 @@ Transform:
   m_Father: {fileID: 275965441}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 180, y: 90, z: 0}
---- !u!114 &251166669
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 251166667}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c063ae381c6a404995491dc0f8ebbcd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  newTextureMaterial: {fileID: 0}
-  ObjectToChange: {fileID: 2003398381}
 --- !u!114 &251166670
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2623,6 +2609,8 @@ MonoBehaviour:
   objectsWithActions:
   - {fileID: 251166667}
   destroyOnUse: 0
+  holdToInteract: 0
+  howLongToHold: 3
 --- !u!64 &251166671
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2687,6 +2675,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 251166667}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &251166674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 251166667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2d672c8330a2bb4089c35207b64de3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IconToChange: {fileID: 2003398381}
 --- !u!1001 &252089367
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11813,6 +11814,8 @@ MonoBehaviour:
   objectsWithActions:
   - {fileID: 1170495132}
   destroyOnUse: 0
+  holdToInteract: 0
+  howLongToHold: 3
 --- !u!114 &1522855977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15522,6 +15525,8 @@ MonoBehaviour:
   objectsWithActions:
   - {fileID: 904975550}
   destroyOnUse: 0
+  holdToInteract: 0
+  howLongToHold: 3
 --- !u!114 &2146108608
 MonoBehaviour:
   m_ObjectHideFlags: 0
