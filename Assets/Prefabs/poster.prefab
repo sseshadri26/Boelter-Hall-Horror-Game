@@ -170,4 +170,4 @@ MonoBehaviour:
   - {fileID: 8792077507724165553}
   destroyOnUse: 0
   holdToInteract: 1
-  howLongToHold: 3
+  howLongToHold: 7

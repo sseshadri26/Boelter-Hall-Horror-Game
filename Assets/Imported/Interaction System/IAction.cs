@@ -60,6 +60,9 @@ public interface IAction
     */
 
     void Activate();
+    void Animate() { }
+    // add default blank implementation for Animate
+    // to avoid breaking existing code
 
-    
+
 }

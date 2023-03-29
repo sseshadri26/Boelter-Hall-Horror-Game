@@ -39,13 +39,25 @@ public class InteractionReceiver : MonoBehaviour
 
     public void Activate()
     {
-        
-        foreach (GameObject o in objectsWithActions) {
+
+        foreach (GameObject o in objectsWithActions)
+        {
             o.GetComponent<IAction>().Activate();
         }
 
-        if (destroyOnUse) {
+        if (destroyOnUse)
+        {
             Destroy(this);
+        }
+
+    }
+
+    public void Animate()
+    {
+
+        foreach (GameObject o in objectsWithActions)
+        {
+            o.GetComponent<IAction>().Animate();
         }
 
     }

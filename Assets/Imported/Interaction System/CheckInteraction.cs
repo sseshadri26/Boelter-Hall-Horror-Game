@@ -17,7 +17,7 @@ public class CheckInteraction : MonoBehaviour
 
     [SerializeField]
     private float minInteractionDistance;
-   
+
     [SerializeField]
     private GameObject rayOrigin;
 
@@ -79,11 +79,10 @@ public class CheckInteraction : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit))
         {
-           
+
 
             if (hit.distance < minInteractionDistance)
             {
-
 
                 currentReceiver = hit.transform.gameObject.GetComponent<InteractionReceiver>();
 
@@ -96,13 +95,13 @@ public class CheckInteraction : MonoBehaviour
                     {
                         displayText.text = currentReceiver.GetInteractionMessage();
                     }
- 
+
                     canInteract = true;
                     return;
                 }
             }
         }
-                    
+
         canInteract = false;
         displayText.text = "";
     }
@@ -119,11 +118,19 @@ public class CheckInteraction : MonoBehaviour
 
     private IEnumerator WaitForHolding(float targetTime)
     {
-        yield return new WaitUntil(() => (holdingTime >= targetTime) || !holdingButton);
+        while (holdingTime < targetTime && holdingButton && currentReceiver != null)
+        {
+            // Call the `Animate()` function of the `currentReceiver` object
+            currentReceiver.Animate();
 
-        if (holdingButton)
+            // Wait for a short time before checking again
+            yield return new WaitForSeconds(0.1f);
+        }
+
+        if (holdingButton && currentReceiver != null)
         {
             currentReceiver.Activate();
         }
     }
+
 }

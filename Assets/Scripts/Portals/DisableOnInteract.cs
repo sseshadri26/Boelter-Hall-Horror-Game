@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class DisableOnInteract : MonoBehaviour, IAction
 {
@@ -53,6 +54,15 @@ public class DisableOnInteract : MonoBehaviour, IAction
 
             PosterToDelete.SetActive(false);
         }
+    }
+
+
+    // Use DOTween to animate the poster shaking. do not shake in the z axis
+    public void Animate()
+    {
+        // transform.DOShakePosition(0.1f, 0.1f, 10, 90, false, true);
+        transform.DOShakePosition(0.1f, new Vector3(0, 0.15f, 0.15f), 30, 90, false, true);
+
     }
 
 
