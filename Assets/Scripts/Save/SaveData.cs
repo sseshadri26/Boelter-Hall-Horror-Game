@@ -11,6 +11,8 @@ public class SaveData
     public float[] playerRot;
     public string playerScene;
 
+    public InventorySO inventory;
+
     // Create a SaveData from the static PlayerData class
     public void CopyFromGame()
     {
@@ -28,5 +30,7 @@ public class SaveData
         playerRot[3] = player.rotation.w;
 
         playerScene = SceneManager.GetActiveScene().name;
+
+        Debug.Log(inventory.items[0]);
     }
 }
