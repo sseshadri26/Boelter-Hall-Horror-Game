@@ -24,6 +24,10 @@ public class InteractionReceiver : MonoBehaviour
     [SerializeField]
     private bool destroyOnUse;
 
+    public bool holdToInteract = false;
+
+    public float howLongToHold = 3f;
+
     void Start()
     {
         if (gameObject.activeSelf && (objectsWithActions.Length == 0 || objectsWithActions[0] == null))

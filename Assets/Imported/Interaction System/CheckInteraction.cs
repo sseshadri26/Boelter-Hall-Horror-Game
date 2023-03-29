@@ -30,15 +30,21 @@ public class CheckInteraction : MonoBehaviour
 
     private InteractionReceiver currentReceiver;
 
+    private bool holdingButton = false;
+
+    private float holdingTime = 0f;
+
 
     private void Start()
     {
         GetComponent<FirstPersonController>().controls.Interact.started += ctx => Interact();
+        GetComponent<FirstPersonController>().controls.Interact.canceled += ctx => CancelHold();
     }
 
     private void Update()
     {
         CheckRaycast();
+        holdingTime += Time.deltaTime;
     }
 
     private void Interact()
@@ -46,7 +52,17 @@ public class CheckInteraction : MonoBehaviour
         if (canInteract)
         {
             // In this region the character is seeing an object with which he can interact
-            currentReceiver.Activate();
+
+            if (currentReceiver.holdToInteract)
+            {
+                holdingButton = true;
+                holdingTime = 0f;
+                StartCoroutine("WaitForHolding", currentReceiver.howLongToHold);
+            }
+            else
+            {
+                currentReceiver.Activate();
+            }
         }
     }
 
@@ -85,4 +101,20 @@ public class CheckInteraction : MonoBehaviour
         displayText.text = "";
     }
 
+    private void CancelHold()
+    {
+        holdingButton = false;
+        holdingTime = 0f;
+        StopAllCoroutines();
+    }
+
+    private IEnumerator WaitForHolding(float targetTime)
+    {
+        yield return new WaitUntil(() => (holdingTime >= targetTime) || !holdingButton);
+
+        if (holdingButton)
+        {
+            currentReceiver.Activate();
+        }
+    }
 }
