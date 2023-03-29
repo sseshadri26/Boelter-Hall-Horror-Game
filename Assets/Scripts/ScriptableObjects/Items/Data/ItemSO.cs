@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Sprites;
 
-public abstract class ItemSO : ScriptableObject
+public class ItemSO : ScriptableObject
 {
     public string itemName;
 

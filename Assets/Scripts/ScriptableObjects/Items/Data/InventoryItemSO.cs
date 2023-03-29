@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "ScriptableObjects/Inventory Item")]
+[CreateAssetMenu(menuName = "ScriptableObjects/Item Data/Inventory")]
 public class InventoryItemSO : ItemSO
 {
     public enum ItemStatus

@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-[CreateAssetMenu(menuName = "ScriptableObjects/UI Generators/Inventory Item", fileName = "InventoryItemUIGenerator")]
+[CreateAssetMenu(menuName = "ScriptableObjects/Item UI Generators/Inventory")]
 public class InventoryItemUIGeneratorSO : ItemUIGeneratorSO
 {
     [Header("Inventory Properties")]
-    [SerializeField] InventorySO inventorySO = default;
+    [SerializeField] InventoryItemCollectionSO inventorySO = default;
     [SerializeField] VisualTreeAsset inventoryItemUI = default;
 
     // DESIGN CHOICE: Make a separate field for each, instead of using some kind of
