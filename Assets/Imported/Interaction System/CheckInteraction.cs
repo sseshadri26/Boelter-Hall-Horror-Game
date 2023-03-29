@@ -109,10 +109,12 @@ public class CheckInteraction : MonoBehaviour
 
     private void CancelHold()
     {
-        Debug.Log(name + " is enabled: " + enabled);
-        holdingButton = false;
-        holdingTime = 0f;
-        StopAllCoroutines();
+        if (currentReceiver && currentReceiver.holdToInteract)
+        {
+            holdingButton = false;
+            holdingTime = 0f;
+            StopAllCoroutines();
+        }
     }
 
     private IEnumerator WaitForHolding(float targetTime)
