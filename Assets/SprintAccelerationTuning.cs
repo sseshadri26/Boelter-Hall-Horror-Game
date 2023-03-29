@@ -35,6 +35,7 @@ public class SprintAccelerationTuning : MonoBehaviour
             // if not sprinting, set sprint speed to the default start speed
             firstPersonController.sprintFOV = unZoomedFOV;
             currentSprintSpeed = startSprintSpeed;
+            atFullSpeed = false;
             return;
         }
 
