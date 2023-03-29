@@ -5035,7 +5035,6 @@ GameObject:
   m_Component:
   - component: {fileID: 837226371}
   - component: {fileID: 837226372}
-  - component: {fileID: 837226373}
   - component: {fileID: 837226374}
   m_Layer: 0
   m_Name: Look Cutscene
@@ -5084,20 +5083,6 @@ PlayableDirector:
     - 8122789a06089864c821e6b88c4cd3ed: {fileID: 734575066}
     - 86f06288e130e4944b5c390898c243f9: {fileID: 1102478935}
     - 2d05a6bbd046bd14aa51f3fb6b09d594: {fileID: 734575066}
---- !u!114 &837226373
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 837226370}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ebdf9b30a9818844874769b511ffbdb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mainCam: {fileID: 0}
-  _cutscene: {fileID: 837226370}
 --- !u!114 &837226374
 MonoBehaviour:
   m_ObjectHideFlags: 0
