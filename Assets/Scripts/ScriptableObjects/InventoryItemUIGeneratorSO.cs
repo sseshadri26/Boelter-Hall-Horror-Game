@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class InventoryItemUIProvider : ItemUIProvider
+[CreateAssetMenu(menuName = "ScriptableObjects/UI Generators/Inventory Item", fileName = "InventoryItemUIGenerator")]
+public class InventoryItemUIGeneratorSO : ItemUIGeneratorSO
 {
     [Header("Inventory Properties")]
     [SerializeField] InventorySO inventorySO = default;
@@ -22,7 +23,7 @@ public class InventoryItemUIProvider : ItemUIProvider
     const string k_InventoryItemGraphic = "item-graphic";
 
 
-    protected override List<ItemUIResult> GenerateResults()
+    public override List<ItemUIResult> GenerateUI()
     {
         List<ItemUIResult> results = new List<ItemUIResult>();
         foreach(InventoryItemSO inventoryItem in inventorySO.items)

@@ -210,7 +210,6 @@ GameObject:
   - component: {fileID: 1041981935}
   - component: {fileID: 1041981934}
   - component: {fileID: 1041981937}
-  - component: {fileID: 1041981936}
   m_Layer: 5
   m_Name: Inventory Menu
   m_TagString: Untagged
@@ -249,22 +248,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1041981936
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1041981932}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3c21f9900d8dc44ebad7a5ebc4c5f7f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inventorySO: {fileID: 11400000, guid: 0dc6866fbd204d14cb7e1cb5e419e5f4, type: 2}
-  inventoryItemUI: {fileID: 9197481963319205126, guid: 109df5a9a67e9104ba3dd43d942e4cba, type: 3}
-  normalItemColor: {r: 1, g: 1, b: 1, a: 1}
-  keyItemColor: {r: 0, g: 0, b: 1, a: 1}
 --- !u!114 &1041981937
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -282,7 +265,7 @@ MonoBehaviour:
   panelOpenStateChanged: {fileID: 11400000, guid: 3fbd3e357294c734c9300f54e76c6a38, type: 2}
   scrollSpeed: 300
   scrollButtonJumpSize: 100
-  itemUIProvider: {fileID: 1041981936}
+  almanacItemUIGenerator: {fileID: 11400000, guid: 9b230c3314513e54086fa86167c2e087, type: 2}
 --- !u!1 &1761737791
 GameObject:
   m_ObjectHideFlags: 0

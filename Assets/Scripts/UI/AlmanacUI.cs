@@ -11,7 +11,7 @@ public class AlmanacUI : PanelUI
     [SerializeField] float scrollButtonJumpSize = 100;
 
     // NOTE: This is a component-based alternative to custom styling of collection items
-    [SerializeField] ItemUIProvider itemUIProvider = default;
+    [SerializeField] ItemUIGeneratorSO almanacItemUIGenerator = default;
     
 
 
@@ -67,13 +67,13 @@ public class AlmanacUI : PanelUI
 
         m_ItemList.RegisterCallback<WheelEvent>(SpeedUpScroll);
         m_ItemList.verticalPageSize = scrollButtonJumpSize;
-        UpdateDisplay(itemUIProvider);
+        UpdateDisplay(almanacItemUIGenerator);
     }
 
     protected override void OnOpenPanel()
     {
         // Instead of registering callback to inventory, simply activate when panel opens
-        UpdateDisplay(itemUIProvider);
+        UpdateDisplay(almanacItemUIGenerator);
     }
 
 
@@ -86,7 +86,7 @@ public class AlmanacUI : PanelUI
     }
 
 
-    private void UpdateDisplay(ItemUIProvider provider)
+    private void UpdateDisplay(ItemUIGeneratorSO generator)
     {
         // DESIGN CHOICE: Update display by clearing every single item then reinstantiating
         // new list instead of pooling items. Why? Well it's simple, and we probably
@@ -98,7 +98,7 @@ public class AlmanacUI : PanelUI
         bool isFirstItem = true;
         
         // Generate the item UIs
-        List<ItemUIProvider.ItemUIResult> results = provider.Results;
+        List<ItemUIGeneratorSO.ItemUIResult> results = generator.GenerateUI();
 
         foreach(var result in results)
         {
