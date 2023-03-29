@@ -41,6 +41,12 @@ public class CheckInteraction : MonoBehaviour
         GetComponent<FirstPersonController>().controls.Interact.canceled += ctx => CancelHold();
     }
 
+    private void OnDisable()
+    {
+        GetComponent<FirstPersonController>().controls.Interact.started -= ctx => Interact();
+        GetComponent<FirstPersonController>().controls.Interact.canceled -= ctx => CancelHold();
+    }
+
     private void Update()
     {
         CheckRaycast();
@@ -59,7 +65,7 @@ public class CheckInteraction : MonoBehaviour
                 holdingTime = 0f;
                 StartCoroutine("WaitForHolding", currentReceiver.howLongToHold);
             }
-            else
+            else if (currentReceiver)
             {
                 currentReceiver.Activate();
             }
@@ -103,6 +109,7 @@ public class CheckInteraction : MonoBehaviour
 
     private void CancelHold()
     {
+        Debug.Log(name + " is enabled: " + enabled);
         holdingButton = false;
         holdingTime = 0f;
         StopAllCoroutines();
