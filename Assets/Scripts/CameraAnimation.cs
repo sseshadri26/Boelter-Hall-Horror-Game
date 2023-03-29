@@ -29,9 +29,10 @@ public class CameraAnimation : MonoBehaviour
     {
         if (scenePlayed == true && !_cutscene.transform.GetChild(0).gameObject.activeInHierarchy)
         {
+            //mainCam.transform.position = _cutscene.transform.GetChild(0).transform.position;
             mainCam.gameObject.SetActive(true);
             scenePlayed = false;
-            _cutscene.SetActive(false);
+       
         }
     }
 }
