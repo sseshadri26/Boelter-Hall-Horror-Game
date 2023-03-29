@@ -1279,6 +1279,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 178326305}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &194213140 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4459864850019384750, guid: 005f38b85fc03ec40b17de5b2c91a414, type: 3}
+  m_PrefabInstance: {fileID: 490456839}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &196492683
 GameObject:
   m_ObjectHideFlags: 0
@@ -2957,7 +2962,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4459864850019384750, guid: 005f38b85fc03ec40b17de5b2c91a414, type: 3}
       propertyPath: m_TagString
-      value: MainCamera
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 4459864851310106424, guid: 005f38b85fc03ec40b17de5b2c91a414, type: 3}
       propertyPath: m_TagString
@@ -4974,6 +4979,7 @@ GameObject:
   - component: {fileID: 837226371}
   - component: {fileID: 837226372}
   - component: {fileID: 837226373}
+  - component: {fileID: 837226374}
   m_Layer: 0
   m_Name: Look Cutscene
   m_TagString: Untagged
@@ -5033,7 +5039,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ebdf9b30a9818844874769b511ffbdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainCam: {fileID: 0}
   _cutscene: {fileID: 837226370}
+--- !u!114 &837226374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 837226370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: 91dd821f21d163041b7c60b9c56638bc, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 837226370}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &847747114
 GameObject:
   m_ObjectHideFlags: 0
@@ -6591,7 +6628,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1057878995}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -6661,7 +6698,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ebdf9b30a9818844874769b511ffbdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cutscene: {fileID: 837226370}
+  mainCam: {fileID: 194213140}
+  _cutscene: {fileID: 1594207766}
 --- !u!1 &1088269951
 GameObject:
   m_ObjectHideFlags: 0

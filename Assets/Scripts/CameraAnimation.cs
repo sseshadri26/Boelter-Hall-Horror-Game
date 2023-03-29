@@ -6,49 +6,30 @@ using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Playables;
+using UnityEngine.Timeline;
 
 public class CameraAnimation : MonoBehaviour
 {
-    //public Camera secondCamera;
-    //bool switched = false;
-    //PlayableDirector director;
-
-    void Start()
-    {
-        //director = GetComponent<PlayableDirector>();
-    }
-
-    void Update()
-    {
-        // if camera is switched, output to the debug log that the camera is switched
-        //if (!switched)
-        //{
-            //UnityEngine.Debug.Log("Camera not switched");
-        //}
-        //if (switched)
-        //{
-            //UnityEngine.Debug.Log("Camera switched");
-            //director.Play();
-        //}       
-    }
+    [SerializeField] private GameObject mainCam;
     [SerializeField] private GameObject _cutscene;
+    bool scenePlayed = false;
+
     private void OnTriggerEnter(Collider other)
     {
-        //if (!switched)
-        //{
-        //SwitchToSecondCam();
-        //}
         UnityEngine.Debug.Log("Player entered trigger");
-        if (other.tag == "jumpscare")
+        if (other.tag == "Player" && scenePlayed == false)
         {
+            mainCam.gameObject.SetActive(false);
             _cutscene.SetActive(true);
-            
+            scenePlayed = true;
         }
     }
-    //void SwitchToSecondCam()
-    //{     
-        //secondCamera.CopyFrom(Camera.main);
-        
-        //switched = true;
-    //}
+
+    private void Update()
+    {
+        if (scenePlayed == true && !_cutscene.transform.GetChild(0).gameObject.activeInHierarchy)
+        {
+            mainCam.gameObject.SetActive(true);
+        }
+    }
 }
