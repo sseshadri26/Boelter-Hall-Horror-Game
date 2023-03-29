@@ -209,6 +209,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1041981935}
   - component: {fileID: 1041981934}
+  - component: {fileID: 1041981937}
   - component: {fileID: 1041981936}
   m_Layer: 5
   m_Name: Inventory Menu
@@ -257,18 +258,31 @@ MonoBehaviour:
   m_GameObject: {fileID: 1041981932}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3de4eed4741766c498ec8c948b52f6ce, type: 3}
+  m_Script: {fileID: 11500000, guid: e3c21f9900d8dc44ebad7a5ebc4c5f7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventorySO: {fileID: 11400000, guid: 0dc6866fbd204d14cb7e1cb5e419e5f4, type: 2}
+  inventoryItemUI: {fileID: 9197481963319205126, guid: 109df5a9a67e9104ba3dd43d942e4cba, type: 3}
+  normalItemColor: {r: 1, g: 1, b: 1, a: 1}
+  keyItemColor: {r: 0, g: 0, b: 1, a: 1}
+--- !u!114 &1041981937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1041981932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02e66bcec089c11448ddff51b5e3fad8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   document: {fileID: 1041981934}
   animationType: 3
   panelOpenStateChanged: {fileID: 11400000, guid: 3fbd3e357294c734c9300f54e76c6a38, type: 2}
-  itemCollection: {fileID: 11400000, guid: 0dc6866fbd204d14cb7e1cb5e419e5f4, type: 2}
   scrollSpeed: 300
   scrollButtonJumpSize: 100
-  inventoryItemUI: {fileID: 9197481963319205126, guid: 109df5a9a67e9104ba3dd43d942e4cba, type: 3}
-  normalItemColor: {r: 1, g: 1, b: 1, a: 1}
-  keyItemColor: {r: 0, g: 0, b: 1, a: 1}
+  itemUIProvider: {fileID: 1041981936}
 --- !u!1 &1761737791
 GameObject:
   m_ObjectHideFlags: 0
@@ -299,7 +313,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firstPersonActionsSO: {fileID: 11400000, guid: bb6a48d6bb2fd8d408b27a197299a2fa, type: 2}
-  inventoryPanel: {fileID: 1041981936}
+  inventoryPanel: {fileID: 1041981937}
   pausePanel: {fileID: 255780285}
 --- !u!4 &1761737793
 Transform:

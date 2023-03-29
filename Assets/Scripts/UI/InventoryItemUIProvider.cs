@@ -1,12 +1,12 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class InventoryUI : AlmanacUI
+public class InventoryItemUIProvider : ItemUIProvider
 {
     [Header("Inventory Properties")]
+    [SerializeField] InventorySO inventorySO = default;
     [SerializeField] VisualTreeAsset inventoryItemUI = default;
 
     // DESIGN CHOICE: Make a separate field for each, instead of using some kind of
@@ -22,7 +22,17 @@ public class InventoryUI : AlmanacUI
     const string k_InventoryItemGraphic = "item-graphic";
 
 
-    protected override TemplateContainer GenerateAlamanacListItem(InventoryItemSO itemData)
+    protected override List<ItemUIResult> GenerateResults()
+    {
+        List<ItemUIResult> results = new List<ItemUIResult>();
+        foreach(InventoryItemSO inventoryItem in inventorySO.items)
+        {
+            results.Add(new ItemUIResult{reference = inventoryItem, ui = GenerateListItemUI(inventoryItem)});
+        }
+        return results;
+    }
+
+    private TemplateContainer GenerateListItemUI(InventoryItemSO itemData)
     {
         TemplateContainer instance = inventoryItemUI.Instantiate();
         InitializeItemElement(instance, itemData);
@@ -54,4 +64,5 @@ public class InventoryUI : AlmanacUI
                 return normalItemColor;
         }
     }
+
 }

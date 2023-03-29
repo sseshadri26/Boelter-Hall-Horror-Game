@@ -4,12 +4,14 @@ using UnityEngine;
 using UnityEngine.UIElements;
 
 
-public abstract class AlmanacUI : PanelUI
+public class AlmanacUI : PanelUI
 {
     [Header("Almanac Properties")]
-    [SerializeField] InventorySO itemCollection = default;
     [SerializeField] float scrollSpeed = 300;
     [SerializeField] float scrollButtonJumpSize = 100;
+
+    // NOTE: This is a component-based alternative to custom styling of collection items
+    [SerializeField] ItemUIProvider itemUIProvider = default;
     
 
 
@@ -65,21 +67,15 @@ public abstract class AlmanacUI : PanelUI
 
         m_ItemList.RegisterCallback<WheelEvent>(SpeedUpScroll);
         m_ItemList.verticalPageSize = scrollButtonJumpSize;
-        UpdateDisplay(itemCollection.items);
+        UpdateDisplay(itemUIProvider);
     }
 
     protected override void OnOpenPanel()
     {
         // Instead of registering callback to inventory, simply activate when panel opens
-        UpdateDisplay(itemCollection.items);
+        UpdateDisplay(itemUIProvider);
     }
 
-    /// <summary>
-    /// Create a list item UI Element to place within the list container
-    /// </summary>
-    // DESIGN CHOICE: Abstract this out to derived classes since the list items will vary greatly across
-    // the different implementations and need this room for flexibility
-    protected abstract TemplateContainer GenerateAlamanacListItem(InventoryItemSO itemData);
 
 
     // This is a function to accelerate the scroll speed, and is a work-around for Unity's currently slightly
@@ -90,7 +86,7 @@ public abstract class AlmanacUI : PanelUI
     }
 
 
-    private void UpdateDisplay(List<InventoryItemSO> itemList)
+    private void UpdateDisplay(ItemUIProvider provider)
     {
         // DESIGN CHOICE: Update display by clearing every single item then reinstantiating
         // new list instead of pooling items. Why? Well it's simple, and we probably
@@ -100,14 +96,19 @@ public abstract class AlmanacUI : PanelUI
         m_ItemList.scrollOffset = Vector2.zero;
 
         bool isFirstItem = true;
-        foreach(InventoryItemSO itemData in itemList)
+        
+        // Generate the item UIs
+        List<ItemUIProvider.ItemUIResult> results = provider.Results;
+
+        foreach(var result in results)
         {
-            TemplateContainer instance = GenerateAlamanacListItem(itemData);
+            //TemplateContainer instance = GenerateAlamanacListItem(itemData);
+            TemplateContainer instance = result.ui;
 
             // DESIGN CHOICE: Store item reference in callback instead of using generic
             // callback and searching for item index within function to reduce chances
             // of erroneously selecting wrong item
-            instance.RegisterCallback<ClickEvent>(ev => HandleInventoryItemClicked(instance, itemData));
+            instance.RegisterCallback<ClickEvent>(ev => HandleInventoryItemClicked(instance, result.reference));
 
             m_ItemList.Add(instance);
 
@@ -116,14 +117,14 @@ public abstract class AlmanacUI : PanelUI
             // simulated, since the logic expects it to be in the list
             if(isFirstItem)
             {
-                HandleInventoryItemClicked(instance, itemData);
+                HandleInventoryItemClicked(instance, result.reference);
                 isFirstItem = false;
             }
 
         }
     }
 
-    private void HandleInventoryItemClicked(VisualElement item, InventoryItemSO itemData)
+    private void HandleInventoryItemClicked(VisualElement item, ItemSO itemData)
     {
         // Visually select item
         VisuallySelectOne(item);
@@ -166,7 +167,7 @@ public abstract class AlmanacUI : PanelUI
     ///<summary>
     /// Displays the given item in the inventory's main panel.
     ///</summary>
-    private void DisplayItemInformation(InventoryItemSO item)
+    private void DisplayItemInformation(ItemSO item)
     {
         // DESIGN CHOICE: The reason we don't abstract this out is because the visual components of the main display
         // is pretty much the same across all derivations (title, description, image)
