@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 8792077507724165559}
   - component: {fileID: 8792077507724165558}
   - component: {fileID: 8792077507724165563}
+  - component: {fileID: 6808653661612710179}
+  - component: {fileID: 3168085656390951183}
   m_Layer: 0
   m_Name: poster
   m_TagString: Untagged
@@ -116,6 +118,7 @@ MonoBehaviour:
   quadWidth: 2.0684333
   quadHeight: 2.4172885
   quadArea: 5
+  materials: []
 --- !u!114 &8792077507724165563
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,3 +137,37 @@ MonoBehaviour:
   raycastColumns: 3
   distanceFromWall: 0.01
   fp: {fileID: 8792077507724165558}
+--- !u!114 &6808653661612710179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8792077507724165553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03bcacd4b91e951448ae76e758cbd89d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activated: 0
+  PortalPair: {fileID: 0}
+  PosterToDelete: {fileID: 8792077507724165553}
+  OtherPoster: {fileID: 0}
+--- !u!114 &3168085656390951183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8792077507724165553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0c10d7ba80282643bd04e2212d64714, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactMessage: 
+  objectsWithActions:
+  - {fileID: 8792077507724165553}
+  destroyOnUse: 0
+  holdToInteract: 1
+  howLongToHold: 7

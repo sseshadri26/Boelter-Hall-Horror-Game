@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Yarn.Unity;
 
 //For loading next scene on interact.
 public class TV : MonoBehaviour, IAction
@@ -21,5 +22,14 @@ public class TV : MonoBehaviour, IAction
         fpc.dialogueRunner.StartDialogue("Intro");
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+        transform.GetChild(0).gameObject.SetActive(true);
+        fpc.dialogueRunner.onDialogueComplete.AddListener(() => transform.GetChild(0).gameObject.SetActive(false));
+        StartCoroutine("AllowContinueInput");
+    }
+
+    private IEnumerator AllowContinueInput()
+    {
+        yield return new WaitForSeconds(0.5f);
+        FindObjectOfType<DialogueAdvanceInput>().Action.Enable();
     }
 }

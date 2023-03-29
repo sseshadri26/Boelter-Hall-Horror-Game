@@ -125,6 +125,15 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Map"",
+                    ""type"": ""Button"",
+                    ""id"": ""8be1903a-892a-41d4-b57c-f3aa1f27e9a9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -207,17 +216,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""f596acb4-0e90-4c32-8479-6512a987cfda"",
-                    ""path"": ""<Gamepad>/buttonWest"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Interact"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""dbc6708e-dd9b-4100-b4cb-0f0bee3cd379"",
                     ""path"": ""<Joystick>/trigger"",
                     ""interactions"": """",
@@ -265,7 +263,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""id"": ""b74274e9-4430-463e-bfe7-d7f74d7b7512"",
                     ""path"": ""<Gamepad>/rightStick"",
                     ""interactions"": """",
-                    ""processors"": """",
+                    ""processors"": ""ScaleVector2(x=7.5,y=7.5)"",
                     ""groups"": """",
                     ""action"": ""Camera"",
                     ""isComposite"": false,
@@ -276,7 +274,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""id"": ""23ce4c7c-d449-497a-8a13-ab3f77757d20"",
                     ""path"": ""<Mouse>/delta"",
                     ""interactions"": """",
-                    ""processors"": ""ScaleVector2(x=0.25,y=0.25)"",
+                    ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Camera"",
                     ""isComposite"": false,
@@ -373,7 +371,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""cfcb5581-439e-4872-b4ff-4090b2824f75"",
-                    ""path"": ""<Gamepad>/select"",
+                    ""path"": ""<Gamepad>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -424,6 +422,28 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""action"": ""Journal"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e495b3e7-6512-48e8-9176-f8c1d812a7ab"",
+                    ""path"": ""<Keyboard>/m"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Map"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""735371b2-5baf-45af-95c5-6f20a4496fad"",
+                    ""path"": ""<Gamepad>/select"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Map"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -443,6 +463,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m_FirstPerson_Inventory = m_FirstPerson.FindAction("Inventory", throwIfNotFound: true);
         m_FirstPerson_SprintToggle = m_FirstPerson.FindAction("SprintToggle", throwIfNotFound: true);
         m_FirstPerson_SprintHold = m_FirstPerson.FindAction("SprintHold", throwIfNotFound: true);
+        m_FirstPerson_Map = m_FirstPerson.FindAction("Map", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -513,6 +534,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private readonly InputAction m_FirstPerson_Inventory;
     private readonly InputAction m_FirstPerson_SprintToggle;
     private readonly InputAction m_FirstPerson_SprintHold;
+    private readonly InputAction m_FirstPerson_Map;
     public struct FirstPersonActions
     {
         private @Controls m_Wrapper;
@@ -528,6 +550,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         public InputAction @Inventory => m_Wrapper.m_FirstPerson_Inventory;
         public InputAction @SprintToggle => m_Wrapper.m_FirstPerson_SprintToggle;
         public InputAction @SprintHold => m_Wrapper.m_FirstPerson_SprintHold;
+        public InputAction @Map => m_Wrapper.m_FirstPerson_Map;
         public InputActionMap Get() { return m_Wrapper.m_FirstPerson; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -570,6 +593,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @SprintHold.started -= m_Wrapper.m_FirstPersonActionsCallbackInterface.OnSprintHold;
                 @SprintHold.performed -= m_Wrapper.m_FirstPersonActionsCallbackInterface.OnSprintHold;
                 @SprintHold.canceled -= m_Wrapper.m_FirstPersonActionsCallbackInterface.OnSprintHold;
+                @Map.started -= m_Wrapper.m_FirstPersonActionsCallbackInterface.OnMap;
+                @Map.performed -= m_Wrapper.m_FirstPersonActionsCallbackInterface.OnMap;
+                @Map.canceled -= m_Wrapper.m_FirstPersonActionsCallbackInterface.OnMap;
             }
             m_Wrapper.m_FirstPersonActionsCallbackInterface = instance;
             if (instance != null)
@@ -607,6 +633,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @SprintHold.started += instance.OnSprintHold;
                 @SprintHold.performed += instance.OnSprintHold;
                 @SprintHold.canceled += instance.OnSprintHold;
+                @Map.started += instance.OnMap;
+                @Map.performed += instance.OnMap;
+                @Map.canceled += instance.OnMap;
             }
         }
     }
@@ -624,5 +653,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         void OnInventory(InputAction.CallbackContext context);
         void OnSprintToggle(InputAction.CallbackContext context);
         void OnSprintHold(InputAction.CallbackContext context);
+        void OnMap(InputAction.CallbackContext context);
     }
 }

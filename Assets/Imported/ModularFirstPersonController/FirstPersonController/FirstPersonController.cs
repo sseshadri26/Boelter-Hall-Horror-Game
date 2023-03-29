@@ -247,7 +247,8 @@ public class FirstPersonController : MonoBehaviour
         controls.Inventory.started += ctx => Inventory();
 
         // Yarn events
-        dialogueRunner.onDialogueComplete.AddListener(() => {
+        dialogueRunner.onDialogueComplete.AddListener(() =>
+        {
             controls.Enable();
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;

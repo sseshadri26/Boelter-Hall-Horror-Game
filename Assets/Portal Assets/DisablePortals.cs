@@ -42,6 +42,8 @@ public class DisablePortals : MonoBehaviour
 
     public bool portalsColliding;
 
+    public bool portalDisabledForever;
+
     [SerializeReference]
     bool screensAreEnabled;
 
@@ -61,6 +63,11 @@ public class DisablePortals : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (portalDisabledForever && !screensAreEnabled)
+        {
+            gameObject.SetActive(false);
+        }
+
         screen1IsOnScreen = Portal1Visibility.isVisible;
         screen2IsOnScreen = Portal2Visibility.isVisible;
 

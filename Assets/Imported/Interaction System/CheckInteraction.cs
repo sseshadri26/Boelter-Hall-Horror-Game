@@ -17,7 +17,7 @@ public class CheckInteraction : MonoBehaviour
 
     [SerializeField]
     private float minInteractionDistance;
-   
+
     [SerializeField]
     private GameObject rayOrigin;
 
@@ -30,15 +30,27 @@ public class CheckInteraction : MonoBehaviour
 
     private InteractionReceiver currentReceiver;
 
+    private bool holdingButton = false;
+
+    private float holdingTime = 0f;
+
 
     private void Start()
     {
         GetComponent<FirstPersonController>().controls.Interact.started += ctx => Interact();
+        GetComponent<FirstPersonController>().controls.Interact.canceled += ctx => CancelHold();
+    }
+
+    private void OnDisable()
+    {
+        GetComponent<FirstPersonController>().controls.Interact.started -= ctx => Interact();
+        GetComponent<FirstPersonController>().controls.Interact.canceled -= ctx => CancelHold();
     }
 
     private void Update()
     {
         CheckRaycast();
+        holdingTime += Time.deltaTime;
     }
 
     private void Interact()
@@ -46,7 +58,17 @@ public class CheckInteraction : MonoBehaviour
         if (canInteract)
         {
             // In this region the character is seeing an object with which he can interact
-            currentReceiver.Activate();
+
+            if (currentReceiver.holdToInteract)
+            {
+                holdingButton = true;
+                holdingTime = 0f;
+                StartCoroutine("WaitForHolding", currentReceiver.howLongToHold);
+            }
+            else if (currentReceiver)
+            {
+                currentReceiver.Activate();
+            }
         }
     }
 
@@ -57,11 +79,10 @@ public class CheckInteraction : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit))
         {
-           
+
 
             if (hit.distance < minInteractionDistance)
             {
-
 
                 currentReceiver = hit.transform.gameObject.GetComponent<InteractionReceiver>();
 
@@ -74,15 +95,42 @@ public class CheckInteraction : MonoBehaviour
                     {
                         displayText.text = currentReceiver.GetInteractionMessage();
                     }
- 
+
                     canInteract = true;
                     return;
                 }
             }
         }
-                    
+
         canInteract = false;
         displayText.text = "";
+    }
+
+    private void CancelHold()
+    {
+        if (currentReceiver && currentReceiver.holdToInteract)
+        {
+            holdingButton = false;
+            holdingTime = 0f;
+            StopAllCoroutines();
+        }
+    }
+
+    private IEnumerator WaitForHolding(float targetTime)
+    {
+        while (holdingTime < targetTime && holdingButton && currentReceiver != null)
+        {
+            // Call the `Animate()` function of the `currentReceiver` object
+            currentReceiver.Animate();
+
+            // Wait for a short time before checking again
+            yield return new WaitForSeconds(0.1f);
+        }
+
+        if (holdingButton && currentReceiver != null)
+        {
+            currentReceiver.Activate();
+        }
     }
 
 }

@@ -24,6 +24,10 @@ public class InteractionReceiver : MonoBehaviour
     [SerializeField]
     private bool destroyOnUse;
 
+    public bool holdToInteract = false;
+
+    public float howLongToHold = 3f;
+
     void Start()
     {
         if (gameObject.activeSelf && (objectsWithActions.Length == 0 || objectsWithActions[0] == null))
@@ -35,13 +39,25 @@ public class InteractionReceiver : MonoBehaviour
 
     public void Activate()
     {
-        
-        foreach (GameObject o in objectsWithActions) {
+
+        foreach (GameObject o in objectsWithActions)
+        {
             o.GetComponent<IAction>().Activate();
         }
 
-        if (destroyOnUse) {
+        if (destroyOnUse)
+        {
             Destroy(this);
+        }
+
+    }
+
+    public void Animate()
+    {
+
+        foreach (GameObject o in objectsWithActions)
+        {
+            o.GetComponent<IAction>().Animate();
         }
 
     }
