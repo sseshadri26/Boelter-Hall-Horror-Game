@@ -595,6 +595,7 @@ MonoBehaviour:
   sprintAcceleration: 2
   unZoomedFOV: 60
   zoomedFOV: 80
+  atFullSpeed: 0
 --- !u!1 &4459864850190357393
 GameObject:
   m_ObjectHideFlags: 0
@@ -1224,12 +1225,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 627922296835728961, guid: a610399082f2b2e4886d4f3f2075a8f8, type: 3}
       propertyPath: m_fontSize
-      value: 10.3
+      value: 10.8
       objectReference: {fileID: 0}
     - target: {fileID: 627922296835728961, guid: a610399082f2b2e4886d4f3f2075a8f8, type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+      objectReference: {fileID: 11400000, guid: 6b6316095a6ff6645b4bb4a778ebfc84, type: 2}
     - target: {fileID: 627922296835728961, guid: a610399082f2b2e4886d4f3f2075a8f8, type: 3}
       propertyPath: m_fontSizeMin
       value: 6
@@ -1237,7 +1238,7 @@ PrefabInstance:
     - target: {fileID: 627922296835728961, guid: a610399082f2b2e4886d4f3f2075a8f8, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+      objectReference: {fileID: -5066727663958743241, guid: 6b6316095a6ff6645b4bb4a778ebfc84, type: 2}
     - target: {fileID: 627922297033703905, guid: a610399082f2b2e4886d4f3f2075a8f8, type: 3}
       propertyPath: m_SizeDelta.x
       value: 107.8817
