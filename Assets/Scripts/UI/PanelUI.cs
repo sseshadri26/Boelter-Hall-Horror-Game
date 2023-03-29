@@ -97,6 +97,8 @@ public abstract class PanelUI : MonoBehaviour
         // We can keep the logic/animations of PanelUI separate from its derivations.
         // For example, the Inventory shouldn't need to know about how it appears on the screen,
         // which is PanelUI's responsibility. 
+        // The downside of loading on Awake is that this component is not guaranteed to be initialized
+        // until Start, and so other scripts cannot use this until then
         StyleSheet styleSheet = Resources.Load<StyleSheet>(ANIMATIONS_USS_PATH);
         root.styleSheets.Add(styleSheet);
 

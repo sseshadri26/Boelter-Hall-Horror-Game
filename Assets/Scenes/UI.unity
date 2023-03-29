@@ -298,6 +298,7 @@ MonoBehaviour:
   firstPersonActionsSO: {fileID: 11400000, guid: bb6a48d6bb2fd8d408b27a197299a2fa, type: 2}
   inventoryPanel: {fileID: 1041981937}
   pausePanel: {fileID: 255780285}
+  journalPanel: {fileID: 2111837883}
 --- !u!4 &1761737793
 Transform:
   m_ObjectHideFlags: 0
@@ -402,7 +403,7 @@ GameObject:
   - component: {fileID: 2111837885}
   - component: {fileID: 2111837884}
   - component: {fileID: 2111837883}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Journal Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -442,7 +443,7 @@ MonoBehaviour:
   m_PanelSettings: {fileID: 11400000, guid: ea380dad236b3a1469bf1765840c6002, type: 2}
   m_ParentUI: {fileID: 0}
   sourceAsset: {fileID: 9197481963319205126, guid: 0ff7dd6de86c16f4980bae52a638d7be, type: 3}
-  m_SortingOrder: 1
+  m_SortingOrder: 2
 --- !u!4 &2111837885
 Transform:
   m_ObjectHideFlags: 0
