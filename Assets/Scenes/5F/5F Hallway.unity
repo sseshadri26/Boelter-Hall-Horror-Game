@@ -5471,6 +5471,8 @@ MonoBehaviour:
   - {fileID: 94010149}
   - {fileID: 1766669882}
   destroyOnUse: 0
+  holdToInteract: 0
+  howLongToHold: 3
 --- !u!65 &94010155
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8711,25 +8713,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4459864850019384740, guid: 005f38b85fc03ec40b17de5b2c91a414, type: 3}
-      propertyPath: sprintFOV
-      value: 71.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 4459864850019384740, guid: 005f38b85fc03ec40b17de5b2c91a414, type: 3}
-      propertyPath: sprintDuration
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 4459864850019384750, guid: 005f38b85fc03ec40b17de5b2c91a414, type: 3}
       propertyPath: m_Name
       value: FirstPersonController-UI-COMPATIBLE
-      objectReference: {fileID: 0}
-    - target: {fileID: 4459864850019384750, guid: 005f38b85fc03ec40b17de5b2c91a414, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4459864851310106426, guid: 005f38b85fc03ec40b17de5b2c91a414, type: 3}
-      propertyPath: m_Depth
-      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5590536820623271191, guid: 005f38b85fc03ec40b17de5b2c91a414, type: 3}
       propertyPath: m_AnchorMax.y
@@ -59325,7 +59311,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 5c2f5ca33485fbd42a9e7af0cf292651, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
