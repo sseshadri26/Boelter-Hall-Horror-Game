@@ -31,17 +31,30 @@ public class DisableOnInteract : MonoBehaviour, IAction
 
     public void Activate()
     {
-        OtherScript = OtherPoster.GetComponent<DisableOnInteract>();
+        if (OtherPoster != null)
+        {
+            OtherScript = OtherPoster.GetComponent<DisableOnInteract>();
+        }
 
         if (!activated)
         {
             activated = true;
-            PosterToDelete.SetActive(false);
 
-            if (OtherScript.activated)
+
+
+            if (OtherScript == null || OtherScript.activated)
             {
-                PortalPair.GetComponent<DisablePortals>().enabled = true;
+                Debug.Log("pass");
+                if (PortalPair != null)
+                {
+                    PortalPair.GetComponent<DisablePortals>().enabled = true;
+                }
             }
+
+            PosterToDelete.SetActive(false);
         }
     }
+
+
+
 }

@@ -166,8 +166,8 @@ public class PortalVisibility : MonoBehaviour
             }
         }
 
-        isVisible = portalRenderer.isVisible && RaycastVisibility();
-        //isVisible = portalRenderer.isVisible;
+        //isVisible = portalRenderer.isVisible && RaycastVisibility();
+        isVisible = portalRenderer.isVisible;
 
     }
 

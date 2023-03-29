@@ -41,7 +41,7 @@ public class SprintAccelerationTuning : MonoBehaviour
         if (dot >= 0.999f)
         {
             // print if we are going straight
-            Debug.Log(isMovingStraight);
+            //Debug.Log(isMovingStraight);
             // player is moving in a straight line
             if (!isMovingStraight)
             {
