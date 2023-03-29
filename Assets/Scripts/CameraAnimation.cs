@@ -6,6 +6,7 @@ using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Playables;
+using UnityEngine.Timeline;
 
 public class CameraAnimation : MonoBehaviour
 {
@@ -20,8 +21,15 @@ public class CameraAnimation : MonoBehaviour
         {
             mainCam.gameObject.SetActive(false);
             _cutscene.SetActive(true);
-            
+            scenePlayed = true;
         }
     }
 
+    private void Update()
+    {
+        if (scenePlayed == true && !_cutscene.transform.GetChild(0).gameObject.activeInHierarchy)
+        {
+            mainCam.gameObject.SetActive(true);
+        }
+    }
 }
