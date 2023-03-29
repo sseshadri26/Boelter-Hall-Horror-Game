@@ -1,3 +1,10 @@
+/* We use decendants as a way of "abstracting" away details of how an alamanac item UI changes
+   when it is selected. We don't want AlamanacUI, the class responsible for doing the selecting
+   to have to know how to change the visual of the item. This will keep it modular and allow for
+   new alamanac item UIs to be swapped in */
+
+/* AlmanacUI USS implementations */
+
 .selected .inventory-item-tint {
     overflow: hidden;
     width: 100%;

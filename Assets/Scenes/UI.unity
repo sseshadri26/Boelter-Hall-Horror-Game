@@ -257,16 +257,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1041981932}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02e66bcec089c11448ddff51b5e3fad8, type: 3}
+  m_Script: {fileID: 11500000, guid: 3de4eed4741766c498ec8c948b52f6ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   document: {fileID: 1041981934}
   animationType: 3
   panelOpenStateChanged: {fileID: 11400000, guid: 3fbd3e357294c734c9300f54e76c6a38, type: 2}
-  inventoryItemUI: {fileID: 9197481963319205126, guid: 109df5a9a67e9104ba3dd43d942e4cba, type: 3}
-  inventory: {fileID: 11400000, guid: 0dc6866fbd204d14cb7e1cb5e419e5f4, type: 2}
+  itemCollection: {fileID: 11400000, guid: 0dc6866fbd204d14cb7e1cb5e419e5f4, type: 2}
   scrollSpeed: 300
   scrollButtonJumpSize: 100
+  inventoryItemUI: {fileID: 9197481963319205126, guid: 109df5a9a67e9104ba3dd43d942e4cba, type: 3}
   normalItemColor: {r: 1, g: 1, b: 1, a: 1}
   keyItemColor: {r: 0, g: 0, b: 1, a: 1}
 --- !u!1 &1761737791
