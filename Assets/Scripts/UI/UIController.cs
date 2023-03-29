@@ -20,8 +20,6 @@ public class UIController : MonoBehaviour
     // every time we want to keep track of a new panel. 
     Dictionary<PanelUI, bool> panelOpenState = new Dictionary<PanelUI, bool>();
 
-    Dictionary<PanelUI, List<PanelUI>> mutualExclusion = new Dictionary<PanelUI, List<PanelUI>>();
-
     private Controls.FirstPersonActions firstPersonActions;
     void Awake()
     {
@@ -32,13 +30,11 @@ public class UIController : MonoBehaviour
         panelOpenState[pausePanel] = false;
         panelOpenState[journalPanel] = false;
 
-        // Set up mutually exclusive panels
-        mutualExclusion[inventoryPanel] = new List<PanelUI>() {journalPanel};
-        mutualExclusion[pausePanel] = new List<PanelUI>() {};
-        mutualExclusion[journalPanel] = new List<PanelUI>() {inventoryPanel};
-
     }
 
+    // TODO:
+    // Is there any cleaner way to register/deregister? If we use an anonymous function we could save
+    // lots of code repeat, but we would be unable to deregister?
     void OnEnable()
     {
         firstPersonActions.Inventory.performed += HandleToggleInventory;
@@ -58,7 +54,7 @@ public class UIController : MonoBehaviour
         if(panelOpenState[journalPanel])
             ClosePanel(journalPanel);
         else
-            OpenPanel(journalPanel);
+            OpenSoloPanel(journalPanel);
     }
 
     private void HandleTogglePause(InputAction.CallbackContext obj)
@@ -66,6 +62,7 @@ public class UIController : MonoBehaviour
         if(panelOpenState[pausePanel])
             ClosePanel(pausePanel);
         else
+            // Notice that the pause panel is special in that it covers up others instead of pushing them away
             OpenPanel(pausePanel);
     }
 
@@ -74,18 +71,29 @@ public class UIController : MonoBehaviour
         if(panelOpenState[inventoryPanel])
             ClosePanel(inventoryPanel);
         else
-            OpenPanel(inventoryPanel);
+            OpenSoloPanel(inventoryPanel);
     }
+
 
     private void OpenPanel(PanelUI panel)
     {
         panel.OpenPanel();
         panelOpenState[panel] = true;
+    }
 
-        // Close all other panels that aren't allowed to be open at the same time
-        foreach(PanelUI other in mutualExclusion[panel])
+    /// <summary>
+    /// Open this panel and close all others
+    /// </summary>
+    private void OpenSoloPanel(PanelUI panel)
+    {
+        OpenPanel(panel);
+
+        // Need to copy list to avoid errors thrown when trying to modify the dictionary while iterating through it
+        List<PanelUI> others = new List<PanelUI>(panelOpenState.Keys);
+        foreach(PanelUI other in others)
         {
-            ClosePanel(other);
+            if(other != panel)
+                ClosePanel(other);
         }
     }
     private void ClosePanel(PanelUI panel)
