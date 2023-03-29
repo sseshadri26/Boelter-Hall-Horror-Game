@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3c21f9900d8dc44ebad7a5ebc4c5f7f, type: 3}
   m_Name: InventoryItemUIGenerator
   m_EditorClassIdentifier: 
-  inventorySO: {fileID: 11400000, guid: 0dc6866fbd204d14cb7e1cb5e419e5f4, type: 2}
+  inventorySO: {fileID: 11400000, guid: 0aae620c7e7e8a6469f4bafd07659610, type: 2}
   inventoryItemUI: {fileID: 9197481963319205126, guid: 109df5a9a67e9104ba3dd43d942e4cba, type: 3}
   normalItemColor: {r: 1, g: 1, b: 1, a: 1}
   keyItemColor: {r: 0, g: 0, b: 1, a: 1}

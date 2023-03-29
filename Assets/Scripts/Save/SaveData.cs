@@ -11,7 +11,7 @@ public class SaveData
     public float[] playerRot;
     public string playerScene;
 
-    public InventorySO inventory;
+    public InventoryItemCollectionSO inventory;
 
     // Create a SaveData from the static PlayerData class
     public void CopyFromGame()
