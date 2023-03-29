@@ -9,39 +9,46 @@ using UnityEngine.Playables;
 
 public class CameraAnimation : MonoBehaviour
 {
-    public Camera secondCamera;
-    bool switched = false;
-    PlayableDirector director;
+    //public Camera secondCamera;
+    //bool switched = false;
+    //PlayableDirector director;
 
     void Start()
     {
-        director = GetComponent<PlayableDirector>();
+        //director = GetComponent<PlayableDirector>();
     }
 
     void Update()
     {
         // if camera is switched, output to the debug log that the camera is switched
-        if (!switched)
-        {
-            UnityEngine.Debug.Log("Camera not switched");
-        }
-        if (switched)
-        {
-            UnityEngine.Debug.Log("Camera switched");
-            director.Play();
-        }       
+        //if (!switched)
+        //{
+            //UnityEngine.Debug.Log("Camera not switched");
+        //}
+        //if (switched)
+        //{
+            //UnityEngine.Debug.Log("Camera switched");
+            //director.Play();
+        //}       
     }
-    private void OnTriggerEnter()
+    [SerializeField] private GameObject _cutscene;
+    private void OnTriggerEnter(Collider other)
     {
-        if (!switched)
+        //if (!switched)
+        //{
+        //SwitchToSecondCam();
+        //}
+        UnityEngine.Debug.Log("Player entered trigger");
+        if (other.tag == "jumpscare")
         {
-            SwitchToSecondCam();
+            _cutscene.SetActive(true);
+            
         }
     }
-    void SwitchToSecondCam()
-    {     
-        secondCamera.CopyFrom(Camera.main);
+    //void SwitchToSecondCam()
+    //{     
+        //secondCamera.CopyFrom(Camera.main);
         
-        switched = true;
-    }
+        //switched = true;
+    //}
 }
