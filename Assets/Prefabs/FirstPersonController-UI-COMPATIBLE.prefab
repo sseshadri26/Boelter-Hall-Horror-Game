@@ -582,12 +582,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firstPersonController: {fileID: 4459864850019384740}
-  startSprintSpeed: 5
-  maxSprintSpeed: 12
-  sprintAcceleration: 2
+  startSprintSpeed: 6
+  maxSprintSpeed: 17
+  sprintAcceleration: 2.4
   unZoomedFOV: 60
   zoomedFOV: 80
   atFullSpeed: 0
+  prevVel: {x: 0, y: 0, z: 0}
 --- !u!1 &4459864850190357393
 GameObject:
   m_ObjectHideFlags: 0
@@ -1632,20 +1633,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5004346209918488091, guid: a610399082f2b2e4886d4f3f2075a8f8, type: 3}
   m_PrefabInstance: {fileID: 243305013594623678}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6131925548063923784
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5049492599013015717}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b6798449caec4a32a5ad27badb06624, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  textLanguageCode: en
-  audioLanguage: en
 --- !u!114 &4099674342770082545
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1696,6 +1683,20 @@ MonoBehaviour:
       m_Flags: 0
     m_Flags: 0
   enableActionOnStart: 0
+--- !u!114 &6131925548063923784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5049492599013015717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b6798449caec4a32a5ad27badb06624, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textLanguageCode: en
+  audioLanguage: en
 --- !u!4 &5479035063318852315 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5722128726907862117, guid: a610399082f2b2e4886d4f3f2075a8f8, type: 3}

@@ -18,6 +18,8 @@ public class SprintAccelerationTuning : MonoBehaviour
 
     public bool atFullSpeed;
 
+    public Vector3 prevVel;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,19 +28,27 @@ public class SprintAccelerationTuning : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (!firstPersonController.isSprinting)
         {
             // if not sprinting, set sprint speed to the default start speed
+            firstPersonController.sprintFOV = unZoomedFOV;
             currentSprintSpeed = startSprintSpeed;
+            return;
         }
 
         Vector3 horizontalVelocity = new Vector3(firstPersonController.rb.velocity.x, 0f, firstPersonController.rb.velocity.z);
 
+        Vector3 horizontalVelocityPrev = new Vector3(prevVel.x, 0f, prevVel.z);
+
         float dot = Vector3.Dot(horizontalVelocity.normalized, firstPersonController.transform.forward);
 
-        if (dot >= 0.999f)
+        float dotPrev = Vector3.Dot(horizontalVelocityPrev.normalized, prevVel.normalized);
+        //Debug.Log("Dot: " + dot + ", prev: " + dotPrev);
+        //if (((dot <= 0.1f && dot >= -0.1f) || dot >= 0.6f) && (dotPrev >= 0.999f || (dotPrev <= 0.1f && dotPrev >= -0.1f)))
+        if (dot >= 0.999f || (dot >= 0.8f && dot <= 0.9f) || (dot > -0.01 && dotPrev > 0.9999f))
+
         {
             // print if we are going straight
             //Debug.Log(isMovingStraight);
@@ -69,9 +79,13 @@ public class SprintAccelerationTuning : MonoBehaviour
         }
         else
         {
+
+            Debug.Log("Dot: " + dot + ", prev: " + dotPrev);
             // player is not moving in a straight line
             isMovingStraight = false;
             currentSprintSpeed = startSprintSpeed;
         }
+
+        prevVel = firstPersonController.rb.velocity;
     }
 }
