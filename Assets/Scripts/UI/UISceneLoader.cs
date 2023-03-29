@@ -13,5 +13,6 @@ public class UISceneLoader : MonoBehaviour
         SceneManager.LoadScene("UI", LoadSceneMode.Additive);
 
         Screen.SetResolution(384, 216, true, 60);
+        Application.targetFrameRate = 60;
     }
 }
