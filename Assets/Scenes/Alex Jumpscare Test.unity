@@ -5020,6 +5020,7 @@ PlayableDirector:
     - f76cf45b3ba366140a97c39e62d6a20c: {fileID: 556493590}
     - 8122789a06089864c821e6b88c4cd3ed: {fileID: 734575066}
     - 86f06288e130e4944b5c390898c243f9: {fileID: 1102478935}
+    - 2d05a6bbd046bd14aa51f3fb6b09d594: {fileID: 734575066}
 --- !u!114 &837226373
 MonoBehaviour:
   m_ObjectHideFlags: 0
