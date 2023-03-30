@@ -18,4 +18,12 @@ public class InventoryItemSO : ScriptableObject
     }
 
     public ItemStatus itemStatus = ItemStatus.NORMAL;
+
+    public InventoryItemSO(string daName, string daDescription, Sprite daGraphic, ItemStatus daStatus)
+    {
+        itemName = daName;
+        description = daDescription;
+        graphic = daGraphic;
+        itemStatus = daStatus;
+    }
 }
