@@ -52,6 +52,12 @@ public class UIController : MonoBehaviour
 
     }
 
+    void Start()
+    {
+        // Broadcast the initial state so that listeners can get initialized (in Start since they may subscribe during Awake)
+        stateChanged.RaiseEvent(UIState.CLEAR);
+    }
+
     void OnEnable()
     {
         panelToggleInputCallbackInfo = new List<Tuple<InputAction, Action<InputAction.CallbackContext>>>()
