@@ -20,27 +20,28 @@ public class UIController : MonoBehaviour
     [SerializeField] PanelUI journalPanel;
     
 
-
-    // DESIGN CHOICE: Use dictionary as a simple way to keep track of the open/close
-    // state of every panel. Dictionaries are more scalable than making a new bool
-    // every time we want to keep track of a new panel. 
-    Dictionary<PanelUI, bool> panelOpenState = new Dictionary<PanelUI, bool>();
-
+    // Map from a panel to its associated UIState
     Dictionary<PanelUI, UIState> panelStateLabel = new Dictionary<PanelUI, UIState>();
+
+    // Set of all open panels
+    // DESIGN CHOICE: Why not dictionary of bools? Means we loop through fewer panels during
+    // the audit of open panels. It's also a simpler data structure that can do the same job.
+    HashSet<PanelUI> openPanels = new HashSet<PanelUI>();
     
-    // Set of all panels that overlay on top of all
+    // Set of all panels that overlay on top of panels (instead of pushing them out of the way)
     HashSet<PanelUI> overlayPanels = new HashSet<PanelUI>();
 
-    private Controls.FirstPersonActions firstPersonActions;
+    // List of input actions and their associated callbacks
+    List<Tuple<InputAction, Action<InputAction.CallbackContext>>> panelToggleInputCallbackInfo;
+
+    // Player input source
+    Controls.FirstPersonActions firstPersonActions;
+
+
 
     void Awake()
     {
         firstPersonActions = playerInput.controls;
-
-        // Ensure all panels are closed
-        panelOpenState[inventoryPanel] = false;
-        panelOpenState[pausePanel] = false;
-        panelOpenState[journalPanel] = false;
 
         // Set up labels for quickly accessing corresponding 
         panelStateLabel[inventoryPanel] = UIState.INVENTORY;
@@ -51,52 +52,35 @@ public class UIController : MonoBehaviour
 
     }
 
-    // TODO:
-    // Is there any cleaner way to register/deregister? If we use an anonymous function we could save
-    // lots of code repeat, but we would be unable to deregister?
-    // TODO: 
-    // Make use of overlay set to figure out which panels should kick others out
     void OnEnable()
     {
-        firstPersonActions.Inventory.performed += HandleToggleInventory;
-        firstPersonActions.Pause.performed += HandleTogglePause;
-        firstPersonActions.Journal.performed += HandleToggleJournal;
+        panelToggleInputCallbackInfo = new List<Tuple<InputAction, Action<InputAction.CallbackContext>>>()
+        {
+            new Tuple<InputAction, Action<InputAction.CallbackContext>>(firstPersonActions.Inventory, (obj) => HandleToggle(inventoryPanel)),
+            new Tuple<InputAction, Action<InputAction.CallbackContext>>(firstPersonActions.Journal, (obj) => HandleToggle(journalPanel)),
+            new Tuple<InputAction, Action<InputAction.CallbackContext>>(firstPersonActions.Pause, (obj) => HandleToggle(pausePanel))
+        };
+
+        RegisterInputCallbacks(panelToggleInputCallbackInfo);
     }
 
     void OnDisable()
     {
-        firstPersonActions.Inventory.performed -= HandleToggleInventory;
-        firstPersonActions.Pause.performed -= HandleTogglePause;
-        firstPersonActions.Journal.performed -= HandleToggleJournal;
+        DeregisterInputCallbacks(panelToggleInputCallbackInfo);
     }
 
-    private void HandleToggleJournal(InputAction.CallbackContext obj)
-    {
-        if(panelOpenState[journalPanel])
-            ClosePanel(journalPanel);
-        else
-            OpenSoloPanel(journalPanel);
 
-        stateChanged.RaiseEvent(GetUIState());
-    }
-
-    private void HandleTogglePause(InputAction.CallbackContext obj)
+    /// <summary>
+    /// Handle input request to toggle on/off a given panel
+    /// </summary>
+    private void HandleToggle(PanelUI panel)
     {
-        if(panelOpenState[pausePanel])
-            ClosePanel(pausePanel);
+        if(openPanels.Contains(panel))
+            ClosePanel(panel);
         else
-            // Notice that the pause panel is special in that it covers up others instead of pushing them away
-            OpenPanel(pausePanel);
-        
-        stateChanged.RaiseEvent(GetUIState());
-    }
-
-    private void HandleToggleInventory(InputAction.CallbackContext obj)
-    {
-        if(panelOpenState[inventoryPanel])
-            ClosePanel(inventoryPanel);
-        else
-            OpenSoloPanel(inventoryPanel);
+        {
+            OpenPanel(panel);
+        }
         
         stateChanged.RaiseEvent(GetUIState());
     }
@@ -116,21 +100,18 @@ public class UIController : MonoBehaviour
         // won't be a ton of panels, and this probably won't be called a lot.
 
         PanelUI currentPanel = null;
-        foreach(var panelToIsOpenPair in panelOpenState)
+        foreach(PanelUI panel in openPanels)
         {
-            if(panelToIsOpenPair.Value)
-            {
-                if(panelToIsOpenPair.Key == pausePanel)
-                    return UIState.PAUSE;
-                else
-                    currentPanel = panelToIsOpenPair.Key;
-            }
+            currentPanel = panel;
+            
+            if(overlayPanels.Contains(currentPanel))
+                break;
         }
 
         if(currentPanel == null)
             return UIState.CLEAR;
-        else
-            return panelStateLabel[currentPanel];
+
+        return panelStateLabel[currentPanel];
     }
 
     /// <summary>
@@ -139,23 +120,11 @@ public class UIController : MonoBehaviour
     private void OpenPanel(PanelUI panel)
     {
         panel.OpenPanel();
-        panelOpenState[panel] = true;
-    }
 
-    /// <summary>
-    /// Open this panel and close all others and remember its new state
-    /// </summary>
-    private void OpenSoloPanel(PanelUI panel)
-    {
-        OpenPanel(panel);
+        if(!overlayPanels.Contains(panel))
+            CloseAllPanels();
 
-        // Need to copy list to avoid errors thrown when trying to modify the dictionary while iterating through it
-        List<PanelUI> others = new List<PanelUI>(panelOpenState.Keys);
-        foreach(PanelUI other in others)
-        {
-            if(other != panel && !overlayPanels.Contains(other))
-                ClosePanel(other);
-        }
+        openPanels.Add(panel);
     }
 
     /// <summary>
@@ -164,6 +133,49 @@ public class UIController : MonoBehaviour
     private void ClosePanel(PanelUI panel)
     {
         panel.ClosePanel();
-        panelOpenState[panel] = false;
+        openPanels.Remove(panel);
+    }
+
+    /// <summary>
+    /// Close all open panels
+    /// </summary>
+    private void CloseAllPanels()
+    {
+        // Need to copy list to avoid errors thrown when trying to modify the dictionary while iterating through it
+        List<PanelUI> openPanelsCopy = new List<PanelUI>(openPanels);
+        foreach(PanelUI openPanel in openPanelsCopy)
+        {
+            if(!overlayPanels.Contains(openPanel))
+                ClosePanel(openPanel);
+        }
+    }
+
+
+
+
+    /////////////
+    // UTILITY //
+    /////////////
+
+    private void RegisterInputCallbacks(List<Tuple<InputAction, Action<InputAction.CallbackContext>>> callbackInfoItems)
+    {
+        foreach(Tuple<InputAction, Action<InputAction.CallbackContext>> infoItem in callbackInfoItems)
+        {
+            infoItem.Item1.performed += infoItem.Item2;
+        }
+    }
+
+    private void DeregisterInputCallbacks(List<Tuple<InputAction, Action<InputAction.CallbackContext>>> callbackInfoItems)
+    {
+        foreach(Tuple<InputAction, Action<InputAction.CallbackContext>> infoItem in callbackInfoItems)
+        {
+            infoItem.Item1.performed -= infoItem.Item2;
+        }
     }
 }
+
+
+
+
+
+
