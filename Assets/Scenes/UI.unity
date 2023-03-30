@@ -295,9 +295,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e492b3f9c37c0d44b2fa910cec88baf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstPersonActionsSO: {fileID: 11400000, guid: bb6a48d6bb2fd8d408b27a197299a2fa, type: 2}
-  inventoryPanel: {fileID: 1041981937}
+  playerInput: {fileID: 11400000, guid: bb6a48d6bb2fd8d408b27a197299a2fa, type: 2}
+  stateChanged: {fileID: 11400000, guid: d21908ccfe647ed4e815fbce3a5dc5b3, type: 2}
   pausePanel: {fileID: 255780285}
+  inventoryPanel: {fileID: 1041981937}
   journalPanel: {fileID: 2111837883}
 --- !u!4 &1761737793
 Transform:
