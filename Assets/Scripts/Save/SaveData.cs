@@ -12,6 +12,10 @@ public class SaveData
     public string playerScene;
 
     public InventoryItemCollectionSO inventory;
+    public List<string> itemNames = new List<string>();
+    public List<string> itemDescriptions = new List<string>();
+    public List<string> itemGraphics = new List<string>();
+    public List<InventoryItemSO.ItemStatus> itemStatuses = new List<InventoryItemSO.ItemStatus>();
 
     // Create a SaveData from the static PlayerData class
     public void CopyFromGame()
@@ -31,6 +35,14 @@ public class SaveData
 
         playerScene = SceneManager.GetActiveScene().name;
 
-        Debug.Log(inventory.items[0]);
+        InventoryItemCollectionSO inventory = Resources.Load<InventoryItemCollectionSO>("PlayerInventory");
+
+        foreach (InventoryItemSO item in inventory.items)
+        {
+            itemNames.Add(item.itemName);
+            itemDescriptions.Add(item.description);
+            itemGraphics.Add(item.graphic.name);
+            itemStatuses.Add(item.itemStatus);
+        }
     }
 }
