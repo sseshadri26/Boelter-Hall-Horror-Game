@@ -8,6 +8,7 @@ public class SaveSwitch : MonoBehaviour, IAction
     public void Start()
     {
         SaveData data = SaveSystem.LoadGame();
+        if (data == null) return;
         Transform player = FirstPersonController.instance.transform;
 
         Vector3 position = new Vector3(data.playerPos[0], data.playerPos[1], data.playerPos[2]);
