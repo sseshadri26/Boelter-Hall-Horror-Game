@@ -27,6 +27,9 @@ public class UIController : MonoBehaviour
     Dictionary<PanelUI, bool> panelOpenState = new Dictionary<PanelUI, bool>();
 
     Dictionary<PanelUI, UIState> panelStateLabel = new Dictionary<PanelUI, UIState>();
+    
+    // Set of all panels that overlay on top of all
+    HashSet<PanelUI> overlayPanels = new HashSet<PanelUI>();
 
     private Controls.FirstPersonActions firstPersonActions;
 
@@ -44,11 +47,15 @@ public class UIController : MonoBehaviour
         panelStateLabel[pausePanel] = UIState.PAUSE;
         panelStateLabel[journalPanel] = UIState.JOURNAL;
 
+        overlayPanels.Add(pausePanel);
+
     }
 
     // TODO:
     // Is there any cleaner way to register/deregister? If we use an anonymous function we could save
     // lots of code repeat, but we would be unable to deregister?
+    // TODO: 
+    // Make use of overlay set to figure out which panels should kick others out
     void OnEnable()
     {
         firstPersonActions.Inventory.performed += HandleToggleInventory;
@@ -146,7 +153,7 @@ public class UIController : MonoBehaviour
         List<PanelUI> others = new List<PanelUI>(panelOpenState.Keys);
         foreach(PanelUI other in others)
         {
-            if(other != panel)
+            if(other != panel && !overlayPanels.Contains(other))
                 ClosePanel(other);
         }
     }
