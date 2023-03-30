@@ -12,7 +12,7 @@ public class UIController : MonoBehaviour
     [Header("Input Channels")]
     [SerializeField] FirstPersonActionsSO playerInput;
     [Header("Output Channels")]
-    [SerializeField] UIStateEventChannelSO stateChanged;
+    [SerializeField] public UIStateEventChannelSO stateChanged;
 
     [Header("Panels")]
     [SerializeField] PanelUI pausePanel;
