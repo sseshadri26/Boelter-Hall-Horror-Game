@@ -6,19 +6,14 @@ using UnityEngine.UIElements;
 
 public class AlmanacUI : PanelUI
 {
-    [Header("Inventory Properties")]
-    [SerializeField] VisualTreeAsset inventoryItemUI = default;
-    [SerializeField] InventorySO inventory = default;
+    [Header("Almanac Properties")]
     [SerializeField] float scrollSpeed = 300;
     [SerializeField] float scrollButtonJumpSize = 100;
+
+    // NOTE: This is a component-based alternative to custom styling of collection items
+    [SerializeField] ItemUIGeneratorSO almanacItemUIGenerator = default;
     
-    [Header("Item Name Colors")]
-    // DESIGN CHOICE: Make a separate field for each, instead of using some kind of
-    // list containing data structures that pair an item status with a color since
-    // it is unlikely that very many more item statuses will be introduced, thus making
-    // it not really worth the cost of the added complexity
-    [SerializeField] Color normalItemColor = Color.white;
-    [SerializeField] Color keyItemColor = Color.blue;
+
 
     // UI Tags
     const string k_ItemList = "item-list";
@@ -28,24 +23,19 @@ public class AlmanacUI : PanelUI
     const string k_ScrollUpButton = "scroll-up-button";
     const string k_ScrollDownButton = "scroll-down-button";
 
-    // UI Tags (Inventory Item)
-    const string k_ItemRoot = "item-root";
-    const string k_ItemName = "item-name";
-    const string k_ItemGraphic = "item-graphic";
-
 
     // AlmanacUI USS Classes
 
-    // DESIGN CHOIE: Using USS classes to change the appearance of UI instead
+    // DESIGN CHOICE: Using USS classes to change the appearance of UI instead
     // of hard-coding it in here is a great way to maintain separation of
     // visuals and functionality -- the code isn't tightly coupled to the
     // way the UI looks, which opens up the possibility of switching out the visuals
     // to something new. This pattern was taken from Unity's open source project "Dragon Crashers"
 
+    // Note that these are special "abstract" USS classes that can be added to the parent, and the derived
+    // UI's USS handles the implementation of how it looks when selected
     const string c_Selected = "selected";
     const string c_NotSelected = "not-selected";
-    const string c_Marked = "marked";
-    const string c_NotMarked = "not-marked";
 
     // UI References
     ScrollView m_ItemList = default;
@@ -77,8 +67,15 @@ public class AlmanacUI : PanelUI
 
         m_ItemList.RegisterCallback<WheelEvent>(SpeedUpScroll);
         m_ItemList.verticalPageSize = scrollButtonJumpSize;
-        UpdateDisplay(inventory.items);
+        UpdateDisplay(almanacItemUIGenerator);
     }
+
+    protected override void OnOpenPanel()
+    {
+        // Instead of registering callback to inventory, simply activate when panel opens
+        UpdateDisplay(almanacItemUIGenerator);
+    }
+
 
 
     // This is a function to accelerate the scroll speed, and is a work-around for Unity's currently slightly
@@ -88,13 +85,8 @@ public class AlmanacUI : PanelUI
         m_ItemList.scrollOffset = new Vector2(0, m_ItemList.scrollOffset.y + scrollSpeed * ev.delta.y);
     }
 
-    protected override void OnOpenPanel()
-    {
-        // Instead of registering callback to inventory, simply activate when panel opens
-        UpdateDisplay(inventory.items);
-    }
 
-    private void UpdateDisplay(List<InventoryItemSO> itemList)
+    private void UpdateDisplay(ItemUIGeneratorSO generator)
     {
         // DESIGN CHOICE: Update display by clearing every single item then reinstantiating
         // new list instead of pooling items. Why? Well it's simple, and we probably
@@ -104,10 +96,19 @@ public class AlmanacUI : PanelUI
         m_ItemList.scrollOffset = Vector2.zero;
 
         bool isFirstItem = true;
-        foreach(InventoryItemSO itemData in itemList)
+        
+        // Generate the item UIs
+        List<ItemUIGeneratorSO.ItemUIResult> results = generator.GenerateUI();
+
+        foreach(var result in results)
         {
-            TemplateContainer instance = inventoryItemUI.Instantiate();
-            InitializeItemElement(instance, itemData);
+            //TemplateContainer instance = GenerateAlamanacListItem(itemData);
+            TemplateContainer instance = result.ui;
+
+            // DESIGN CHOICE: Store item reference in callback instead of using generic
+            // callback and searching for item index within function to reduce chances
+            // of erroneously selecting wrong item
+            instance.RegisterCallback<ClickEvent>(ev => HandleInventoryItemClicked(instance, result.reference));
 
             m_ItemList.Add(instance);
 
@@ -116,29 +117,17 @@ public class AlmanacUI : PanelUI
             // simulated, since the logic expects it to be in the list
             if(isFirstItem)
             {
-                HandleInventoryItemClicked(instance, itemData);
+                HandleInventoryItemClicked(instance, result.reference);
                 isFirstItem = false;
             }
 
         }
     }
 
-    private void InitializeItemElement(VisualElement item, InventoryItemSO itemData)
-    {
-        item.Q<Label>(k_ItemName).text = itemData.itemName;
-        item.Q<Label>(k_ItemName).style.color = GetItemStatusColor(itemData);
-        item.Q<VisualElement>(k_ItemGraphic).style.backgroundImage = new StyleBackground(itemData.graphic);
-
-        // DESIGN CHOICE: Store item reference in callback instead of using generic
-        // callback and searching for item index within function to reduce chances
-        // of erroneously selecting wrong item
-        item.RegisterCallback<ClickEvent>(ev => HandleInventoryItemClicked(item, itemData));
-    }
-
-    private void HandleInventoryItemClicked(VisualElement item, InventoryItemSO itemData)
+    private void HandleInventoryItemClicked(VisualElement item, ItemSO itemData)
     {
         // Visually select item
-        VisuallySelectOne(item.Q<VisualElement>(k_ItemRoot));
+        VisuallySelectOne(item);
         m_ItemList.ScrollTo(item);
         DisplayItemInformation(itemData);
     }
@@ -172,35 +161,20 @@ public class AlmanacUI : PanelUI
     }
 
 
-    private UQueryBuilder<VisualElement> GetInventoryItems() => root.Query<VisualElement>(k_ItemRoot);
+    private List<VisualElement> GetInventoryItems() => new List<VisualElement>(m_ItemList.Children());
 
 
     ///<summary>
     /// Displays the given item in the inventory's main panel.
     ///</summary>
-    private void DisplayItemInformation(InventoryItemSO item)
+    private void DisplayItemInformation(ItemSO item)
     {
+        // DESIGN CHOICE: The reason we don't abstract this out is because the visual components of the main display
+        // is pretty much the same across all derivations (title, description, image)
         m_ItemTitle.text = item.itemName;
-        m_ItemTitle.style.color = GetItemStatusColor(item);
         m_ItemDesc.text = item.description;
         m_ItemVisual.style.backgroundImage = new StyleBackground(item.graphic);
     }
 
-    ///<summary>
-    /// Get the color corresponding to the status of this item
-    ///</summary>
-    private Color GetItemStatusColor(InventoryItemSO item)
-    {
-        // DESIGN CHOICE: Use a method to ensure consistent assignment of colors
-        // DESIGN CHOICE: Use switch statement instead of dictionary for simplicity; probably won't have any additional item statuses anyways
-        switch (item.itemStatus)
-        {
-            case InventoryItemSO.ItemStatus.NORMAL:
-                return normalItemColor;
-            case InventoryItemSO.ItemStatus.KEY_ITEM:
-                return keyItemColor;
-            default:
-                return normalItemColor;
-        }
-    }
+
 }

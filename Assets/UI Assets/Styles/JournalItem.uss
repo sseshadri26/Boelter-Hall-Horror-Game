@@ -1,0 +1,6 @@
+.selected .item-tint {
+    background-color: rgba(255, 255, 255, 0.29);
+}
+
+.not-selected .item-tint {
+}

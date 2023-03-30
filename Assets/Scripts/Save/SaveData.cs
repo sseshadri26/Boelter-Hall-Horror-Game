@@ -11,6 +11,7 @@ public class SaveData
     public float[] playerRot;
     public string playerScene;
 
+    public InventoryItemCollectionSO inventory;
     public List<string> itemNames = new List<string>();
     public List<string> itemDescriptions = new List<string>();
     public List<string> itemGraphics = new List<string>();
@@ -34,7 +35,7 @@ public class SaveData
 
         playerScene = SceneManager.GetActiveScene().name;
 
-        InventorySO inventory = Resources.Load<InventorySO>("PlayerInventory");
+        InventoryItemCollectionSO inventory = Resources.Load<InventoryItemCollectionSO>("PlayerInventory");
 
         foreach (InventoryItemSO item in inventory.items)
         {
