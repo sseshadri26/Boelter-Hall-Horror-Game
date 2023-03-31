@@ -2,6 +2,7 @@
 // 
 // CHANGES || version VERSION
 // 
+// "Cole Strain: Add UIStateEventChannelSO for UI events" || version 2.7.0
 // "Cole Strain: Put in Yarn event and band-aid fixed the weirdness with obtaining the sprint bar canvas group" || version 2.6.0
 // "Sudarshan Seshadri: Implemented the acceleration system - player can speed up while running, and script SpringAccelerationTuning controls this and interfaces with this script" || version 2.5.0
 // "Cole Strain: Implemented Input System events to save frames, sprint toggleable for controllers, crouch->sprint speed fix" || version 2.1.0
@@ -30,6 +31,7 @@ public class FirstPersonController : MonoBehaviour
     public FirstPersonActionsSO firstPersonActionsSO;
     public Controls.FirstPersonActions controls;
     public DialogueRunner dialogueRunner;
+    public UIStateEventChannelSO uiState;
 
     #region Camera Movement Variables
 
@@ -144,7 +146,6 @@ public class FirstPersonController : MonoBehaviour
     private float timer = 0;
     private bool isPaused = false;
     private bool isInventory = false;
-    private UIStateEventChannelSO uiState;
 
     private void Awake()
     {
@@ -254,7 +255,6 @@ public class FirstPersonController : MonoBehaviour
         });
 
         // UI event
-        uiState = FindObjectOfType<UIController>().stateChanged;
         uiState.OnEventRaised += value => ChangeUI(value);
     }
 
@@ -572,7 +572,7 @@ public class FirstPersonController : MonoBehaviour
 
     private void ChangeUI(UIState state)
     {
-        Debug.Log("Ui State: " + state.ToString());
+        // Debug.Log("Ui State: " + state.ToString());
 
         if (state == UIState.PAUSE) // If pause menu should be open, allow mouse controls and pause time
         {
@@ -620,14 +620,15 @@ public class FirstPersonControllerEditor : Editor
 
         EditorGUILayout.Space();
         GUILayout.Label("Modular First Person Controller", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontStyle = FontStyle.Bold, fontSize = 16 });
-        GUILayout.Label("By Jess Case", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontStyle = FontStyle.Normal, fontSize = 12 });
-        GUILayout.Label("version 1.0.1", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontStyle = FontStyle.Normal, fontSize = 12 });
+        GUILayout.Label("By Jess Case, Cole Strain, and Sudarshan Seshadri", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontStyle = FontStyle.Normal, fontSize = 12 });
+        GUILayout.Label("version 2.7.0", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontStyle = FontStyle.Normal, fontSize = 12 });
         EditorGUILayout.Space();
 
         EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
         GUILayout.Label("Modifications", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontStyle = FontStyle.Bold, fontSize = 13 }, GUILayout.ExpandWidth(true));
         EditorGUILayout.Space();
         fpc.firstPersonActionsSO = (FirstPersonActionsSO)EditorGUILayout.ObjectField(new GUIContent("First Person Actions", "Persistent reference to the player input"), fpc.firstPersonActionsSO, typeof(FirstPersonActionsSO), true);
+        fpc.uiState = EditorGUILayout.ObjectField("UI State Event Channel SO", fpc.uiState, typeof(UIStateEventChannelSO), false) as UIStateEventChannelSO;
 
         #region Camera Setup
 
