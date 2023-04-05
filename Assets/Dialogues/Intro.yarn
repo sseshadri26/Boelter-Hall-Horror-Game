@@ -4,5 +4,9 @@ position: -117,-85
 ---
 Carey: Whatsaaaaaaaaaaaaaaaaaaaa?! #line:test0
 -> Nothing much, hbu? #line:test1
--> The sky hahahahahahahahahahahahahahahahahahahahahaha #line:test2 
+-> The sky hahahahahahahahahahahahahahahahahahahahahaha #line:test2
+<<setSprite "Carey/Confused">>
+Carey: Hm, I am now confused.
+<<setSprite "Carey/Test">>
+Carey: Nevermind!
 ===

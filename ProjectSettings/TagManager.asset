@@ -6,6 +6,7 @@ TagManager:
   tags:
   - jumpscare
   - spawnPointsParent
+  - TV Screen
   layers:
   - Default
   - TransparentFX
