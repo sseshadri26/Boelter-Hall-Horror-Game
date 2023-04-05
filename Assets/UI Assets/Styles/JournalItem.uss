@@ -1,6 +1,8 @@
 .selected .item-tint {
     background-color: rgba(255, 255, 255, 0.29);
+    display: flex;
 }
 
 .not-selected .item-tint {
+    display: none;
 }
