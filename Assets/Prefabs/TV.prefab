@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6106496488269107606}
   m_Layer: 0
   m_Name: Screen
-  m_TagString: Untagged
+  m_TagString: TV Screen
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -778,6 +778,8 @@ MonoBehaviour:
   objectsWithActions:
   - {fileID: 7616061742259338246}
   destroyOnUse: 0
+  holdToInteract: 0
+  howLongToHold: 3
 --- !u!114 &8487900784495591640
 MonoBehaviour:
   m_ObjectHideFlags: 0

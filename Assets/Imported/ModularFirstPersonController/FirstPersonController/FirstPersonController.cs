@@ -51,7 +51,7 @@ public class FirstPersonController : MonoBehaviour
 
     // Internal Variables
     private float yaw = 0.0f;
-    private float pitch = 0.0f;
+    public float pitch = 0.0f;
     private Image crosshairObject;
 
     #region Camera Zoom Variables
@@ -510,7 +510,7 @@ public class FirstPersonController : MonoBehaviour
         }
     }
 
-    private void Crouch(bool pressed, bool sprintCancel = false)
+    public void Crouch(bool pressed, bool sprintCancel = false)
     {
         if (!enableCrouch || isSprinting) return;
 
