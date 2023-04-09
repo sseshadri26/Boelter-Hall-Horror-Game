@@ -42,7 +42,7 @@ public abstract class PanelUI : MonoBehaviour
     const string c_Visible = "visible";
 
     // PATHS
-    const string ANIMATIONS_USS_PATH = "UI Styles/panel";
+    const string ANIMATIONS_USS_PATH = "UI Styles/Panel-animations";
 
     // Enum for setting where the panel should start
     public enum PanelPosition

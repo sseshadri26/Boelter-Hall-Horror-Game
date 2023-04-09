@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class TabPanelCollectionUI : PanelUI
+public class TabPanelUI : PanelUI
 {
     [Header("Tab Panel Collection Properties")]
     [SerializeField] UIDocument tabPanel;
