@@ -2,25 +2,25 @@
     transition-property: translate;
     transition-duration: 1s;
     transition-timing-function: ease-in-out;
-    translate: 0 102%;
+    translate: 0% 102%;
 }
 
 .center {
-    translate: 0 0;
+    translate: 0% 0%;
     transition-property: translate;
     transition-duration: 1s;
     transition-timing-function: ease-in-out;
 }
 
 .offscreen-left {
-    translate: -102% 0;
+    translate: -102% 0%;
     transition-property: translate;
     transition-duration: 1s;
     transition-timing-function: ease-in-out;
 }
 
 .offscreen-right {
-    translate: 102% 0;
+    translate: 102% 0%;
     transition-property: translate;
     transition-duration: 1s;
     transition-timing-function: ease-in-out;
@@ -30,7 +30,7 @@
     transition-property: translate;
     transition-duration: 1s;
     transition-timing-function: ease-in-out;
-    translate: 0 -102%;
+    translate: 0% -102%;
 }
 
 .invisible {
