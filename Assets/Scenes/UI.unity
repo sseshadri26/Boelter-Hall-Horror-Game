@@ -185,7 +185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   document: {fileID: 255780283}
-  moveAnimationType: 5
+  animationType: 5
   panelOpenStateChanged: {fileID: 11400000, guid: c354295335cbfad40abde8d0229bf468, type: 2}
   OnRestartButtonPressed:
     m_PersistentCalls:
@@ -246,7 +246,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   document: {fileID: 347355194}
-  moveAnimationType: 0
+  animationType: 0
   panelOpenStateChanged: {fileID: 0}
   scrollSpeed: 300
   scrollButtonJumpSize: 100
@@ -328,7 +328,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   document: {fileID: 1041981934}
-  moveAnimationType: 3
+  animationType: 3
   panelOpenStateChanged: {fileID: 11400000, guid: 3fbd3e357294c734c9300f54e76c6a38, type: 2}
   scrollSpeed: 300
   scrollButtonJumpSize: 100
@@ -380,7 +380,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   document: {fileID: 1534538178}
-  moveAnimationType: 5
+  animationType: 1
   panelOpenStateChanged: {fileID: 11400000, guid: 3aa00deaf0b1c11438aa306b0898b47f, type: 2}
   tabPanel: {fileID: 347355194}
 --- !u!114 &1534538178
@@ -461,7 +461,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   document: {fileID: 1693781863}
-  moveAnimationType: 4
+  animationType: 4
   panelOpenStateChanged: {fileID: 11400000, guid: 4ffdf5a5ff7aa6f46be29f3e36b77859, type: 2}
 --- !u!1 &1761737791
 GameObject:
@@ -621,7 +621,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   document: {fileID: 2111837884}
-  moveAnimationType: 2
+  animationType: 2
   panelOpenStateChanged: {fileID: 11400000, guid: db68ae39331227844a354d3bdb6dfa9a, type: 2}
   scrollSpeed: 300
   scrollButtonJumpSize: 100

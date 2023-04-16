@@ -22,7 +22,7 @@ public abstract class PanelUI : MonoBehaviour
 
     [Header("Panel Properties")]
     [SerializeField] UIDocument document = default;
-    [SerializeField] PanelMoveAnimationType moveAnimationType = PanelMoveAnimationType.NONE;
+    [SerializeField] PanelAnimationType animationType = PanelAnimationType.NONE;
 
     // DESIGN CHOICE: Use a single bool channel for this event instead of
     // separate events for open and close to reduce number of scriptable
@@ -40,6 +40,10 @@ public abstract class PanelUI : MonoBehaviour
     // DESIGN CHOICE: Keep visibility decoupled from position to make code more understandable and flexible
     const string c_Invisible = "invisible";
     const string c_Visible = "visible";
+
+    // UI Transition Classes
+    const string c_AnimationFast = "animation-fast";
+    const string c_AnimationInstant = "animation-instant";
 
     // PATHS
     const string ANIMATIONS_USS_PATH = "UI Styles/Panel-animations";
@@ -60,24 +64,39 @@ public abstract class PanelUI : MonoBehaviour
         {PanelPosition.BOTTOM, c_OffscreenBot},
     };
 
-    // Enum to make it easier for designer to select type of animation instead of worrying about panel position
-    public enum PanelMoveAnimationType
+    // TODO: Only using enums since that's how it's done for position, but this level of indirection might not be
+    // necessary anymore
+    public enum PanelVisibility {INVISIBLE, VISIBLE};
+    private Dictionary<PanelVisibility, string> panelVisibilityClasses = new Dictionary<PanelVisibility, string>()
     {
-        NONE, FROM_ABOVE, FROM_BELOW, FROM_LEFT, FROM_RIGHT, APPEAR
+        {PanelVisibility.INVISIBLE, c_Invisible},
+        {PanelVisibility.VISIBLE, c_Visible}
+    };
+
+
+
+    // Enum to make it easier for designer to select type of animation instead of worrying about panel position
+    public enum PanelAnimationType
+    {
+        NONE, FROM_ABOVE, FROM_BELOW, FROM_LEFT, FROM_RIGHT, APPEAR, FADE_IN
     }
 
-    private Dictionary<PanelMoveAnimationType, PanelPosition> panelStartPosition = new Dictionary<PanelMoveAnimationType, PanelPosition>()
+    private Dictionary<PanelAnimationType, PanelPosition> panelStartPosition = new Dictionary<PanelAnimationType, PanelPosition>()
     {
-        {PanelMoveAnimationType.NONE, PanelPosition.CENTER},
-        {PanelMoveAnimationType.FROM_ABOVE, PanelPosition.TOP},
-        {PanelMoveAnimationType.FROM_BELOW, PanelPosition.BOTTOM},
-        {PanelMoveAnimationType.FROM_LEFT, PanelPosition.LEFT},
-        {PanelMoveAnimationType.FROM_RIGHT, PanelPosition.RIGHT},
-        {PanelMoveAnimationType.APPEAR, PanelPosition.CENTER}
+        {PanelAnimationType.NONE, PanelPosition.CENTER},
+        {PanelAnimationType.FROM_ABOVE, PanelPosition.TOP},
+        {PanelAnimationType.FROM_BELOW, PanelPosition.BOTTOM},
+        {PanelAnimationType.FROM_LEFT, PanelPosition.LEFT},
+        {PanelAnimationType.FROM_RIGHT, PanelPosition.RIGHT},
+        {PanelAnimationType.APPEAR, PanelPosition.CENTER},
+        {PanelAnimationType.FADE_IN, PanelPosition.CENTER}
     };
 
     private PanelPosition startPosition = PanelPosition.CENTER;
     private PanelPosition currentPosition = default;
+
+    private PanelVisibility startVisibility = PanelVisibility.INVISIBLE;
+    private PanelVisibility currentVisibility = default;
 
     protected VisualElement root
     {
@@ -102,17 +121,23 @@ public abstract class PanelUI : MonoBehaviour
 
         // DESIGN CHOICE: Use a layer of abstraction between animation type and start position
         // to make it easier for designer to understand the animation that will be played
-        startPosition = panelStartPosition[moveAnimationType];
-        root.AddToClassList(panelPositionClasses[startPosition]);
+
+        // Initialize Panel tracking state
+        startPosition = panelStartPosition[animationType];
         currentPosition = startPosition;
 
+        startVisibility = (animationType == PanelAnimationType.NONE)? PanelVisibility.VISIBLE : PanelVisibility.INVISIBLE;
+        currentVisibility = startVisibility;
+
+        // Initialize state of Panel UI
+        root.AddToClassList(panelPositionClasses[startPosition]);
+        root.AddToClassList(panelVisibilityClasses[startVisibility]);
+        root.AddToClassList(animationType == PanelAnimationType.APPEAR? c_AnimationInstant : c_AnimationFast);
+        
+        // Set up animation callback
         if(panelOpenStateChanged != null)
             panelOpenStateChanged.OnEventRaised += HandlePanelOpenStateChanged;
         
-        // TODO: Implement a more flexible system for modifying visibility in a similar way to modifying position
-        // Special case
-        if(moveAnimationType == PanelMoveAnimationType.APPEAR)
-            ChangeVisibility(false);
     }
 
     void OnDestroy()
@@ -131,18 +156,28 @@ public abstract class PanelUI : MonoBehaviour
 
     public void OpenPanel()
     {
+        root.pickingMode = PickingMode.Position;
+
+        // Special case for if no animation should be played
+        if(animationType == PanelAnimationType.NONE)
+            return;
+
         ChangePosition(PanelPosition.CENTER);
-        if(moveAnimationType == PanelMoveAnimationType.APPEAR)
-            ChangeVisibility(true);
+        ChangeVisibility(PanelVisibility.VISIBLE);
 
         OnOpenPanel();
     }
 
     public void ClosePanel()
     {
+        root.pickingMode = PickingMode.Ignore;
+
+        // Special case for if no animation should be played
+        if(animationType == PanelAnimationType.NONE)
+            return;
+
         ChangePosition(startPosition);
-        if(moveAnimationType == PanelMoveAnimationType.APPEAR)
-            ChangeVisibility(false);
+        ChangeVisibility(PanelVisibility.INVISIBLE);
 
         OnClosePanel();
     }
@@ -166,10 +201,11 @@ public abstract class PanelUI : MonoBehaviour
         currentPosition = position;
     }
 
-    private void ChangeVisibility(bool isVisible)
+    private void ChangeVisibility(PanelVisibility visibility)
     {
-        root.RemoveFromClassList(isVisible? c_Invisible : c_Visible);
-        root.AddToClassList(isVisible? c_Visible : c_Invisible);
+        root.RemoveFromClassList(panelVisibilityClasses[currentVisibility]);
+        root.AddToClassList(panelVisibilityClasses[visibility]);
+        currentVisibility = visibility;
     }
 
 }
