@@ -36,10 +36,10 @@ public abstract class PanelUI : MonoBehaviour
     const string c_OffscreenTop = "offscreen-top";
     const string c_OffscreenBot = "offscreen-bot";
 
-    // UI Visibility classes
+    // UI Opacity classes
     // DESIGN CHOICE: Keep visibility decoupled from position to make code more understandable and flexible
-    const string c_Invisible = "invisible";
-    const string c_Visible = "visible";
+    const string c_Transparent = "transparent";
+    const string c_Opaque = "opaque";
 
     // UI Transition Classes
     const string c_AnimationFast = "animation-fast";
@@ -66,11 +66,11 @@ public abstract class PanelUI : MonoBehaviour
 
     // TODO: Only using enums since that's how it's done for position, but this level of indirection might not be
     // necessary anymore
-    public enum PanelVisibility {INVISIBLE, VISIBLE};
-    private Dictionary<PanelVisibility, string> panelVisibilityClasses = new Dictionary<PanelVisibility, string>()
+    public enum PanelOpacity {TRANSPARENT, OPAQUE};
+    private Dictionary<PanelOpacity, string> panelVisibilityClasses = new Dictionary<PanelOpacity, string>()
     {
-        {PanelVisibility.INVISIBLE, c_Invisible},
-        {PanelVisibility.VISIBLE, c_Visible}
+        {PanelOpacity.TRANSPARENT, c_Transparent},
+        {PanelOpacity.OPAQUE, c_Opaque}
     };
 
 
@@ -95,8 +95,8 @@ public abstract class PanelUI : MonoBehaviour
     private PanelPosition startPosition = PanelPosition.CENTER;
     private PanelPosition currentPosition = default;
 
-    private PanelVisibility startVisibility = PanelVisibility.INVISIBLE;
-    private PanelVisibility currentVisibility = default;
+    private PanelOpacity startOpacity = PanelOpacity.TRANSPARENT;
+    private PanelOpacity currentOpacity = default;
 
     protected VisualElement root
     {
@@ -126,24 +126,56 @@ public abstract class PanelUI : MonoBehaviour
         startPosition = panelStartPosition[animationType];
         currentPosition = startPosition;
 
-        startVisibility = (animationType == PanelAnimationType.NONE)? PanelVisibility.VISIBLE : PanelVisibility.INVISIBLE;
-        currentVisibility = startVisibility;
+        startOpacity = (animationType == PanelAnimationType.NONE)? PanelOpacity.OPAQUE : PanelOpacity.TRANSPARENT;
+        root.style.visibility = (animationType == PanelAnimationType.NONE)? Visibility.Visible : Visibility.Hidden;
+        currentOpacity = startOpacity;
 
         // Initialize state of Panel UI
         root.AddToClassList(panelPositionClasses[startPosition]);
-        root.AddToClassList(panelVisibilityClasses[startVisibility]);
+        root.AddToClassList(panelVisibilityClasses[startOpacity]);
         root.AddToClassList(animationType == PanelAnimationType.APPEAR? c_AnimationInstant : c_AnimationFast);
         
         // Set up animation callback
         if(panelOpenStateChanged != null)
             panelOpenStateChanged.OnEventRaised += HandlePanelOpenStateChanged;
         
+        root.RegisterCallback<TransitionStartEvent>(HandleAnimationStart);
+        root.RegisterCallback<TransitionEndEvent>(HandleAnimationEnd);
+    }
+
+    private void HandleAnimationEnd(TransitionEndEvent evt)
+    {
+        // DESIGN CHOICE: Break the animation abstraction layer between implementation and visuals
+        // to explicitly turn off raycast blocking (via visibility toggle). Currently the only way to
+        // disable raycasts is to literally set the visibility field to HIDDEN or display field to NONE.
+        // Since display control is reserved for parent panels (such as tab UI), we use the visibility route.
+        // The reason we must change the style here and not in the USS class is because the order in which 
+        // the visibility field must be toggled relative to the opacity change varies based on whether it is
+        // currently transparent or opaque from this script's perspective. As such, the USS tags for transparent and opaque
+        // would need to include animation information. This would compromise the separation of responsibilities
+        // for the USS classes and make it tricky to work with animations
+
+        if(currentOpacity == PanelOpacity.TRANSPARENT)
+        {
+            root.style.visibility = Visibility.Hidden;   
+        }
+                  
+    }
+
+    private void HandleAnimationStart(TransitionStartEvent evt)
+    {
+        if(currentOpacity == PanelOpacity.OPAQUE)
+        {
+            root.style.visibility = Visibility.Visible;   
+        }
     }
 
     void OnDestroy()
     {
         if(panelOpenStateChanged != null)
             panelOpenStateChanged.OnEventRaised -= HandlePanelOpenStateChanged;
+        
+        // No deregister because root has been destroyed at this point
     }
 
     private void HandlePanelOpenStateChanged(bool isOpen)
@@ -156,28 +188,24 @@ public abstract class PanelUI : MonoBehaviour
 
     public void OpenPanel()
     {
-        root.pickingMode = PickingMode.Position;
-
         // Special case for if no animation should be played
         if(animationType == PanelAnimationType.NONE)
             return;
 
         ChangePosition(PanelPosition.CENTER);
-        ChangeVisibility(PanelVisibility.VISIBLE);
+        ChangeVisibility(PanelOpacity.OPAQUE);
 
         OnOpenPanel();
     }
 
     public void ClosePanel()
     {
-        root.pickingMode = PickingMode.Ignore;
-
         // Special case for if no animation should be played
         if(animationType == PanelAnimationType.NONE)
             return;
 
         ChangePosition(startPosition);
-        ChangeVisibility(PanelVisibility.INVISIBLE);
+        ChangeVisibility(PanelOpacity.TRANSPARENT);
 
         OnClosePanel();
     }
@@ -201,11 +229,11 @@ public abstract class PanelUI : MonoBehaviour
         currentPosition = position;
     }
 
-    private void ChangeVisibility(PanelVisibility visibility)
+    private void ChangeVisibility(PanelOpacity visibility)
     {
-        root.RemoveFromClassList(panelVisibilityClasses[currentVisibility]);
+        root.RemoveFromClassList(panelVisibilityClasses[currentOpacity]);
         root.AddToClassList(panelVisibilityClasses[visibility]);
-        currentVisibility = visibility;
+        currentOpacity = visibility;
     }
 
 }
