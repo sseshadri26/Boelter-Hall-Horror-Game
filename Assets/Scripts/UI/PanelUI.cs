@@ -29,32 +29,49 @@ public abstract class PanelUI : MonoBehaviour
     // objects we need to handle
     [SerializeField] BoolEventChannelSO panelOpenStateChanged = default;
 
-    // UI Position classes
+
+
+
+    /////////////////
+    // USS Classes //
+    /////////////////
+
+    const string ANIMATIONS_USS_PATH = "UI Styles/Panel-animations";
+
+    // DESIGN CHOICE: Modularize parts of animation to enable mixing/mataching of
+    // different parts to create custom animations. Also helps with understanding
+    // code by keeping classes to single responsibilities.
+
+    // Positions
     const string c_Center = "center";
     const string c_OffscreenRight = "offscreen-right";
     const string c_OffscreenLeft = "offscreen-left";
     const string c_OffscreenTop = "offscreen-top";
     const string c_OffscreenBot = "offscreen-bot";
 
-    // UI Opacity classes
-    // DESIGN CHOICE: Keep visibility decoupled from position to make code more understandable and flexible
+    // Opacities
     const string c_Transparent = "transparent";
     const string c_Opaque = "opaque";
 
-    // UI Transition Classes
+    // Animation Configs
     const string c_AnimationFast = "animation-fast";
     const string c_AnimationInstant = "animation-instant";
 
-    // PATHS
-    const string ANIMATIONS_USS_PATH = "UI Styles/Panel-animations";
 
-    // Enum for setting where the panel should start
-    public enum PanelPosition
-    {
-        // Correspond with the different starting locations of the panel. If one of these options is selected,
-        // the panel will slide in from a particular part of the screen.
-        CENTER, TOP, BOTTOM, LEFT, RIGHT
-    }
+
+    ////////////////////////////
+    // Conversion Structures  //
+    ////////////////////////////
+
+    // DESIGN CHOICE: Convert from enums to USS classes instead of just using USS classes (such as for the
+    // ChangePosition function) because it makes it easier to understand an enum than it is a string.
+    // Because enums are their own types, it's harder to introduce errors -- you are limited to only
+    // the options the enums provide you (you couldn't pass an opacity class into a function that deals with
+    // position, for example, because the function requires a position enum that converts to a position class)
+
+    // Corresponds with the different starting locations of the panel. If one of these options is selected,
+    // the panel will slide in from a particular part of the screen.
+    public enum PanelPosition { CENTER, TOP, BOTTOM, LEFT, RIGHT }
     private Dictionary<PanelPosition, string> panelPositionClasses = new Dictionary<PanelPosition, string>()
     {
         {PanelPosition.CENTER, c_Center},
@@ -64,8 +81,6 @@ public abstract class PanelUI : MonoBehaviour
         {PanelPosition.BOTTOM, c_OffscreenBot},
     };
 
-    // TODO: Only using enums since that's how it's done for position, but this level of indirection might not be
-    // necessary anymore
     public enum PanelOpacity {TRANSPARENT, OPAQUE};
     private Dictionary<PanelOpacity, string> panelVisibilityClasses = new Dictionary<PanelOpacity, string>()
     {
@@ -76,10 +91,7 @@ public abstract class PanelUI : MonoBehaviour
 
 
     // Enum to make it easier for designer to select type of animation instead of worrying about panel position
-    public enum PanelAnimationType
-    {
-        NONE, FROM_ABOVE, FROM_BELOW, FROM_LEFT, FROM_RIGHT, APPEAR, FADE_IN
-    }
+    public enum PanelAnimationType{ NONE, FROM_ABOVE, FROM_BELOW, FROM_LEFT, FROM_RIGHT, APPEAR, FADE_IN }
 
     private Dictionary<PanelAnimationType, PanelPosition> panelStartPosition = new Dictionary<PanelAnimationType, PanelPosition>()
     {
@@ -91,6 +103,12 @@ public abstract class PanelUI : MonoBehaviour
         {PanelAnimationType.APPEAR, PanelPosition.CENTER},
         {PanelAnimationType.FADE_IN, PanelPosition.CENTER}
     };
+
+
+
+    ///////////////////////////
+    // Panel Animation State //
+    ///////////////////////////
 
     private PanelPosition startPosition = PanelPosition.CENTER;
     private PanelPosition currentPosition = default;
