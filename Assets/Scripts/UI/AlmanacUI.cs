@@ -1,12 +1,11 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 
-public class AlmanacUI : PanelUI
+public class AlmanacUI : MonoBehaviour
 {
-    [Header("Almanac Properties")]
+    [SerializeField] UIDocument document = default;
     [SerializeField] float scrollSpeed = 300;
     [SerializeField] float scrollButtonJumpSize = 100;
 
@@ -47,10 +46,22 @@ public class AlmanacUI : PanelUI
     Button m_InventoryScrollUpButton = default;
     Button m_InventoryScrollDownButton = default;
 
-    protected override void Awake()
+    VisualElement root
     {
-        base.Awake();
+        get {
+            if(document != null)
+                return document.rootVisualElement;
+            return null;
+        }
+    }
 
+    public void UpdateDisplay()
+    {
+        UpdateDisplayWithGenerator(almanacItemUIGenerator);
+    }
+
+     void Awake()
+    {
         m_ItemList = root.Q<ScrollView>(k_ItemList);
 
         m_ItemTitle = root.Q<Label>(k_ItemTitle);
@@ -67,16 +78,8 @@ public class AlmanacUI : PanelUI
 
         m_ItemList.RegisterCallback<WheelEvent>(SpeedUpScroll);
         m_ItemList.verticalPageSize = scrollButtonJumpSize;
-        UpdateDisplay(almanacItemUIGenerator);
+        UpdateDisplayWithGenerator(almanacItemUIGenerator);
     }
-
-    protected override void OnOpenPanel()
-    {
-        // Instead of registering callback to inventory, simply activate when panel opens
-        UpdateDisplay(almanacItemUIGenerator);
-    }
-
-
 
     // This is a function to accelerate the scroll speed, and is a work-around for Unity's currently slightly
     // buggy scrolling system. Here's the post that inspired it: https://forum.unity.com/threads/listview-mousewheel-scrolling-speed.1167404/ -- Specifically in leanon00's reply
@@ -86,7 +89,7 @@ public class AlmanacUI : PanelUI
     }
 
 
-    private void UpdateDisplay(ItemUIGeneratorSO generator)
+    private void UpdateDisplayWithGenerator(ItemUIGeneratorSO generator)
     {
         // DESIGN CHOICE: Update display by clearing every single item then reinstantiating
         // new list instead of pooling items. Why? Well it's simple, and we probably

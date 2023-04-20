@@ -14,22 +14,22 @@ public class UIController : MonoBehaviour
     [Header("Output Channels")]
     [SerializeField] UIStateEventChannelSO stateChanged;
 
-    [Header("Panels")]
-    [SerializeField] PanelUI pausePanel;
-    [SerializeField] PanelUI inventoryPanel;
-    [SerializeField] PanelUI journalPanel;
+    [Header("Panel Animators")]
+    [SerializeField] PanelAnimator pause;
+    [SerializeField] PanelAnimator inventory;
+    [SerializeField] PanelAnimator journal;
     
 
     // Map from a panel to its associated UIState
-    Dictionary<PanelUI, UIState> panelStateLabel = new Dictionary<PanelUI, UIState>();
+    Dictionary<PanelAnimator, UIState> panelStateLabel = new Dictionary<PanelAnimator, UIState>();
 
     // Set of all open panels
     // DESIGN CHOICE: Why not dictionary of bools? Means we loop through fewer panels during
     // the audit of open panels. It's also a simpler data structure that can do the same job.
-    HashSet<PanelUI> openPanels = new HashSet<PanelUI>();
+    HashSet<PanelAnimator> openPanels = new HashSet<PanelAnimator>();
     
     // Set of all panels that overlay on top of panels (instead of pushing them out of the way)
-    HashSet<PanelUI> overlayPanels = new HashSet<PanelUI>();
+    HashSet<PanelAnimator> overlayPanels = new HashSet<PanelAnimator>();
 
     // List of input actions and their associated callbacks
     List<Tuple<InputAction, Action<InputAction.CallbackContext>>> panelToggleInputCallbackInfo;
@@ -44,11 +44,11 @@ public class UIController : MonoBehaviour
         firstPersonActions = playerInput.controls;
 
         // Set up labels for quickly accessing corresponding 
-        panelStateLabel[inventoryPanel] = UIState.INVENTORY;
-        panelStateLabel[pausePanel] = UIState.PAUSE;
-        panelStateLabel[journalPanel] = UIState.JOURNAL;
+        panelStateLabel[inventory] = UIState.INVENTORY;
+        panelStateLabel[pause] = UIState.PAUSE;
+        panelStateLabel[journal] = UIState.JOURNAL;
 
-        overlayPanels.Add(pausePanel);
+        overlayPanels.Add(pause);
 
     }
 
@@ -62,9 +62,9 @@ public class UIController : MonoBehaviour
     {
         panelToggleInputCallbackInfo = new List<Tuple<InputAction, Action<InputAction.CallbackContext>>>()
         {
-            new Tuple<InputAction, Action<InputAction.CallbackContext>>(firstPersonActions.Inventory, (obj) => HandleToggle(inventoryPanel)),
-            new Tuple<InputAction, Action<InputAction.CallbackContext>>(firstPersonActions.Journal, (obj) => HandleToggle(journalPanel)),
-            new Tuple<InputAction, Action<InputAction.CallbackContext>>(firstPersonActions.Pause, (obj) => HandleToggle(pausePanel))
+            new Tuple<InputAction, Action<InputAction.CallbackContext>>(firstPersonActions.Inventory, (obj) => HandleToggle(inventory)),
+            new Tuple<InputAction, Action<InputAction.CallbackContext>>(firstPersonActions.Journal, (obj) => HandleToggle(journal)),
+            new Tuple<InputAction, Action<InputAction.CallbackContext>>(firstPersonActions.Pause, (obj) => HandleToggle(pause))
         };
 
         RegisterInputCallbacks(panelToggleInputCallbackInfo);
@@ -79,7 +79,7 @@ public class UIController : MonoBehaviour
     /// <summary>
     /// Handle input request to toggle on/off a given panel
     /// </summary>
-    private void HandleToggle(PanelUI panel)
+    private void HandleToggle(PanelAnimator panel)
     {
         if(openPanels.Contains(panel))
             ClosePanel(panel);
@@ -105,8 +105,8 @@ public class UIController : MonoBehaviour
         // It may be slow to do this audit, but that's okay because there probably
         // won't be a ton of panels, and this probably won't be called a lot.
 
-        PanelUI currentPanel = null;
-        foreach(PanelUI panel in openPanels)
+        PanelAnimator currentPanel = null;
+        foreach(PanelAnimator panel in openPanels)
         {
             currentPanel = panel;
             
@@ -123,7 +123,7 @@ public class UIController : MonoBehaviour
     /// <summary>
     /// Open this panel and remember its new state
     /// </summary>
-    private void OpenPanel(PanelUI panel)
+    private void OpenPanel(PanelAnimator panel)
     {
         panel.OpenPanel();
 
@@ -136,7 +136,7 @@ public class UIController : MonoBehaviour
     /// <summary>
     /// Close this panel and remember its new state
     /// </summary>
-    private void ClosePanel(PanelUI panel)
+    private void ClosePanel(PanelAnimator panel)
     {
         panel.ClosePanel();
         openPanels.Remove(panel);
@@ -148,8 +148,8 @@ public class UIController : MonoBehaviour
     private void CloseAllPanels()
     {
         // Need to copy list to avoid errors thrown when trying to modify the dictionary while iterating through it
-        List<PanelUI> openPanelsCopy = new List<PanelUI>(openPanels);
-        foreach(PanelUI openPanel in openPanelsCopy)
+        List<PanelAnimator> openPanelsCopy = new List<PanelAnimator>(openPanels);
+        foreach(PanelAnimator openPanel in openPanelsCopy)
         {
             if(!overlayPanels.Contains(openPanel))
                 ClosePanel(openPanel);

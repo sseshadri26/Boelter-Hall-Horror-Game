@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class TabPanelUI : PanelUI
+public class TabPanelUI : MonoBehaviour
 {
-    [Header("Tab Panel Collection Properties")]
+    [SerializeField] UIDocument document;
     [SerializeField] UIDocument tabPanel;
 
     // UI Tags
@@ -13,11 +13,9 @@ public class TabPanelUI : PanelUI
 
     // UI References
     VisualElement m_currentPanelContainer;
-    protected override void Awake()
+    void Awake()
     {
-        base.Awake();
-
-        m_currentPanelContainer = root.Q<VisualElement>(k_currentPanelContainer);
+        m_currentPanelContainer = document.rootVisualElement.Q<VisualElement>(k_currentPanelContainer);
 
     }
 

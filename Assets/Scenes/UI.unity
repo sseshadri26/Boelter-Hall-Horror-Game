@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 255780284}
   - component: {fileID: 255780283}
   - component: {fileID: 255780285}
+  - component: {fileID: 255780286}
   m_Layer: 5
   m_Name: Pause Panel
   m_TagString: Untagged
@@ -185,8 +186,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   document: {fileID: 255780283}
-  animationType: 5
-  panelOpenStateChanged: {fileID: 11400000, guid: c354295335cbfad40abde8d0229bf468, type: 2}
   OnRestartButtonPressed:
     m_PersistentCalls:
       m_Calls: []
@@ -197,6 +196,27 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   OnSettingsButtonPressed:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &255780286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 255780282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa96275ea31f0b741a797335f8da44c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  document: {fileID: 255780283}
+  animationType: 5
+  panelStateChange: {fileID: 11400000, guid: c354295335cbfad40abde8d0229bf468, type: 2}
+  OnOpenPanel:
+    m_PersistentCalls:
+      m_Calls: []
+  OnClosePanel:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &347355193
@@ -246,8 +266,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   document: {fileID: 347355194}
-  animationType: 0
-  panelOpenStateChanged: {fileID: 0}
   scrollSpeed: 300
   scrollButtonJumpSize: 100
   almanacItemUIGenerator: {fileID: 11400000, guid: 9b230c3314513e54086fa86167c2e087, type: 2}
@@ -277,6 +295,7 @@ GameObject:
   - component: {fileID: 1041981935}
   - component: {fileID: 1041981934}
   - component: {fileID: 1041981937}
+  - component: {fileID: 1041981938}
   m_Layer: 5
   m_Name: Inventory Panel
   m_TagString: Untagged
@@ -328,11 +347,42 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   document: {fileID: 1041981934}
-  animationType: 3
-  panelOpenStateChanged: {fileID: 11400000, guid: 3fbd3e357294c734c9300f54e76c6a38, type: 2}
   scrollSpeed: 300
   scrollButtonJumpSize: 100
   almanacItemUIGenerator: {fileID: 11400000, guid: 9b230c3314513e54086fa86167c2e087, type: 2}
+--- !u!114 &1041981938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1041981932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa96275ea31f0b741a797335f8da44c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  document: {fileID: 1041981934}
+  animationType: 3
+  panelStateChange: {fileID: 11400000, guid: 3fbd3e357294c734c9300f54e76c6a38, type: 2}
+  OnOpenPanel:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1041981937}
+        m_TargetAssemblyTypeName: AlmanacUI, Assembly-CSharp
+        m_MethodName: UpdateDisplay
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnClosePanel:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1534538175
 GameObject:
   m_ObjectHideFlags: 0
@@ -344,6 +394,7 @@ GameObject:
   - component: {fileID: 1534538176}
   - component: {fileID: 1534538178}
   - component: {fileID: 1534538177}
+  - component: {fileID: 1534538179}
   m_Layer: 0
   m_Name: Tab Panel
   m_TagString: Untagged
@@ -380,8 +431,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   document: {fileID: 1534538178}
-  animationType: 1
-  panelOpenStateChanged: {fileID: 11400000, guid: 3aa00deaf0b1c11438aa306b0898b47f, type: 2}
   tabPanel: {fileID: 347355194}
 --- !u!114 &1534538178
 MonoBehaviour:
@@ -399,6 +448,27 @@ MonoBehaviour:
   m_ParentUI: {fileID: 0}
   sourceAsset: {fileID: 9197481963319205126, guid: b4d1c2b2e70310944b9466c235733cb6, type: 3}
   m_SortingOrder: 0
+--- !u!114 &1534538179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1534538175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa96275ea31f0b741a797335f8da44c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  document: {fileID: 1534538178}
+  animationType: 6
+  panelStateChange: {fileID: 11400000, guid: 3aa00deaf0b1c11438aa306b0898b47f, type: 2}
+  OnOpenPanel:
+    m_PersistentCalls:
+      m_Calls: []
+  OnClosePanel:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1693781862
 GameObject:
   m_ObjectHideFlags: 0
@@ -410,6 +480,7 @@ GameObject:
   - component: {fileID: 1693781864}
   - component: {fileID: 1693781863}
   - component: {fileID: 1693781865}
+  - component: {fileID: 1693781866}
   m_Layer: 0
   m_Name: Map Panel
   m_TagString: Untagged
@@ -461,8 +532,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   document: {fileID: 1693781863}
+--- !u!114 &1693781866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1693781862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa96275ea31f0b741a797335f8da44c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  document: {fileID: 1693781863}
   animationType: 4
-  panelOpenStateChanged: {fileID: 11400000, guid: 4ffdf5a5ff7aa6f46be29f3e36b77859, type: 2}
+  panelStateChange: {fileID: 11400000, guid: 4ffdf5a5ff7aa6f46be29f3e36b77859, type: 2}
+  OnOpenPanel:
+    m_PersistentCalls:
+      m_Calls: []
+  OnClosePanel:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1761737791
 GameObject:
   m_ObjectHideFlags: 0
@@ -494,9 +584,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerInput: {fileID: 11400000, guid: bb6a48d6bb2fd8d408b27a197299a2fa, type: 2}
   stateChanged: {fileID: 11400000, guid: d21908ccfe647ed4e815fbce3a5dc5b3, type: 2}
-  pausePanel: {fileID: 255780285}
-  inventoryPanel: {fileID: 1041981937}
-  journalPanel: {fileID: 2111837883}
+  pause: {fileID: 255780286}
+  inventory: {fileID: 1041981938}
+  journal: {fileID: 2111837886}
 --- !u!4 &1761737793
 Transform:
   m_ObjectHideFlags: 0
@@ -601,6 +691,7 @@ GameObject:
   - component: {fileID: 2111837885}
   - component: {fileID: 2111837884}
   - component: {fileID: 2111837883}
+  - component: {fileID: 2111837886}
   m_Layer: 5
   m_Name: Journal Panel
   m_TagString: Untagged
@@ -621,8 +712,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   document: {fileID: 2111837884}
-  animationType: 2
-  panelOpenStateChanged: {fileID: 11400000, guid: db68ae39331227844a354d3bdb6dfa9a, type: 2}
   scrollSpeed: 300
   scrollButtonJumpSize: 100
   almanacItemUIGenerator: {fileID: 11400000, guid: 253d3d5046af39e47b84090db23c21ff, type: 2}
@@ -657,3 +746,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2111837886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2111837882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa96275ea31f0b741a797335f8da44c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  document: {fileID: 2111837884}
+  animationType: 2
+  panelStateChange: {fileID: 11400000, guid: db68ae39331227844a354d3bdb6dfa9a, type: 2}
+  OnOpenPanel:
+    m_PersistentCalls:
+      m_Calls: []
+  OnClosePanel:
+    m_PersistentCalls:
+      m_Calls: []
