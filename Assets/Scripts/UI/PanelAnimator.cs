@@ -19,7 +19,7 @@ public class PanelAnimator : MonoBehaviour
     // The downsides of inheritance are left without any counteracting positives.
 
     [SerializeField] UIDocument document = default;
-    [SerializeField] PanelAnimationType animationType = PanelAnimationType.NONE;
+    [SerializeField] PanelAnimationType animationType = PanelAnimationType.APPEAR;
 
     // DESIGN CHOICE: Use a single bool channel for this event instead of
     // separate events for open and close to reduce number of scriptable
@@ -92,11 +92,10 @@ public class PanelAnimator : MonoBehaviour
 
 
     // Enum to make it easier for designer to select type of animation instead of worrying about panel position
-    public enum PanelAnimationType{ NONE, FROM_ABOVE, FROM_BELOW, FROM_LEFT, FROM_RIGHT, APPEAR, FADE_IN }
+    public enum PanelAnimationType{ FROM_ABOVE, FROM_BELOW, FROM_LEFT, FROM_RIGHT, APPEAR, FADE_IN }
 
     private Dictionary<PanelAnimationType, PanelPosition> panelStartPosition = new Dictionary<PanelAnimationType, PanelPosition>()
     {
-        {PanelAnimationType.NONE, PanelPosition.CENTER},
         {PanelAnimationType.FROM_ABOVE, PanelPosition.TOP},
         {PanelAnimationType.FROM_BELOW, PanelPosition.BOTTOM},
         {PanelAnimationType.FROM_LEFT, PanelPosition.LEFT},
@@ -145,8 +144,8 @@ public class PanelAnimator : MonoBehaviour
         startPosition = panelStartPosition[animationType];
         currentPosition = startPosition;
 
-        startOpacity = (animationType == PanelAnimationType.NONE)? PanelOpacity.OPAQUE : PanelOpacity.TRANSPARENT;
-        root.style.visibility = (animationType == PanelAnimationType.NONE)? Visibility.Visible : Visibility.Hidden;
+        startOpacity = PanelOpacity.TRANSPARENT;
+        root.style.visibility = Visibility.Hidden;
         currentOpacity = startOpacity;
 
         // Initialize state of Panel UI
@@ -207,9 +206,6 @@ public class PanelAnimator : MonoBehaviour
 
     public void OpenPanel()
     {
-        // Special case for if no animation should be played
-        if(animationType == PanelAnimationType.NONE)
-            return;
 
         ChangePosition(PanelPosition.CENTER);
         ChangeVisibility(PanelOpacity.OPAQUE);
@@ -219,9 +215,6 @@ public class PanelAnimator : MonoBehaviour
 
     public void ClosePanel()
     {
-        // Special case for if no animation should be played
-        if(animationType == PanelAnimationType.NONE)
-            return;
 
         ChangePosition(startPosition);
         ChangeVisibility(PanelOpacity.TRANSPARENT);
