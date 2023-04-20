@@ -25,6 +25,8 @@ This is a simple log for tracking the current and past challenges taken on by th
 
 - **Resolution:** Write a base class for all UI panels in the game that has built-in animation functionality. All derived classes need not worry about how to animate the panel in or out. Even though inheritance tightly couples animating to panels, this is fine because pretty much all panels will need some way to animate in. Inheritance is simpler to implement and understand than other options, so it seemed like a reasonable choice.
 
+- **Revision (4/19):** It turns out that animation has practically nothing to do with the behavior of most UI. Thus, it makes more sense for animation behavior to be encapsulated within a component that can be placed on any piece of UI. I reasoned previously that the simplicity of inheritance makes it a reasonable choice. However, inheritance ended up just making the UI behaviors more tedious to implement (required overriding `Awake` and having to remember to call `base.Awake()`) and more confusing (animation has nothing to do with this class, so why is it the parent?). Thus, I refactored it to be component-based.
+
 ### (2/12)
 **Problem:** Making scripts that interface with the controls on a UI Document is tedious!
 - It's a tedious process of scanning through all the buttons or text fields (or whatever) and explicitly writing code to address each one.
