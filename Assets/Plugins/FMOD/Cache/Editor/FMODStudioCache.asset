@@ -87,11 +87,38 @@ MonoBehaviour:
   Path: FMOD/Boelter/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638134848551330165
+  lastModified: 638176356791547703
   FileSizes:
   - Name: Desktop
     Value: 15592
   Exists: 1
+--- !u!114 &-8825949769879944911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/footstep_ground
+  m_EditorClassIdentifier: 
+  Path: event:/footstep_ground
+  Guid:
+    Data1: 1283598073
+    Data2: 1106135979
+    Data3: 370766225
+    Data4: 1514695869
+  Banks:
+  - {fileID: -3273803657052011168}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1151
 --- !u!114 &-8817735418443879489
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -290,7 +317,7 @@ MonoBehaviour:
   Path: FMOD/Boelter/Build/Desktop/Dialogue_JP.bank
   Name: Dialogue_JP
   StudioPath: bank:/Dialogue_JP
-  lastModified: 638134848551330165
+  lastModified: 638175103156458246
   FileSizes:
   - Name: Desktop
     Value: 66560
@@ -1233,10 +1260,10 @@ MonoBehaviour:
   Path: FMOD/Boelter/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638134848552646189
+  lastModified: 638176356793141379
   FileSizes:
   - Name: Desktop
-    Value: 21580064
+    Value: 21605952
   Exists: 1
 --- !u!114 &-3237260728371553459
 MonoBehaviour:
@@ -1383,7 +1410,7 @@ MonoBehaviour:
   Path: FMOD/Boelter/Build/Desktop/Vehicles.bank
   Name: Vehicles
   StudioPath: bank:/Vehicles
-  lastModified: 638134848552666225
+  lastModified: 638175103334679390
   FileSizes:
   - Name: Desktop
     Value: 222464
@@ -1403,7 +1430,7 @@ MonoBehaviour:
   Path: FMOD/Boelter/Build/Desktop/Dialogue_CN.bank
   Name: Dialogue_CN
   StudioPath: bank:/Dialogue_CN
-  lastModified: 638134848551305003
+  lastModified: 638175103154578676
   FileSizes:
   - Name: Desktop
     Value: 52416
@@ -1605,10 +1632,10 @@ MonoBehaviour:
   Path: FMOD/Boelter/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638134848551340162
+  lastModified: 638176356791572731
   FileSizes:
   - Name: Desktop
-    Value: 4014
+    Value: 4188
   Exists: 1
 --- !u!114 &-528224342076580931
 MonoBehaviour:
@@ -1676,6 +1703,7 @@ MonoBehaviour:
   - {fileID: -3273803657052011168}
   - {fileID: -2331430555970887838}
   - {fileID: 8536232135560188512}
+  - {fileID: 1711278353809160204}
   EditorEvents:
   - {fileID: -685764621631508537}
   - {fileID: 9074418290916476812}
@@ -1707,12 +1735,15 @@ MonoBehaviour:
   - {fileID: 9179708988763545220}
   - {fileID: 1024979010364795710}
   - {fileID: -5088189457113519869}
+  - {fileID: 4354148522917090763}
+  - {fileID: 4397884608911746587}
+  - {fileID: -8825949769879944911}
   EditorParameters: []
   MasterBanks:
   - {fileID: -8863561674149004046}
   StringsBanks:
   - {fileID: -640569256181905880}
-  cacheTime: 638134848552666225
+  cacheTime: 638176356793141379
   cacheVersion: 131601
 --- !u!114 &42909343629357425
 MonoBehaviour:
@@ -1729,7 +1760,7 @@ MonoBehaviour:
   Path: FMOD/Boelter/Build/Desktop/Dialogue_EN.bank
   Name: Dialogue_EN
   StudioPath: bank:/Dialogue_EN
-  lastModified: 638134848551320041
+  lastModified: 638175103155575817
   FileSizes:
   - Name: Desktop
     Value: 61120
@@ -2053,6 +2084,26 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 999
+--- !u!114 &1711278353809160204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/BoelterSFX.bank
+  m_EditorClassIdentifier: 
+  Path: FMOD/Boelter/Build/Desktop/BoelterSFX.bank
+  Name: BoelterSFX
+  StudioPath: bank:/BoelterSFX
+  lastModified: 638176356791301758
+  FileSizes:
+  - Name: Desktop
+    Value: 494
+  Exists: 1
 --- !u!114 &1752711344371052957
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2481,6 +2532,60 @@ MonoBehaviour:
   - Name: Desktop
     Value: 10454368
   Exists: 1
+--- !u!114 &4354148522917090763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/door_close
+  m_EditorClassIdentifier: 
+  Path: event:/door_close
+  Guid:
+    Data1: 1530862775
+    Data2: 1108363654
+    Data3: -1838445648
+    Data4: -843707347
+  Banks:
+  - {fileID: -3273803657052011168}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1036
+--- !u!114 &4397884608911746587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/door_open
+  m_EditorClassIdentifier: 
+  Path: event:/door_open
+  Guid:
+    Data1: -789286377
+    Data2: 1185237415
+    Data3: 1091734446
+    Data4: 727657982
+  Banks:
+  - {fileID: -3273803657052011168}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 936
 --- !u!114 &4469785306382781719
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2749,7 +2854,7 @@ MonoBehaviour:
   Path: FMOD/Boelter/Build/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 638134848551850191
+  lastModified: 638175103211164008
   FileSizes:
   - Name: Desktop
     Value: 10454368
@@ -3047,7 +3152,7 @@ MonoBehaviour:
   Path: FMOD/Boelter/Build/Desktop/VO.bank
   Name: VO
   StudioPath: bank:/VO
-  lastModified: 638134848552646189
+  lastModified: 638175103335646054
   FileSizes:
   - Name: Desktop
     Value: 38624
