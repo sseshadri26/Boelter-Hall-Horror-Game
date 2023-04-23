@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class MinimapIconEnable : MonoBehaviour, IAction
 {
-    /*
-    Used for displaying icons on minimap, but could really be used for anything
-    */
+    
+    //Used for displaying icons on minimap, but could really be used for anything
+    
     [SerializeField]
     public GameObject IconToChange;
 
