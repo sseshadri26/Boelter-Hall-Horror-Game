@@ -509,6 +509,7 @@ MonoBehaviour:
   MasterBanks:
   - Master
   Banks:
+  - BoelterSFX
   - Dialogue_CN
   - Dialogue_EN
   - Dialogue_JP
