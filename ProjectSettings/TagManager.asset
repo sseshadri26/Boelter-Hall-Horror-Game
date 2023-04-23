@@ -7,6 +7,7 @@ TagManager:
   - jumpscare
   - spawnPointsParent
   - TV Screen
+  - portal
   layers:
   - Default
   - TransparentFX
