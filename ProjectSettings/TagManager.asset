@@ -8,6 +8,7 @@ TagManager:
   - spawnPointsParent
   - TV Screen
   - portal
+  - BlackScreen
   layers:
   - Default
   - TransparentFX
