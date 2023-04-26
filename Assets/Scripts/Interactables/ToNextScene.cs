@@ -26,14 +26,13 @@ public class ToNextScene : MonoBehaviour, IAction
     public void Activate()
     {
         // Debug.Log("Loading scene");
-        Globals.curSpawnPoint = spawnPoint;
         StartCoroutine("LoadStuff");
     }
 
     private IEnumerator LoadStuff()
     {
+        Globals.curSpawnPoint = spawnPoint;
         FMODManager.Instance.PlaySound(FMODManager.SFX.door_open);
-        Scene oldScene = SceneManager.GetActiveScene();
 
         yield return new WaitForSecondsRealtime(1f);
         SceneManager.LoadScene(nextScene);
