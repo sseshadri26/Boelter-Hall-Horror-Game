@@ -210,6 +210,50 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!1 &2383342266949983294
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7393436980921659510}
+  - component: {fileID: 3356252629319892923}
+  m_Layer: 2
+  m_Name: FMODPlayerSFX
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7393436980921659510
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2383342266949983294}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4459864850019384738}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3356252629319892923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2383342266949983294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cc9cfbddd5e16d4eab211dd2b783481, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2904045268839239003
 GameObject:
   m_ObjectHideFlags: 0
@@ -399,6 +443,7 @@ Transform:
   - {fileID: 4459864851508666808}
   - {fileID: 7245997352163783472}
   - {fileID: 5869038313633386532}
+  - {fileID: 7393436980921659510}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1316,6 +1361,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   printDebug: 1
+  intensity: 0
+  speed: 0
+  reverb: 0
 --- !u!114 &9177691253057516962
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1331,11 +1379,11 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 1878382913
+      Data2: 1151818665
+      Data3: -1827107692
+      Data4: 852968382
+    Path: event:/door_close
   Event: 
   PlayEvent: 0
   StopEvent: 0
@@ -1344,8 +1392,8 @@ MonoBehaviour:
   Preload: 0
   Params: []
   OverrideAttenuation: 0
-  OverrideMinDistance: -1
-  OverrideMaxDistance: -1
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1001 &243305013594623678
 PrefabInstance:
   m_ObjectHideFlags: 0

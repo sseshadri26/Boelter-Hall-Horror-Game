@@ -1953,32 +1953,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9177691253057516962, guid: 005f38b85fc03ec40b17de5b2c91a414, type: 3}
-      propertyPath: EventReference.Path
-      value: event:/door_close
-      objectReference: {fileID: 0}
-    - target: {fileID: 9177691253057516962, guid: 005f38b85fc03ec40b17de5b2c91a414, type: 3}
       propertyPath: OverrideMaxDistance
-      value: 20
+      value: 8.400001
       objectReference: {fileID: 0}
     - target: {fileID: 9177691253057516962, guid: 005f38b85fc03ec40b17de5b2c91a414, type: 3}
       propertyPath: OverrideMinDistance
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9177691253057516962, guid: 005f38b85fc03ec40b17de5b2c91a414, type: 3}
-      propertyPath: EventReference.Guid.Data1
-      value: 1878382913
-      objectReference: {fileID: 0}
-    - target: {fileID: 9177691253057516962, guid: 005f38b85fc03ec40b17de5b2c91a414, type: 3}
-      propertyPath: EventReference.Guid.Data2
-      value: 1151818665
-      objectReference: {fileID: 0}
-    - target: {fileID: 9177691253057516962, guid: 005f38b85fc03ec40b17de5b2c91a414, type: 3}
-      propertyPath: EventReference.Guid.Data3
-      value: -1827107692
-      objectReference: {fileID: 0}
-    - target: {fileID: 9177691253057516962, guid: 005f38b85fc03ec40b17de5b2c91a414, type: 3}
-      propertyPath: EventReference.Guid.Data4
-      value: 852968382
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 005f38b85fc03ec40b17de5b2c91a414, type: 3}

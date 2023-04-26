@@ -15,21 +15,46 @@ public class FMODManager : MonoBehaviour
     // Vars:
     [SerializeField] private bool printDebug;
     public FMODParams globalParams = new FMODParams();
+    //
+    [SerializeField]
+    [Range(0f, 2f)]
+        float volumePercent = 1f;
+    [SerializeField]
+    [Range(0f, 2f)]
+        float pitch = 1f;
+    [SerializeField]
+    [Range(0f, 2f)]
+        private float intensity = 1f;
+    [SerializeField]
+    [Range(0f, 2f)]
+        private float speed = 1f;
+    [SerializeField]
+    [Range(0f, 2f)]
+        private float reverb = 1f;
 
-    // Members:
+    // Structs:
     public enum SFX
     {
-        door_close, door_open, footstep_ground
+        door_close, door_open, 
+        footstep_ground, footstep_grass, footstep_gravel, footstep_wood,
+        paper_crumble
     }
     public struct FMODParams
     {
-        public int intensity;
-        public int speed;
-
+        public float volumePercent;
+        public float pitch;
+        public float intensity;
+        public float speed;
+        public float reverb;
+        //
         public FMODParams(bool defaultToggles = true)
         {
-            intensity = 1;
-            speed = 1;
+            volumePercent = 1f;
+            pitch = 1f;
+            //
+            intensity = 1f;
+            speed = 1f;
+            reverb = 0;
         }
     }
     private Dictionary<SFX, string> soundToEventDict = new Dictionary<SFX, string>()
@@ -37,6 +62,10 @@ public class FMODManager : MonoBehaviour
         { SFX.door_close, "event:/door_close" },
         { SFX.door_open, "event:/door_open" },
         { SFX.footstep_ground, "event:/footstep_ground" },
+        { SFX.footstep_grass, "event:/footstep_grass" },
+        { SFX.footstep_gravel, "event:/footstep_gravel" },
+        { SFX.footstep_wood, "event:/footstep_wood" },
+        { SFX.paper_crumble, "event:/paper_crumble" },
     };
 
     // Functions:
@@ -49,19 +78,27 @@ public class FMODManager : MonoBehaviour
         eventEmitter = GetComponent<StudioEventEmitter>();
     }
 
-    // Sound calling:
-    public void PlaySound(SFX sound, float volumePercent = 1f, float pitch = 1f, bool isStatic = false)
+    // Interface:
+    public void PlaySound(SFX sound, bool useDefault = true, FMODParams soundParams = default(FMODParams))
     {
         // Plays specified sound @ player:
-        PlaySound(sound, transform.position, pitch, volumePercent, isStatic);
+        PlaySound(sound, transform.position, useDefault, soundParams);
     }
-    public void PlaySound(SFX sound, Vector3 position, float volumePercent, float pitch, bool isStatic)
+    public void PlaySound(SFX sound, Vector3 position, bool useDefault = true, FMODParams soundParams = default(FMODParams))
     {
         // Plays specified sound @ location:
-        PlayEmitterEvent(sound, position, volumePercent, pitch, isStatic);
+        if (useDefault)
+        {
+            PlayEmitterEvent(sound, position, ref globalParams);
+        }
+        else
+        {
+            PlayEmitterEvent(sound, position, ref soundParams);
+        }
     }
+    
     // Utils:
-    private void PlayEmitterEvent(SFX sound, Vector3 position, float volumePercent, float pitch, bool isStatic)
+    private void PlayEmitterEvent(SFX sound, Vector3 position, ref FMODParams soundParams)
     {
         // Checks:
         if (!soundToEventDict.ContainsKey(sound))
@@ -75,13 +112,12 @@ public class FMODManager : MonoBehaviour
         FMOD.Studio.EventInstance eventInstance = RuntimeManager.CreateInstance(eventPath);
         eventInstance.set3DAttributes(RuntimeUtils.To3DAttributes(position));
         // Set pitch and volume:
-        eventInstance.setVolume(volumePercent);
-        eventInstance.setPitch(pitch);
-        // Ignore parameters (if isStatic):
-        if (isStatic)
-        {
-            // ?
-        }
+        eventInstance.setVolume(soundParams.volumePercent);
+        eventInstance.setPitch(soundParams.pitch);
+        // Set Parameters:
+        eventInstance.setParameterByName("intensity", soundParams.intensity);
+        eventInstance.setParameterByName("speed", soundParams.speed);
+        eventInstance.setParameterByName("reverb", soundParams.reverb);
         // Play and release:
         PrintDebug(sound + " played.");
         eventInstance.start();
