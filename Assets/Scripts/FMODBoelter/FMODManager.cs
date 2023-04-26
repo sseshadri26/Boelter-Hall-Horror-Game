@@ -114,13 +114,10 @@ public class FMODManager : MonoBehaviour
         // Set pitch and volume:
         eventInstance.setVolume(soundParams.volumePercent);
         eventInstance.setPitch(soundParams.pitch);
-        //eventInstance.setVolume(1f);
-        //eventInstance.setPitch(1f);
-        UnityEngine.Debug.Log(soundParams.volumePercent);
         // Set Parameters:
-        //eventInstance.setParameterByName("intensity", soundParams.intensity);
-        //eventInstance.setParameterByName("speed", soundParams.speed);
-        //eventInstance.setParameterByName("reverb", soundParams.reverb);
+        eventInstance.setParameterByName("intensity", soundParams.intensity);
+        eventInstance.setParameterByName("speed", soundParams.speed);
+        eventInstance.setParameterByName("reverb", soundParams.reverb);
         // Play and release:
         PrintDebug(sound + " played.");
         eventInstance.start();
