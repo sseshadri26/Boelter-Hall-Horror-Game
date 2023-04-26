@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using FMODUnity;
 
 //For loading next scene on interact.
 public class ToNextScene : MonoBehaviour, IAction
@@ -21,11 +22,20 @@ public class ToNextScene : MonoBehaviour, IAction
         }
     }
 
-    // If door is activated, load next scene.
+    // If door is activated, start the coroutine to load next scene.
     public void Activate()
     {
         // Debug.Log("Loading scene");
         Globals.curSpawnPoint = spawnPoint;
+        StartCoroutine("LoadStuff");
+    }
+
+    private IEnumerator LoadStuff()
+    {
+        FMODManager.Instance.PlaySound(FMODManager.SFX.door_open);
+        Scene oldScene = SceneManager.GetActiveScene();
+
+        yield return new WaitForSecondsRealtime(1f);
         SceneManager.LoadScene(nextScene);
     }
 }
