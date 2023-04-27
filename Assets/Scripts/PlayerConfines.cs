@@ -55,6 +55,12 @@ public class PlayerConfines : MonoBehaviour
         {
             blackScreen.DOFade(0f, fadeInTime).SetUpdate(true);
         }
+
+        if (Globals.playDoorCloseSoundAtNextScene)
+        {
+            Globals.playDoorCloseSoundAtNextScene = false;
+            FMODManager.Instance.PlaySound(FMODManager.SFX.door_close);
+        }
     }
 
     void Update()

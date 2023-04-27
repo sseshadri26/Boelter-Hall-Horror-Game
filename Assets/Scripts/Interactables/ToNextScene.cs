@@ -45,7 +45,7 @@ public class ToNextScene : MonoBehaviour, IAction
 
         // Load next scene and play door closing sound
         yield return new WaitForSecondsRealtime(1f);
+        Globals.playDoorCloseSoundAtNextScene = true;
         SceneManager.LoadScene(nextScene);
-        FMODManager.Instance.PlaySound(FMODManager.SFX.door_close);
     }
 }
