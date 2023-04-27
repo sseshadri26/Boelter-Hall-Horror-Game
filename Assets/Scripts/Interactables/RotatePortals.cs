@@ -26,7 +26,7 @@ public class RotatePortals : MonoBehaviour, IAction
     {
         if (SaveSystem.Data != null)
         {
-            curPortalPair = Globals.portalPosition5F = SaveSystem.Data.portalPositions;
+            curPortalPair = Globals.portalPosition5F = SaveSystem.Data.portalPosition;
             ChangePortals();
         }
         else
@@ -62,8 +62,8 @@ public class RotatePortals : MonoBehaviour, IAction
         //    child.gameObject.SetActive(false);
         //}
         //transform.GetChild(curPortalPair).gameObject.SetActive(true);
-    
-    
+
+
         switch (curPortalPair)
         {
             case 0:

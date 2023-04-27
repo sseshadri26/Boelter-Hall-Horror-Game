@@ -15,6 +15,10 @@ public static class SaveSystem
             if (_data == null)
             {
                 _data = LoadGame();
+                if (_data == null)
+                {
+                    Debug.Log("This is a new save");
+                }
             }
             return _data;
         }
@@ -27,7 +31,7 @@ public static class SaveSystem
 
     private static SaveData LoadGame()
     {
-        return Data = JsonUtility.FromJson<SaveData>(PlayerPrefs.GetString("MainSave", ""));
+        return JsonUtility.FromJson<SaveData>(PlayerPrefs.GetString("MainSave", ""));
     }
 
     public static void SaveGame()

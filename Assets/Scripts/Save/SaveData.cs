@@ -18,25 +18,26 @@ public class SaveData
     public List<string> itemGraphics = new List<string>();
     public List<InventoryItemSO.ItemStatus> itemStatuses = new List<InventoryItemSO.ItemStatus>();
 
-    public int portalPositions = 0;
+    public int portalPosition = 0;
+    public bool glassBroke = false;
 
     // Create a SaveData from the static PlayerData class
     public void CopyFromGame()
     {
         SavePlayer();
         SaveInventory();
-        SavePortals();
+        SaveMisc();
     }
 
     private void SavePlayer()
     {
         Transform player = FirstPersonController.instance.transform;
-        
+
         playerPos = new float[3];
         playerPos[0] = player.position.x;
         playerPos[1] = player.position.y;
         playerPos[2] = player.position.z;
-        
+
         playerRot = new float[4];
         playerRot[0] = player.rotation.x;
         playerRot[1] = player.rotation.y;
@@ -59,8 +60,9 @@ public class SaveData
         }
     }
 
-    private void SavePortals()
+    private void SaveMisc()
     {
-        portalPositions = Globals.portalPosition5F;
+        portalPosition = Globals.portalPosition5F;
+        glassBroke = Globals.GlassBroke;
     }
 }
