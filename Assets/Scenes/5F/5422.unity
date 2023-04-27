@@ -1644,7 +1644,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextScene: 5F Hallway
-  spawnPoint: 0
+  spawnPoint: 4
 --- !u!1 &968235308
 GameObject:
   m_ObjectHideFlags: 0
