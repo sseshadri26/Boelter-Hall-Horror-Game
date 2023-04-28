@@ -7,36 +7,51 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public static class SaveSystem
 {
-    public static SaveData data;
-
-    public static void SaveGame()
+    private static SaveData _data;
+    public static SaveData Data
     {
-        data = new SaveData();
-        data.CopyFromGame();
+        get
+        {
+            if (_data == null)
+            {
+                _data = LoadGame();
+                if (_data == null)
+                {
+                    Debug.Log("This is a new save");
+                }
+            }
+            return _data;
+        }
 
-        string jsonData = JsonUtility.ToJson(data);
-
-        PlayerPrefs.SetString("MainSave", jsonData);
+        set
+        {
+            _data = value;
+        }
     }
 
-    public static SaveData LoadGame()
+    private static SaveData LoadGame()
     {
         return JsonUtility.FromJson<SaveData>(PlayerPrefs.GetString("MainSave", ""));
     }
 
+    public static void SaveGame()
+    {
+        Data = new SaveData();
+        Data.CopyFromGame();
+
+        string jsonData = JsonUtility.ToJson(Data);
+
+        PlayerPrefs.SetString("MainSave", jsonData);
+    }
+
     public static List<InventoryItemSO> GetInventory()
     {
-        if (data == null)
-        {
-            data = LoadGame();
-        }
-
         List<InventoryItemSO> loadedInventory = new List<InventoryItemSO>();
         SpriteAtlas itemSprites = Resources.Load<SpriteAtlas>("Items");
 
-        for (int i = 0; i < data.itemNames.Count; i++)
+        for (int i = 0; i < Data.itemNames.Count; i++)
         {
-            loadedInventory.Add(new InventoryItemSO(data.itemNames[i], data.itemDescriptions[i], itemSprites.GetSprite(data.itemGraphics[i]), data.itemStatuses[i]));
+            loadedInventory.Add(new InventoryItemSO(Data.itemNames[i], Data.itemDescriptions[i], itemSprites.GetSprite(Data.itemGraphics[i]), Data.itemStatuses[i]));
         }
 
         return loadedInventory;

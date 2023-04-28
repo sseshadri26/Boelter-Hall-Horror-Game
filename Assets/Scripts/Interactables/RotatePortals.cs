@@ -13,20 +13,28 @@ public class RotatePortals : MonoBehaviour, IAction
     //number of configurations as an enum
     [SerializeField] private int numberOfPortalConfigs = 2;
 
-    [SerializeField] private int[] numberOfPortalPairs;
+    // [SerializeField] private int[] numberOfPortalPairs;
 
     [SerializeField] private GameObject[] portalGroup1;
     [SerializeField] private GameObject[] portalGroup2;
 
+    [Tooltip("Which saved portal set this represents")]
+    [SerializeField] private int portalSetNum = 0;
 
-
-    //create array of size numberOfPortalConfigs, each of which can hold any number of portals (gameobjects)
-
-    // If door is activated, load next scene.
+    // Load saved portal configuration.
     public void Start()
     {
-
+        if (SaveSystem.Data != null)
+        {
+            curPortalPair = Globals.portalPosition5F = SaveSystem.Data.portalPosition;
+            ChangePortals();
+        }
+        else
+        {
+            curPortalPair = Globals.portalPosition5F = 0;
+        }
     }
+
     public void Activate()
     {
         // Prevent turning twice in a row
@@ -36,18 +44,25 @@ public class RotatePortals : MonoBehaviour, IAction
         }
 
         activated = true;
-        transform.DOBlendableRotateBy(Vector3.zero, 1).OnComplete(() => activated = false);
+        // Jank way of waiting 1 sec before setting activated back to false (no rotation)
+        transform.DOBlendableRotateBy(Vector3.zero, 1f).OnComplete(() => activated = false);
 
         curPortalPair++;
         Globals.portalPosition5F++;
         if (curPortalPair == numberOfPortalConfigs) curPortalPair = Globals.portalPosition5F = 0;
 
+        ChangePortals();
+    }
+
+    private void ChangePortals()
+    {
         // Disable each portal pair then enable only the portal pair we want
         //foreach (Transform child in transform)
         //{
         //    child.gameObject.SetActive(false);
         //}
         //transform.GetChild(curPortalPair).gameObject.SetActive(true);
+
 
         switch (curPortalPair)
         {
