@@ -5,6 +5,12 @@ This is a simple log for tracking the current and past challenges taken on by th
 
 ## Log
 
+### (4/21)
+**Problem:** Providing the user with an API that lets them animate the panel from any part of the screen is complex given that the `UI Elements` update loop is complete separate from the standard `Monobehaviours` update loop. Thus, animations queued during a game frame may not reflect in the UI until several frames after -- whenever the UI update occurs. What are my options for implementing this behavior?
+- Option 1: Trigger a "set up" animation to position the panel in the proper starting position and then assign a callback to the `TransitionEndEvent` for the panel's `VisualElement` that then triggers the main animation to animate the panel into the center of the screen. While this does implement the desired behavior, it leaves the implementation open to errors since any animations invoked on the panel's `VisualElement`, not necessarily just the "set up animation" would trigger the `TransitionEndEvent`. Thus, it's easy to accidentally trigger the callback and cause undesired behavior.
+- Option 1A: One variation might be to look at special identifiers in the event object, which would add more complexity but would resolve the issue of ambiguity of what's invoking the event.
+- Option 2: Simplify the API so that the user can only specify *when* to open the panel with `FadeInPanel()` and not where to open the panel from. This would mean that `PanelAnimator.cs` would not have to move the panel beforehand but instead just animate from its last exit position. While this reduces the use cases for the API, we realistically don't need most of those use cases (if a panel is animated out of screen to the left, then the user would expect the panel to come back out from the left).
+
 ### (4/19)
 **Problem:** Now that UI animation has been decoupled from other systems pretty well, I'm ready to begin applying it to new problems. The current problem is with the tab panel. The tab panel is supposed to serve as a collection of other UI panels. It should have the ability to swap in different UI panels by clicking different tabs at the top of the screen. I want panels to be animated onto the main stage such that it looks like one continuous strip that's being cycled around (see Harry Potter Puzzles and Spells home screen). How should I implement this?
 

@@ -222,6 +222,39 @@ public class PanelAnimator : MonoBehaviour
         OnClosePanel?.Invoke();
     }
 
+
+    /// <summary>
+    /// Animate a UI panel in from a particular region of the screen while fading in
+    /// </summary>
+    public void FadeIn(PanelPosition startPosition)
+    {
+
+    }
+
+    /// <summary>
+    /// Animate a UI panel from its current position to a region of the screen while fading out
+    /// </summary>
+    public void FadeOut(PanelPosition endPosition)
+    {
+
+    }
+
+    /// <summary>
+    /// Make a UI panel instantly appear at the center of the screen
+    /// </summary>
+    public void PopIn()
+    {
+
+    }
+
+    /// <summary>
+    /// Make a UI panel instantly disappear
+    /// </summary>
+    public void PopOut()
+    {
+
+    }
+
     /// <summary>
     /// Helper function for animating the panel to a new position
     /// </summary>
