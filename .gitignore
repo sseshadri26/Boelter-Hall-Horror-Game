@@ -111,3 +111,5 @@ FMOD/Boelter/.cache/*
 # If the source bank files are kept outside of the StreamingAssets folder then these can be ignored.
 # Log files can be ignored.
 fmod_editor.log
+Assets/Videos/Jet Set Radio Future Opening.mp4
+Assets/Videos/Jet Set Radio Future Opening.mp4.meta
