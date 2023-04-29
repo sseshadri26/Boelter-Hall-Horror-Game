@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +7,7 @@ using UnityEngine.SceneManagement;
 [System.Serializable]
 public class SaveData
 {
-    // We're using arrays because they're serializable
+    // We're using arrays and lists because they're serializable
     public float[] playerPos;
     public float[] playerRot;
     public string playerScene;
@@ -17,16 +18,26 @@ public class SaveData
     public List<string> itemGraphics = new List<string>();
     public List<InventoryItemSO.ItemStatus> itemStatuses = new List<InventoryItemSO.ItemStatus>();
 
+    public int portalPosition = 0;
+    public bool glassBroke = false;
+
     // Create a SaveData from the static PlayerData class
     public void CopyFromGame()
     {
+        SavePlayer();
+        SaveInventory();
+        SaveMisc();
+    }
+
+    private void SavePlayer()
+    {
         Transform player = FirstPersonController.instance.transform;
-        
+
         playerPos = new float[3];
         playerPos[0] = player.position.x;
         playerPos[1] = player.position.y;
         playerPos[2] = player.position.z;
-        
+
         playerRot = new float[4];
         playerRot[0] = player.rotation.x;
         playerRot[1] = player.rotation.y;
@@ -34,7 +45,10 @@ public class SaveData
         playerRot[3] = player.rotation.w;
 
         playerScene = SceneManager.GetActiveScene().name;
+    }
 
+    private void SaveInventory()
+    {
         InventoryItemCollectionSO inventory = Resources.Load<InventoryItemCollectionSO>("PlayerInventory");
 
         foreach (InventoryItemSO item in inventory.items)
@@ -44,5 +58,11 @@ public class SaveData
             itemGraphics.Add(item.graphic.name);
             itemStatuses.Add(item.itemStatus);
         }
+    }
+
+    private void SaveMisc()
+    {
+        portalPosition = Globals.portalPosition5F;
+        glassBroke = Globals.GlassBroke;
     }
 }

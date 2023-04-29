@@ -1846,6 +1846,41 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4383258444604287699, guid: 88b11e6ded2127c4fb39785f8bedd32b, type: 3}
   m_PrefabInstance: {fileID: 1266109794}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1399787455 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5270045534808637689, guid: 03ef92407dc772546a30daeda1ab0b3d, type: 3}
+  m_PrefabInstance: {fileID: 1219472487}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1399787458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1399787455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1878382913
+      Data2: 1151818665
+      Data3: -1827107692
+      Data4: 852968382
+    Path: event:/Test
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1001 &1405734011
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1915,6 +1950,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5590536820623271191, guid: 005f38b85fc03ec40b17de5b2c91a414, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9177691253057516962, guid: 005f38b85fc03ec40b17de5b2c91a414, type: 3}
+      propertyPath: OverrideMaxDistance
+      value: 8.400001
+      objectReference: {fileID: 0}
+    - target: {fileID: 9177691253057516962, guid: 005f38b85fc03ec40b17de5b2c91a414, type: 3}
+      propertyPath: OverrideMinDistance
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

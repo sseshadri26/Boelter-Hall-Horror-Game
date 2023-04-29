@@ -7,7 +7,7 @@ public class SaveSwitch : MonoBehaviour, IAction
     // Testing function to see if saves work
     public void Start()
     {
-        SaveData data = SaveSystem.LoadGame();
+        SaveData data = SaveSystem.Data;
         if (data == null) return;
         Transform player = FirstPersonController.instance.transform;
 
