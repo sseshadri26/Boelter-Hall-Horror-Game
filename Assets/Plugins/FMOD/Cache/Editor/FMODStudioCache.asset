@@ -28,6 +28,30 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 56888
+--- !u!114 &-9162758037571193885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/intensity
+  m_EditorClassIdentifier: 
+  Name: intensity
+  StudioPath: parameter:/Intensity
+  Min: 0
+  Max: 2
+  Default: 1
+  ID:
+    data1: 446479489
+    data2: 3699233805
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
 --- !u!114 &-8987851677954297645
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87,10 +111,10 @@ MonoBehaviour:
   Path: FMOD/Boelter/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638136407273640418
+  lastModified: 638183570362218819
   FileSizes:
   - Name: Desktop
-    Value: 15592
+    Value: 16094
   Exists: 1
 --- !u!114 &-8817735418443879489
 MonoBehaviour:
@@ -290,7 +314,7 @@ MonoBehaviour:
   Path: FMOD/Boelter/Build/Desktop/Dialogue_JP.bank
   Name: Dialogue_JP
   StudioPath: bank:/Dialogue_JP
-  lastModified: 638136407273640418
+  lastModified: 638144043158610459
   FileSizes:
   - Name: Desktop
     Value: 66560
@@ -796,6 +820,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1026
+--- !u!114 &-4851041154979623829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/footstep_gravel
+  m_EditorClassIdentifier: 
+  Path: event:/footstep_gravel
+  Guid:
+    Data1: -1774532276
+    Data2: 1092473207
+    Data3: 572421310
+    Data4: 315156784
+  Banks:
+  - {fileID: -212371310425662385}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1036
 --- !u!114 &-4732503600803294430
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1233,7 +1284,7 @@ MonoBehaviour:
   Path: FMOD/Boelter/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638136407275240566
+  lastModified: 638144043161788188
   FileSizes:
   - Name: Desktop
     Value: 21580064
@@ -1383,7 +1434,7 @@ MonoBehaviour:
   Path: FMOD/Boelter/Build/Desktop/Vehicles.bank
   Name: Vehicles
   StudioPath: bank:/Vehicles
-  lastModified: 638136407275240566
+  lastModified: 638144043161828432
   FileSizes:
   - Name: Desktop
     Value: 222464
@@ -1403,7 +1454,7 @@ MonoBehaviour:
   Path: FMOD/Boelter/Build/Desktop/Dialogue_CN.bank
   Name: Dialogue_CN
   StudioPath: bank:/Dialogue_CN
-  lastModified: 638136407273640418
+  lastModified: 638144043158553246
   FileSizes:
   - Name: Desktop
     Value: 52416
@@ -1605,10 +1656,10 @@ MonoBehaviour:
   Path: FMOD/Boelter/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638136407273640418
+  lastModified: 638183570362228788
   FileSizes:
   - Name: Desktop
-    Value: 4014
+    Value: 4492
   Exists: 1
 --- !u!114 &-528224342076580931
 MonoBehaviour:
@@ -1629,6 +1680,26 @@ MonoBehaviour:
   FileSizes:
   - Name: Desktop
     Value: 61120
+  Exists: 1
+--- !u!114 &-212371310425662385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/BoelterSFX.bank
+  m_EditorClassIdentifier: 
+  Path: FMOD/Boelter/Build/Desktop/BoelterSFX.bank
+  Name: BoelterSFX
+  StudioPath: bank:/BoelterSFX
+  lastModified: 638183570362218819
+  FileSizes:
+  - Name: Desktop
+    Value: 108160
   Exists: 1
 --- !u!114 &-210496977761803000
 MonoBehaviour:
@@ -1654,6 +1725,33 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &-67090083025045075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/footstep_wood
+  m_EditorClassIdentifier: 
+  Path: event:/footstep_wood
+  Guid:
+    Data1: 29919237
+    Data2: 1338216020
+    Data3: 690330260
+    Data4: 1419565739
+  Banks:
+  - {fileID: -212371310425662385}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1151
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1676,6 +1774,7 @@ MonoBehaviour:
   - {fileID: -3273803657052011168}
   - {fileID: -2331430555970887838}
   - {fileID: 8536232135560188512}
+  - {fileID: -212371310425662385}
   EditorEvents:
   - {fileID: -685764621631508537}
   - {fileID: 9074418290916476812}
@@ -1707,12 +1806,22 @@ MonoBehaviour:
   - {fileID: 9179708988763545220}
   - {fileID: 1024979010364795710}
   - {fileID: -5088189457113519869}
-  EditorParameters: []
+  - {fileID: -67090083025045075}
+  - {fileID: 3584158440639583418}
+  - {fileID: 5825855069171262251}
+  - {fileID: -4851041154979623829}
+  - {fileID: 6002032621045940697}
+  - {fileID: 2453005138194469203}
+  - {fileID: 3687795949849190629}
+  EditorParameters:
+  - {fileID: 5964709772466137960}
+  - {fileID: 2086197844221912176}
+  - {fileID: -9162758037571193885}
   MasterBanks:
   - {fileID: -8863561674149004046}
   StringsBanks:
   - {fileID: -640569256181905880}
-  cacheTime: 638136407275240566
+  cacheTime: 638183570362228788
   cacheVersion: 131601
 --- !u!114 &42909343629357425
 MonoBehaviour:
@@ -1729,7 +1838,7 @@ MonoBehaviour:
   Path: FMOD/Boelter/Build/Desktop/Dialogue_EN.bank
   Name: Dialogue_EN
   StudioPath: bank:/Dialogue_EN
-  lastModified: 638136407273640418
+  lastModified: 638144043158553246
   FileSizes:
   - Name: Desktop
     Value: 61120
@@ -1974,6 +2083,30 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1859
+--- !u!114 &1039039466674714550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/door_close/reverb
+  m_EditorClassIdentifier: 
+  Name: reverb
+  StudioPath: 
+  Min: 0
+  Max: 2
+  Default: 0
+  ID:
+    data1: 3954745023
+    data2: 4252435713
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
 --- !u!114 &1164517442002950403
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2097,6 +2230,30 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &2086197844221912176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/speed
+  m_EditorClassIdentifier: 
+  Name: speed
+  StudioPath: parameter:/speed
+  Min: 0
+  Max: 2
+  Default: 1
+  ID:
+    data1: 566708298
+    data2: 912253535
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
 --- !u!114 &2399253179000228297
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2125,6 +2282,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &2453005138194469203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/paper_crumble
+  m_EditorClassIdentifier: 
+  Path: event:/paper_crumble
+  Guid:
+    Data1: 1335267278
+    Data2: 1269141408
+    Data3: 839686590
+    Data4: 1425823491
+  Banks:
+  - {fileID: -212371310425662385}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1849
 --- !u!114 &2484747041778238691
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2333,6 +2517,60 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 150857
+--- !u!114 &3584158440639583418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/door_open
+  m_EditorClassIdentifier: 
+  Path: event:/door_open
+  Guid:
+    Data1: -789286377
+    Data2: 1185237415
+    Data3: 1091734446
+    Data4: 727657982
+  Banks:
+  - {fileID: -212371310425662385}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1165
+--- !u!114 &3687795949849190629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/footstep_ground
+  m_EditorClassIdentifier: 
+  Path: event:/footstep_ground
+  Guid:
+    Data1: 1283598073
+    Data2: 1106135979
+    Data3: 370766225
+    Data4: 1514695869
+  Banks:
+  - {fileID: -212371310425662385}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1151
 --- !u!114 &3694391099404257523
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2355,6 +2593,30 @@ MonoBehaviour:
     data2: 2699559447
   Type: 1
   IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &3813298267893894600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/door_close/speed
+  m_EditorClassIdentifier: 
+  Name: speed
+  StudioPath: 
+  Min: 0
+  Max: 2
+  Default: 1
+  ID:
+    data1: 566708298
+    data2: 912253535
+  Type: 0
+  IsGlobal: 1
   Labels: []
   Exists: 1
 --- !u!114 &3841159417472216825
@@ -2459,6 +2721,30 @@ MonoBehaviour:
     data2: 313628491
   Type: 0
   IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &4199650511919134571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/door_close/intensity
+  m_EditorClassIdentifier: 
+  Name: intensity
+  StudioPath: 
+  Min: 0
+  Max: 2
+  Default: 1
+  ID:
+    data1: 446479489
+    data2: 3699233805
+  Type: 0
+  IsGlobal: 1
   Labels: []
   Exists: 1
 --- !u!114 &4259959641326561673
@@ -2749,11 +3035,38 @@ MonoBehaviour:
   Path: FMOD/Boelter/Build/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 638136407274285430
+  lastModified: 638144043160103195
   FileSizes:
   - Name: Desktop
     Value: 10454368
   Exists: 1
+--- !u!114 &5825855069171262251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/footstep_grass
+  m_EditorClassIdentifier: 
+  Path: event:/footstep_grass
+  Guid:
+    Data1: 1341867308
+    Data2: 1331900361
+    Data3: -424216668
+    Data4: -239416466
+  Banks:
+  - {fileID: -212371310425662385}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1300
 --- !u!114 &5917523104040377914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2781,6 +3094,30 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 0
+--- !u!114 &5964709772466137960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/reverb
+  m_EditorClassIdentifier: 
+  Name: reverb
+  StudioPath: parameter:/reverb
+  Min: 0
+  Max: 2
+  Default: 0
+  ID:
+    data1: 3954745023
+    data2: 4252435713
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
 --- !u!114 &5978956977626006524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2805,6 +3142,36 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &6002032621045940697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/door_close
+  m_EditorClassIdentifier: 
+  Path: event:/door_close
+  Guid:
+    Data1: 1530862775
+    Data2: 1108363654
+    Data3: -1838445648
+    Data4: -843707347
+  Banks:
+  - {fileID: -212371310425662385}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters:
+  - {fileID: 4199650511919134571}
+  - {fileID: 3813298267893894600}
+  - {fileID: 1039039466674714550}
+  MinDistance: 0
+  MaxDistance: 8.400001
+  Length: 1036
 --- !u!114 &6314077333121920992
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3047,7 +3414,7 @@ MonoBehaviour:
   Path: FMOD/Boelter/Build/Desktop/VO.bank
   Name: VO
   StudioPath: bank:/VO
-  lastModified: 638136407275240566
+  lastModified: 638144043161828432
   FileSizes:
   - Name: Desktop
     Value: 38624
