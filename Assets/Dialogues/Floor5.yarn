@@ -9,10 +9,10 @@ Carey: What's up?
     Carey: Start at the front of Boelter Hall, facing away from the entrance doors, facing towards the mini model of Boelter Hall inside the glass case. Now, walk forward, past the glass case. Take the second left you see, then turn right again. Take the next right and walk all the way down the hallway, mmkay. At the end, the door should be on your left. It's room 5422. #line:Specs1
     Carey: You must follow that spec exactly! Just be thankful it isn't 70 pages long! #line:Specs2
 -> What do I do with the map?
--> I found this key with a room number on it...
+-> I found this key with a room number on it... <<if hasItem("Room Key")>>
 -> There's a room with what seems to be a pop quiz?
 -> I saw these posters that had the word 'voodoo' on them. What does it mean?
--> What does this message about mirrors mean?
+-> What does this message about mirrors mean? <<if hasItem("Gold Key")>>
 
 <<jump Floor5>>
 ===
