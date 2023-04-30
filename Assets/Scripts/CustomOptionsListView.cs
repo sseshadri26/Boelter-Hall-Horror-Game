@@ -20,6 +20,8 @@ namespace Yarn.Unity
 
         [SerializeField] bool showUnavailableOptions = false;
 
+        [SerializeField] AutoScrollRect autoScrollRect;
+
         // A cached pool of OptionView objects so that we can reuse them
         List<OptionView> optionViews = new List<OptionView>();
 
@@ -84,22 +86,25 @@ namespace Yarn.Unity
 
                 optionView.Option = option;
 
-                // The first available option is selected by default
-                if (optionViewsCreated == 0)
-                {
-                    optionView.Select();
-                }
+                // The last (top) available option is selected by default
+                optionView.Select();
 
                 optionViewsCreated += 1;
             }
 
+            // Populate selectables for the AutoScrollRect
+            autoScrollRect.Populate();
+
             // Update the last line, if one is configured
             if (lastLineText != null)
             {
-                if (lastSeenLine != null) {
+                if (lastSeenLine != null)
+                {
                     lastLineText.gameObject.SetActive(true);
                     lastLineText.text = lastSeenLine.Text.Text;
-                } else {
+                }
+                else
+                {
                     lastLineText.gameObject.SetActive(false);
                 }
             }
