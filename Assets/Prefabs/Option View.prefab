@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.80392164, g: 0.7607844, b: 0.64705884, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -190,15 +190,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: Option view
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 6b6316095a6ff6645b4bb4a778ebfc84, type: 2}
-  m_sharedMaterial: {fileID: -5066727663958743241, guid: 6b6316095a6ff6645b4bb4a778ebfc84, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4289053389
-  m_fontColor: {r: 0.8039216, g: 0.7607843, b: 0.64705884, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

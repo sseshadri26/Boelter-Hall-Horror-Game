@@ -19,7 +19,7 @@ public class TV : MonoBehaviour, IAction
     public void Activate()
     {
         fpc.controls.Disable();
-        fpc.dialogueRunner.StartDialogue("Intro");
+        fpc.dialogueRunner.StartDialogue("Floor5");
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         transform.GetChild(0).gameObject.SetActive(true);
