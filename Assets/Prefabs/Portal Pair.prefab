@@ -415,6 +415,9 @@ MonoBehaviour:
   playerCamera: {fileID: 0}
   portal: {fileID: 3451279657721651828}
   otherPortal: {fileID: 3451279657414398578}
+  visible: 0
+  portalCamera: {fileID: 3451279658924032046}
+  meshRenderer: {fileID: 3451279658761171722}
 --- !u!1 &3451279658277694250
 GameObject:
   m_ObjectHideFlags: 0
@@ -747,6 +750,9 @@ MonoBehaviour:
   playerCamera: {fileID: 0}
   portal: {fileID: 3451279657414398578}
   otherPortal: {fileID: 3451279657721651828}
+  visible: 0
+  portalCamera: {fileID: 3451279657818755816}
+  meshRenderer: {fileID: 3451279657550273780}
 --- !u!1 &3451279659050290913
 GameObject:
   m_ObjectHideFlags: 0
@@ -830,6 +836,7 @@ MonoBehaviour:
   previousScreensAreOnScreen: 0
   inFrontOfScreens: 0
   portalsColliding: 0
+  portalDisabledForever: 0
   screensAreEnabled: 0
 --- !u!114 &505313277
 MonoBehaviour:
@@ -1116,6 +1123,8 @@ MonoBehaviour:
   objectsWithActions:
   - {fileID: 9205239515670213767}
   destroyOnUse: 0
+  holdToInteract: 0
+  howLongToHold: 3
 --- !u!114 &6712134618969585907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1403,6 +1412,8 @@ MonoBehaviour:
   objectsWithActions:
   - {fileID: 2057779428054170867}
   destroyOnUse: 0
+  holdToInteract: 0
+  howLongToHold: 3
 --- !u!114 &6895271030532505441
 MonoBehaviour:
   m_ObjectHideFlags: 0
