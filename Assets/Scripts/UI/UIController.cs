@@ -128,7 +128,7 @@ public class UIController : MonoBehaviour
         if(panel == pause)
             panel.InstantOpen();
         else
-            panel.AnimateOpen(PanelAnimator.PanelPosition.LEFT, PanelAnimator.PanelAnimationSpeed.NORMAL);
+            panel.AnimateOpen(PanelAnimator.PanelPosition.RIGHT, PanelAnimator.PanelAnimationSpeed.NORMAL);
 
         if(!overlayPanels.Contains(panel))
             CloseAllPanels();

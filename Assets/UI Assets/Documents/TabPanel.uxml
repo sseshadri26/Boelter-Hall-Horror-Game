@@ -24,7 +24,7 @@
             <ui:VisualElement name="tabs" style="flex-direction: row; justify-content: space-around;" />
         </ui:VisualElement>
         <ui:VisualElement name="content" style="flex-grow: 1;">
-            <ui:VisualElement name="current-panel-container" style="flex-grow: 1; align-items: center;" />
+            <ui:VisualElement name="current-panel-container" style="flex-grow: 1; align-items: center; position: relative; overflow: visible;" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>
