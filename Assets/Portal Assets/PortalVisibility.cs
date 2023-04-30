@@ -33,9 +33,12 @@ public class PortalVisibility : MonoBehaviour
 
     Vector3 basisX, basisY, basisZ;
 
+    int layerMask;
+
     // Start is called before the first frame update
     void Start()
     {
+        layerMask = ~(1 << LayerMask.NameToLayer("portal"));
 
         //if not set in editor, set player automatically
         if (player == null)
@@ -166,8 +169,8 @@ public class PortalVisibility : MonoBehaviour
             }
         }
 
-        //isVisible = portalRenderer.isVisible && RaycastVisibility();
-        isVisible = portalRenderer.isVisible;
+        isVisible = portalRenderer.isVisible && RaycastVisibility();
+        //isVisible = portalRenderer.isVisible;
 
     }
 
@@ -196,16 +199,26 @@ public class PortalVisibility : MonoBehaviour
                         //get direction from the point to the camera
                         Vector3 direction = Camera.main.transform.position - raycastPoints[i, j, k];
 
+                        // Define a LayerMask that includes all layers except the "Ignore Raycast" layer
 
-                        if (Physics.Raycast(raycastPoints[i, j, k] + Vector3.Normalize(direction) * 0.001f, direction, out RaycastHit hit, 100))
+
+
+                        if (Physics.Raycast(raycastPoints[i, j, k] + Vector3.Normalize(direction) * 0.001f, direction, out RaycastHit hit, 20, layerMask))
                         {
+
+                            Debug.Log(hit.collider.gameObject.name);
+
                             //if the raycast hits the player, then return true
-                            if (hit.collider.gameObject == player)
+                            if (hit.collider.gameObject.tag == "Player")
                             {
-                                Debug.DrawRay(raycastPoints[i, j, k], direction * hit.distance, Color.yellow);
+                                Debug.DrawRay(raycastPoints[i, j, k], direction * hit.distance, Color.green);
                                 raycastPointsSuccess[i, j, k] = true;
                                 //isVisible = true;
                                 return true;
+                            }
+                            else
+                            {
+                                Debug.DrawRay(raycastPoints[i, j, k], direction * hit.distance, Color.yellow);
                             }
 
                         }

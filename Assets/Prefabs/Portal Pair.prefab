@@ -416,6 +416,7 @@ MonoBehaviour:
   portal: {fileID: 3451279657721651828}
   otherPortal: {fileID: 3451279657414398578}
   visible: 0
+  portalVisibility: {fileID: 8475017207327767010}
   portalCamera: {fileID: 3451279658924032046}
   meshRenderer: {fileID: 3451279658761171722}
 --- !u!1 &3451279658277694250
@@ -751,6 +752,7 @@ MonoBehaviour:
   portal: {fileID: 3451279657414398578}
   otherPortal: {fileID: 3451279657721651828}
   visible: 0
+  portalVisibility: {fileID: 4148794264331645682}
   portalCamera: {fileID: 3451279657818755816}
   meshRenderer: {fileID: 3451279657550273780}
 --- !u!1 &3451279659050290913

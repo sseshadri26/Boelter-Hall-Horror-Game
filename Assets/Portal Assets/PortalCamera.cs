@@ -9,6 +9,8 @@ public class PortalCamera : MonoBehaviour
     public Transform portal;
     public Transform otherPortal;
     public bool visible;
+
+    [SerializeField] private PortalVisibility portalVisibility;
     [SerializeField] private Camera portalCamera;
 
     [SerializeField] private MeshRenderer meshRenderer;
@@ -42,7 +44,7 @@ public class PortalCamera : MonoBehaviour
 
         if (meshRenderer != null)
         {
-            if (!meshRenderer.isVisible)
+            if (!portalVisibility.isVisible)
             {
                 visible = false;
                 portalCamera.enabled = false;
