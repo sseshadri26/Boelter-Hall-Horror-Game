@@ -15,17 +15,23 @@ public class TabPanelUI : MonoBehaviour
 
     // UI References
     VisualElement m_currentPanelContainer;
-    VisualElement m_tabsContainer;
+    SelectableScrollView m_tabsContainer;
     void Awake()
     {
         m_currentPanelContainer = document.rootVisualElement.Q<VisualElement>(k_currentPanelContainer);
-        m_tabsContainer = document.rootVisualElement.Q<VisualElement>(k_tabsContainer);
+        m_tabsContainer = document.rootVisualElement.Q<SelectableScrollView>(k_tabsContainer);
 
     }
 
     void Start()
     {
         m_currentPanelContainer.Add(tabPanel.rootVisualElement);
+
+        IEnumerator<VisualElement> childPtr = m_tabsContainer.contentContainer.Children().GetEnumerator();
+        childPtr.MoveNext();
+
+        // Automatically select the first tab
+        m_tabsContainer.VisuallySelectOne(childPtr.Current);
 
         // Ensures that positioning follows rules of the panel container (such as center alignment)
         tabPanel.rootVisualElement.style.position = Position.Relative;

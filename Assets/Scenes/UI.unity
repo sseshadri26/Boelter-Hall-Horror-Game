@@ -211,8 +211,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   document: {fileID: 255780283}
-  animationType: 4
-  panelStateChange: {fileID: 11400000, guid: c354295335cbfad40abde8d0229bf468, type: 2}
   OnOpenPanel:
     m_PersistentCalls:
       m_Calls: []
@@ -363,8 +361,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   document: {fileID: 1041981934}
-  animationType: 2
-  panelStateChange: {fileID: 11400000, guid: 3fbd3e357294c734c9300f54e76c6a38, type: 2}
   OnOpenPanel:
     m_PersistentCalls:
       m_Calls:
@@ -461,8 +457,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   document: {fileID: 1534538178}
-  animationType: 4
-  panelStateChange: {fileID: 11400000, guid: 3aa00deaf0b1c11438aa306b0898b47f, type: 2}
   OnOpenPanel:
     m_PersistentCalls:
       m_Calls: []
@@ -545,8 +539,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   document: {fileID: 1693781863}
-  animationType: 1
-  panelStateChange: {fileID: 11400000, guid: 4ffdf5a5ff7aa6f46be29f3e36b77859, type: 2}
   OnOpenPanel:
     m_PersistentCalls:
       m_Calls: []
@@ -585,7 +577,7 @@ MonoBehaviour:
   playerInput: {fileID: 11400000, guid: bb6a48d6bb2fd8d408b27a197299a2fa, type: 2}
   stateChanged: {fileID: 11400000, guid: d21908ccfe647ed4e815fbce3a5dc5b3, type: 2}
   pause: {fileID: 255780286}
-  inventory: {fileID: 1041981938}
+  inventory: {fileID: 1534538179}
   journal: {fileID: 2111837886}
 --- !u!4 &1761737793
 Transform:
@@ -759,8 +751,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   document: {fileID: 2111837884}
-  animationType: 3
-  panelStateChange: {fileID: 11400000, guid: db68ae39331227844a354d3bdb6dfa9a, type: 2}
   OnOpenPanel:
     m_PersistentCalls:
       m_Calls: []

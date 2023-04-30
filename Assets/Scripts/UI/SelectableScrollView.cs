@@ -20,6 +20,25 @@ public class SelectableScrollView : ScrollView
     const string c_Selected = "selected";
     const string c_NotSelected = "not-selected";
 
+    public event System.Action<VisualElement> OnItemSelected;
+
+    public SelectableScrollView()
+    {
+        schedule.Execute(() => 
+        {
+            foreach(VisualElement child in contentContainer.Children())
+            {
+                child.RegisterCallback<ClickEvent>(ev => VisuallySelectOne(child));
+            }
+        });
+    }
+
+    public new void Add(VisualElement child)
+    {
+        base.Add(child);
+        child.RegisterCallback<ClickEvent>(ev => VisuallySelectOne(child));
+    }
+
 
     /// <summary>
     /// Play the animation tied to selecting an item, and at the same time play the animation
@@ -38,6 +57,7 @@ public class SelectableScrollView : ScrollView
         {
             item.RemoveFromClassList(c_NotSelected);
             item.AddToClassList(c_Selected);
+            OnItemSelected?.Invoke(item);
         }
     }
 
