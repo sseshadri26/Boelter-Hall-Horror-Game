@@ -19,17 +19,10 @@ public class PanelAnimator : MonoBehaviour
     // The downsides of inheritance are left without any counteracting positives.
 
     [SerializeField] UIDocument document = default;
-    [SerializeField] PanelAnimationType animationType = PanelAnimationType.APPEAR;
-
-    // DESIGN CHOICE: Use a single bool channel for this event instead of
-    // separate events for open and close to reduce number of scriptable
-    // objects we need to handle
-    [SerializeField] BoolEventChannelSO panelStateChange = default;
 
     [Space(30)]
     [SerializeField] UnityEvent OnOpenPanel = new UnityEvent();
     [SerializeField] UnityEvent OnClosePanel = new UnityEvent();
-
 
 
 
@@ -55,8 +48,8 @@ public class PanelAnimator : MonoBehaviour
     const string c_Opaque = "opaque";
 
     // Animation Configs
-    const string c_AnimationFast = "animation-fast";
-    const string c_AnimationInstant = "animation-instant";
+    const string c_AnimationNormal = "animation-fast";
+    const string c_AnimationFast = "animation-instant";
 
 
 
@@ -82,26 +75,18 @@ public class PanelAnimator : MonoBehaviour
         {PanelPosition.BOTTOM, c_OffscreenBot},
     };
 
-    public enum PanelOpacity {TRANSPARENT, OPAQUE};
-    private Dictionary<PanelOpacity, string> panelVisibilityClasses = new Dictionary<PanelOpacity, string>()
+    public enum PanelVisibility {INVISIBLE, VISIBLE};
+    private Dictionary<PanelVisibility, string> panelVisibilityClasses = new Dictionary<PanelVisibility, string>()
     {
-        {PanelOpacity.TRANSPARENT, c_Transparent},
-        {PanelOpacity.OPAQUE, c_Opaque}
+        {PanelVisibility.INVISIBLE, c_Transparent},
+        {PanelVisibility.VISIBLE, c_Opaque}
     };
 
-
-
-    // Enum to make it easier for designer to select type of animation instead of worrying about panel position
-    public enum PanelAnimationType{ FROM_ABOVE, FROM_BELOW, FROM_LEFT, FROM_RIGHT, APPEAR, FADE_IN }
-
-    private Dictionary<PanelAnimationType, PanelPosition> panelStartPosition = new Dictionary<PanelAnimationType, PanelPosition>()
+    public enum PanelAnimationSpeed {FAST, NORMAL};
+    private Dictionary<PanelAnimationSpeed, string> panelAnimationSpeedClasses = new Dictionary<PanelAnimationSpeed, string>()
     {
-        {PanelAnimationType.FROM_ABOVE, PanelPosition.TOP},
-        {PanelAnimationType.FROM_BELOW, PanelPosition.BOTTOM},
-        {PanelAnimationType.FROM_LEFT, PanelPosition.LEFT},
-        {PanelAnimationType.FROM_RIGHT, PanelPosition.RIGHT},
-        {PanelAnimationType.APPEAR, PanelPosition.CENTER},
-        {PanelAnimationType.FADE_IN, PanelPosition.CENTER}
+        {PanelAnimationSpeed.FAST, c_AnimationFast},
+        {PanelAnimationSpeed.NORMAL, c_AnimationNormal}
     };
 
 
@@ -110,11 +95,8 @@ public class PanelAnimator : MonoBehaviour
     // Panel Animation State //
     ///////////////////////////
 
-    private PanelPosition startPosition = PanelPosition.CENTER;
-    private PanelPosition currentPosition = default;
-
-    private PanelOpacity startOpacity = PanelOpacity.TRANSPARENT;
-    private PanelOpacity currentOpacity = default;
+    private PanelVisibility startOpacity = PanelVisibility.INVISIBLE;
+    private PanelVisibility currentOpacity = default;
 
     private VisualElement root
     {
@@ -141,25 +123,122 @@ public class PanelAnimator : MonoBehaviour
         // to make it easier for designer to understand the animation that will be played
 
         // Initialize Panel tracking state
-        startPosition = panelStartPosition[animationType];
-        currentPosition = startPosition;
-
-        startOpacity = PanelOpacity.TRANSPARENT;
+        currentOpacity = PanelVisibility.INVISIBLE;
         root.style.visibility = Visibility.Hidden;
-        currentOpacity = startOpacity;
 
         // Initialize state of Panel UI
-        root.AddToClassList(panelPositionClasses[startPosition]);
-        root.AddToClassList(panelVisibilityClasses[startOpacity]);
-        root.AddToClassList(animationType == PanelAnimationType.APPEAR? c_AnimationInstant : c_AnimationFast);
-        
-        // Set up animation callback
-        if(panelStateChange != null)
-            panelStateChange.OnEventRaised += HandlePanelOpenStateChanged;
+        root.AddToClassList(panelPositionClasses[PanelPosition.CENTER]);
+        root.AddToClassList(panelVisibilityClasses[PanelVisibility.INVISIBLE]);
         
         root.RegisterCallback<TransitionStartEvent>(HandleAnimationStart);
         root.RegisterCallback<TransitionEndEvent>(HandleAnimationEnd);
     }
+
+
+
+    /// <summary>
+    /// Instantly open this panel
+    /// </summary>
+    public void InstantOpen()
+    {
+        InstantUpdateVisuals(PanelPosition.CENTER, PanelVisibility.VISIBLE);
+        root.style.visibility = Visibility.Visible;     // Block raycasts
+    }
+
+    /// <summary>
+    /// Instantly close this panel
+    /// </summary>
+    public void InstantClose()
+    {
+        InstantUpdateVisuals(PanelPosition.TOP, PanelVisibility.INVISIBLE);
+        root.style.visibility = Visibility.Hidden;      // Unblock raycasts
+    }
+
+    /// <summary>
+    /// Fade this panel in from the provided position on the screen at the provided speed
+    /// </summary>
+    public void AnimateOpen(PanelPosition startPosition, PanelAnimationSpeed animationSpeed)
+    {
+        
+
+        // Perform main animation after reposition animation has occurred
+        System.Action OnFinishAnimation = () => 
+        {
+            AnimateVisuals(PanelPosition.CENTER, PanelVisibility.VISIBLE, animationSpeed);
+            OnOpenPanel?.Invoke();
+        };
+
+        // Reposition the panel to starting position
+        InstantUpdateVisuals(startPosition, PanelVisibility.INVISIBLE, OnFinishAnimation);
+    }
+
+    /// <summary>
+    /// Fade this panel out to the provided position on the screen at the provided speed
+    /// </summary>
+    public void AnimateClose(PanelPosition endPosition, PanelAnimationSpeed animationSpeed)
+    {
+        AnimateVisuals(endPosition, PanelVisibility.INVISIBLE, animationSpeed);
+        OnClosePanel?.Invoke();
+    }
+
+
+
+    private void AnimateVisuals(PanelPosition endPosition, PanelVisibility endOpacity, PanelAnimationSpeed animationSpeed)
+    {
+        ChangePosition(endPosition);
+        ChangeVisibility(endOpacity);
+        ChangeAnimationSpeed(animationSpeed);
+    }
+
+    private void InstantUpdateVisuals(PanelPosition position, PanelVisibility opacity, System.Action callback = null)
+    {
+        RemoveAllProvidedClasses(root, panelAnimationSpeedClasses.Values);
+        ChangePosition(position);
+        ChangeVisibility(opacity);
+
+
+        if(callback != null)
+            root.schedule.Execute(() => {callback.Invoke();});
+    }
+
+
+
+
+
+    /// <summary>
+    /// Ensure that all classes provided are not on this element
+    /// </summary>
+    private void RemoveAllProvidedClasses(VisualElement element, IEnumerable<string> classStrings)
+    {
+        foreach (string s in classStrings)
+        {
+            element.RemoveFromClassList(s);
+        }
+    }
+
+    /// <summary>
+    /// Helper function for animating the panel to a new position
+    /// </summary>
+    private void ChangePosition(PanelPosition position)
+    {
+        RemoveAllProvidedClasses(root, panelPositionClasses.Values);
+        root.AddToClassList(panelPositionClasses[position]);
+    }
+
+    private void ChangeVisibility(PanelVisibility visibility)
+    {
+        RemoveAllProvidedClasses(root, panelVisibilityClasses.Values);
+        root.AddToClassList(panelVisibilityClasses[visibility]);
+        currentOpacity = visibility;
+    }
+
+    private void ChangeAnimationSpeed(PanelAnimationSpeed animationSpeed)
+    {
+        RemoveAllProvidedClasses(root, panelAnimationSpeedClasses.Values);
+        root.AddToClassList(panelAnimationSpeedClasses[animationSpeed]);
+    }
+
+
 
     private void HandleAnimationEnd(TransitionEndEvent evt)
     {
@@ -173,7 +252,7 @@ public class PanelAnimator : MonoBehaviour
         // would need to include animation information. This would compromise the separation of responsibilities
         // for the USS classes and make it tricky to work with animations
 
-        if(currentOpacity == PanelOpacity.TRANSPARENT)
+        if(currentOpacity == PanelVisibility.INVISIBLE)
         {
             root.style.visibility = Visibility.Hidden;   
         }
@@ -182,94 +261,10 @@ public class PanelAnimator : MonoBehaviour
 
     private void HandleAnimationStart(TransitionStartEvent evt)
     {
-        if(currentOpacity == PanelOpacity.OPAQUE)
+        if(currentOpacity == PanelVisibility.VISIBLE)
         {
             root.style.visibility = Visibility.Visible;   
         }
-    }
-
-    void OnDestroy()
-    {
-        if(panelStateChange != null)
-            panelStateChange.OnEventRaised -= HandlePanelOpenStateChanged;
-        
-        // No deregister because root has been destroyed at this point
-    }
-
-    private void HandlePanelOpenStateChanged(bool isOpen)
-    {
-        if(isOpen)
-            OpenPanel();
-        else
-            ClosePanel();
-    }
-
-    public void OpenPanel()
-    {
-
-        ChangePosition(PanelPosition.CENTER);
-        ChangeVisibility(PanelOpacity.OPAQUE);
-
-        OnOpenPanel?.Invoke();
-    }
-
-    public void ClosePanel()
-    {
-
-        ChangePosition(startPosition);
-        ChangeVisibility(PanelOpacity.TRANSPARENT);
-
-        OnClosePanel?.Invoke();
-    }
-
-
-    /// <summary>
-    /// Animate a UI panel in from a particular region of the screen while fading in
-    /// </summary>
-    public void FadeIn(PanelPosition startPosition)
-    {
-
-    }
-
-    /// <summary>
-    /// Animate a UI panel from its current position to a region of the screen while fading out
-    /// </summary>
-    public void FadeOut(PanelPosition endPosition)
-    {
-
-    }
-
-    /// <summary>
-    /// Make a UI panel instantly appear at the center of the screen
-    /// </summary>
-    public void PopIn()
-    {
-
-    }
-
-    /// <summary>
-    /// Make a UI panel instantly disappear
-    /// </summary>
-    public void PopOut()
-    {
-
-    }
-
-    /// <summary>
-    /// Helper function for animating the panel to a new position
-    /// </summary>
-    private void ChangePosition(PanelPosition position)
-    {
-        root.RemoveFromClassList(panelPositionClasses[currentPosition]);
-        root.AddToClassList(panelPositionClasses[position]);
-        currentPosition = position;
-    }
-
-    private void ChangeVisibility(PanelOpacity visibility)
-    {
-        root.RemoveFromClassList(panelVisibilityClasses[currentOpacity]);
-        root.AddToClassList(panelVisibilityClasses[visibility]);
-        currentOpacity = visibility;
     }
 
 }

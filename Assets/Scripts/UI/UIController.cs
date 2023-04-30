@@ -125,7 +125,10 @@ public class UIController : MonoBehaviour
     /// </summary>
     private void OpenPanel(PanelAnimator panel)
     {
-        panel.OpenPanel();
+        if(panel == pause)
+            panel.InstantOpen();
+        else
+            panel.AnimateOpen(PanelAnimator.PanelPosition.LEFT, PanelAnimator.PanelAnimationSpeed.NORMAL);
 
         if(!overlayPanels.Contains(panel))
             CloseAllPanels();
@@ -138,7 +141,11 @@ public class UIController : MonoBehaviour
     /// </summary>
     private void ClosePanel(PanelAnimator panel)
     {
-        panel.ClosePanel();
+        if(panel == pause)
+            panel.InstantClose();
+        else
+            panel.AnimateClose(PanelAnimator.PanelPosition.LEFT, PanelAnimator.PanelAnimationSpeed.NORMAL);
+
         openPanels.Remove(panel);
     }
 
