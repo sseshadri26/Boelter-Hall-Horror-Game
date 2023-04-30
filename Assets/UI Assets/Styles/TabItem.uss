@@ -1,0 +1,10 @@
+.selected .item-tint {
+    opacity: 1;
+    transition-property: opacity;
+    transition-duration: 1s;
+}
+
+.not-selected .item-tint {
+    opacity: 0.3;
+    transition-property: opacity;
+}

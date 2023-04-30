@@ -10,12 +10,16 @@ public class TabPanelUI : MonoBehaviour
 
     // UI Tags
     const string k_currentPanelContainer = "current-panel-container";
+    const string k_tabsContainer = "tabs";
+    
 
     // UI References
     VisualElement m_currentPanelContainer;
+    VisualElement m_tabsContainer;
     void Awake()
     {
         m_currentPanelContainer = document.rootVisualElement.Q<VisualElement>(k_currentPanelContainer);
+        m_tabsContainer = document.rootVisualElement.Q<VisualElement>(k_tabsContainer);
 
     }
 
