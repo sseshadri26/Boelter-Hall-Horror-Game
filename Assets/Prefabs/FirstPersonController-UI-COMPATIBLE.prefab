@@ -240,7 +240,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 170.1573, y: -21.965153}
+  m_AnchoredPosition: {x: 170.1573, y: -21.96514}
   m_SizeDelta: {x: 340, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &6138160395710017806
@@ -1651,7 +1651,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 58126041099475403}
   m_HandleRect: {fileID: 1400390682410982951}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -1790,6 +1790,7 @@ GameObject:
   - component: {fileID: 1567774080166067304}
   - component: {fileID: 4138043473996514081}
   - component: {fileID: 2280116182101821878}
+  - component: {fileID: 790417469883718842}
   m_Layer: 5
   m_Name: Viewport
   m_TagString: Untagged
@@ -1840,7 +1841,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1869,6 +1870,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ShowMaskGraphic: 0
+--- !u!114 &790417469883718842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6272760518400490612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb636667cab44cb4b8098e5ec271b153, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainScroll: {fileID: 0}
 --- !u!1 &6276450778081809229
 GameObject:
   m_ObjectHideFlags: 0
@@ -1934,7 +1948,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0.392}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -2748,6 +2762,10 @@ PrefabInstance:
     - target: {fileID: 5689725287279364037, guid: a610399082f2b2e4886d4f3f2075a8f8, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5689725287279364037, guid: a610399082f2b2e4886d4f3f2075a8f8, type: 3}
+      propertyPath: m_BlocksRaycasts
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5689725287279364038, guid: a610399082f2b2e4886d4f3f2075a8f8, type: 3}
       propertyPath: m_Enabled

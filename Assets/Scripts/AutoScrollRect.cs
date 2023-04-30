@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using System.Collections;
 
 public class AutoScrollRect : MonoBehaviour
@@ -27,6 +28,13 @@ public class AutoScrollRect : MonoBehaviour
 
     private void OnSelectableSelected(Selectable selectable)
     {
+        // Check if the pointer is over a UI element
+        bool isPointerOverUIObject = EventSystem.current.IsPointerOverGameObject();
+        if (isPointerOverUIObject)
+        {
+            return;
+        }
+
         // Get the position of the selected item in the ScrollRect
         RectTransform selectedTransform = selectable.GetComponent<RectTransform>();
         float selectedPosition = selectedTransform.anchoredPosition.y;
