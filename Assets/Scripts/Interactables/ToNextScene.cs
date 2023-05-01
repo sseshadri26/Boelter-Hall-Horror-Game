@@ -11,11 +11,15 @@ public class ToNextScene : MonoBehaviour, IAction
     private bool activated;
     private RawImage blackScreen;
     private FirstPersonController player;
-    
+
     [Tooltip("The next scene to load")]
     public string nextScene;
     [Tooltip("Which spawn point the player will start at in the next scene")]
     public int spawnPoint;
+    [Tooltip("Whether opening this door requires a key (or lockpick)")]
+    public bool requiresKey = false;
+    [Tooltip("The name of the key item")]
+    public string keyName;
 
     void Start()
     {
@@ -30,8 +34,16 @@ public class ToNextScene : MonoBehaviour, IAction
     // If door is activated, start the coroutine to load next scene.
     public void Activate()
     {
-        // Debug.Log("Loading scene");
-        StartCoroutine("LoadStuff");
+        // Make sure we don't need a key first
+        if (!requiresKey || YarnFunctions.HasItem(keyName))
+        {
+            StartCoroutine("LoadStuff");
+        }
+        else
+        {
+            Notification.instance.ShowMessage("The door won't open");
+            StartCoroutine("FreezePlayer");
+        }
     }
 
     private IEnumerator LoadStuff()
@@ -47,5 +59,15 @@ public class ToNextScene : MonoBehaviour, IAction
         yield return new WaitForSecondsRealtime(1f);
         Globals.playDoorCloseSoundAtNextScene = true;
         SceneManager.LoadScene(nextScene);
+    }
+
+    private IEnumerator FreezePlayer()
+    {
+        player.playerCanMove = false;
+        player.cameraCanMove = false;
+
+        yield return new WaitForSeconds(1.5f);
+        player.playerCanMove = true;
+        player.cameraCanMove = true;
     }
 }
