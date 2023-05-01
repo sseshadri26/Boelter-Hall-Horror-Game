@@ -39,6 +39,11 @@ public class ToNextScene : MonoBehaviour, IAction
         {
             StartCoroutine("LoadStuff");
         }
+        else
+        {
+            Notification.instance.ShowMessage("The door won't open");
+            StartCoroutine("FreezePlayer");
+        }
     }
 
     private IEnumerator LoadStuff()
@@ -54,5 +59,15 @@ public class ToNextScene : MonoBehaviour, IAction
         yield return new WaitForSecondsRealtime(1f);
         Globals.playDoorCloseSoundAtNextScene = true;
         SceneManager.LoadScene(nextScene);
+    }
+
+    private IEnumerator FreezePlayer()
+    {
+        player.playerCanMove = false;
+        player.cameraCanMove = false;
+
+        yield return new WaitForSeconds(1.5f);
+        player.playerCanMove = true;
+        player.cameraCanMove = true;
     }
 }
