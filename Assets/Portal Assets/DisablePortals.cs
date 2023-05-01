@@ -5,6 +5,14 @@ using UnityEngine;
 public class DisablePortals : MonoBehaviour
 {
 
+    //create two arrays of gameobjects - one set of objects to enable and one to disable as soon as we dissapear this portal
+
+    [SerializeField]
+    public GameObject[] objectsToEnable;
+    [SerializeField]
+    public GameObject[] objectsToDisable;
+
+
     [SerializeReference]
     PortalVisibility Portal1Visibility;
     [SerializeReference]
@@ -65,6 +73,17 @@ public class DisablePortals : MonoBehaviour
     {
         if (portalDisabledForever && !screensAreEnabled)
         {
+            //objectsToEnable and objectsToDisable are set in the editor, now do the enabling and disabling
+            foreach (GameObject obj in objectsToEnable)
+            {
+                obj.SetActive(true);
+            }
+            foreach (GameObject obj in objectsToDisable)
+            {
+                obj.SetActive(false);
+            }
+
+            //disable this script so it doesn't run again
             gameObject.SetActive(false);
         }
 

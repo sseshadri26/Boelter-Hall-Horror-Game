@@ -14,7 +14,7 @@ public class SprintAccelerationTuning : MonoBehaviour
     public float zoomedFOV = 80f;
 
     private bool isMovingStraight = false;
-    private float currentSprintSpeed;
+    public float currentSprintSpeed;
 
     public bool atFullSpeed;
 
@@ -33,8 +33,13 @@ public class SprintAccelerationTuning : MonoBehaviour
         if (!firstPersonController.isSprinting)
         {
             // if not sprinting, set sprint speed to the default start speed
+            // if(firstPersonController.sprintFOV > unZoomedFOV)
+            // {
+            firstPersonController.sprintSpeed = startSprintSpeed;
+            // }
             firstPersonController.sprintFOV = unZoomedFOV;
             currentSprintSpeed = startSprintSpeed;
+            // firstPersonController.sprintSpeed = currentSprintSpeed;
             atFullSpeed = false;
             return;
         }

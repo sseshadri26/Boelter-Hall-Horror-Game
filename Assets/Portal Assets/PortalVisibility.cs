@@ -208,7 +208,7 @@ public class PortalVisibility : MonoBehaviour
                         if (Physics.Raycast(raycastPoints[i, j, k] + Vector3.Normalize(direction) * 0.001f, direction, out RaycastHit hit, rayCastMoxDistance, layerMask))
                         {
 
-                            Debug.Log(hit.collider.gameObject.name);
+                            // Debug.Log(hit.collider.gameObject.name);
 
                             //if the raycast hits the player, then return true
                             if (hit.collider.gameObject.tag == "Player")
