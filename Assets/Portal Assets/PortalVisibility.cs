@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PortalVisibility : MonoBehaviour
 {
+
+    [SerializeField] float rayCastMoxDistance = 100f;
     [SerializeField]
     int numberOfHorizontalRaycasts, numberOfVerticalRaycasts;
 
@@ -203,7 +205,7 @@ public class PortalVisibility : MonoBehaviour
 
 
 
-                        if (Physics.Raycast(raycastPoints[i, j, k] + Vector3.Normalize(direction) * 0.001f, direction, out RaycastHit hit, 20, layerMask))
+                        if (Physics.Raycast(raycastPoints[i, j, k] + Vector3.Normalize(direction) * 0.001f, direction, out RaycastHit hit, rayCastMoxDistance, layerMask))
                         {
 
                             Debug.Log(hit.collider.gameObject.name);
