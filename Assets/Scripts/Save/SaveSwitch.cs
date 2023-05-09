@@ -27,7 +27,7 @@ public class SaveSwitch : MonoBehaviour, IAction
 
     public void Activate()
     {
-        Debug.Log("Saving!");
         SaveSystem.SaveGame();
+        Notification.instance.ShowMessage("Saved");
     }
 }
