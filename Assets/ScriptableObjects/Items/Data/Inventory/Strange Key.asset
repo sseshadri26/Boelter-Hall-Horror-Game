@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0051fd9f4d646d9438fd3ab39d58b54d, type: 3}
-  m_Name: Mysterious Key
+  m_Name: Strange Key
   m_EditorClassIdentifier: 
-  itemName: Mysterious Key
+  itemName: Strange Key
   description: What the heck?! The key appears only when the model is rotated a certain
     way. It seems to have the room number, 5280, written on it in permanent marker
   graphic: {fileID: 21300000, guid: 8b8e1b2388660b844b9161fd7b456cac, type: 3}

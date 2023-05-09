@@ -24,10 +24,10 @@ public class DoorJammed : MonoBehaviour, IAction
     private IEnumerator FreezePlayer()
     {
         player.playerCanMove = false;
-        player.cameraCanMove = false;
+        // player.cameraCanMove = false;
 
         yield return new WaitForSeconds(1.5f);
         player.playerCanMove = true;
-        player.cameraCanMove = true;
+        // player.cameraCanMove = true;
     }
 }
