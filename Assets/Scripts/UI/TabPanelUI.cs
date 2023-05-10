@@ -47,6 +47,7 @@ public class TabPanelUI : MonoBehaviour
 
         // Automatically select the first tab
         m_tabsContainer.VisuallySelectOne(tabVisuals[0]);
+        tabPanelAnimators[0].InstantOpen();
 
         for(int i = 0; i < tabVisuals.Count; i++)
         {

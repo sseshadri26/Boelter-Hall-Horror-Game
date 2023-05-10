@@ -1,21 +1,21 @@
 .offscreen-bot {
-    translate: 0 102%;
+    translate: 0% 102%;
 }
 
 .center {
-    translate: 0 0;
+    translate: 0% 0%;
 }
 
 .offscreen-left {
-    translate: -102% 0;
+    translate: -102% 0%;
 }
 
 .offscreen-right {
-    translate: 102% 0;
+    translate: 102% 0%;
 }
 
 .offscreen-top {
-    translate: 0 -102%;
+    translate: 0% -102%;
 }
 
 .transparent {
