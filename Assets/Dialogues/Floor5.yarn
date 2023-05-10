@@ -4,15 +4,22 @@ tags:
 Carey: What's up?
 -> Nevermind!
     <<stop>>
+-> So, who are you exactly?
+    Carey: Hi! This is Carey, and I'm an adjunct professor of Computer Science here at UCLA, and I'm an avid rock climber, and… I just got a dog named Koda! So that's what you now know about me. #line:Who1
 -> What were the directions to the map room again?
-    Carey: Listen to the spec very carefully. Ready? Good. #line:Intro2Alt
-    Carey: Start at the front of Boelter Hall, facing away from the entrance doors, facing towards the mini model of Boelter Hall inside the glass case. Now, walk forward, past the glass case. Take the second left you see, then turn right again. Take the next right and walk all the way down the hallway, mmkay. At the end, the door should be on your left. It's room 5422. #line:Specs1
-    Carey: You must follow that spec exactly! Just be thankful it isn't 70 pages long! #line:Specs2
+    <<jump Specs>>
 -> What do I do with the map?
+    Carey: Oh, you found the map, great! Make sure to read it carefully, and write on it if anything changes. Boelter hallways are always hard to navigate and these ones more than most… #line:Map1
+    Carey: Oh? Did I not mention? These hallways have dimensional rifts scattered about. Good luck with that. #line:Map2
 -> I found this key with a room number on it... <<if hasItem("Room Key")>>
+    Carey: What are you waiting for? Open it. If you see anything interesting inside, let me know. #line:RoomKey1
 -> There's a room with what seems to be a pop quiz?
+    Carey: Hm. That looks like someone's old quiz. The classroom you found it in should have information about those subjects. But I wonder why certain words are missing… #line:PopQuiz1
 -> I saw these posters that had the word 'voodoo' on them. What does it mean?
+    Carey: Voodoo dolls, huh? A horrifying concept, a small model affecting a whole person. Actually, speaking of models, isn't there one somewhere in this building? #line:Voodoo1
 -> What does this message about mirrors mean? <<if hasItem("Gold Key")>>
+    Carey: 'Place with two mirrors'? Hm. I guess that would be a place where you can see two reflections… #line:Mirrors1
+    Carey: This reminds me, 'funny thing about dimensional rifts. If they're positioned in the right way, you'll be able to see yourself. #line:Mirrors2
 
 <<jump Floor5>>
 ===
