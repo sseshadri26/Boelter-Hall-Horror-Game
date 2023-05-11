@@ -55,7 +55,8 @@ public class TabPanelUI : MonoBehaviour
 
             // Ensure child panels don't scale past size of container
             panel.rootVisualElement.style.height = Length.Percent(100);
-            panel.rootVisualElement.style.width = Length.Percent(100);
+
+            // Don't force width since it messes with dimensions -- unsure why; should figure out
         }
 
         for(int i = 0; i < tabVisuals.Count; i++)
