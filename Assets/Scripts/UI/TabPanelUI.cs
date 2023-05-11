@@ -76,8 +76,10 @@ public class TabPanelUI : MonoBehaviour
 
     private void SwapToTab(int tabIndex)
     {
-        tabPanelAnimators[currentTab].AnimateClose(PanelAnimator.PanelPosition.CENTER, c_swapSpeed);
-        tabPanelAnimators[tabIndex].AnimateOpen(PanelAnimator.PanelPosition.CENTER, c_swapSpeed);
+        //tabPanelAnimators[currentTab].AnimateClose(PanelAnimator.PanelPosition.CENTER, c_swapSpeed);
+        //tabPanelAnimators[tabIndex].AnimateOpen(PanelAnimator.PanelPosition.CENTER, c_swapSpeed);
+        tabPanelAnimators[currentTab].InstantClose();
+        tabPanelAnimators[tabIndex].InstantOpen();
         m_tabsContainer.VisuallySelectOne(tabVisuals[tabIndex]);
         currentTab = tabIndex;
     }
