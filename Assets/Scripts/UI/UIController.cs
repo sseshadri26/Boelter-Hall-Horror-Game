@@ -84,12 +84,20 @@ public class UIController : MonoBehaviour
     /// </summary>
     private void HandleToggle(PanelAnimator panel)
     {
+        // Fade in background if nothing else is open now
+        if(GetUIState() == UIState.CLEAR)
+            background.AnimateOpen(PanelAnimator.PanelPosition.CENTER, PanelAnimator.PanelAnimationSpeed.NORMAL);
+
         if(openPanels.Contains(panel))
             ClosePanel(panel);
         else
         {
             OpenPanel(panel);
         }
+
+        // Fade out background if all UI is gone -- this will not have to loop a lot so it's not expensive
+        if(GetUIState() == UIState.CLEAR)
+            background.AnimateClose(PanelAnimator.PanelPosition.CENTER, PanelAnimator.PanelAnimationSpeed.NORMAL);
         
         stateChanged.RaiseEvent(GetUIState());
     }
@@ -131,15 +139,16 @@ public class UIController : MonoBehaviour
         if(panel == pause)
             panel.InstantOpen();
         else
-            panel.AnimateOpen(PanelAnimator.PanelPosition.RIGHT, PanelAnimator.PanelAnimationSpeed.NORMAL);
+            // TODO: Ternary operator is used to provide temporary animation config similar to old version where inventory and journal are on separate panels... should refactor when
+            // decision on UI structure made
+            panel.AnimateOpen(panel == inventory ? PanelAnimator.PanelPosition.RIGHT : PanelAnimator.PanelPosition.BOTTOM, PanelAnimator.PanelAnimationSpeed.NORMAL);
 
         if(!overlayPanels.Contains(panel))
             CloseAllPanels();
 
         openPanels.Add(panel);
 
-        // Fade in background
-        background.AnimateOpen(PanelAnimator.PanelPosition.CENTER, PanelAnimator.PanelAnimationSpeed.NORMAL);
+        
     }
 
     /// <summary>
@@ -150,13 +159,10 @@ public class UIController : MonoBehaviour
         if(panel == pause)
             panel.InstantClose();
         else
-            panel.AnimateClose(PanelAnimator.PanelPosition.RIGHT, PanelAnimator.PanelAnimationSpeed.NORMAL);
+            panel.AnimateClose(panel == inventory ? PanelAnimator.PanelPosition.RIGHT : PanelAnimator.PanelPosition.BOTTOM, PanelAnimator.PanelAnimationSpeed.NORMAL);
 
         openPanels.Remove(panel);
 
-        // Fade out background if all UI is gone -- this will not have to loop a lot so it's not expensive
-        if(GetUIState() == UIState.CLEAR)
-            background.AnimateClose(PanelAnimator.PanelPosition.CENTER, PanelAnimator.PanelAnimationSpeed.NORMAL);
     }
 
     /// <summary>
