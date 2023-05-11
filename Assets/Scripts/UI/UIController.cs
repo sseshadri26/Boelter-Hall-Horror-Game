@@ -15,6 +15,7 @@ public class UIController : MonoBehaviour
     [SerializeField] UIStateEventChannelSO stateChanged;
 
     [Header("Panel Animators")]
+    [SerializeField] PanelAnimator background;
     [SerializeField] PanelAnimator pause;
     [SerializeField] PanelAnimator inventory;
     [SerializeField] PanelAnimator journal;
@@ -50,6 +51,8 @@ public class UIController : MonoBehaviour
 
         overlayPanels.Add(pause);
 
+        // Initialize background to be closed
+        background.InstantClose();
     }
 
     void Start()
@@ -134,6 +137,9 @@ public class UIController : MonoBehaviour
             CloseAllPanels();
 
         openPanels.Add(panel);
+
+        // Fade in background
+        background.AnimateOpen(PanelAnimator.PanelPosition.CENTER, PanelAnimator.PanelAnimationSpeed.NORMAL);
     }
 
     /// <summary>
@@ -147,6 +153,10 @@ public class UIController : MonoBehaviour
             panel.AnimateClose(PanelAnimator.PanelPosition.LEFT, PanelAnimator.PanelAnimationSpeed.NORMAL);
 
         openPanels.Remove(panel);
+
+        // Fade out background if all UI is gone -- this will not have to loop a lot so it's not expensive
+        if(GetUIState() == UIState.CLEAR)
+            background.AnimateClose(PanelAnimator.PanelPosition.CENTER, PanelAnimator.PanelAnimationSpeed.NORMAL);
     }
 
     /// <summary>
