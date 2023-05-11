@@ -9,7 +9,7 @@
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="content" style="flex-grow: 1; align-items: center; justify-content: center;">
-            <ui:VisualElement name="map" style="width: 1188px; height: 768px; background-image: url(&apos;project://database/Assets/Materials/MinimapRenderTexture.renderTexture?fileID=8400000&amp;guid=a45b5393d462bd04eae82e39719b40d5&amp;type=2#MinimapRenderTexture&apos;); background-color: rgba(245, 245, 245, 255);" />
+            <ui:VisualElement name="map" style="width: 1188px; height: 768px; background-image: url(&apos;project://database/Assets/Materials/MinimapRenderTexture.renderTexture?fileID=8400000&amp;guid=a45b5393d462bd04eae82e39719b40d5&amp;type=2#MinimapRenderTexture&apos;); background-color: rgba(245, 245, 245, 255); border-left-color: rgba(255, 255, 255, 255); border-right-color: rgba(255, 255, 255, 255); border-top-color: rgba(255, 255, 255, 255); border-bottom-color: rgba(255, 255, 255, 255); border-left-width: 8px; border-right-width: 8px; border-top-width: 8px; border-bottom-width: 8px; border-top-left-radius: 12px; border-bottom-left-radius: 12px; border-top-right-radius: 12px; border-bottom-right-radius: 12px;" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

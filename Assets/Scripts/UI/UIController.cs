@@ -150,7 +150,7 @@ public class UIController : MonoBehaviour
         if(panel == pause)
             panel.InstantClose();
         else
-            panel.AnimateClose(PanelAnimator.PanelPosition.LEFT, PanelAnimator.PanelAnimationSpeed.NORMAL);
+            panel.AnimateClose(PanelAnimator.PanelPosition.RIGHT, PanelAnimator.PanelAnimationSpeed.NORMAL);
 
         openPanels.Remove(panel);
 
