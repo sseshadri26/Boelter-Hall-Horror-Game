@@ -1,0 +1,13 @@
+.selected .item-tint {
+    opacity: 1;
+    transition-property: opacity;
+    transition-duration: 0.25s;
+    transition-timing-function: ease-out;
+}
+
+.not-selected .item-tint {
+    opacity: 0.3;
+    transition-property: opacity;
+    transition-duration: 0.25s;
+    transition-timing-function: ease-out;
+}

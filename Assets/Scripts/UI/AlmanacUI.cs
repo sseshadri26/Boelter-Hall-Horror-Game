@@ -1,12 +1,11 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 
-public class AlmanacUI : PanelUI
+public class AlmanacUI : MonoBehaviour
 {
-    [Header("Almanac Properties")]
+    [SerializeField] UIDocument document = default;
     [SerializeField] float scrollSpeed = 300;
     [SerializeField] float scrollButtonJumpSize = 100;
 
@@ -24,21 +23,8 @@ public class AlmanacUI : PanelUI
     const string k_ScrollDownButton = "scroll-down-button";
 
 
-    // AlmanacUI USS Classes
-
-    // DESIGN CHOICE: Using USS classes to change the appearance of UI instead
-    // of hard-coding it in here is a great way to maintain separation of
-    // visuals and functionality -- the code isn't tightly coupled to the
-    // way the UI looks, which opens up the possibility of switching out the visuals
-    // to something new. This pattern was taken from Unity's open source project "Dragon Crashers"
-
-    // Note that these are special "abstract" USS classes that can be added to the parent, and the derived
-    // UI's USS handles the implementation of how it looks when selected
-    const string c_Selected = "selected";
-    const string c_NotSelected = "not-selected";
-
     // UI References
-    ScrollView m_ItemList = default;
+    SelectableScrollView m_ItemList = default;
 
     Label m_ItemTitle = default;
     VisualElement m_ItemVisual = default;
@@ -47,11 +33,27 @@ public class AlmanacUI : PanelUI
     Button m_InventoryScrollUpButton = default;
     Button m_InventoryScrollDownButton = default;
 
-    protected override void Awake()
-    {
-        base.Awake();
 
-        m_ItemList = root.Q<ScrollView>(k_ItemList);
+    // Other References
+    SelectableScrollView selectableItemList = default;
+
+    VisualElement root
+    {
+        get {
+            if(document != null)
+                return document.rootVisualElement;
+            return null;
+        }
+    }
+
+    public void UpdateDisplay()
+    {
+        UpdateDisplayWithGenerator(almanacItemUIGenerator);
+    }
+
+     void Awake()
+    {
+        m_ItemList = root.Q<SelectableScrollView>(k_ItemList);
 
         m_ItemTitle = root.Q<Label>(k_ItemTitle);
         m_ItemVisual = root.Q<VisualElement>(k_ItemVisual);
@@ -67,16 +69,10 @@ public class AlmanacUI : PanelUI
 
         m_ItemList.RegisterCallback<WheelEvent>(SpeedUpScroll);
         m_ItemList.verticalPageSize = scrollButtonJumpSize;
-        UpdateDisplay(almanacItemUIGenerator);
+
+
+        UpdateDisplayWithGenerator(almanacItemUIGenerator);
     }
-
-    protected override void OnOpenPanel()
-    {
-        // Instead of registering callback to inventory, simply activate when panel opens
-        UpdateDisplay(almanacItemUIGenerator);
-    }
-
-
 
     // This is a function to accelerate the scroll speed, and is a work-around for Unity's currently slightly
     // buggy scrolling system. Here's the post that inspired it: https://forum.unity.com/threads/listview-mousewheel-scrolling-speed.1167404/ -- Specifically in leanon00's reply
@@ -86,7 +82,7 @@ public class AlmanacUI : PanelUI
     }
 
 
-    private void UpdateDisplay(ItemUIGeneratorSO generator)
+    private void UpdateDisplayWithGenerator(ItemUIGeneratorSO generator)
     {
         // DESIGN CHOICE: Update display by clearing every single item then reinstantiating
         // new list instead of pooling items. Why? Well it's simple, and we probably
@@ -127,41 +123,12 @@ public class AlmanacUI : PanelUI
     private void HandleInventoryItemClicked(VisualElement item, ItemSO itemData)
     {
         // Visually select item
-        VisuallySelectOne(item);
+        m_ItemList.VisuallySelectOne(item);
         m_ItemList.ScrollTo(item);
         DisplayItemInformation(itemData);
     }
 
-    /// <summary>
-    /// Play the animation tied to selecting an item, and at the same time play the animation
-    /// to deselect all other items (if any are selected).
-    /// </summary>
-    private void VisuallySelectOne(VisualElement item)
-    {
-        GetInventoryItems().ForEach(VisuallyUnselect);
-        VisuallySelect(item);
-    }
-    private void VisuallySelect(VisualElement item)
-    {
-        if(item != null)
-        {
-            item.RemoveFromClassList(c_NotSelected);
-            item.AddToClassList(c_Selected);
-        }
-    }
 
-    private void VisuallyUnselect(VisualElement item)
-    {
-        if(item != null)
-        {
-            item.RemoveFromClassList(c_Selected);
-            item.AddToClassList(c_NotSelected);
-        }
-            
-    }
-
-
-    private List<VisualElement> GetInventoryItems() => new List<VisualElement>(m_ItemList.Children());
 
 
     ///<summary>

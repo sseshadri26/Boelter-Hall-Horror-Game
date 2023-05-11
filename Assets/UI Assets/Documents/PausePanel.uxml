@@ -1,6 +1,7 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <ui:Template name="TitleBlock" src="project://database/Assets/UI%20Assets/Documents/ComponentsUXML/TitleBlock.uxml?fileID=9197481963319205126&amp;guid=9ea99844e54943a4f808804ab30e1bd8&amp;type=3#TitleBlock" />
     <Style src="project://database/Assets/UI%20Assets/Styles/boelter-game.uss?fileID=7433441132597879392&amp;guid=1206311c1593adc44a6dea0891905f54&amp;type=3#boelter-game" />
+    <Style src="project://database/Assets/Resources/UI%20Styles/Panel-animations.uss?fileID=7433441132597879392&amp;guid=908ee5a3615766e4e86cbc850aa00098&amp;type=3#Panel-animations" />
     <ui:VisualElement name="Panel" style="width: 1920px; height: 1080px; background-color: rgb(38, 39, 38); border-top-left-radius: 10px; border-bottom-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px;">
         <ui:VisualElement name="Border-top" style="height: 40px;" />
         <ui:VisualElement name="Row1" style="height: auto; flex-direction: row;">
