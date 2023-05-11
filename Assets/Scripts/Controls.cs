@@ -348,6 +348,17 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""296b47fa-c8b2-48dd-959b-aef8a4096c67"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SprintHold"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""2b71d23d-100d-4a36-9b56-9e5ff2fcfb13"",
                     ""path"": ""<Gamepad>/leftStickPress"",
                     ""interactions"": """",

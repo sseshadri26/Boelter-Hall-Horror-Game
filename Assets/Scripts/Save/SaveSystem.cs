@@ -19,6 +19,10 @@ public static class SaveSystem
                 {
                     Debug.Log("This is a new save");
                 }
+                else
+                {
+                    Resources.Load<InventoryItemCollectionSO>("PlayerInventory").items = GetInventory();
+                }
             }
             return _data;
         }
@@ -47,11 +51,12 @@ public static class SaveSystem
     public static List<InventoryItemSO> GetInventory()
     {
         List<InventoryItemSO> loadedInventory = new List<InventoryItemSO>();
-        SpriteAtlas itemSprites = Resources.Load<SpriteAtlas>("Items");
+        // SpriteAtlas itemSprites = Resources.Load<SpriteAtlas>("Items");
 
         for (int i = 0; i < Data.itemNames.Count; i++)
         {
-            loadedInventory.Add(new InventoryItemSO(Data.itemNames[i], Data.itemDescriptions[i], itemSprites.GetSprite(Data.itemGraphics[i]), Data.itemStatuses[i]));
+            loadedInventory.Add(Resources.Load<InventoryItemSO>("Inventory/" + Data.itemNames[i]));
+            // loadedInventory[i].SetItem(Data.itemNames[i], Data.itemDescriptions[i], itemSprites.GetSprite(Data.itemGraphics[i]), Data.itemStatuses[i]);
         }
 
         return loadedInventory;

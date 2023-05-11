@@ -27,6 +27,7 @@ public class RotatePortals : MonoBehaviour, IAction
         if (SaveSystem.Data != null)
         {
             curPortalPair = Globals.portalPosition5F = SaveSystem.Data.portalPosition;
+            // Debug.Log("Setting portal orientation to " + Globals.portalPosition5F + " from save");
             ChangePortals();
         }
         else

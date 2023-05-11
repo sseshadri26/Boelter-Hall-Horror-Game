@@ -2,11 +2,13 @@
 tags:
 position: -117,-85
 ---
-Carey: Whatsaaaaaaaaaaaaaaaaaaaa?! #line:test0
--> Nothing much, hbu? #line:test1
--> The sky hahahahahahahahahahahahahahahahahahahahahaha #line:test2
-<<setSprite "Carey/Confused">>
-Carey: Hm, I am now confused.
-<<setSprite "Carey/Test">>
-Carey: Nevermind!
+Carey: Hello! What, surprised to see me? The name's Professor Carey Nachenberg, but call me Carey! You might know me as the author of “The Florentine Deception”! You look lost. Do you need some help getting around? #line:Intro1
+Carey: I thought as much. This is Boelter, after all. Luckily, I happen to know a nearby room with a map. I'll explain how to get there, but you have to listen to the spec very carefully. Ready? Good. #line:Intro2
+<<jump Specs>>
+===
+
+title: Specs
+---
+Carey: Start at the front of Boelter Hall, facing away from the entrance doors, facing towards the mini model of Boelter Hall inside the glass case. Now, walk forward, past the glass case. Take the second left you see, then turn right again. Take the next right and walk all the way down the hallway, mmkay. At the end, the door should be on your left. It's room 5422. #line:Specs1
+Carey: You must follow that spec exactly! Just be thankful it isn't 70 pages long! #line:Specs2
 ===

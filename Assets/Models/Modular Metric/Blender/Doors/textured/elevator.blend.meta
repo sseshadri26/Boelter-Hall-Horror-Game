@@ -3,7 +3,77 @@ guid: 4dbe8a946f52c0d46b6b16e052c20c15
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MetalBar_fin
+    second: {fileID: 2100000, guid: 3820de60e9f1d6241bff71529e8d3439, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Rim_fin
+    second: {fileID: 2100000, guid: 6a09f19627d73044592dcf7e6097d876, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: buttons_fin
+    second: {fileID: 2100000, guid: 8267cc813aa0cf4449790acc3ab26e47, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: display_fin
+    second: {fileID: 2100000, guid: 274ae761711e62244a4178a94c590e7d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ele_board_fin
+    second: {fileID: 2100000, guid: 155721ec8c83e734cbba74873c1d8de6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ele_door_fin
+    second: {fileID: 2100000, guid: 7d89874087688354599b57fcfc647b1b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: elevator_wall_fin
+    second: {fileID: 2100000, guid: 62c62022de50d044eb0bccd24dbe001a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: elevator_wall_fin2
+    second: {fileID: 2100000, guid: afd4764a1efbf8044a2729ae36fe80a7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: floor_marble_fin
+    second: {fileID: 2100000, guid: 1dfcd6fa890df9c4d973edc0cb6330e2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: inside_rim_fin
+    second: {fileID: 2100000, guid: 33ac5aa334b68db45b07544ddff997b8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: left_door_fin
+    second: {fileID: 2100000, guid: 9f7e8c015abdbbe46b901736445c105a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: light_fin
+    second: {fileID: 2100000, guid: cf9d11956f77bfb4c8eca4997f652d3e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: right_door_fin
+    second: {fileID: 2100000, guid: 07c855e57018aeb4c968bb1e97048120, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: roof_fin
+    second: {fileID: 2100000, guid: f9a8c72f9733ff64f94ac52321c19593, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

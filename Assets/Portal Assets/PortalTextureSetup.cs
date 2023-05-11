@@ -29,7 +29,7 @@ public class PortalTextureSetup : MonoBehaviour
         float ppppp = 1;
         //cameraA.targetTexture = new RenderTexture(Screen.width, Screen.height, 24);
         //cameraA.targetTexture = new RenderTexture(384, 216, 24);
-        cameraA.targetTexture = new RenderTexture((int)(384/ppppp), (int)(216/ ppppp), 64);
+        cameraA.targetTexture = new RenderTexture((int)(384 / ppppp), (int)(216 / ppppp), 24);
 
 
         cameraMatA = new Material(ScreenCutoutShader);
@@ -43,7 +43,7 @@ public class PortalTextureSetup : MonoBehaviour
         }
         //cameraB.targetTexture = new RenderTexture(Screen.width, Screen.height, 24);
         //cameraB.targetTexture = new RenderTexture(384, 216, 24);
-        cameraB.targetTexture = new RenderTexture((int)(384 / ppppp), (int)(216 / ppppp), 64);
+        cameraB.targetTexture = new RenderTexture((int)(384 / ppppp), (int)(216 / ppppp), 24);
 
 
         cameraMatB = new Material(ScreenCutoutShader);

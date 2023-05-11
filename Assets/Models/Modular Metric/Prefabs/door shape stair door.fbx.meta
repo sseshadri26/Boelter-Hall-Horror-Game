@@ -3,7 +3,62 @@ guid: 44b4d16f30b99d34cae25c742d1d4976
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Frame Metal
+    second: {fileID: 2100000, guid: d6db61dfdfd22274997a76b18ea85fef, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metal Knob
+    second: {fileID: 2100000, guid: 550cb416235d70f44901778eba25eab9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wood Painted White
+    second: {fileID: 2100000, guid: 8e9e7fc0c31872e46a77653c283beb2f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: metal handle
+    second: {fileID: 2100000, guid: fe439dbda2431a14cab8439a699e9581, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: GWC Peeling Paint_BaseColor
+    second: {fileID: 2800000, guid: c5a739e7406d4ee45b5c6572f30bc791, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: GWC Peeling Paint_Metallic
+    second: {fileID: 2800000, guid: f0bce93fc056c2546aed1fb5a73765b4, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: GWC Peeling Paint_Normal
+    second: {fileID: 2800000, guid: 786e2903a5b7f054c88fa3242f3eb37f, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: GWC Peeling Paint_Roughness
+    second: {fileID: 2800000, guid: 6352badae02544943932dced369f6e5e, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: WhiteMetal_diffuse
+    second: {fileID: 2800000, guid: ae82d58991d193d4d915fd91211251fd, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: WhiteMetal_normal
+    second: {fileID: 2800000, guid: 8f3b5d23edf52614181fb050ca832cbd, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: WhiteMetal_roughness
+    second: {fileID: 2800000, guid: 99ed3b3c6ad92f04baf284799fe37111, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0

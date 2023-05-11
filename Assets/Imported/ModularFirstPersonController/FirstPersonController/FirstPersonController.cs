@@ -394,10 +394,14 @@ public class FirstPersonController : MonoBehaviour
     {
         #region Movement
 
-        if (playerCanMove)
-        {
+        //if (playerCanMove)
+        //{
             // Calculate how fast we should be moving
             Vector2 movement = controls.Movement.ReadValue<Vector2>();
+            if (!playerCanMove)
+            {
+                movement = Vector2.zero;
+            }
             Vector3 targetVelocity = new Vector3(movement.x, 0, movement.y);
 
             // Checks if player is walking and isGrounded
@@ -469,7 +473,7 @@ public class FirstPersonController : MonoBehaviour
 
                 rb.AddForce(velocityChange, ForceMode.VelocityChange);
             }
-        }
+        //}
 
         #endregion
     }

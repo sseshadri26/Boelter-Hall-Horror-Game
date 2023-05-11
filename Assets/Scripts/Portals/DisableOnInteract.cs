@@ -60,8 +60,18 @@ public class DisableOnInteract : MonoBehaviour, IAction
     // Use DOTween to animate the poster shaking. do not shake in the z axis
     public void Animate()
     {
-        // transform.DOShakePosition(0.1f, 0.1f, 10, 90, false, true);
-        transform.DOShakePosition(0.1f, new Vector3(0, 0.15f, 0.15f), 30, 90, false, true);
+        // Get the current rotation of the poster in global space
+        Quaternion rotation = transform.localRotation;
+
+        Debug.Log(rotation);
+        // Calculate a new shake vector that matches the orientation of the poster
+        Vector3 shakeVector = new Vector3(0.15f, 0.15f);
+        shakeVector = rotation * shakeVector;
+
+        // Shake the position of the poster using the new vector
+        transform.DOShakePosition(0.1f, shakeVector, 30, 90, false, true);
+        // transform.DOShakePosition(0.1f, new Vector3(0, 0.15f, 0.15f), 30, 90, false, true);
+
 
     }
 
