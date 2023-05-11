@@ -48,8 +48,8 @@ public class PanelAnimator : MonoBehaviour
     const string c_Opaque = "opaque";
 
     // Animation Configs
-    const string c_AnimationNormal = "animation-fast";
-    const string c_AnimationFast = "animation-instant";
+    const string c_AnimationNormal = "animation-normal";
+    const string c_AnimationFast = "animation-fast";
 
 
 

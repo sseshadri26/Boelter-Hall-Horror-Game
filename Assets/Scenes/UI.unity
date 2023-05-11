@@ -538,6 +538,7 @@ MonoBehaviour:
   - {fileID: 347355194}
   - {fileID: 1680546809}
   - {fileID: 1433236015}
+  panelSwapDelay: 0
 --- !u!114 &1534538178
 MonoBehaviour:
   m_ObjectHideFlags: 0

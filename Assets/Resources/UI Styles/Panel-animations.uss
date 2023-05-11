@@ -26,13 +26,13 @@
     opacity: 1;
 }
 
-.animation-instant {
-    transition-property: all;
-    transition-duration: 0.5s;
-    transition-timing-function: ease-in-out;
+.animation-fast {
+    transition-property: opacity, translate;
+    transition-duration: 0.1s, 0.1s;
+    transition-timing-function: ease-in-out, ease-in-out;
 }
 
-.animation-fast {
+.animation-normal {
     transition-property: opacity, translate;
     transition-duration: 1s, 1s;
     transition-timing-function: ease-in-out, ease-in-out;
