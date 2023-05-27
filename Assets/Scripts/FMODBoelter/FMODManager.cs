@@ -1,4 +1,5 @@
 using FMOD;
+using FMOD.Studio;
 using FMODUnity;
 using System.Collections;
 using System.Collections.Generic;
@@ -16,27 +17,27 @@ public class FMODManager : MonoBehaviour
     [SerializeField] private bool printDebug;
     public FMODParams globalParams = new FMODParams(true);
     //
-    [SerializeField]
-    [Range(0f, 2f)]
-        float volumePercent = 1f;
-    [SerializeField]
-    [Range(0f, 2f)]
-        float pitch = 1f;
-    [SerializeField]
-    [Range(0f, 2f)]
-        private float intensity = 1f;
-    [SerializeField]
-    [Range(0f, 2f)]
-        private float speed = 1f;
-    [SerializeField]
-    [Range(0f, 2f)]
-        private float reverb = 1f;
+    //[SerializeField]
+    //[Range(0f, 2f)]
+    //    float volumePercent = 1f;
+    //[SerializeField]
+    //[Range(0f, 2f)]
+    //    float pitch = 1f;
+    //[SerializeField]
+    //[Range(0f, 2f)]
+    //    private float intensity = 1f;
+    //[SerializeField]
+    //[Range(0f, 2f)]
+    //    private float speed = 1f;
+    //[SerializeField]
+    //[Range(0f, 2f)]
+    //    private float reverb = 1f;
 
     // Structs:
     public enum SFX
     {
         door_close, door_open, 
-        footstep_ground, footstep_grass, footstep_gravel, footstep_wood,
+        footstep_ground, footstep_ground2, footstep_grass, footstep_gravel, footstep_wood,
         paper_crumble
     }
     public struct FMODParams
@@ -66,7 +67,12 @@ public class FMODManager : MonoBehaviour
         { SFX.footstep_gravel, "event:/footstep_gravel" },
         { SFX.footstep_wood, "event:/footstep_wood" },
         { SFX.paper_crumble, "event:/paper_crumble" },
+        { SFX.footstep_ground2, "event:/footstep_ground 2" },
     };
+
+    // BGM Storage:
+    private Dictionary<int, FMODParams> BGMStorageDict = new Dictionary<int, FMODParams>();
+    private int currentID = -1;
 
     // Functions:
     private void Awake()
@@ -87,29 +93,58 @@ public class FMODManager : MonoBehaviour
     public void PlaySound(SFX sound, Vector3 position, bool useDefault = true, FMODParams soundParams = default(FMODParams))
     {
         // Plays specified sound @ location:
+        EventInstance eventInstance = SetupEmitterEvent(sound);
         if (useDefault)
         {
-            PlayEmitterEvent(sound, position, ref globalParams);
+            ModifyEmitterEvent(ref eventInstance, ref globalParams, position);
         }
         else
         {
-            PlayEmitterEvent(sound, position, ref soundParams);
+            ModifyEmitterEvent(ref eventInstance, ref soundParams, position);
         }
+        // Play and release:
+        PrintDebug(sound + " played.");
+        eventInstance.start();
+        eventInstance.release();
+    }
+    public int StartBGM(SFX sound, bool useDefault = true, FMODParams soundParams = default(FMODParams))
+    {
+        currentID++;
+        if (useDefault)
+        {
+            BGMStorageDict.Add(currentID, globalParams);
+            StartCoroutine(BGMInstance(sound, currentID, true));
+        }
+        else
+        {
+            BGMStorageDict.Add(currentID, soundParams);
+            StartCoroutine(BGMInstance(sound, currentID, false));
+        }
+        return currentID;
+    }
+    public void ModifyParams(int ID, ref FMODParams soundParams)
+    {
+        BGMStorageDict[ID] = soundParams;
     }
     
     // Utils:
-    private void PlayEmitterEvent(SFX sound, Vector3 position, ref FMODParams soundParams)
+    private EventInstance SetupEmitterEvent(SFX sound)
     {
         // Checks:
         if (!soundToEventDict.ContainsKey(sound))
         {
             PrintDebug(sound + " not found in dictionary.");
-            return;
+            //return;
         }
         // Grab path:
         string eventPath = soundToEventDict[sound];
         // Create instance of event:
         FMOD.Studio.EventInstance eventInstance = RuntimeManager.CreateInstance(eventPath);
+        return eventInstance;
+    }
+    private void ModifyEmitterEvent(ref EventInstance eventInstance, ref FMODParams soundParams, Vector3 position)
+    {
+        // Modify position:
         eventInstance.set3DAttributes(RuntimeUtils.To3DAttributes(position));
         // Set pitch and volume:
         eventInstance.setVolume(soundParams.volumePercent);
@@ -118,10 +153,44 @@ public class FMODManager : MonoBehaviour
         eventInstance.setParameterByName("intensity", soundParams.intensity);
         eventInstance.setParameterByName("speed", soundParams.speed);
         eventInstance.setParameterByName("reverb", soundParams.reverb);
-        // Play and release:
-        PrintDebug(sound + " played.");
+    }
+    private IEnumerator BGMInstance(SFX sound, int instanceID, bool useDefault)
+    {
+        // Vars:
+        WaitForSeconds delay = new WaitForSeconds(0.2f);
+        // Setup:
+        FMODParams myParams;
+        if (useDefault)
+        {
+            myParams = globalParams;
+        }
+        else
+        {
+            myParams = BGMStorageDict[instanceID];
+        }
+        EventInstance eventInstance = SetupEmitterEvent(sound);
+        ModifyEmitterEvent(ref eventInstance, ref myParams, transform.position);
         eventInstance.start();
-        eventInstance.release();
+        // Loops:
+        while (BGMStorageDict.ContainsKey(instanceID))
+        {
+            if (useDefault)
+            {
+                myParams = globalParams;
+            }
+            else
+            {
+                myParams = BGMStorageDict[instanceID];
+                UnityEngine.Debug.Log(myParams.pitch);
+            }
+            ModifyEmitterEvent(ref eventInstance, ref myParams, transform.position);
+            yield return delay;
+        }
+        eventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+    }
+    private void StopBGM(int instanceID)
+    {
+        BGMStorageDict.Remove(instanceID);
     }
     private void PrintDebug(string message)
     {

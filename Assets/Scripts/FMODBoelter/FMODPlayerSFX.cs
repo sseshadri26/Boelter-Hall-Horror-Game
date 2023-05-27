@@ -4,15 +4,47 @@ using UnityEngine;
 
 public class FMODPlayerSFX : MonoBehaviour
 {
-    // Start is called before the first frame update
+    // Vars:
+    private FirstPersonController player;
+    private FMODManager.FMODParams footstepParams;
+    private int footstepID;
+    private float timeSinceLastStep;
+    float prevSpeed1 = 0f;
+    float prevSpeed2 = 0f;
+    float prevSpeed3 = 0f;
+
     void Start()
     {
-        
+        player = transform.root.GetComponent<FirstPersonController>();
+        footstepParams = new FMODManager.FMODParams(true);
+        //footstepID = FMODManager.Instance.StartBGM(FMODManager.SFX.footstep_ground, false, footstepParams);
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        
+        prevSpeed3 = prevSpeed2;
+        prevSpeed2 = prevSpeed1;
+        prevSpeed1 = player.rb.velocity.magnitude; // Usual speed is from 4-9.
+        float speed = (prevSpeed1 + prevSpeed2 + prevSpeed3) / 3f;
+
+        footstepParams.pitch = Mathf.Lerp(0.9f, 1.0f, (speed - 4f) / (9f - 4f));
+        footstepParams.volumePercent = Mathf.Lerp(0.6f, 1.0f, (speed - 4f) / (9f - 4f));
+
+        //FMODManager.Instance.ModifyParams(footstepID, ref footstepParams);
+        //
+        playSteps(speed);
+    }
+
+    void playSteps(float speed)
+    {
+        float interval = Mathf.Lerp(0.75f, 0.3f, (speed - 4f) / (5f));
+        timeSinceLastStep += Time.fixedDeltaTime;
+
+        // Check if it's time to play the footstep sound
+        if (timeSinceLastStep >= interval && speed > 1)
+        {
+            FMODManager.Instance.PlaySound(FMODManager.SFX.footstep_ground2, false, footstepParams);
+            timeSinceLastStep = 0f; // Reset the timer
+        }
     }
 }
