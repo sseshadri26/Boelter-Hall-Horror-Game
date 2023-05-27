@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UIElements;
 
-public class PauseUI : PanelUI
+public class PauseUI : MonoBehaviour
 {
-    [Header("Pause UI Properties")]
+    [SerializeField] UIDocument document = default;
     [SerializeField] UnityEvent OnRestartButtonPressed = new UnityEvent();
     [SerializeField] UnityEvent OnResumeButtonPressed = new UnityEvent();
     [SerializeField] UnityEvent OnMainMenuButtonPressed = new UnityEvent();
@@ -24,10 +24,17 @@ public class PauseUI : PanelUI
     Button m_MainMenuButton = default;
     Button m_SettingsButton = default;
 
-    protected override void Awake()
+    VisualElement root
     {
-        base.Awake();
+        get {
+            if(document != null)
+                return document.rootVisualElement;
+            return null;
+        }
+    }
 
+    void Awake()
+    {
         m_RestartButton = root.Q<Button>(k_RestartButton);
         m_ResumeButton = root.Q<Button>(k_ResumeButton);
         m_MainMenuButton = root.Q<Button>(k_MainMenuButton);

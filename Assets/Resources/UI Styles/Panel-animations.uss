@@ -1,42 +1,39 @@
 .offscreen-bot {
-    transition-property: translate;
-    transition-duration: 1s;
-    transition-timing-function: ease-in-out;
     translate: 0% 102%;
 }
 
 .center {
     translate: 0% 0%;
-    transition-property: translate;
-    transition-duration: 1s;
-    transition-timing-function: ease-in-out;
 }
 
 .offscreen-left {
     translate: -102% 0%;
-    transition-property: translate;
-    transition-duration: 1s;
-    transition-timing-function: ease-in-out;
 }
 
 .offscreen-right {
     translate: 102% 0%;
-    transition-property: translate;
-    transition-duration: 1s;
-    transition-timing-function: ease-in-out;
 }
 
 .offscreen-top {
-    transition-property: translate;
-    transition-duration: 1s;
-    transition-timing-function: ease-in-out;
     translate: 0% -102%;
 }
 
-.invisible {
-    visibility: hidden;
+.transparent {
+    opacity: 0;
 }
 
-.visible {
-    visibility: visible;
+.opaque {
+    opacity: 1;
+}
+
+.animation-fast {
+    transition-property: opacity, translate;
+    transition-duration: 0.1s, 0.1s;
+    transition-timing-function: ease-in-out, ease-in-out;
+}
+
+.animation-normal {
+    transition-property: opacity, translate;
+    transition-duration: 1s, 1s;
+    transition-timing-function: ease-in-out, ease-in-out;
 }

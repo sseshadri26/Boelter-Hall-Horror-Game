@@ -14,9 +14,9 @@ public class SaveData
 
     public InventoryItemCollectionSO inventory;
     public List<string> itemNames = new List<string>();
-    public List<string> itemDescriptions = new List<string>();
-    public List<string> itemGraphics = new List<string>();
-    public List<InventoryItemSO.ItemStatus> itemStatuses = new List<InventoryItemSO.ItemStatus>();
+    // public List<string> itemDescriptions = new List<string>();
+    // public List<string> itemGraphics = new List<string>();
+    // public List<InventoryItemSO.ItemStatus> itemStatuses = new List<InventoryItemSO.ItemStatus>();
 
     public int portalPosition = 0;
     public bool glassBroke = false;
@@ -54,9 +54,9 @@ public class SaveData
         foreach (InventoryItemSO item in inventory.items)
         {
             itemNames.Add(item.itemName);
-            itemDescriptions.Add(item.description);
-            itemGraphics.Add(item.graphic.name);
-            itemStatuses.Add(item.itemStatus);
+            // itemDescriptions.Add(item.description);
+            // itemGraphics.Add(item.graphic.name);
+            // itemStatuses.Add(item.itemStatus);
         }
     }
 

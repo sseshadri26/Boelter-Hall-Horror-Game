@@ -3,19 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class MapUI : PanelUI
+public class MapUI : MonoBehaviour
 {
+    [SerializeField] UIDocument document;
     // UI Tags
     const string k_map = "map";
 
     // UI References
     VisualElement m_map;
 
-    protected override void Awake()
+    void Awake()
     {
-        base.Awake();
-
-        m_map = root.Q<VisualElement>(k_map);
+        m_map = document.rootVisualElement.Q<VisualElement>(k_map);
 
         // NOTE: As of now, there's nothing we do with the map since
         // it's automatically assigned a graphic in the UXML, but perhaps

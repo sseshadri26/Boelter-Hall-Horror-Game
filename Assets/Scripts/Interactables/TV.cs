@@ -23,7 +23,12 @@ public class TV : MonoBehaviour, IAction
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         transform.GetChild(0).gameObject.SetActive(true);
-        fpc.dialogueRunner.onDialogueComplete.AddListener(() => transform.GetChild(0).gameObject.SetActive(false));
+        transform.GetChild(1).gameObject.SetActive(true);
+        fpc.dialogueRunner.onDialogueComplete.AddListener(() =>
+        {
+            transform.GetChild(0).gameObject.SetActive(false);
+            transform.GetChild(1).gameObject.SetActive(false);
+        });
         StartCoroutine("AllowContinueInput");
     }
 
