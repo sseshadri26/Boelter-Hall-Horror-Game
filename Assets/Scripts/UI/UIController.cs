@@ -15,44 +15,30 @@ public class UIController : MonoBehaviour
     [SerializeField] UIStateEventChannelSO stateChanged;
 
     [Header("Panel Animators")]
-    [SerializeField] PanelAnimator background;
+    [Tooltip("The pause panel")]
     [SerializeField] PanelAnimator pause;
-    [SerializeField] PanelAnimator inventory;
-    [SerializeField] PanelAnimator journal;
-    
-
-    // Map from a panel to its associated UIState
-    Dictionary<PanelAnimator, UIState> panelStateLabel = new Dictionary<PanelAnimator, UIState>();
-
-    // Set of all open panels
-    // DESIGN CHOICE: Why not dictionary of bools? Means we loop through fewer panels during
-    // the audit of open panels. It's also a simpler data structure that can do the same job.
-    HashSet<PanelAnimator> openPanels = new HashSet<PanelAnimator>();
-    
-    // Set of all panels that overlay on top of panels (instead of pushing them out of the way)
-    HashSet<PanelAnimator> overlayPanels = new HashSet<PanelAnimator>();
-
-    // List of input actions and their associated callbacks
-    List<Tuple<InputAction, Action<InputAction.CallbackContext>>> panelToggleInputCallbackInfo;
+    [Tooltip("The panel that will be brought to the center of attention")]
+    [SerializeField] PanelAnimator main;
+    [Tooltip("The background panel that provides contrast for the main panel")]
+    [SerializeField] PanelAnimator mainBackground;
 
     // Player input source
-    Controls.FirstPersonActions firstPersonActions;
+    InputAction toggleMainAction;
+    InputAction togglePauseAction;
+
+    bool isMainOpen = false;
+    bool isPauseOpen = false;
 
 
 
     void Awake()
     {
-        firstPersonActions = playerInput.controls;
-
-        // Set up labels for quickly accessing corresponding 
-        panelStateLabel[inventory] = UIState.INVENTORY;
-        panelStateLabel[pause] = UIState.PAUSE;
-        panelStateLabel[journal] = UIState.JOURNAL;
-
-        overlayPanels.Add(pause);
+        // Initialize the actions
+        toggleMainAction = playerInput.controls.Inventory;
+        togglePauseAction = playerInput.controls.Pause;
 
         // Initialize background to be closed
-        background.InstantClose();
+        mainBackground.InstantClose();
     }
 
     void Start()
@@ -63,143 +49,55 @@ public class UIController : MonoBehaviour
 
     void OnEnable()
     {
-        panelToggleInputCallbackInfo = new List<Tuple<InputAction, Action<InputAction.CallbackContext>>>()
-        {
-            new Tuple<InputAction, Action<InputAction.CallbackContext>>(firstPersonActions.Inventory, (obj) => HandleToggle(inventory)),
-            new Tuple<InputAction, Action<InputAction.CallbackContext>>(firstPersonActions.Journal, (obj) => HandleToggle(journal)),
-            new Tuple<InputAction, Action<InputAction.CallbackContext>>(firstPersonActions.Pause, (obj) => HandleToggle(pause))
-        };
-
-        RegisterInputCallbacks(panelToggleInputCallbackInfo);
+        toggleMainAction.performed += HandleToggleMain;
+        togglePauseAction.performed += HandleTogglePause;
     }
 
     void OnDisable()
     {
-        DeregisterInputCallbacks(panelToggleInputCallbackInfo);
+        toggleMainAction.performed -= HandleToggleMain;
+        togglePauseAction.performed -= HandleTogglePause;
     }
 
-
-    /// <summary>
-    /// Handle input request to toggle on/off a given panel
-    /// </summary>
-    private void HandleToggle(PanelAnimator panel)
+    private void HandleToggleMain(InputAction.CallbackContext context)
     {
-        // Fade in background if nothing else is open now
-        if(GetUIState() == UIState.CLEAR)
-            background.AnimateOpen(PanelAnimator.PanelPosition.CENTER, PanelAnimator.PanelAnimationSpeed.NORMAL);
-
-        if(openPanels.Contains(panel))
-            ClosePanel(panel);
+        if (!isMainOpen)
+        {
+            main.AnimateOpen(PanelAnimator.PanelPosition.RIGHT, PanelAnimator.PanelAnimationSpeed.NORMAL);
+            mainBackground.AnimateOpen(PanelAnimator.PanelPosition.CENTER, PanelAnimator.PanelAnimationSpeed.NORMAL);
+        }
         else
         {
-            OpenPanel(panel);
+            main.AnimateClose(PanelAnimator.PanelPosition.RIGHT, PanelAnimator.PanelAnimationSpeed.NORMAL);
+            mainBackground.AnimateClose(PanelAnimator.PanelPosition.CENTER, PanelAnimator.PanelAnimationSpeed.NORMAL);
         }
 
-        // Fade out background if all UI is gone -- this will not have to loop a lot so it's not expensive
-        if(GetUIState() == UIState.CLEAR)
-            background.AnimateClose(PanelAnimator.PanelPosition.CENTER, PanelAnimator.PanelAnimationSpeed.NORMAL);
-        
+        isMainOpen = !isMainOpen;
         stateChanged.RaiseEvent(GetUIState());
     }
 
+    private void HandleTogglePause(InputAction.CallbackContext context)
+    {
+        if (!isPauseOpen)
+            pause.InstantOpen();
+        else
+            pause.InstantClose();
+
+        isPauseOpen = !isPauseOpen;
+        stateChanged.RaiseEvent(GetUIState());
+    }
 
     /// <summary>
     /// Get the current state of the UI system
     /// </summary>
     private UIState GetUIState()
     {
-        // DESIGN CHOICE: Use a dedicated "auditing" function that examines the
-        // state of the UI instead of keeping track of open panels as they're
-        // opened and closed since it offers a more straightforward, reliable
-        // solution for figuring out what the state should be. Here, "reliable" means
-        // it is pretty much guaranteed to work even as more states are added.
-        // It may be slow to do this audit, but that's okay because there probably
-        // won't be a ton of panels, and this probably won't be called a lot.
-
-        PanelAnimator currentPanel = null;
-        foreach(PanelAnimator panel in openPanels)
-        {
-            currentPanel = panel;
-            
-            if(overlayPanels.Contains(currentPanel))
-                break;
-        }
-
-        if(currentPanel == null)
+        if (isPauseOpen)
+            return UIState.PAUSE;           // Notice that pause takes priority
+        else if (isMainOpen)
+            return UIState.INVENTORY;
+        else
             return UIState.CLEAR;
-
-        return panelStateLabel[currentPanel];
-    }
-
-    /// <summary>
-    /// Open this panel and remember its new state
-    /// </summary>
-    private void OpenPanel(PanelAnimator panel)
-    {
-        if(panel == pause)
-            panel.InstantOpen();
-        else
-            // TODO: Ternary operator is used to provide temporary animation config similar to old version where inventory and journal are on separate panels... should refactor when
-            // decision on UI structure made
-            panel.AnimateOpen(panel == inventory ? PanelAnimator.PanelPosition.RIGHT : PanelAnimator.PanelPosition.BOTTOM, PanelAnimator.PanelAnimationSpeed.NORMAL);
-
-        if(!overlayPanels.Contains(panel))
-            CloseAllPanels();
-
-        openPanels.Add(panel);
-
-        
-    }
-
-    /// <summary>
-    /// Close this panel and remember its new state
-    /// </summary>
-    private void ClosePanel(PanelAnimator panel)
-    {
-        if(panel == pause)
-            panel.InstantClose();
-        else
-            panel.AnimateClose(panel == inventory ? PanelAnimator.PanelPosition.RIGHT : PanelAnimator.PanelPosition.BOTTOM, PanelAnimator.PanelAnimationSpeed.NORMAL);
-
-        openPanels.Remove(panel);
-
-    }
-
-    /// <summary>
-    /// Close all open panels
-    /// </summary>
-    private void CloseAllPanels()
-    {
-        // Need to copy list to avoid errors thrown when trying to modify the dictionary while iterating through it
-        List<PanelAnimator> openPanelsCopy = new List<PanelAnimator>(openPanels);
-        foreach(PanelAnimator openPanel in openPanelsCopy)
-        {
-            if(!overlayPanels.Contains(openPanel))
-                ClosePanel(openPanel);
-        }
-    }
-
-
-
-
-    /////////////
-    // UTILITY //
-    /////////////
-
-    private void RegisterInputCallbacks(List<Tuple<InputAction, Action<InputAction.CallbackContext>>> callbackInfoItems)
-    {
-        foreach(Tuple<InputAction, Action<InputAction.CallbackContext>> infoItem in callbackInfoItems)
-        {
-            infoItem.Item1.performed += infoItem.Item2;
-        }
-    }
-
-    private void DeregisterInputCallbacks(List<Tuple<InputAction, Action<InputAction.CallbackContext>>> callbackInfoItems)
-    {
-        foreach(Tuple<InputAction, Action<InputAction.CallbackContext>> infoItem in callbackInfoItems)
-        {
-            infoItem.Item1.performed -= infoItem.Item2;
-        }
     }
 }
 
