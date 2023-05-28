@@ -75,14 +75,14 @@ public class PanelAnimator : MonoBehaviour
         {PanelPosition.BOTTOM, c_OffscreenBot},
     };
 
-    public enum PanelVisibility {INVISIBLE, VISIBLE};
+    public enum PanelVisibility { INVISIBLE, VISIBLE };
     private Dictionary<PanelVisibility, string> panelVisibilityClasses = new Dictionary<PanelVisibility, string>()
     {
         {PanelVisibility.INVISIBLE, c_Transparent},
         {PanelVisibility.VISIBLE, c_Opaque}
     };
 
-    public enum PanelAnimationSpeed {FAST, NORMAL};
+    public enum PanelAnimationSpeed { FAST, NORMAL };
     private Dictionary<PanelAnimationSpeed, string> panelAnimationSpeedClasses = new Dictionary<PanelAnimationSpeed, string>()
     {
         {PanelAnimationSpeed.FAST, c_AnimationFast},
@@ -100,8 +100,9 @@ public class PanelAnimator : MonoBehaviour
 
     private VisualElement root
     {
-        get {
-            if(document != null)
+        get
+        {
+            if (document != null)
                 return document.rootVisualElement;
             return null;
         }
@@ -129,7 +130,7 @@ public class PanelAnimator : MonoBehaviour
         // Initialize state of Panel UI
         root.AddToClassList(panelPositionClasses[PanelPosition.CENTER]);
         root.AddToClassList(panelVisibilityClasses[PanelVisibility.INVISIBLE]);
-        
+
         root.RegisterCallback<TransitionStartEvent>(HandleAnimationStart);
         root.RegisterCallback<TransitionEndEvent>(HandleAnimationEnd);
     }
@@ -150,7 +151,7 @@ public class PanelAnimator : MonoBehaviour
     /// </summary>
     public void InstantClose()
     {
-        InstantUpdateVisuals(PanelPosition.TOP, PanelVisibility.INVISIBLE);
+        InstantUpdateVisuals(PanelPosition.CENTER, PanelVisibility.INVISIBLE);
         root.style.visibility = Visibility.Hidden;      // Unblock raycasts
     }
 
@@ -159,10 +160,10 @@ public class PanelAnimator : MonoBehaviour
     /// </summary>
     public void AnimateOpen(PanelPosition startPosition, PanelAnimationSpeed animationSpeed)
     {
-        
+
 
         // Perform main animation after reposition animation has occurred
-        System.Action OnFinishAnimation = () => 
+        System.Action OnFinishAnimation = () =>
         {
             AnimateVisuals(PanelPosition.CENTER, PanelVisibility.VISIBLE, animationSpeed);
             OnOpenPanel?.Invoke();
@@ -197,8 +198,8 @@ public class PanelAnimator : MonoBehaviour
         ChangeVisibility(opacity);
 
 
-        if(callback != null)
-            root.schedule.Execute(() => {callback.Invoke();});
+        if (callback != null)
+            root.schedule.Execute(() => { callback.Invoke(); });
     }
 
 
@@ -252,18 +253,18 @@ public class PanelAnimator : MonoBehaviour
         // would need to include animation information. This would compromise the separation of responsibilities
         // for the USS classes and make it tricky to work with animations
 
-        if(currentOpacity == PanelVisibility.INVISIBLE)
+        if (currentOpacity == PanelVisibility.INVISIBLE)
         {
-            root.style.visibility = Visibility.Hidden;   
+            root.style.visibility = Visibility.Hidden;
         }
-                  
+
     }
 
     private void HandleAnimationStart(TransitionStartEvent evt)
     {
-        if(currentOpacity == PanelVisibility.VISIBLE)
+        if (currentOpacity == PanelVisibility.VISIBLE)
         {
-            root.style.visibility = Visibility.Visible;   
+            root.style.visibility = Visibility.Visible;
         }
     }
 

@@ -5,6 +5,12 @@ This is a simple log for tracking the current and past challenges taken on by th
 
 ## Log
 
+### (5/27)
+**Problem:** How should we implement map disable in the tab panel? The player does not have the map immediately from the beginning, so the button to access the map from the tab panel should not be clickable. How do we prevent the button from being clicked, and how do we tell the tab panel to disable the map button?
+- Option 1: Don't add the map button visual to the tab and then add it when it gets unlocked. This should make selection logic a lot easier since the button simply won't be there to click. Requires refactoring script to handle dynamic tabs, which can be costly, especially since the UI is already hard-coded for 3 tabs.
+- Option 2: Have fixed-number of slots, but allow dynamic assignment of those slots. This allows us to keep our simple hard-coded visuals without needing to change much other than add a USS class for the unfilled slot visual and functionality for filling a new slot.
+- **Resolution:** Option 2 seemed to be a nice compromise between complexity and flexibility for the scope of this problem (where we realistically will probably only need to add 1 - 2 tabs after game start). I have been able to implement dynamic tab creation up to the maximum number of visual slots the UXML supports. It comes with the beneficial side effect of also hinting at the number of tabs that have yet to be unlocked (since unlocked slots are still visually there but do not have a name and are not clickable).
+
 ### (4/21)
 **Problem:** Providing the user with an API that lets them animate the panel from any part of the screen is complex given that the `UI Elements` update loop is complete separate from the standard `Monobehaviours` update loop. Thus, animations queued during a game frame may not reflect in the UI until several frames after -- whenever the UI update occurs. What are my options for implementing this behavior?
 - Option 1: Trigger a "set up" animation to position the panel in the proper starting position and then assign a callback to the `TransitionEndEvent` for the panel's `VisualElement` that then triggers the main animation to animate the panel into the center of the screen. While this does implement the desired behavior, it leaves the implementation open to errors since any animations invoked on the panel's `VisualElement`, not necessarily just the "set up animation" would trigger the `TransitionEndEvent`. Thus, it's easy to accidentally trigger the callback and cause undesired behavior.

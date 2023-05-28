@@ -8,13 +8,13 @@ public class TabPanelUI : MonoBehaviour
 {
     [SerializeField] UIDocument document;
 
-    [SerializeField] List<UIDocument> tabPanels = new List<UIDocument>();
+    [SerializeField] List<TabPanelData> tabPanels = new List<TabPanelData>();
 
-    List<PanelAnimator> tabPanelAnimators;
+    List<PanelAnimator> tabPanelAnimators = new List<PanelAnimator>();
     List<VisualElement> tabVisuals;
     int currentTab = 0;
 
-    const int c_numTabs = 3;
+    int numTabs = 0;
     const PanelAnimator.PanelAnimationSpeed c_swapSpeed = PanelAnimator.PanelAnimationSpeed.FAST;
 
     // UI Tags
@@ -22,13 +22,23 @@ public class TabPanelUI : MonoBehaviour
     const string k_tabsContainer = "tabs";
     const string k_leftTabButton = "left-tab-button";
     const string k_rightTabButton = "right-tab-button";
-    
+    const string k_tabName = "TitleText";
+
 
     // UI References
     VisualElement m_currentPanelContainer;
     SelectableScrollView m_tabsContainer;
     Button m_leftTabButton;
     Button m_rightTabButton;
+
+
+    [System.Serializable]
+    public struct TabPanelData
+    {
+        public string name;
+        public UIDocument panel;
+        public PanelAnimator animator;
+    }
 
     void Awake()
     {
@@ -40,44 +50,69 @@ public class TabPanelUI : MonoBehaviour
         m_leftTabButton.RegisterCallback<ClickEvent>(ev => TabLeft());
         m_rightTabButton.RegisterCallback<ClickEvent>(ev => TabRight());
 
-        tabPanelAnimators = tabPanels.Select<UIDocument, PanelAnimator>(panel => panel.GetComponent<PanelAnimator>()).ToList();
+        //tabPanelAnimators = tabPanels.Select<TabPanelData, PanelAnimator>(data => data.animator).ToList();
         tabVisuals = (m_tabsContainer.contentContainer.Children()).ToList();
-    }
 
-    void Start()
-    {
-        foreach(UIDocument panel in tabPanels)
+        // Give us control over when elements are selected
+        m_tabsContainer.automaticallyVisuallySelect = false;
+
+        foreach (TabPanelData data in tabPanels)
         {
-            m_currentPanelContainer.Add(panel.rootVisualElement);
-
-            // Ensure child panels don't overlap
-            panel.rootVisualElement.style.position = Position.Absolute;
-
-            // Ensure child panels don't scale past size of container
-            panel.rootVisualElement.style.height = Length.Percent(100);
-
-            // Don't force width since it messes with dimensions -- unsure why; should figure out
+            AllocateNewTab(data);
         }
 
-        for(int i = 0; i < tabVisuals.Count; i++)
+        for (int i = 0; i < tabVisuals.Count; i++)
         {
             int i_cached = i;
-            tabVisuals[i].RegisterCallback<ClickEvent>(ev => 
+            tabVisuals[i].RegisterCallback<ClickEvent>(ev =>
             {
                 SwapToTab(i_cached);
             });
         }
 
-        // Automatically select the first tab
-        m_tabsContainer.VisuallySelectOne(tabVisuals[0]);
-        tabPanelAnimators[0].InstantOpen();
+        // Automatically select the first tab (assumes there is one)
+        SwapToTab(0);
+    }
 
+    // Returns ID of new tab
+    public int AddNewTab(TabPanelData data)
+    {
+        int tabInd = AllocateNewTab(data);
+        if (tabInd >= 0)
+            tabPanels.Add(data);
+
+        return tabInd;
+    }
+
+    // Returns ID of new tab
+    private int AllocateNewTab(TabPanelData data)
+    {
+        // Max number of tabs allocated
+        if (numTabs >= tabVisuals.Count)
+            return -1;
+
+        int tabIndex = numTabs;
+        tabVisuals[tabIndex].Q<Label>(k_tabName).text = data.name;
+
+        // Add Panel to panel container
+        m_currentPanelContainer.Add(data.panel.rootVisualElement);
+
+        // Ensure child panels don't overlap
+        data.panel.rootVisualElement.style.position = Position.Absolute;
+
+        // Ensure child panels don't scale past size of container
+        data.panel.rootVisualElement.style.height = Length.Percent(100);
+
+        tabPanelAnimators.Add(data.animator);
+
+        numTabs++;
+        return numTabs - 1;
     }
 
     private void SwapToTab(int tabIndex)
     {
-        //tabPanelAnimators[currentTab].AnimateClose(PanelAnimator.PanelPosition.CENTER, c_swapSpeed);
-        //tabPanelAnimators[tabIndex].AnimateOpen(PanelAnimator.PanelPosition.CENTER, c_swapSpeed);
+        if (tabIndex >= numTabs || tabIndex < 0) return;
+
         tabPanelAnimators[currentTab].InstantClose();
         tabPanelAnimators[tabIndex].InstantOpen();
         m_tabsContainer.VisuallySelectOne(tabVisuals[tabIndex]);
@@ -85,13 +120,13 @@ public class TabPanelUI : MonoBehaviour
     }
     public void TabLeft()
     {
-        if(currentTab <= 0) return;
+        if (currentTab <= 0) return;
         SwapToTab(currentTab - 1);
     }
 
     public void TabRight()
     {
-        if(currentTab >= c_numTabs - 1) return;
+        if (currentTab >= numTabs - 1) return;
         SwapToTab(currentTab + 1);
     }
 }

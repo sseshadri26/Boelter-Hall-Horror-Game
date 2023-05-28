@@ -24,11 +24,15 @@ public class SelectableScrollView : ScrollView
 
     public SelectableScrollView()
     {
-        schedule.Execute(() => 
+        schedule.Execute(() =>
         {
-            foreach(VisualElement child in contentContainer.Children())
+            foreach (VisualElement child in contentContainer.Children())
             {
-                child.RegisterCallback<ClickEvent>(ev => VisuallySelectOne(child));
+                child.RegisterCallback<ClickEvent>(ev =>
+                {
+                    if (automaticallyVisuallySelect)
+                        VisuallySelectOne(child);
+                });
             }
         });
     }
@@ -36,9 +40,14 @@ public class SelectableScrollView : ScrollView
     public new void Add(VisualElement child)
     {
         base.Add(child);
-        child.RegisterCallback<ClickEvent>(ev => VisuallySelectOne(child));
+        child.RegisterCallback<ClickEvent>(ev =>
+        {
+            if (automaticallyVisuallySelect)
+                VisuallySelectOne(child);
+        });
     }
 
+    public bool automaticallyVisuallySelect { get; set; } = true;
 
     /// <summary>
     /// Play the animation tied to selecting an item, and at the same time play the animation
@@ -53,7 +62,7 @@ public class SelectableScrollView : ScrollView
 
     private void VisuallySelect(VisualElement item)
     {
-        if(item != null)
+        if (item != null)
         {
             item.RemoveFromClassList(c_NotSelected);
             item.AddToClassList(c_Selected);
@@ -63,12 +72,12 @@ public class SelectableScrollView : ScrollView
 
     private void VisuallyUnselect(VisualElement item)
     {
-        if(item != null)
+        if (item != null)
         {
             item.RemoveFromClassList(c_Selected);
             item.AddToClassList(c_NotSelected);
         }
-            
+
     }
 
 

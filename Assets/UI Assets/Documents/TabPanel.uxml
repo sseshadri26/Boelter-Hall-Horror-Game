@@ -10,17 +10,17 @@
             <SelectableScrollView name="tabs" mode="Horizontal" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden">
                 <ui:VisualElement name="tab1" style="width: 530px; padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px;">
                     <ui:Instance template="TitleBlock" name="TitleBlock" class="item-tint">
-                        <AttributeOverrides element-name="TitleText" text="Inventory" />
+                        <AttributeOverrides element-name="TitleText" text=" " />
                     </ui:Instance>
                 </ui:VisualElement>
                 <ui:VisualElement name="tab2" style="width: 615px; padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px;">
                     <ui:Instance template="TitleBlock" name="TitleBlock" class="item-tint">
-                        <AttributeOverrides element-name="TitleText" text="MAP" />
+                        <AttributeOverrides element-name="TitleText" text=" " />
                     </ui:Instance>
                 </ui:VisualElement>
                 <ui:VisualElement name="tab3" style="width: 530px; padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px;">
                     <ui:Instance template="TitleBlock" name="TitleBlock" class="item-tint">
-                        <AttributeOverrides element-name="TitleText" text="Journal" />
+                        <AttributeOverrides element-name="TitleText" text=" " />
                     </ui:Instance>
                 </ui:VisualElement>
             </SelectableScrollView>
