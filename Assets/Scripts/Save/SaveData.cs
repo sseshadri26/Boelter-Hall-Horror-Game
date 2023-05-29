@@ -18,6 +18,8 @@ public class SaveData
     // public List<string> itemGraphics = new List<string>();
     // public List<InventoryItemSO.ItemStatus> itemStatuses = new List<InventoryItemSO.ItemStatus>();
 
+    public Dictionary<string, bool> flags;
+
     public int portalPosition = 0;
     public bool glassBroke = false;
 
@@ -64,5 +66,6 @@ public class SaveData
     {
         portalPosition = Globals.portalPosition5F;
         glassBroke = Globals.GlassBroke;
+        flags = Globals.flags;
     }
 }

@@ -20,8 +20,17 @@ ScriptedImporter:
     assetsFolder: {fileID: 102900000, guid: ab7fc8e35f74203429ab5354ebe4501b, type: 3}
   useAddressableAssets: 0
   searchAllAssembliesForActions: 1
-  assembliesToSearch: []
+  assembliesToSearch:
+  - {instanceID: 0}
   ListOfFunctions:
+  - Name: HasItem
+    ReturnType: -> Boolean
+    Parameters:
+    - itemName
+  - Name: FlagIsTrue
+    ReturnType: -> Boolean
+    Parameters:
+    - flagName
   - Name: Random
     ReturnType: -> Single
     Parameters: []

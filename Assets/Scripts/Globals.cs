@@ -24,4 +24,6 @@ public static class Globals
             _glassBroke = value;
         }
     }
+
+    public static Dictionary<string, bool> flags = new Dictionary<string, bool>();
 }

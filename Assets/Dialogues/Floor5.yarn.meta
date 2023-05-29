@@ -11,24 +11,4 @@ ScriptedImporter:
   LastImportHadImplicitStringIDs: 1
   LastImportHadAnyStrings: 1
   isSuccessfullyParsed: 1
-  parseErrorMessages:
-  - '9:373: Error: Duplicate line ID line:Specs1
-
-    #line:Specs1
-
-'
-  - '10:87: Error: Duplicate line ID line:Specs2
-
-    #line:Specs2
-
-'
-  - '9:373: Error: Duplicate line ID line:Specs1
-
-    #line:Specs1
-
-'
-  - '10:87: Error: Duplicate line ID line:Specs2
-
-    #line:Specs2
-
-'
+  parseErrorMessages: []

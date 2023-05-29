@@ -53,7 +53,6 @@ public class ToNextScene : MonoBehaviour, IAction
         FMODManager.Instance.PlaySound(FMODManager.SFX.door_open);
         blackScreen.DOFade(1f, 0.75f).SetUpdate(true);
         Time.timeScale = 0f;
-        player.cameraCanMove = false; // For some reason this is separate from timeScale
 
         // Load next scene and play door closing sound
         yield return new WaitForSecondsRealtime(1f);
@@ -64,10 +63,8 @@ public class ToNextScene : MonoBehaviour, IAction
     private IEnumerator FreezePlayer()
     {
         player.playerCanMove = false;
-        // player.cameraCanMove = false;
 
         yield return new WaitForSeconds(1.5f);
         player.playerCanMove = true;
-        // player.cameraCanMove = true;
     }
 }

@@ -22,6 +22,7 @@ public static class SaveSystem
                 else
                 {
                     Resources.Load<InventoryItemCollectionSO>("PlayerInventory").items = GetInventory();
+                    // Globals.flags = _data.flags;
                 }
             }
             return _data;
