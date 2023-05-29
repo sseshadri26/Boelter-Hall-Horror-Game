@@ -59,7 +59,10 @@ public class UIController : MonoBehaviour
         togglePauseAction.performed -= HandleTogglePause;
     }
 
-    private void HandleToggleMain(InputAction.CallbackContext context)
+    /// <summary>
+    /// Toggle open/closed the main panel
+    /// </summary>
+    public void ToggleMain()
     {
         if (!isMainOpen)
         {
@@ -76,7 +79,10 @@ public class UIController : MonoBehaviour
         stateChanged.RaiseEvent(GetUIState());
     }
 
-    private void HandleTogglePause(InputAction.CallbackContext context)
+    /// <summary>
+    /// Toggle open/closed the pause panel
+    /// </summary>
+    public void TogglePause()
     {
         if (!isPauseOpen)
             pause.InstantOpen();
@@ -86,6 +92,9 @@ public class UIController : MonoBehaviour
         isPauseOpen = !isPauseOpen;
         stateChanged.RaiseEvent(GetUIState());
     }
+    private void HandleToggleMain(InputAction.CallbackContext context) => ToggleMain();
+
+    private void HandleTogglePause(InputAction.CallbackContext context) => TogglePause();
 
     /// <summary>
     /// Get the current state of the UI system

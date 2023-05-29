@@ -18,7 +18,7 @@ public class PauseUI : MonoBehaviour
     const string k_MainMenuButton = "main-menu-button";
     const string k_SettingsButton = "settings-button";
 
-    
+
     Button m_RestartButton = default;
     Button m_ResumeButton = default;
     Button m_MainMenuButton = default;
@@ -26,8 +26,9 @@ public class PauseUI : MonoBehaviour
 
     VisualElement root
     {
-        get {
-            if(document != null)
+        get
+        {
+            if (document != null)
                 return document.rootVisualElement;
             return null;
         }
@@ -41,7 +42,7 @@ public class PauseUI : MonoBehaviour
         m_SettingsButton = root.Q<Button>(k_SettingsButton);
 
         m_RestartButton.RegisterCallback<ClickEvent>(ev => OnRestartButtonPressed.Invoke());
-        m_ResumeButton.RegisterCallback<ClickEvent>(ev => OnRestartButtonPressed.Invoke());
+        m_ResumeButton.RegisterCallback<ClickEvent>(ev => OnResumeButtonPressed.Invoke());
         m_MainMenuButton.RegisterCallback<ClickEvent>(ev => OnMainMenuButtonPressed.Invoke());
         m_SettingsButton.RegisterCallback<ClickEvent>(ev => OnSettingsButtonPressed.Invoke());
     }
