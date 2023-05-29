@@ -13,13 +13,32 @@ public class TabLoader : MonoBehaviour
     [SerializeField] TabPanelUI.TabPanelData mapTabData;
 
 
-    void Awake()
+    void Start()
+    {
+        // If the map has been unlocked before this scene was loaded
+        // Defer until start to give time for tab panel to be initialized
+        if (Globals.flags.ContainsKey("Map") && Globals.flags["Map"])
+        {
+            tabPanelUI.AddNewTab(mapTabData);
+        }
+
+    }
+    void OnEnable()
     {
         loadMapEvent.OnEventRaised += HandleLoadMapEvent;
     }
 
+    void OnDisable()
+    {
+        loadMapEvent.OnEventRaised -= HandleLoadMapEvent;
+    }
+
+
+    // Handler for unlocking map after UI scene has been loaded
     private void HandleLoadMapEvent()
     {
+        // We trust that this won't be called if map has already
+        // been added (which would lead to duplicates)
         tabPanelUI.AddNewTab(mapTabData);
     }
 }
