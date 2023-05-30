@@ -63,7 +63,7 @@ public class DisableOnInteract : MonoBehaviour, IAction
         // Get the current rotation of the poster in global space
         Quaternion rotation = transform.localRotation;
 
-        Debug.Log(rotation);
+        // Debug.Log(rotation);
         // Calculate a new shake vector that matches the orientation of the poster
         Vector3 shakeVector = new Vector3(0.15f, 0.15f);
         shakeVector = rotation * shakeVector;
