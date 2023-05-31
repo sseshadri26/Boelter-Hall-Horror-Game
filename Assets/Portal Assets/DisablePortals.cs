@@ -63,8 +63,8 @@ public class DisablePortals : MonoBehaviour
         screensAreOnScreen = Portal1Visibility.isVisible && Portal2Visibility.isVisible;
         previousScreensAreOnScreen = screensAreOnScreen;
         inFrontOfScreens = Portal1Visibility.playerIsInFrontOfPortal && Portal2Visibility.playerIsInFrontOfPortal;
-        Portal1Material = GetComponent<PortalTextureSetup>().cameraMatA;
-        Portal2Material = GetComponent<PortalTextureSetup>().cameraMatB;
+        Portal1Material = this.transform.parent.gameObject.GetComponent<PortalTextureSetup>().cameraMatA;
+        Portal2Material = this.transform.parent.gameObject.GetComponent<PortalTextureSetup>().cameraMatB;
 
     }
 
@@ -73,15 +73,9 @@ public class DisablePortals : MonoBehaviour
     {
         if (portalDisabledForever && !screensAreEnabled)
         {
-            //objectsToEnable and objectsToDisable are set in the editor, now do the enabling and disabling
-            foreach (GameObject obj in objectsToEnable)
-            {
-                obj.SetActive(true);
-            }
-            foreach (GameObject obj in objectsToDisable)
-            {
-                obj.SetActive(false);
-            }
+            //objectsToEnable and objectsToDisable are set in the editor
+            // call PermanentlyDisable in RotatingPortalDisableManager to disable the portal potentially
+            this.gameObject.transform.parent.gameObject.GetComponent<RotatingPortalDisableManager>().PermanentlyDisable();
 
             //disable this script so it doesn't run again
             gameObject.SetActive(false);
@@ -97,41 +91,44 @@ public class DisablePortals : MonoBehaviour
         portalsColliding = Portal1Teleporter.playerIsOverlapping || Portal2Teleporter.playerIsOverlapping;
 
 
-        if (screensAreOnScreen == false && previousScreensAreOnScreen == true && !portalsColliding)
+        if (screensAreOnScreen == false && !portalsColliding)
         {
-            screensAreEnabled = !screensAreEnabled;
+            // screensAreEnabled = !screensAreEnabled;
+            screensAreEnabled = false;
+            portalDisabledForever = true;
             //randomly enable screens with frequency 0.5
             //screensAreEnabled = Random.value < 0.5;
 
 
         }
-        previousScreensAreOnScreen = screensAreOnScreen;
+        // previousScreensAreOnScreen = screensAreOnScreen;
 
-        if (!inFrontOfScreens && !portalsColliding)
-        {
-            screensAreEnabled = false;
-        }
-
-
-        if (screensAreEnabled)
-        {
-
-            Portal1Screen.material = Portal2Material;
-            Portal2Screen.material = Portal1Material;
-
-            Portal1Teleporter.teleportingEnabled = true;
-            Portal2Teleporter.teleportingEnabled = true;
-        }
-        else
-        {
-            Portal1Screen.material = TransparentMaterial;
-            Portal2Screen.material = TransparentMaterial;
-            Portal1Teleporter.teleportingEnabled = false;
-            Portal2Teleporter.teleportingEnabled = false;
+        // if (!inFrontOfScreens && !portalsColliding)
+        // {
+        //     screensAreEnabled = false;
+        //     portalDisabledForever = true;
+        // }
 
 
+        // if (screensAreEnabled)
+        // {
 
-        }
+        //     Portal1Screen.material = Portal2Material;
+        //     Portal2Screen.material = Portal1Material;
+
+        //     Portal1Teleporter.teleportingEnabled = true;
+        //     Portal2Teleporter.teleportingEnabled = true;
+        // }
+        // else
+        // {
+        //     Portal1Screen.material = TransparentMaterial;
+        //     Portal2Screen.material = TransparentMaterial;
+        //     Portal1Teleporter.teleportingEnabled = false;
+        //     Portal2Teleporter.teleportingEnabled = false;
+
+
+
+        // }
 
     }
 

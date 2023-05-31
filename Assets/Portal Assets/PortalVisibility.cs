@@ -235,12 +235,18 @@ public class PortalVisibility : MonoBehaviour
         //if any of the remaining raycasts hit the camera uninterrupted, then return true. else return false
 
 
+        // check distance of player to portal, if too far, then return false
+        if (Vector3.Distance(player.transform.position, transform.position) > 2f)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
 
-        return false;
 
+        }
 
 
     }
-
-
 }

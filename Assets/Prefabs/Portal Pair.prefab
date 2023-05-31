@@ -31,7 +31,7 @@ Transform:
   - {fileID: 2057779428054170872}
   - {fileID: 9205239515670213772}
   m_Father: {fileID: 3451279659050290912}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3451279657414398579
 GameObject:
@@ -58,7 +58,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3451279657414398579}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 34.78721, y: 1.3715973, z: -9.9470005}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -66,7 +66,7 @@ Transform:
   - {fileID: 3451279657770507982}
   - {fileID: 3451279657550273778}
   - {fileID: 3451279658446570068}
-  m_Father: {fileID: 3451279659050290912}
+  m_Father: {fileID: 5111320919719726331}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3451279657414398581
@@ -114,6 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 168ae476982aaa24bb04a0dde3456013, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rayCastMoxDistance: 100
   numberOfHorizontalRaycasts: 6
   numberOfVerticalRaycasts: 16
   player: {fileID: 0}
@@ -146,9 +147,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3451279657550273779}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: -0.4}
-  m_LocalScale: {x: 3.6576, y: 0.4, z: 2.7432}
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: -0.39999962}
+  m_LocalScale: {x: 3.6576, y: 0.40000007, z: 2.7432}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3451279657414398578}
@@ -229,7 +230,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3451279657721651829}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 16.2146, y: 1.3716002, z: 7.4063997}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -237,7 +238,7 @@ Transform:
   - {fileID: 3451279658277694253}
   - {fileID: 3451279658761171720}
   - {fileID: 3451279658379948095}
-  m_Father: {fileID: 3451279659050290912}
+  m_Father: {fileID: 5111320919719726331}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!114 &3451279657721651831
@@ -285,6 +286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 168ae476982aaa24bb04a0dde3456013, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rayCastMoxDistance: 100
   numberOfHorizontalRaycasts: 6
   numberOfVerticalRaycasts: 16
   player: {fileID: 0}
@@ -539,7 +541,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3451279658446570069}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -765,8 +767,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3451279659050290912}
   - component: {fileID: 3451279659050290915}
-  - component: {fileID: 1160021735935655994}
   - component: {fileID: 505313277}
+  - component: {fileID: 6022457707408557825}
   m_Layer: 6
   m_Name: Portal Pair
   m_TagString: Untagged
@@ -786,8 +788,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3451279657414398578}
-  - {fileID: 3451279657721651828}
+  - {fileID: 5111320919719726331}
   - {fileID: 281223040627042078}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -811,35 +812,6 @@ MonoBehaviour:
   screenA: {fileID: 3451279657550273780}
   screenB: {fileID: 3451279658761171722}
   ScreenCutoutShader: {fileID: 4800000, guid: dc83ed592b2e40b4c94d60ed41534bc3, type: 3}
---- !u!114 &1160021735935655994
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3451279659050290913}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09db759f7127e7c4296838dfe7d677dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Portal1Visibility: {fileID: 4148794264331645682}
-  Portal2Visibility: {fileID: 8475017207327767010}
-  Portal1Screen: {fileID: 3451279657550273780}
-  Portal2Screen: {fileID: 3451279658761171722}
-  Portal1Collider: {fileID: 3451279658446570070}
-  Portal2Collider: {fileID: 3451279658379948065}
-  Portal1Teleporter: {fileID: 3451279658446570071}
-  Portal2Teleporter: {fileID: 3451279658379948094}
-  TransparentMaterial: {fileID: 2100000, guid: f9b29c34e4333b24898c3639bd585cf3, type: 2}
-  screensAreOnScreen: 0
-  screen1IsOnScreen: 0
-  screen2IsOnScreen: 0
-  previousScreensAreOnScreen: 0
-  inFrontOfScreens: 0
-  portalsColliding: 0
-  portalDisabledForever: 0
-  screensAreEnabled: 0
 --- !u!114 &505313277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -859,6 +831,89 @@ MonoBehaviour:
   Portal2Collider: {fileID: 3451279658379948065}
   Portal1Screen: {fileID: 3451279657550273779}
   Portal2Screen: {fileID: 3451279658761171721}
+--- !u!114 &6022457707408557825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3451279659050290913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f8efb53932cbda43ada271c1eee2310, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Posters: {fileID: 305572614215474784}
+  PortalPair: {fileID: 6523551549316812557}
+  portalIsCurrentlyEnabled: 0
+  isPermanentlyDisabled: 0
+  objectsToEnable: []
+  objectsToDisable: []
+--- !u!1 &6523551549316812557
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5111320919719726331}
+  - component: {fileID: 8888603907196271053}
+  m_Layer: 6
+  m_Name: Portals
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5111320919719726331
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6523551549316812557}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3451279657414398578}
+  - {fileID: 3451279657721651828}
+  m_Father: {fileID: 3451279659050290912}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8888603907196271053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6523551549316812557}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09db759f7127e7c4296838dfe7d677dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectsToEnable: []
+  objectsToDisable: []
+  Portal1Visibility: {fileID: 4148794264331645682}
+  Portal2Visibility: {fileID: 8475017207327767010}
+  Portal1Screen: {fileID: 3451279657550273780}
+  Portal2Screen: {fileID: 3451279658761171722}
+  Portal1Collider: {fileID: 3451279658446570070}
+  Portal2Collider: {fileID: 3451279658379948065}
+  Portal1Teleporter: {fileID: 3451279658446570071}
+  Portal2Teleporter: {fileID: 3451279658379948094}
+  TransparentMaterial: {fileID: 2100000, guid: f9b29c34e4333b24898c3639bd585cf3, type: 2}
+  screensAreOnScreen: 0
+  screen1IsOnScreen: 0
+  screen2IsOnScreen: 0
+  previousScreensAreOnScreen: 0
+  inFrontOfScreens: 0
+  portalsColliding: 0
+  portalDisabledForever: 0
+  screensAreEnabled: 0
 --- !u!1001 &413257459435615542
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -869,7 +924,7 @@ PrefabInstance:
     - target: {fileID: 6808653661612710179, guid: d97fa81dfcfb4a940a8b645560cbbcde, type: 3}
       propertyPath: PortalPair
       value: 
-      objectReference: {fileID: 3451279659050290913}
+      objectReference: {fileID: 6523551549316812557}
     - target: {fileID: 6808653661612710179, guid: d97fa81dfcfb4a940a8b645560cbbcde, type: 3}
       propertyPath: OtherPoster
       value: 
@@ -1116,7 +1171,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9205239515670213767}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f0c10d7ba80282643bd04e2212d64714, type: 3}
   m_Name: 
@@ -1134,13 +1189,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9205239515670213767}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 03bcacd4b91e951448ae76e758cbd89d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   activated: 0
-  PortalPair: {fileID: 3451279659050290913}
+  PortalPair: {fileID: 6523551549316812557}
   PosterToDelete: {fileID: 9205239515670213767}
   OtherPoster: {fileID: 2057779428054170867}
 --- !u!4 &9205239515670213772 stripped
@@ -1158,14 +1213,14 @@ PrefabInstance:
     - target: {fileID: 6808653661612710179, guid: d97fa81dfcfb4a940a8b645560cbbcde, type: 3}
       propertyPath: PortalPair
       value: 
-      objectReference: {fileID: 3451279659050290913}
+      objectReference: {fileID: 6523551549316812557}
     - target: {fileID: 6808653661612710179, guid: d97fa81dfcfb4a940a8b645560cbbcde, type: 3}
       propertyPath: OtherPoster
       value: 
       objectReference: {fileID: 9205239515670213767}
     - target: {fileID: 8792077507724165553, guid: d97fa81dfcfb4a940a8b645560cbbcde, type: 3}
       propertyPath: m_Name
-      value: poster (93)
+      value: Poster1
       objectReference: {fileID: 0}
     - target: {fileID: 8792077507724165553, guid: d97fa81dfcfb4a940a8b645560cbbcde, type: 3}
       propertyPath: m_IsActive
@@ -1405,7 +1460,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2057779428054170867}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f0c10d7ba80282643bd04e2212d64714, type: 3}
   m_Name: 
@@ -1423,13 +1478,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2057779428054170867}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 03bcacd4b91e951448ae76e758cbd89d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   activated: 0
-  PortalPair: {fileID: 3451279659050290913}
+  PortalPair: {fileID: 6523551549316812557}
   PosterToDelete: {fileID: 2057779428054170867}
   OtherPoster: {fileID: 9205239515670213767}
 --- !u!4 &2057779428054170872 stripped
