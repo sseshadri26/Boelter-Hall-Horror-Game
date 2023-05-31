@@ -65,7 +65,7 @@ public class RotatePortals : MonoBehaviour, IAction
         //transform.GetChild(curPortalPair).gameObject.SetActive(true);
 
         // print that we are changing?
-        Debug.Log("Changing portals to " + curPortalPair);
+        // Debug.Log("Changing portals to " + curPortalPair);
 
         switch (curPortalPair)
         {
@@ -73,11 +73,11 @@ public class RotatePortals : MonoBehaviour, IAction
                 foreach (GameObject portal in portalGroup1)
                 {
                     // print name of portal in portal group
-                    Debug.Log(portal.name);
+                    // Debug.Log(portal.name);
                     RotatingPortalDisableManager r = portal.GetComponent<RotatingPortalDisableManager>();
                     if (r != null)
                     {
-                        Debug.Log("not null");
+                        // Debug.Log("not null");
                         r.EnableOrDisable(true);
                     }
                 }
@@ -86,7 +86,7 @@ public class RotatePortals : MonoBehaviour, IAction
                     RotatingPortalDisableManager r = portal.GetComponent<RotatingPortalDisableManager>();
                     if (r != null)
                     {
-                        Debug.Log("not null");
+                        // Debug.Log("not null");
                         r.EnableOrDisable(false);
                     }
                 }
@@ -97,7 +97,7 @@ public class RotatePortals : MonoBehaviour, IAction
                     RotatingPortalDisableManager r = portal.GetComponent<RotatingPortalDisableManager>();
                     if (r != null)
                     {
-                        Debug.Log("not null");
+                        // Debug.Log("not null");
                         r.EnableOrDisable(false);
                     }
                 }
@@ -106,7 +106,7 @@ public class RotatePortals : MonoBehaviour, IAction
                     RotatingPortalDisableManager r = portal.GetComponent<RotatingPortalDisableManager>();
                     if (r != null)
                     {
-                        Debug.Log("not null");
+                        // Debug.Log("not null");
                         r.EnableOrDisable(true);
                     }
                 }
