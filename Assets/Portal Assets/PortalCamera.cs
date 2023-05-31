@@ -44,7 +44,7 @@ public class PortalCamera : MonoBehaviour
 
         if (meshRenderer != null)
         {
-            if (!portalVisibility.isVisible)
+            if (!portalVisibility.isVisible && !portalVisibility.closeToPortal)
             {
                 visible = false;
                 portalCamera.enabled = false;

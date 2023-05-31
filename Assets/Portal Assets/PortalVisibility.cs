@@ -25,7 +25,7 @@ public class PortalVisibility : MonoBehaviour
     private MeshRenderer portalRenderer;
 
     public BoxCollider col;
-
+    public bool closeToPortal;
 
     Vector3 P000;
     Vector3 P001;
@@ -154,6 +154,10 @@ public class PortalVisibility : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        // new variable called closeToPortal that returns true if the player is close to the portal, ie 5 units
+        closeToPortal = Vector3.Distance(player.transform.position, transform.position) < 11f;
+
         //check which side of the object the player is on
         Vector3 portalToPlayer = player.transform.position - transform.position;
         float dotProduct = Vector3.Dot(transform.forward, portalToPlayer);
@@ -178,6 +182,12 @@ public class PortalVisibility : MonoBehaviour
 
     bool RaycastVisibility()
     {
+
+        // check distance of player to portal, if too far, then return false
+        if (Vector3.Distance(player.transform.position, transform.position) < 3f)
+        {
+            return true;
+        }
 
         //loop through each point in raycastPoints again, and check their location on the screen. if they are on the screen, then initialize a raycast.
 
@@ -235,18 +245,9 @@ public class PortalVisibility : MonoBehaviour
         //if any of the remaining raycasts hit the camera uninterrupted, then return true. else return false
 
 
-        // check distance of player to portal, if too far, then return false
-        if (Vector3.Distance(player.transform.position, transform.position) > 2f)
-        {
-            return false;
-        }
-        else
-        {
-            return true;
 
 
-        }
-
+        return false;
 
     }
 }
