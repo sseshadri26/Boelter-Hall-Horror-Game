@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 
 
-public class AlmanacUI : MonoBehaviour
+public class AlmanacUI : MonoBehaviour, IDirectionControllable
 {
     [SerializeField] UIDocument document = default;
     [SerializeField] float scrollSpeed = 300;
@@ -11,7 +11,7 @@ public class AlmanacUI : MonoBehaviour
 
     // NOTE: This is a component-based alternative to custom styling of collection items
     [SerializeField] ItemUIGeneratorSO almanacItemUIGenerator = default;
-    
+
 
 
     // UI Tags
@@ -39,8 +39,9 @@ public class AlmanacUI : MonoBehaviour
 
     VisualElement root
     {
-        get {
-            if(document != null)
+        get
+        {
+            if (document != null)
                 return document.rootVisualElement;
             return null;
         }
@@ -51,7 +52,7 @@ public class AlmanacUI : MonoBehaviour
         UpdateDisplayWithGenerator(almanacItemUIGenerator);
     }
 
-     void Awake()
+    void Awake()
     {
         m_ItemList = root.Q<SelectableScrollView>(k_ItemList);
 
@@ -65,7 +66,7 @@ public class AlmanacUI : MonoBehaviour
 
         // Register Callbacks
         m_InventoryScrollUpButton.RegisterCallback<ClickEvent>(ev => m_ItemList.verticalScroller.ScrollPageUp());
-        m_InventoryScrollDownButton.RegisterCallback<ClickEvent>(ev => m_ItemList.verticalScroller.ScrollPageDown()); 
+        m_InventoryScrollDownButton.RegisterCallback<ClickEvent>(ev => m_ItemList.verticalScroller.ScrollPageDown());
 
         m_ItemList.RegisterCallback<WheelEvent>(SpeedUpScroll);
         m_ItemList.verticalPageSize = scrollButtonJumpSize;
@@ -92,11 +93,11 @@ public class AlmanacUI : MonoBehaviour
         m_ItemList.scrollOffset = Vector2.zero;
 
         bool isFirstItem = true;
-        
+
         // Generate the item UIs
         List<ItemUIGeneratorSO.ItemUIResult> results = generator.GenerateUI();
 
-        foreach(var result in results)
+        foreach (var result in results)
         {
             //TemplateContainer instance = GenerateAlamanacListItem(itemData);
             TemplateContainer instance = result.ui;
@@ -111,7 +112,7 @@ public class AlmanacUI : MonoBehaviour
             // DESIGN CHOICE: Inventory item should be fully initialized and
             // already inside of the list by the time the initial "click" is
             // simulated, since the logic expects it to be in the list
-            if(isFirstItem)
+            if (isFirstItem)
             {
                 HandleInventoryItemClicked(instance, result.reference);
                 isFirstItem = false;
@@ -143,5 +144,23 @@ public class AlmanacUI : MonoBehaviour
         m_ItemVisual.style.backgroundImage = new StyleBackground(item.graphic);
     }
 
+    public void MoveUp()
+    {
+        m_ItemList.verticalScroller.ScrollPageUp();
+    }
 
+    public void MoveDown()
+    {
+        m_ItemList.verticalScroller.ScrollPageDown();
+    }
+
+    public void MoveLeft()
+    {
+        // Don't do anything
+    }
+
+    public void MoveRight()
+    {
+        // Don't do anything
+    }
 }

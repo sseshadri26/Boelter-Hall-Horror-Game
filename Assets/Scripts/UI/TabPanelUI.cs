@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using System.Linq;
 
-public class TabPanelUI : MonoBehaviour
+public class TabPanelUI : MonoBehaviour, IDirectionControllable
 {
     [SerializeField] UIDocument document;
 
@@ -128,5 +128,29 @@ public class TabPanelUI : MonoBehaviour
     {
         if (currentTab >= numTabs - 1) return;
         SwapToTab(currentTab + 1);
+    }
+
+    public void MoveUp()
+    {
+        // Assumes that a direction controllable component is attached to the same game object as the document
+        // Given that this is one of very few GetComponent calls, probably won't hurt performance noticeably
+        tabPanels[currentTab].panel.GetComponent<IDirectionControllable>()?.MoveUp();
+    }
+
+    public void MoveDown()
+    {
+        // Assumes that a direction controllable component is attached to the same game object as the document
+        // Given that this is one of very few GetComponent calls, probably won't hurt performance noticeably
+        tabPanels[currentTab].panel.GetComponent<IDirectionControllable>()?.MoveDown();
+    }
+
+    public void MoveLeft()
+    {
+        TabLeft();
+    }
+
+    public void MoveRight()
+    {
+        TabRight();
     }
 }
