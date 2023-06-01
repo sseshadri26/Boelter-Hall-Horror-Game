@@ -57,7 +57,7 @@ public class EventChannelTesterTool : EditorWindow
 
     private void OnDisable()
     {
-        if(m_BoolChannelField != null)
+        if (m_BoolChannelField != null)
             EditorPrefs.SetInt(k_BoolChannelField, m_BoolChannelField.value.GetInstanceID());
         EditorPrefs.SetBool(k_BoolValueField, m_BoolValueField.value);
     }
