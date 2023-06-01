@@ -36,6 +36,7 @@ public class AlmanacUI : MonoBehaviour, IDirectionControllable
 
     // Other References
     SelectableScrollView selectableItemList = default;
+    Dictionary<VisualElement, ItemSO> visualToData = new Dictionary<VisualElement, ItemSO>();
 
     VisualElement root
     {
@@ -65,8 +66,8 @@ public class AlmanacUI : MonoBehaviour, IDirectionControllable
 
 
         // Register Callbacks
-        m_InventoryScrollUpButton.RegisterCallback<ClickEvent>(ev => m_ItemList.verticalScroller.ScrollPageUp());
-        m_InventoryScrollDownButton.RegisterCallback<ClickEvent>(ev => m_ItemList.verticalScroller.ScrollPageDown());
+        m_InventoryScrollUpButton.RegisterCallback<ClickEvent>(ev => SelectPrev());
+        m_InventoryScrollDownButton.RegisterCallback<ClickEvent>(ev => SelectNext());
 
         m_ItemList.RegisterCallback<WheelEvent>(SpeedUpScroll);
         m_ItemList.verticalPageSize = scrollButtonJumpSize;
@@ -102,10 +103,13 @@ public class AlmanacUI : MonoBehaviour, IDirectionControllable
             //TemplateContainer instance = GenerateAlamanacListItem(itemData);
             TemplateContainer instance = result.ui;
 
+            // Cache item data
+            visualToData[instance] = result.reference;
+
             // DESIGN CHOICE: Store item reference in callback instead of using generic
             // callback and searching for item index within function to reduce chances
             // of erroneously selecting wrong item
-            instance.RegisterCallback<ClickEvent>(ev => HandleInventoryItemClicked(instance, result.reference));
+            instance.RegisterCallback<ClickEvent>(ev => HandleInventoryItemClicked(instance));
 
             m_ItemList.Add(instance);
 
@@ -114,19 +118,41 @@ public class AlmanacUI : MonoBehaviour, IDirectionControllable
             // simulated, since the logic expects it to be in the list
             if (isFirstItem)
             {
-                HandleInventoryItemClicked(instance, result.reference);
+                HandleInventoryItemClicked(instance);
                 isFirstItem = false;
             }
 
         }
     }
 
-    private void HandleInventoryItemClicked(VisualElement item, ItemSO itemData)
+    private void HandleInventoryItemClicked(VisualElement item)
     {
         // Visually select item
         m_ItemList.VisuallySelectOne(item);
+        FocusOnItem(item);
+    }
+
+    private void SelectNext()
+    {
+        m_ItemList.VisuallySelectNext();
+        VisualElement curItem = m_ItemList.GetSelectedElement();
+
+        FocusOnItem(curItem);
+    }
+
+    private void SelectPrev()
+    {
+        m_ItemList.VisuallySelectPrev();
+        VisualElement curItem = m_ItemList.GetSelectedElement();
+
+        FocusOnItem(curItem);
+    }
+
+    private void FocusOnItem(VisualElement item)
+    {
+        if (item == null) return;
         m_ItemList.ScrollTo(item);
-        DisplayItemInformation(itemData);
+        DisplayItemInformation(visualToData[item]);
     }
 
 
@@ -146,12 +172,12 @@ public class AlmanacUI : MonoBehaviour, IDirectionControllable
 
     public void MoveUp()
     {
-        m_ItemList.verticalScroller.ScrollPageUp();
+        SelectPrev();
     }
 
     public void MoveDown()
     {
-        m_ItemList.verticalScroller.ScrollPageDown();
+        SelectNext();
     }
 
     public void MoveLeft()

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using System.Linq;
 
 public class SelectableScrollView : ScrollView
 {
@@ -24,6 +25,8 @@ public class SelectableScrollView : ScrollView
 
     public SelectableScrollView()
     {
+        // Delay execution to allow children in UI to be populated after UI update frame (is this true?)
+        // REMEMBER: this is not guaranteed to occur before Awake or Start!
         schedule.Execute(() =>
         {
             foreach (VisualElement child in contentContainer.Children())
@@ -39,7 +42,8 @@ public class SelectableScrollView : ScrollView
 
     public new void Add(VisualElement child)
     {
-        base.Add(child);
+        base.Add(child);    // Update the true version
+
         child.RegisterCallback<ClickEvent>(ev =>
         {
             if (automaticallyVisuallySelect)
@@ -49,14 +53,52 @@ public class SelectableScrollView : ScrollView
 
     public bool automaticallyVisuallySelect { get; set; } = true;
 
+    int currentIndex = -1;
+
     /// <summary>
     /// Play the animation tied to selecting an item, and at the same time play the animation
     /// to deselect all other items (if any are selected).
     /// </summary>
     public void VisuallySelectOne(VisualElement item)
     {
-        GetInventoryItems().ForEach(VisuallyUnselect);
+        // For some reason we need
+        GetItems().ForEach(VisuallyUnselect);
         VisuallySelect(item);
+        currentIndex = GetItems().IndexOf(item);
+    }
+
+    /// <summary>
+    /// Attempt to select the next element in the list
+    /// </summary>
+    public void VisuallySelectNext()
+    {
+        if (currentIndex < GetItems().Count - 1)
+        {
+            currentIndex++;
+            VisuallySelectOne(GetItems()[currentIndex]);
+        }
+    }
+
+    /// <summary>
+    /// Attempt to select the previous element in the list
+    /// </summary>
+    public void VisuallySelectPrev()
+    {
+        if (currentIndex > 0)
+        {
+            currentIndex--;
+            VisuallySelectOne(GetItems()[currentIndex]);
+        }
+    }
+
+    /// <summary>
+    /// Get a reference to the currently selected element, null if no element selected
+    /// </summary>
+    public VisualElement GetSelectedElement()
+    {
+        if (currentIndex >= 0 && currentIndex < GetItems().Count)
+            return GetItems()[currentIndex];
+        return null;
     }
 
 
@@ -80,6 +122,7 @@ public class SelectableScrollView : ScrollView
 
     }
 
-
-    private List<VisualElement> GetInventoryItems() => new List<VisualElement>(this.Children());
+    // DESIGN CHOICE: It is repeatedly creating a list from an IEnumerable, but it's
+    // probably not called enough to matter. It's very convenient to have a list.
+    private List<VisualElement> GetItems() => this.Children().ToList();
 }
