@@ -5,6 +5,12 @@ This is a simple log for tracking the current and past challenges taken on by th
 
 ## Log
 
+### (5/29)
+**Problem:** We would like to be able to navigate UI via controller in addition to mouse for those playing with a controller only.
+- Option 1: Design an interface for interacting with UIPanels via directional input (WASD or controller) called `IDirectionControllable`. `UIController` will then operate on panels that implement this interface and map the directional inputs accordingly to the methods of the panels.
+- Option 2: Implement handlers for navigation callbacks directly from the New Input System's input module with something like `RegisterCallback<NavigationMoveEvent>()` that automatically click buttons when they're navigated to.
+- **Resolution:** Option 1 is the more familiar option and thus will probably be faster for me to implement. However, Option 2 could potentially require less code change in the sense that no additional modules need to be modified other than the panels themselves (as opposed to the UI controller and the additional interface).
+
 ### (5/27)
 **Problem:** How should we implement map disable in the tab panel? The player does not have the map immediately from the beginning, so the button to access the map from the tab panel should not be clickable. How do we prevent the button from being clicked, and how do we tell the tab panel to disable the map button?
 - Option 1: Don't add the map button visual to the tab and then add it when it gets unlocked. This should make selection logic a lot easier since the button simply won't be there to click. Requires refactoring script to handle dynamic tabs, which can be costly, especially since the UI is already hard-coded for 3 tabs.
