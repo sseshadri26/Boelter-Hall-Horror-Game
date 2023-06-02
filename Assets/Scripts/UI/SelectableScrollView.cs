@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using System.Linq;
 
+[System.Obsolete("Use ItemSelector instead")]
 public class SelectableScrollView : ScrollView
 {
     public new class UxmlFactory : UxmlFactory<SelectableScrollView, UxmlTraits> { }

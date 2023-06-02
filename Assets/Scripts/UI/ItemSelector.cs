@@ -9,7 +9,7 @@ using System.Linq;
 /// Component for visually selecting items in a collection, provided that the items have 
 /// the necessary USS implementations.
 /// </summary>
-public class ItemSelector
+public class ItemSelector<SelectEventType> where SelectEventType : EventBase<SelectEventType>, new()
 {
     // USS Classes
 
@@ -37,7 +37,7 @@ public class ItemSelector
         {
             foreach (VisualElement child in this.itemContainer.Children())
             {
-                child.RegisterCallback<ClickEvent>(ev =>
+                child.RegisterCallback<SelectEventType>(ev =>
                 {
                     if (automaticallyVisuallySelect)
                         VisuallySelectOne(child);
@@ -47,11 +47,14 @@ public class ItemSelector
     }
 
 
+    /// <summary>
+    /// Add new item to the container while also registering it to the selection systtem
+    /// </summary>
     public void AddItem(VisualElement item)
     {
         itemContainer.Add(item);
 
-        item.RegisterCallback<ClickEvent>(ev =>
+        item.RegisterCallback<SelectEventType>(ev =>
         {
             if (automaticallyVisuallySelect)
                 VisuallySelectOne(item);
@@ -96,6 +99,16 @@ public class ItemSelector
             currentIndex--;
             VisuallySelectOne(GetItems()[currentIndex]);
         }
+    }
+
+    /// <summary>
+    /// Reset the selection 
+    /// </summary>
+    public void Reset()
+    {
+        Debug.Log("ADSFADS");
+        GetItems().ForEach(VisuallyUnselect);
+        currentIndex = -1;
     }
 
     /// <summary>
