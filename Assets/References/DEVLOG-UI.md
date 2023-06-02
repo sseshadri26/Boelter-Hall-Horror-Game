@@ -21,6 +21,7 @@ This is a simple log for tracking the current and past challenges taken on by th
 2. It requires adding a significant amount of code to each of the panel scripts that distracts from their core purpose of driving the visuals of the panel (it's confusing if they're also responsible for sending the inputs to themselves).
 3. The cost to implement it this way is not too much cheaper than just using the chosen strategy, so there's not too much to gain anyways.
 4. There is no sense of central input authority. There's no communication between the panels, and they have no sense for when they should be allowed to use input and when they shouldn't. For example, a panel might not necessarily know when it's the current panel selected by the player and thus allow input to control it at anytime even if it's not supposed to. The chosen strategy uses a central input authority for directional control (`DirectionalPanelNavigator`) that controls when different panels receive directional input.
+- **Note (6/2):** This decision actually ended up paying off not too long after when I had to make an adjustment to the way controller input was processed. Instead of having to make the change for every panel, I just had to change it in one place.
 
 ### (5/27)
 **Problem:** How should we implement map disable in the tab panel? The player does not have the map immediately from the beginning, so the button to access the map from the tab panel should not be clickable. How do we prevent the button from being clicked, and how do we tell the tab panel to disable the map button?
