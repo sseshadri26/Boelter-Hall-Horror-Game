@@ -86,7 +86,7 @@ public class SprintAccelerationTuning : MonoBehaviour
         else
         {
 
-            Debug.Log("Dot: " + dot + ", prev: " + dotPrev);
+            // Debug.Log("Dot: " + dot + ", prev: " + dotPrev);
             // player is not moving in a straight line
             isMovingStraight = false;
             currentSprintSpeed = startSprintSpeed;

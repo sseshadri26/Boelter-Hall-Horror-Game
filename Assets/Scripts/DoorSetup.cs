@@ -11,7 +11,7 @@ public class DoorSetup : MonoBehaviour
     [SerializeField] private GameObject[] _doors;
     [SerializeField] private string _num;
 
-    
+
     enum DoorNumber // your custom enumeration
     {
         Door1_RoundHandle,
@@ -21,7 +21,8 @@ public class DoorSetup : MonoBehaviour
         Double_Door_No_Frame,
         Double_Door_Frame,
         Giant_Door,
-        Small_Big_Door
+        Small_Big_Door,
+        Door1_Backface_Culled
     };
 
     [SerializeField]
@@ -60,9 +61,9 @@ public class DoorSetup : MonoBehaviour
                 _doors[i].SetActive(false);
             }
         }
-        
+
         // Disable this script so it's not calling Update every frame
         if (Application.isPlaying)
             this.enabled = false;
-    }   
+    }
 }

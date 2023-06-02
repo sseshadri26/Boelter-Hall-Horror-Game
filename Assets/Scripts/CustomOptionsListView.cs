@@ -33,7 +33,7 @@ namespace Yarn.Unity
 
         public void Start()
         {
-            Debug.Log("Start");
+            // Debug.Log("Start");
             canvasGroup.alpha = 0;
             canvasGroup.interactable = false;
             canvasGroup.blocksRaycasts = false;

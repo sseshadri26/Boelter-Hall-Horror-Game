@@ -49,6 +49,8 @@ public class DisableOnInteract : MonoBehaviour, IAction
                 if (PortalPair != null)
                 {
                     PortalPair.GetComponent<DisablePortals>().enabled = true;
+                    // PortalPair.GetComponent<RotatingPortalDisableManager>().PermanentlyDisable();
+
                 }
             }
 
