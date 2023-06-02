@@ -32,6 +32,8 @@ public class PauseUI : MonoBehaviour, IDirectionControllable
 
     ItemSelector<MouseOverEvent> selector;
 
+    Dictionary<VisualElement, UnityEvent> buttonToPressEvent = new Dictionary<VisualElement, UnityEvent>();
+
     VisualElement root
     {
         get
@@ -58,6 +60,12 @@ public class PauseUI : MonoBehaviour, IDirectionControllable
         m_ResumeButton.RegisterCallback<ClickEvent>(ev => OnResumeButtonPressed.Invoke());
         m_MainMenuButton.RegisterCallback<ClickEvent>(ev => OnMainMenuButtonPressed.Invoke());
         m_SettingsButton.RegisterCallback<ClickEvent>(ev => OnSettingsButtonPressed.Invoke());
+
+        // Map button to their specific press event
+        buttonToPressEvent[m_RestartButton] = OnRestartButtonPressed;
+        buttonToPressEvent[m_ResumeButton] = OnResumeButtonPressed;
+        buttonToPressEvent[m_MainMenuButton] = OnMainMenuButtonPressed;
+        buttonToPressEvent[m_SettingsButton] = OnSettingsButtonPressed;
     }
 
     public void Reset()
@@ -78,4 +86,12 @@ public class PauseUI : MonoBehaviour, IDirectionControllable
     public void MoveLeft() { }
 
     public void MoveRight() { }
+
+    public void Submit()
+    {
+        // TODO: press current button
+        VisualElement currentButton = selector.GetSelectedElement();
+        if (buttonToPressEvent.ContainsKey(currentButton))
+            buttonToPressEvent[currentButton].Invoke();
+    }
 }

@@ -5,12 +5,22 @@ This is a simple log for tracking the current and past challenges taken on by th
 
 ## Log
 
+### (6/2)
+**Problem:** The pause panel is different from the others in the sense that it involves non-optional buttons that even players using directional input must be able to press in order to use the panel (unlike the `AlmanacUI` panels where the buttons only serve to select items, which is already possible with directional input). How do we enable players using directional input to click on a button?
+- Option 1: Use an interface system similar to that used for directional control and link it into the central input management system. While this does require making additional scripts, it does come with all of the benefits (mentioned previously).
+- Option 2: Directly handle input in the pause panel without an interface.
+- **Resolution:** It can be a pain to add code to prevent the pause panel from using input when it's not supposed to without the input management system, so I reason it's not even worth the initial marginal amount of time saved by not integrating it with the directional control system. Option 1 seems the best here.
 ### (5/29)
 **Problem:** We would like to be able to navigate UI via controller in addition to mouse for those playing with a controller only.
 - Option 1: Design an interface for interacting with UIPanels via directional input (WASD or controller) called `IDirectionControllable`. `UIController` will then operate on panels that implement this interface and map the directional inputs accordingly to the methods of the panels.
 - Option 2: Implement handlers for navigation callbacks directly from the New Input System's input module with something like `RegisterCallback<NavigationMoveEvent>()` that automatically click buttons when they're navigated to.
 - Option 3: Use a separate component that controls a given panel based on directional input. This requires making a separate component for each general panel type, but comes with the benefit of not requiring modification of any of the panel scripts.
 - **Resolution:** Option 1 is the more familiar option and thus will probably be faster for me to implement. However, Option 2 could potentially require less code change in the sense that no additional modules need to be modified other than the panels themselves (as opposed to the UI controller and the additional interface). Option 3 seemed to be overly complex and not that beneficial given how easy it is to modify the panel scripts.
+- **Note (6/2):** I wanted to clarify why I chose not to go with the simplest option (that I didn't even bother mentioning) which is to not even use any form of interface at all and just have each panel process input callbacks themselves by each taking a direct reference to the input module:
+1. This is a lot of code repeat in the sense that pretty much every panel that needs to act based on directional input must have the same logic to subscribe to the input module's movement events (such as `inputActions.movement.performed`). The `IDirectionControllableInterface` strategy avoids this problem by passing up input event registration to the single manager class that swaps directional control between the panels (`DirectionalPanelNavigator.cs`).
+2. It requires adding a significant amount of code to each of the panel scripts that distracts from their core purpose of driving the visuals of the panel (it's confusing if they're also responsible for sending the inputs to themselves).
+3. The cost to implement it this way is not too much cheaper than just using the chosen strategy, so there's not too much to gain anyways.
+4. There is no sense of central input authority. There's no communication between the panels, and they have no sense for when they should be allowed to use input and when they shouldn't. For example, a panel might not necessarily know when it's the current panel selected by the player and thus allow input to control it at anytime even if it's not supposed to. The chosen strategy uses a central input authority for directional control (`DirectionalPanelNavigator`) that controls when different panels receive directional input.
 
 ### (5/27)
 **Problem:** How should we implement map disable in the tab panel? The player does not have the map immediately from the beginning, so the button to access the map from the tab panel should not be clickable. How do we prevent the button from being clicked, and how do we tell the tab panel to disable the map button?

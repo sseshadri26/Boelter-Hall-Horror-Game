@@ -106,7 +106,6 @@ public class ItemSelector<SelectEventType> where SelectEventType : EventBase<Sel
     /// </summary>
     public void Reset()
     {
-        Debug.Log("ADSFADS");
         GetItems().ForEach(VisuallyUnselect);
         currentIndex = -1;
     }

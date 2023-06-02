@@ -12,11 +12,29 @@ public class DirectionalPanelNavigator : MonoBehaviour
     [SerializeField] FirstPersonActionsSO input;
     [SerializeField] UIController panelController;
     Dictionary<GameObject, IDirectionControllable> panelToNavInterface = new Dictionary<GameObject, IDirectionControllable>();
-    // TODO: On directional input, navigate through the currently opened panel
 
-    void Awake()
+    void OnEnable()
     {
         input.controls.Movement.performed += HandleNavigation;
+        input.controls.Interact.performed += HandleInteract;
+    }
+    void OnDisable()
+    {
+        input.controls.Movement.performed -= HandleNavigation;
+        input.controls.Interact.performed -= HandleInteract;
+    }
+
+    private void HandleInteract(InputAction.CallbackContext context)
+    {
+        GameObject openPanel = panelController.GetOpenPanel();
+        if (openPanel == null) return;
+
+        if (!panelToNavInterface.ContainsKey(openPanel))
+            panelToNavInterface[openPanel] = openPanel.GetComponent<IDirectionControllable>();
+
+        if (panelToNavInterface[openPanel] == null) return;
+
+        panelToNavInterface[openPanel].Submit();
     }
 
     private void HandleNavigation(InputAction.CallbackContext context)

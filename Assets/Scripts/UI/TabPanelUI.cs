@@ -153,4 +153,9 @@ public class TabPanelUI : MonoBehaviour, IDirectionControllable
     {
         TabRight();
     }
+
+    public void Submit()
+    {
+        // Don't do anything for now
+    }
 }

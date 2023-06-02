@@ -40,4 +40,9 @@ public class MapUI : MonoBehaviour, IDirectionControllable
     {
         // Don't do anything for now
     }
+
+    public void Submit()
+    {
+        // Don't do anything for now
+    }
 }

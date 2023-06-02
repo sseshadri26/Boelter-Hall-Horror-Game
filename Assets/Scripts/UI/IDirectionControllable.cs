@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Interface for controlling something via directional input only
+/// </summary>
 public interface IDirectionControllable
 {
     /// <summary>
@@ -20,5 +23,10 @@ public interface IDirectionControllable
     /// Navigate right in the panel
     /// </summary>
     public void MoveRight();
+
+    /// <summary>
+    /// Perform the submit action in the panel
+    /// </summary>
+    public void Submit();
 
 }

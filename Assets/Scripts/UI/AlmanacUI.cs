@@ -189,4 +189,23 @@ public class AlmanacUI : MonoBehaviour, IDirectionControllable
     {
         // Don't do anything
     }
+
+    public void Submit()
+    {
+        // Don't do anything
+
+        // NOTE: There's a difference between implementing a method with no behavior because
+        // that's the sensible action, and implementing a method with no behavior because the
+        // method itself doesn't make sense for the class. One of the downfalls of inheritance
+        // is that it sometimes makes sub classes implement methods that don't make sense for
+        // them. Technically using interfaces can result in the same thing, but it's a lot harder
+        // for that to happen since interfaces are deliberate contracts that the class "chooses"
+        // to follow so that it can be used for some specific purpose. In this case, this Alamanc
+        // class deliberately "chooses" to follow this IDirectionControllable contract so that
+        // it can be controlled via directional inputs. The contract makes sense for it. If it
+        // didn't, then that would indicate something wrong about the system I'm using. For example,
+        // if it didn't make sense for the panel to be controlled via directions, then is it really
+        // even an interactable user interface?
+    }
+
 }
