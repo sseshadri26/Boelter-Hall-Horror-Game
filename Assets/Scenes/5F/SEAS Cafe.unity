@@ -59634,7 +59634,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!23 &1633544660
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -60456,9 +60456,9 @@ Transform:
   - {fileID: 2117472930}
   - {fileID: 1122958564}
   - {fileID: 1368065922}
+  - {fileID: 1963698086}
   - {fileID: 17984335}
   - {fileID: 1743286610}
-  - {fileID: 1963698086}
   - {fileID: 2016798639}
   - {fileID: 1853827663}
   m_Father: {fileID: 0}
