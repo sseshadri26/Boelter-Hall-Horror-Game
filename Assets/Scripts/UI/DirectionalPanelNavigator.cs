@@ -11,6 +11,11 @@ public class DirectionalPanelNavigator : MonoBehaviour
 {
     [SerializeField] FirstPersonActionsSO input;
     [SerializeField] UIController panelController;
+
+    [Tooltip("How many seconds to wait before allowing another movement input")]
+    [SerializeField] float moveSpamThreshold = 0.1f;
+    float timeOfLastMove = 0;
+
     Dictionary<GameObject, IDirectionControllable> panelToNavInterface = new Dictionary<GameObject, IDirectionControllable>();
 
     void OnEnable()
@@ -39,6 +44,10 @@ public class DirectionalPanelNavigator : MonoBehaviour
 
     private void HandleNavigation(InputAction.CallbackContext context)
     {
+        // Prevent rapid movement that might be too fast for player to keep up with
+        // Use real time instead of normal time in case time scale has been set to 0
+        if (Time.realtimeSinceStartup - timeOfLastMove < moveSpamThreshold) return;
+
         GameObject openPanel = panelController.GetOpenPanel();
         if (openPanel == null) return;
 
@@ -50,6 +59,10 @@ public class DirectionalPanelNavigator : MonoBehaviour
         Vector2 movement = context.ReadValue<Vector2>();
         HandleHorizontalNavigation(movement.x, panelToNavInterface[openPanel]);
         HandleVerticalNavigation(movement.y, panelToNavInterface[openPanel]);
+
+        timeOfLastMove = Time.realtimeSinceStartup;
+
+
     }
 
     private void HandleVerticalNavigation(float y, IDirectionControllable navInterface)

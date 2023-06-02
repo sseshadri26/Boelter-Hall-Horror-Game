@@ -524,6 +524,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   input: {fileID: 11400000, guid: bb6a48d6bb2fd8d408b27a197299a2fa, type: 2}
   panelController: {fileID: 1761737792}
+  moveSpamThreshold: 0.15
 --- !u!4 &715080309
 Transform:
   m_ObjectHideFlags: 0
