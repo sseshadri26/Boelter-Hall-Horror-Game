@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 
 
-public class AlmanacUI : MonoBehaviour
+public class AlmanacUI : MonoBehaviour, IDirectionControllable
 {
     [SerializeField] UIDocument document = default;
     [SerializeField] float scrollSpeed = 300;
@@ -11,7 +11,7 @@ public class AlmanacUI : MonoBehaviour
 
     // NOTE: This is a component-based alternative to custom styling of collection items
     [SerializeField] ItemUIGeneratorSO almanacItemUIGenerator = default;
-    
+
 
 
     // UI Tags
@@ -36,11 +36,13 @@ public class AlmanacUI : MonoBehaviour
 
     // Other References
     SelectableScrollView selectableItemList = default;
+    Dictionary<VisualElement, ItemSO> visualToData = new Dictionary<VisualElement, ItemSO>();
 
     VisualElement root
     {
-        get {
-            if(document != null)
+        get
+        {
+            if (document != null)
                 return document.rootVisualElement;
             return null;
         }
@@ -51,7 +53,7 @@ public class AlmanacUI : MonoBehaviour
         UpdateDisplayWithGenerator(almanacItemUIGenerator);
     }
 
-     void Awake()
+    void Awake()
     {
         m_ItemList = root.Q<SelectableScrollView>(k_ItemList);
 
@@ -64,8 +66,8 @@ public class AlmanacUI : MonoBehaviour
 
 
         // Register Callbacks
-        m_InventoryScrollUpButton.RegisterCallback<ClickEvent>(ev => m_ItemList.verticalScroller.ScrollPageUp());
-        m_InventoryScrollDownButton.RegisterCallback<ClickEvent>(ev => m_ItemList.verticalScroller.ScrollPageDown()); 
+        m_InventoryScrollUpButton.RegisterCallback<ClickEvent>(ev => SelectPrev());
+        m_InventoryScrollDownButton.RegisterCallback<ClickEvent>(ev => SelectNext());
 
         m_ItemList.RegisterCallback<WheelEvent>(SpeedUpScroll);
         m_ItemList.verticalPageSize = scrollButtonJumpSize;
@@ -92,40 +94,65 @@ public class AlmanacUI : MonoBehaviour
         m_ItemList.scrollOffset = Vector2.zero;
 
         bool isFirstItem = true;
-        
+
         // Generate the item UIs
         List<ItemUIGeneratorSO.ItemUIResult> results = generator.GenerateUI();
 
-        foreach(var result in results)
+        foreach (var result in results)
         {
             //TemplateContainer instance = GenerateAlamanacListItem(itemData);
             TemplateContainer instance = result.ui;
 
+            // Cache item data
+            visualToData[instance] = result.reference;
+
             // DESIGN CHOICE: Store item reference in callback instead of using generic
             // callback and searching for item index within function to reduce chances
             // of erroneously selecting wrong item
-            instance.RegisterCallback<ClickEvent>(ev => HandleInventoryItemClicked(instance, result.reference));
+            instance.RegisterCallback<ClickEvent>(ev => HandleInventoryItemClicked(instance));
 
             m_ItemList.Add(instance);
 
             // DESIGN CHOICE: Inventory item should be fully initialized and
             // already inside of the list by the time the initial "click" is
             // simulated, since the logic expects it to be in the list
-            if(isFirstItem)
+            if (isFirstItem)
             {
-                HandleInventoryItemClicked(instance, result.reference);
+                HandleInventoryItemClicked(instance);
                 isFirstItem = false;
             }
 
         }
     }
 
-    private void HandleInventoryItemClicked(VisualElement item, ItemSO itemData)
+    private void HandleInventoryItemClicked(VisualElement item)
     {
         // Visually select item
         m_ItemList.VisuallySelectOne(item);
+        FocusOnItem(item);
+    }
+
+    private void SelectNext()
+    {
+        m_ItemList.VisuallySelectNext();
+        VisualElement curItem = m_ItemList.GetSelectedElement();
+
+        FocusOnItem(curItem);
+    }
+
+    private void SelectPrev()
+    {
+        m_ItemList.VisuallySelectPrev();
+        VisualElement curItem = m_ItemList.GetSelectedElement();
+
+        FocusOnItem(curItem);
+    }
+
+    private void FocusOnItem(VisualElement item)
+    {
+        if (item == null) return;
         m_ItemList.ScrollTo(item);
-        DisplayItemInformation(itemData);
+        DisplayItemInformation(visualToData[item]);
     }
 
 
@@ -143,5 +170,42 @@ public class AlmanacUI : MonoBehaviour
         m_ItemVisual.style.backgroundImage = new StyleBackground(item.graphic);
     }
 
+    public void MoveUp()
+    {
+        SelectPrev();
+    }
+
+    public void MoveDown()
+    {
+        SelectNext();
+    }
+
+    public void MoveLeft()
+    {
+        // Don't do anything
+    }
+
+    public void MoveRight()
+    {
+        // Don't do anything
+    }
+
+    public void Submit()
+    {
+        // Don't do anything
+
+        // NOTE: There's a difference between implementing a method with no behavior because
+        // that's the sensible action, and implementing a method with no behavior because the
+        // method itself doesn't make sense for the class. One of the downfalls of inheritance
+        // is that it sometimes makes sub classes implement methods that don't make sense for
+        // them. Technically using interfaces can result in the same thing, but it's a lot harder
+        // for that to happen since interfaces are deliberate contracts that the class "chooses"
+        // to follow so that it can be used for some specific purpose. In this case, this Alamanc
+        // class deliberately "chooses" to follow this IDirectionControllable contract so that
+        // it can be controlled via directional inputs. The contract makes sense for it. If it
+        // didn't, then that would indicate something wrong about the system I'm using. For example,
+        // if it didn't make sense for the panel to be controlled via directions, then is it really
+        // even an interactable user interface?
+    }
 
 }

@@ -13,10 +13,10 @@
         </ui:VisualElement>
         <ui:VisualElement name="Row2" style="flex-grow: 1; align-items: center;">
             <ui:VisualElement name="ButtonsBox" style="width: 1649px; height: auto; margin-left: 20px; margin-right: 20px; margin-top: 20px; margin-bottom: 20px; border-left-color: rgb(152, 152, 152); border-right-color: rgb(152, 152, 152); border-top-color: rgb(152, 152, 152); border-bottom-color: rgb(152, 152, 152); border-left-width: 2px; border-right-width: 2px; border-top-width: 2px; border-bottom-width: 2px;">
-                <ui:Button text="Resume" display-tooltip-when-elided="true" name="resume-button" class="boelter-simple-button" style="font-size: 65px;" />
-                <ui:Button text="Restart" display-tooltip-when-elided="true" name="restart-button" class="boelter-simple-button" style="font-size: 65px;" />
-                <ui:Button text="Main Menu" display-tooltip-when-elided="true" name="main-menu-button" class="boelter-simple-button" style="font-size: 65px;" />
-                <ui:Button text="Settings" display-tooltip-when-elided="true" name="settings-button" class="boelter-simple-button" style="font-size: 65px;" />
+                <ui:Button text="Resume" display-tooltip-when-elided="true" name="resume-button" class="boelter-simple-button not-selected" style="font-size: 65px; padding-left: 60px; padding-right: 60px; padding-top: 60px; padding-bottom: 60px; margin-left: 5px; margin-right: 5px; margin-top: 5px; margin-bottom: 5px;" />
+                <ui:Button text="Restart" display-tooltip-when-elided="true" name="restart-button" class="boelter-simple-button not-selected" style="font-size: 65px; padding-left: 60px; padding-right: 60px; padding-top: 60px; padding-bottom: 60px; margin-left: 5px; margin-right: 5px; margin-top: 5px; margin-bottom: 5px;" />
+                <ui:Button text="Main Menu" display-tooltip-when-elided="true" name="main-menu-button" class="boelter-simple-button not-selected" style="font-size: 65px; padding-left: 60px; padding-right: 60px; padding-top: 60px; padding-bottom: 60px; margin-left: 5px; margin-right: 5px; margin-top: 5px; margin-bottom: 5px;" />
+                <ui:Button text="Settings" display-tooltip-when-elided="true" name="settings-button" class="boelter-simple-button not-selected" style="font-size: 65px; padding-left: 60px; padding-right: 60px; padding-top: 60px; padding-bottom: 60px; margin-left: 5px; margin-right: 5px; margin-top: 5px; margin-bottom: 5px;" />
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="Border-bot" style="height: 40px;" />

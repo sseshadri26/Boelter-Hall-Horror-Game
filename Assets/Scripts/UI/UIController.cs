@@ -60,6 +60,19 @@ public class UIController : MonoBehaviour
     }
 
     /// <summary>
+    /// Get the GameObject of the currently opened panel
+    /// </summary>
+    public GameObject GetOpenPanel()
+    {
+        if (isPauseOpen)
+            return pause.gameObject;           // Notice that pause takes priority
+        else if (isMainOpen)
+            return main.gameObject;
+        else
+            return null;
+    }
+
+    /// <summary>
     /// Toggle open/closed the main panel
     /// </summary>
     public void ToggleMain()

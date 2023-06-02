@@ -4,11 +4,13 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using System.Linq;
 
-[System.Obsolete("Use ItemSelector instead")]
-public class SelectableScrollView : ScrollView
-{
-    public new class UxmlFactory : UxmlFactory<SelectableScrollView, UxmlTraits> { }
 
+/// <summary>
+/// Component for visually selecting items in a collection, provided that the items have 
+/// the necessary USS implementations.
+/// </summary>
+public class ItemSelector<SelectEventType> where SelectEventType : EventBase<SelectEventType>, new()
+{
     // USS Classes
 
     // DESIGN CHOICE: Using USS classes to change the appearance of UI instead
@@ -24,15 +26,18 @@ public class SelectableScrollView : ScrollView
 
     public event System.Action<VisualElement> OnItemSelected;
 
-    public SelectableScrollView()
+    VisualElement itemContainer;
+    public ItemSelector(VisualElement itemContainer)
     {
+        this.itemContainer = itemContainer;
+
         // Delay execution to allow children in UI to be populated after UI update frame (is this true?)
         // REMEMBER: this is not guaranteed to occur before Awake or Start!
-        schedule.Execute(() =>
+        this.itemContainer.schedule.Execute(() =>
         {
-            foreach (VisualElement child in contentContainer.Children())
+            foreach (VisualElement child in this.itemContainer.Children())
             {
-                child.RegisterCallback<ClickEvent>(ev =>
+                child.RegisterCallback<SelectEventType>(ev =>
                 {
                     if (automaticallyVisuallySelect)
                         VisuallySelectOne(child);
@@ -41,14 +46,18 @@ public class SelectableScrollView : ScrollView
         });
     }
 
-    public new void Add(VisualElement child)
-    {
-        base.Add(child);    // Update the true version
 
-        child.RegisterCallback<ClickEvent>(ev =>
+    /// <summary>
+    /// Add new item to the container while also registering it to the selection systtem
+    /// </summary>
+    public void AddItem(VisualElement item)
+    {
+        itemContainer.Add(item);
+
+        item.RegisterCallback<SelectEventType>(ev =>
         {
             if (automaticallyVisuallySelect)
-                VisuallySelectOne(child);
+                VisuallySelectOne(item);
         });
     }
 
@@ -93,6 +102,15 @@ public class SelectableScrollView : ScrollView
     }
 
     /// <summary>
+    /// Reset the selection 
+    /// </summary>
+    public void Reset()
+    {
+        GetItems().ForEach(VisuallyUnselect);
+        currentIndex = -1;
+    }
+
+    /// <summary>
     /// Get a reference to the currently selected element, null if no element selected
     /// </summary>
     public VisualElement GetSelectedElement()
@@ -125,5 +143,6 @@ public class SelectableScrollView : ScrollView
 
     // DESIGN CHOICE: It is repeatedly creating a list from an IEnumerable, but it's
     // probably not called enough to matter. It's very convenient to have a list.
-    private List<VisualElement> GetItems() => this.Children().ToList();
+    private List<VisualElement> GetItems() => itemContainer.Children().ToList();
+
 }

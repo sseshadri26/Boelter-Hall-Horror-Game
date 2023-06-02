@@ -144,6 +144,7 @@ public class PanelAnimator : MonoBehaviour
     {
         InstantUpdateVisuals(PanelPosition.CENTER, PanelVisibility.VISIBLE);
         root.style.visibility = Visibility.Visible;     // Block raycasts
+        OnOpenPanel?.Invoke();
     }
 
     /// <summary>
@@ -153,6 +154,7 @@ public class PanelAnimator : MonoBehaviour
     {
         InstantUpdateVisuals(PanelPosition.CENTER, PanelVisibility.INVISIBLE);
         root.style.visibility = Visibility.Hidden;      // Unblock raycasts
+        OnClosePanel?.Invoke();
     }
 
     /// <summary>
