@@ -12,18 +12,25 @@ public static class SaveSystem
     {
         get
         {
-            if (_data == null)
+            if (_data == null && !Globals.loaded)
             {
                 _data = LoadGame();
                 if (_data == null)
                 {
+                    Resources.Load<InventoryItemCollectionSO>("PlayerInventory").items = new List<InventoryItemSO>();
                     Debug.Log("This is a new save");
                 }
                 else
                 {
+                    Globals.portalPosition5F = _data.portalPosition;
                     Resources.Load<InventoryItemCollectionSO>("PlayerInventory").items = GetInventory();
-                    // Globals.flags = _data.flags;
+                    Globals.flags = GetFlags();
+                    // foreach (KeyValuePair<string, bool> entry in Globals.flags)
+                    // {
+                    //     Debug.Log("Key: " + entry.Key + "\tValue: " + entry.Value);
+                    // }
                 }
+                Globals.loaded = true;
             }
             return _data;
         }
@@ -61,6 +68,24 @@ public static class SaveSystem
         }
 
         return loadedInventory;
+    }
+
+    private static Dictionary<string, bool> GetFlags()
+    {
+        if (_data.flagKeys.Count != _data.flagValues.Count)
+        {
+            Debug.LogError("Somehow the number of flag keys and values grabbed is inequal!");
+            return null;
+        }
+
+        Dictionary<string, bool> flagsDict = new Dictionary<string, bool>();
+        for (int i = 0; i < _data.flagKeys.Count; i++)
+        {
+            flagsDict.Add(_data.flagKeys[i], _data.flagValues[i]);
+            // Debug.Log("Loaded Key: " + _data.flagKeys[i] + "\tValue: " + _data.flagValues[i]);
+        }
+
+        return flagsDict;
     }
 
     private static string Path()

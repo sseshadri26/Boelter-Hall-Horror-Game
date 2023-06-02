@@ -18,7 +18,8 @@ public class SaveData
     // public List<string> itemGraphics = new List<string>();
     // public List<InventoryItemSO.ItemStatus> itemStatuses = new List<InventoryItemSO.ItemStatus>();
 
-    public Dictionary<string, bool> flags;
+    public List<string> flagKeys;
+    public List<bool> flagValues;
 
     public int portalPosition = 0;
     public bool glassBroke = false;
@@ -28,6 +29,7 @@ public class SaveData
     {
         SavePlayer();
         SaveInventory();
+        SaveFlags();
         SaveMisc();
     }
 
@@ -62,10 +64,22 @@ public class SaveData
         }
     }
 
+    private void SaveFlags()
+    {
+        flagKeys = new List<string>(Globals.flags.Keys);
+        flagValues = new List<bool>(Globals.flags.Values);
+
+        // string debug = "Saving flags...";
+        // foreach (string key in flagKeys)
+        // {
+        //     debug += "\n" + key;
+        // }
+        // Debug.Log(debug);
+    }
+
     private void SaveMisc()
     {
         portalPosition = Globals.portalPosition5F;
         glassBroke = Globals.GlassBroke;
-        flags = Globals.flags;
     }
 }
