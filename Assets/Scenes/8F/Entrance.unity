@@ -9408,6 +9408,25 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!4 &810097119 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2693037033950352478, guid: 68381f07ff4b16740b1492d6e294a7db, type: 3}
+  m_PrefabInstance: {fileID: 810097115}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &810097120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 810097116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9e10fc60172bbf4eb1a8b01d1050706, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextScene: 5F Hallway
+  spawnPoint: 0
 --- !u!1001 &960688056
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10483,11 +10502,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6389317658567166228, guid: 005f38b85fc03ec40b17de5b2c91a414, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 170.15724
+      value: 170.15726
       objectReference: {fileID: 0}
     - target: {fileID: 6389317658567166228, guid: 005f38b85fc03ec40b17de5b2c91a414, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -21.965143
+      value: -21.965128
       objectReference: {fileID: 0}
     - target: {fileID: 8426141393459786674, guid: 005f38b85fc03ec40b17de5b2c91a414, type: 3}
       propertyPath: m_AnchorMax.x
@@ -11124,6 +11143,70 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3132384281844184122, guid: b48325ac1c50f884db245bc1222fd8d3, type: 3}
   m_PrefabInstance: {fileID: 1864356219}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1892413805
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1892413806}
+  - component: {fileID: 1892413808}
+  - component: {fileID: 1892413807}
+  m_Layer: 0
+  m_Name: Switch
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1892413806
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1892413805}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.757, y: 1.39, z: -0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 810097119}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1892413807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1892413805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0c10d7ba80282643bd04e2212d64714, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactMessage: E to go to 3rd floor
+  objectsWithActions:
+  - {fileID: 810097116}
+  destroyOnUse: 1
+  holdToInteract: 0
+  howLongToHold: 3
+--- !u!65 &1892413808
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1892413805}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.4072188, y: 0.6143967, z: 0.05238721}
+  m_Center: {x: 0.09540804, y: 0.025577724, z: -0.08084093}
 --- !u!43 &1994086198
 Mesh:
   m_ObjectHideFlags: 0
