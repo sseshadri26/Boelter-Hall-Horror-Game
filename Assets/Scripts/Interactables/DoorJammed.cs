@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 //For loading next scene on interact.
 public class DoorJammed : MonoBehaviour, IAction
 {
+    public string failMessage = "The door won't open";
+
     private bool activated;
     private FirstPersonController player;
 
@@ -17,7 +19,7 @@ public class DoorJammed : MonoBehaviour, IAction
     // If door is activated, load next scene.
     public void Activate()
     {
-        Notification.instance.ShowMessage("The door won't open");
+        Notification.instance.ShowMessage(failMessage);
         StartCoroutine("FreezePlayer");
     }
 

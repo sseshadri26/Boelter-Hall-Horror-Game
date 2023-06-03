@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.012615415, g: 0.010739996, b: 0.013785916, a: 1}
+  m_IndirectSpecularColor: {r: 0.012400697, g: 0.010739996, b: 0.013548322, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8729,6 +8729,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 86e4b6e8aa181dc4c85793ad685cd073, type: 2}
+    - target: {fileID: 3551234056718558820, guid: 03ef92407dc772546a30daeda1ab0b3d, type: 3}
+      propertyPath: failMessage
+      value: No reason to go back to the library
+      objectReference: {fileID: 0}
     - target: {fileID: 4142804147476622039, guid: 03ef92407dc772546a30daeda1ab0b3d, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -9303,6 +9307,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6534880642100409189, guid: 03ef92407dc772546a30daeda1ab0b3d, type: 3}
+      propertyPath: failMessage
+      value: Erm... I forgot where this goes, but definitely not the 3rd floor
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9093380313361755428, guid: 03ef92407dc772546a30daeda1ab0b3d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 03ef92407dc772546a30daeda1ab0b3d, type: 3}
@@ -9636,6 +9644,10 @@ PrefabInstance:
     - target: {fileID: 5270045534808637695, guid: 03ef92407dc772546a30daeda1ab0b3d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6534880642100409189, guid: 03ef92407dc772546a30daeda1ab0b3d, type: 3}
+      propertyPath: failMessage
+      value: These are the stairs, but the elevator would be faster
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9093380313361755428, guid: 03ef92407dc772546a30daeda1ab0b3d, type: 3}
@@ -10012,7 +10024,17 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8067036047574531904, guid: 4a75d145d35d07048a47f04221305d95, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8487900784495591640, guid: 4a75d145d35d07048a47f04221305d95, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 8067036047574531904, guid: 4a75d145d35d07048a47f04221305d95, type: 3}
+    - {fileID: 8487900784495591640, guid: 4a75d145d35d07048a47f04221305d95, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 4a75d145d35d07048a47f04221305d95, type: 3}
 --- !u!1001 &1405734011
 PrefabInstance:
@@ -10127,7 +10149,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6389317658567166228, guid: 005f38b85fc03ec40b17de5b2c91a414, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -21.964851
+      value: -21.965124
       objectReference: {fileID: 0}
     - target: {fileID: 8426141393459786674, guid: 005f38b85fc03ec40b17de5b2c91a414, type: 3}
       propertyPath: m_AnchorMax.x
@@ -10841,7 +10863,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-4588
+  m_Name: pb_Mesh-1050834
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -11159,6 +11181,10 @@ PrefabInstance:
     - target: {fileID: 5270045534808637695, guid: 03ef92407dc772546a30daeda1ab0b3d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7531574038253655133, guid: 03ef92407dc772546a30daeda1ab0b3d, type: 3}
+      propertyPath: failMessage
+      value: How would you even open this door?
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9093380313361755428, guid: 03ef92407dc772546a30daeda1ab0b3d, type: 3}

@@ -2795,6 +2795,36 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 10.595453, y: 8.355619, z: 0.49148524}
   m_Center: {x: -2.2772617, y: 0.6742572, z: -1.6250362}
+--- !u!114 &2747189580411414157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3114959588712557158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0c10d7ba80282643bd04e2212d64714, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactMessage: E to open door
+  objectsWithActions:
+  - {fileID: 3114959588712557158}
+  destroyOnUse: 0
+  holdToInteract: 0
+  howLongToHold: 3
+--- !u!114 &3551234056718558820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3114959588712557158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2de2641886444e0488416259672966c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4649169788052057547
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2868,7 +2898,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: e023d887b8354974ba0e4d9ca1a50544, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e023d887b8354974ba0e4d9ca1a50544, type: 3}
@@ -2909,7 +2939,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactMessage: E to open door
   objectsWithActions:
-  - {fileID: 5036044370635753298}
+  - {fileID: 5495590682298880154}
   destroyOnUse: 0
   holdToInteract: 0
   howLongToHold: 3
@@ -3007,6 +3037,49 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 1d63a51ce520b764ea97ae0266fc0959, type: 3}
   m_PrefabInstance: {fileID: 5270045533156714328}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &535512278994268402
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5036044371393092105}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 11.492897, y: 7.314685, z: 0.694458}
+  m_Center: {x: -11.778175, y: -0.21275234, z: -1.6880264}
+--- !u!114 &7402457327610087548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5036044371393092105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0c10d7ba80282643bd04e2212d64714, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactMessage: E to open door
+  objectsWithActions:
+  - {fileID: 5036044371393092105}
+  destroyOnUse: 0
+  holdToInteract: 0
+  howLongToHold: 3
+--- !u!114 &7137647581693530843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5036044371393092105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2de2641886444e0488416259672966c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &5667866996479213747 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1d63a51ce520b764ea97ae0266fc0959, type: 3}
@@ -3085,7 +3158,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 570ca9afff2591c418aa16bb77721f17, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 570ca9afff2591c418aa16bb77721f17, type: 3}
@@ -3229,6 +3302,49 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 518b9b2f7611da84d8cd8f4a10f6f20e, type: 3}
   m_PrefabInstance: {fileID: 5270045533759678957}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &28111279716696521
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5036044370787964092}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6.2064934, y: 7.314685, z: 0.694458}
+  m_Center: {x: -9.134974, y: -0.21275246, z: -1.6880264}
+--- !u!114 &4362692443551575374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5036044370787964092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0c10d7ba80282643bd04e2212d64714, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactMessage: E to open door
+  objectsWithActions:
+  - {fileID: 5036044370787964092}
+  destroyOnUse: 0
+  holdToInteract: 0
+  howLongToHold: 3
+--- !u!114 &1481500489808610671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5036044370787964092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2de2641886444e0488416259672966c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &5667866995876187654 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 518b9b2f7611da84d8cd8f4a10f6f20e, type: 3}
@@ -3316,6 +3432,49 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: ea759d6b58d9fe04ca720f292325172f, type: 3}
   m_PrefabInstance: {fileID: 5270045533908076257}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &9118126142018834564
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5036044370935331760}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6.2064934, y: 7.314685, z: 0.694458}
+  m_Center: {x: -2.35, y: -0.21275246, z: -1.6880264}
+--- !u!114 &4856511257550472195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5036044370935331760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0c10d7ba80282643bd04e2212d64714, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactMessage: E to open door
+  objectsWithActions:
+  - {fileID: 5036044370935331760}
+  destroyOnUse: 0
+  holdToInteract: 0
+  howLongToHold: 3
+--- !u!114 &7531574038253655133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5036044370935331760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2de2641886444e0488416259672966c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &5667866995685908746 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ea759d6b58d9fe04ca720f292325172f, type: 3}
@@ -3403,6 +3562,49 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 777e38d05ea4f864589a0564d78cfeec, type: 3}
   m_PrefabInstance: {fileID: 5270045534670493901}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &4518464251589721276
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5036044369550255516}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.636833, y: 7.314685, z: 0.37973785}
+  m_Center: {x: -0.68650055, y: -0.21275234, z: 0.37483597}
+--- !u!114 &6412327898878686720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5036044369550255516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0c10d7ba80282643bd04e2212d64714, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactMessage: E to open door
+  objectsWithActions:
+  - {fileID: 5036044369550255516}
+  destroyOnUse: 0
+  holdToInteract: 0
+  howLongToHold: 3
+--- !u!114 &6534880642100409189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5036044369550255516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2de2641886444e0488416259672966c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &5667866994923700006 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 777e38d05ea4f864589a0564d78cfeec, type: 3}
