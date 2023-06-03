@@ -23,6 +23,11 @@ public class DisableOnInteract : MonoBehaviour, IAction
     void Start()
     {
         activated = false;
+
+        if (YarnFunctions.FlagIsTrue(PosterToDelete.name))
+        {
+            ActivateOnStart();
+        }
     }
 
     /*
@@ -41,7 +46,15 @@ public class DisableOnInteract : MonoBehaviour, IAction
         {
             activated = true;
 
-
+            // Save flag for this poster so it's still removed when loading the scene again
+            if (YarnFunctions.FlagIsTrue(PosterToDelete.name))
+            {
+                Debug.LogError("This poster, or one with the same name, is already flagged as taken down!\n" + PosterToDelete.name);
+            }
+            else
+            {
+                Globals.flags.Add(PosterToDelete.name, true);
+            }
 
             if (OtherScript == null || OtherScript.activated)
             {
@@ -50,12 +63,33 @@ public class DisableOnInteract : MonoBehaviour, IAction
                 {
                     PortalPair.GetComponent<DisablePortals>().enabled = true;
                     // PortalPair.GetComponent<RotatingPortalDisableManager>().PermanentlyDisable();
-
                 }
             }
 
             PosterToDelete.SetActive(false);
         }
+    }
+    
+    private void ActivateOnStart()
+    {
+        activated = true;
+        
+        if (OtherPoster != null)
+        {
+            OtherScript = OtherPoster.GetComponent<DisableOnInteract>();
+        }
+        
+        if (OtherScript == null || OtherScript.activated)
+        {
+            Debug.Log("pass");
+            if (PortalPair != null)
+            {
+                PortalPair.GetComponent<DisablePortals>().enabled = true;
+                // PortalPair.GetComponent<RotatingPortalDisableManager>().PermanentlyDisable();
+            }
+        }
+
+        PosterToDelete.SetActive(false);
     }
 
 

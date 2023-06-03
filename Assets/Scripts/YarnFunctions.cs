@@ -28,8 +28,8 @@ public static class YarnFunctions
     [YarnFunction("flagIsTrue")]
     public static bool FlagIsTrue(string flagName)
     {
-        Debug.Log("Flag: " + flagName);
-        Debug.Log("Flag is in the dictionary: " + Globals.flags.ContainsKey(flagName));
+        // Debug.Log("Flag: " + flagName);
+        // Debug.Log("Flag is in the dictionary: " + Globals.flags.ContainsKey(flagName));
         return Globals.flags.ContainsKey(flagName) && Globals.flags[flagName];
     }
 }
