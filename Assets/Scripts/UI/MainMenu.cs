@@ -36,6 +36,7 @@ public class MainMenu : MonoBehaviour
         // }
         
         blackScreen.DOFade(1f, 0.5f).OnComplete( () => SceneManager.LoadScene("Entrance"));
+        PlayerPrefs.DeleteAll();
     }
 
     public void LoadGame()
