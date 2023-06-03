@@ -18,6 +18,7 @@ public class ElevatorCutscene : MonoBehaviour, IAction
     public string nextScene;
     [Tooltip("Which spawn point the player will start at in the next scene")]
     public int spawnPoint;
+    public Transform stage;
 
     void Start()
     {
@@ -42,14 +43,26 @@ public class ElevatorCutscene : MonoBehaviour, IAction
         anim.SetTrigger("Close");
         yield return new WaitForSeconds(2f);
 
+        transform.DOShakePosition(0.5f, 0.1f).OnComplete(() => stage.DOMoveY(10f, 10f));
+        yield return new WaitForSeconds(5f);
+
+        Sequence shake = DOTween.Sequence();
+        shake.Append(transform.DOShakePosition(3f, 0.1f))
+            .Append(transform.DOShakePosition(3f, 0.25f))
+            .Append(transform.DOShakePosition(100f, 0.5f, fadeOut: false));
+        yield return new WaitForSeconds(11f);
+
+        // Drop elevator
+        // transform.DOMoveY(-100f, 5f).SetEase(Ease.Linear);
+        // yield return new WaitForSeconds(2f);
+
         // Play sound and freeze time (Silent Hill 2 style)
         Globals.curSpawnPoint = spawnPoint;
         // FMODManager.Instance.PlaySound(FMODManager.SFX.door_open);
         blackScreen.DOFade(1f, 0.75f).SetUpdate(true);
-        // Time.timeScale = 0f;
 
-        // Load next scene and play door closing sound
-        yield return new WaitForSecondsRealtime(1f);
+        // Load next scene
+        yield return new WaitForSeconds(5f);
         Globals.playDoorCloseSoundAtNextScene = false;
         SceneManager.LoadScene(nextScene);
     }
