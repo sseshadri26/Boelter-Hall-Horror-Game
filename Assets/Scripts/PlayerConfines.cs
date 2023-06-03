@@ -35,6 +35,12 @@ public class PlayerConfines : MonoBehaviour
 
         heightToStand = fpc.crouchHeight * col.height;
 
+        // Failsafe for if spawnpoint hasn't been loaded yet
+        if (!Globals.loaded && SaveSystem.Data != null)
+        {
+            Globals.curSpawnPoint = SaveSystem.Data.playerSpawnpoint;
+        }
+
         // When first loading the scene, move the player to the current start position
         Transform spawnPoint = GameObject.FindGameObjectWithTag("spawnPointsParent").transform.GetChild(Globals.curSpawnPoint);
         transform.position = spawnPoint.position;
@@ -75,5 +81,22 @@ public class PlayerConfines : MonoBehaviour
                 fpc.enableSprint = fpc.enableCrouch;
             }
         }
+    }
+
+    public void NachenbergIntro(TV nachTV)
+    {
+        fpc.controls.Disable();
+        fpc.pitch = 0f;
+        Sequence sequence = DOTween.Sequence();
+        sequence.Append(transform.DORotate(new Vector3(0f, 179f, 0f), 1f).SetEase(Ease.InOutQuad))
+            .Append(transform.DOMoveZ(-31.25f, 2f).SetEase(Ease.Linear))
+            .Append(transform.DORotate(new Vector3(0f, 269f, 0f), 1f).SetEase(Ease.InOutQuad))
+            .Append(transform.DOMoveX(27f, 5f).SetEase(Ease.Linear))
+            .Append(transform.DORotate(new Vector3(0f, 224f, 0f), 1f).SetEase(Ease.InOutQuad))
+            .Append(transform.DORotate(new Vector3(0f, 299f, 0f), 2f).SetEase(Ease.InOutQuad))
+            .Append(transform.DORotate(new Vector3(0f, 419f, 0f), 1f).SetEase(Ease.InOutQuad).SetDelay(3f))
+            .Append(transform.DOMoveX(31f, 2f).SetEase(Ease.Linear))
+            .Join(transform.DORotate(new Vector3(0f, 1f, 0f), 2f).SetEase(Ease.InQuad))
+            .OnComplete(() => nachTV.ActivateIntro());
     }
 }

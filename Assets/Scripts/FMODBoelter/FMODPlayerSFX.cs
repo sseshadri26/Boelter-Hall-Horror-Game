@@ -15,7 +15,7 @@ public class FMODPlayerSFX : MonoBehaviour
 
     void Start()
     {
-        player = transform.root.GetComponent<FirstPersonController>();
+        player = FindObjectOfType<FirstPersonController>();
         footstepParams = new FMODManager.FMODParams(true);
         //footstepID = FMODManager.Instance.StartBGM(FMODManager.SFX.footstep_ground, false, footstepParams);
     }

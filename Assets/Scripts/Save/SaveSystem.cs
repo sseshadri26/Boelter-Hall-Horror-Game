@@ -23,6 +23,7 @@ public static class SaveSystem
                 else
                 {
                     Globals.portalPosition5F = _data.portalPosition;
+                    Globals.curSpawnPoint = _data.playerSpawnpoint;
                     Resources.Load<InventoryItemCollectionSO>("PlayerInventory").items = GetInventory();
                     Globals.flags = GetFlags();
                     // foreach (KeyValuePair<string, bool> entry in Globals.flags)
