@@ -26,7 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/5F/5280.unity
     guid: 958f1821b15bc29449e1e462cd6370f2
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/3F/3F Hallway.unity
     guid: b33c3a6d590b9cd41855983f3cd38a3e
   - enabled: 1

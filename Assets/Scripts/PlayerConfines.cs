@@ -59,7 +59,7 @@ public class PlayerConfines : MonoBehaviour
         blackScreen = GameObject.FindGameObjectWithTag("BlackScreen").GetComponent<RawImage>();
         if (!startDark)
         {
-            blackScreen.DOFade(0f, fadeInTime).SetUpdate(true);
+            blackScreen.DOFade(0f, fadeInTime).SetUpdate(true).SetDelay(0.5f);
         }
 
         if (Globals.playDoorCloseSoundAtNextScene)
