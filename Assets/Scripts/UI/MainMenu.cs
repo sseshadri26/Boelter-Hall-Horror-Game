@@ -35,7 +35,7 @@ public class MainMenu : MonoBehaviour
         //     blackScreen.DOFade(1f, 0.5f).OnComplete( () => StartCoroutine(Click.LoadYarnScene("Intro")));
         // }
         
-        blackScreen.DOFade(1f, 0.5f).OnComplete( () => SceneManager.LoadScene("Entrance"));
+        blackScreen.DOFade(1f, 0.5f).OnComplete( () => SceneManager.LoadScene("Intro"));
         PlayerPrefs.DeleteAll();
     }
 

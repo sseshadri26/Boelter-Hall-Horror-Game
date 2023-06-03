@@ -26,4 +26,20 @@ public static class YarnCommands
             nach.GetComponent<MeshRenderer>().material = newMat;
         }
     }
+
+    [YarnCommand("loadScene")]
+    public static IEnumerator LoadScene(string sceneName, int spawnPoint)
+    {
+        Globals.curSpawnPoint = spawnPoint;
+        GameObject.FindGameObjectWithTag("BlackScreen").GetComponent<RawImage>().DOFade(1f, 0.75f).SetUpdate(true);
+
+        // Play sound after fade out
+        yield return new WaitForSecondsRealtime(1f);
+        FMODManager.Instance.PlaySound(FMODManager.SFX.door_open);
+
+        // Load next scene and play door closing sound
+        yield return new WaitForSecondsRealtime(1f);
+        Globals.playDoorCloseSoundAtNextScene = true;
+        SceneManager.LoadScene(sceneName);
+    }
 }
