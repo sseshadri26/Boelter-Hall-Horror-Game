@@ -22,6 +22,6 @@ public class AnimationEvents : MonoBehaviour
         {
             Debug.LogError("Need a TV!");
         }
-        FindObjectOfType<PlayerConfines>().NachenbergIntro(nachTV);
+        FindObjectOfType<CareyCutscene>().NachenbergIntro(nachTV);
     }
 }

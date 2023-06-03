@@ -38,14 +38,20 @@ public class TV : MonoBehaviour, IAction
         fpc.dialogueRunner.StartDialogue("Intro");
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-        transform.GetChild(0).gameObject.SetActive(true);
-        transform.GetChild(1).gameObject.SetActive(true);
+        
         fpc.dialogueRunner.onDialogueComplete.AddListener(() =>
         {
             transform.GetChild(0).gameObject.SetActive(false);
             transform.GetChild(1).gameObject.SetActive(false);
         });
         StartCoroutine("AllowContinueInput");
+    }
+
+    // For cutscenes
+    public void TurnOn()
+    {
+        transform.GetChild(0).gameObject.SetActive(true);
+        transform.GetChild(1).gameObject.SetActive(true);
     }
 
     private IEnumerator AllowContinueInput()

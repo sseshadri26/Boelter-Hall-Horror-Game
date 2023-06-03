@@ -240,7 +240,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 170.1573, y: -21.964956}
+  m_AnchoredPosition: {x: 170.15724, y: -21.96515}
   m_SizeDelta: {x: 340, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &6138160395710017806
@@ -895,6 +895,7 @@ MonoBehaviour:
   startingPitch: 0
   startDark: 0
   fadeInTime: 0.75
+  careyCallout: {fileID: 8300000, guid: a77973b6cbf059141b0e5b600a0ae754, type: 3}
 --- !u!114 &1630818031
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1652,7 +1653,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 58126041099475403}
   m_HandleRect: {fileID: 1400390682410982951}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:

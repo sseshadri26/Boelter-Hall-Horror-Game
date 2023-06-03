@@ -9305,6 +9305,14 @@ PrefabInstance:
       propertyPath: m_Center.z
       value: 1.5638428e-10
       objectReference: {fileID: 0}
+    - target: {fileID: 554492945905019695, guid: 68381f07ff4b16740b1492d6e294a7db, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 9.922
+      objectReference: {fileID: 0}
+    - target: {fileID: 554492945905019695, guid: 68381f07ff4b16740b1492d6e294a7db, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.049
+      objectReference: {fileID: 0}
     - target: {fileID: 2207311107712388780, guid: 68381f07ff4b16740b1492d6e294a7db, type: 3}
       propertyPath: m_Name
       value: Elevator
@@ -9360,6 +9368,22 @@ PrefabInstance:
     - target: {fileID: 5327562218915534964, guid: 68381f07ff4b16740b1492d6e294a7db, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5786857173883140653, guid: 68381f07ff4b16740b1492d6e294a7db, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 9.922
+      objectReference: {fileID: 0}
+    - target: {fileID: 5786857173883140653, guid: 68381f07ff4b16740b1492d6e294a7db, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.049
+      objectReference: {fileID: 0}
+    - target: {fileID: 6634526055613868619, guid: 68381f07ff4b16740b1492d6e294a7db, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 9.922
+      objectReference: {fileID: 0}
+    - target: {fileID: 6634526055613868619, guid: 68381f07ff4b16740b1492d6e294a7db, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.049
       objectReference: {fileID: 0}
     - target: {fileID: 7367742364124265588, guid: 68381f07ff4b16740b1492d6e294a7db, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10585,11 +10609,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6389317658567166228, guid: 005f38b85fc03ec40b17de5b2c91a414, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 170.15726
+      value: 170.15724
       objectReference: {fileID: 0}
     - target: {fileID: 6389317658567166228, guid: 005f38b85fc03ec40b17de5b2c91a414, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -21.964512
+      value: -21.96515
       objectReference: {fileID: 0}
     - target: {fileID: 8426141393459786674, guid: 005f38b85fc03ec40b17de5b2c91a414, type: 3}
       propertyPath: m_AnchorMax.x
@@ -11344,7 +11368,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1213980
+  m_Name: pb_Mesh-2738166
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
