@@ -2244,6 +2244,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7681503617941531451, guid: 03ef92407dc772546a30daeda1ab0b3d, type: 3}
+      propertyPath: failMessage
+      value: Crap, the door won't open from this side?
+      objectReference: {fileID: 0}
     - target: {fileID: 8640303248168685179, guid: 03ef92407dc772546a30daeda1ab0b3d, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -2348,12 +2352,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7014509392904185987, guid: 03ef92407dc772546a30daeda1ab0b3d, type: 3}
+      propertyPath: objectsWithActions.Array.data[0]
+      value: 
+      objectReference: {fileID: 385485434}
     - target: {fileID: 8640303248168685179, guid: 03ef92407dc772546a30daeda1ab0b3d, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9093380313361755428, guid: 03ef92407dc772546a30daeda1ab0b3d, type: 3}
+    - {fileID: 7681503617941531451, guid: 03ef92407dc772546a30daeda1ab0b3d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 03ef92407dc772546a30daeda1ab0b3d, type: 3}
 --- !u!1 &385485430 stripped
 GameObject:
@@ -2402,6 +2411,27 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 385485431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e08e9c12511ca9149bac154e9d9752e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextScene: Credits
+  spawnPoint: 0
+  requiresKey: 0
+  keyName: 
+--- !u!1 &385485434 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8640303248168685179, guid: 03ef92407dc772546a30daeda1ab0b3d, type: 3}
+  m_PrefabInstance: {fileID: 385485429}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &385485435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 385485434}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e08e9c12511ca9149bac154e9d9752e0, type: 3}
@@ -7250,7 +7280,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1678053846432003322, guid: 7264eb06193e8f34e9e292c91ffa39a5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -9.54
+      value: -16.29
       objectReference: {fileID: 0}
     - target: {fileID: 1678053846432003322, guid: 7264eb06193e8f34e9e292c91ffa39a5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -14456,7 +14486,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6389317658567166228, guid: 005f38b85fc03ec40b17de5b2c91a414, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -21.965149
+      value: -21.965147
       objectReference: {fileID: 0}
     - target: {fileID: 8426141393459786674, guid: 005f38b85fc03ec40b17de5b2c91a414, type: 3}
       propertyPath: m_AnchorMax.x

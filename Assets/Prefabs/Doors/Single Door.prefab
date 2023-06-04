@@ -3337,7 +3337,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 570ca9afff2591c418aa16bb77721f17, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 570ca9afff2591c418aa16bb77721f17, type: 3}
@@ -3850,7 +3850,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 44b4d16f30b99d34cae25c742d1d4976, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 44b4d16f30b99d34cae25c742d1d4976, type: 3}
@@ -3886,7 +3886,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactMessage: E to open door
   objectsWithActions:
-  - {fileID: 5495590682298880154}
+  - {fileID: 8640303248168685179}
   destroyOnUse: 0
   holdToInteract: 0
   howLongToHold: 3
