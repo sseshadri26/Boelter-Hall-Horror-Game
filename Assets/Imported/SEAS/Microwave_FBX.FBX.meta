@@ -3,7 +3,37 @@ guid: df0bffe482aab4b0caa9bd21c4949de6
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Glass Solid Simple
+    second: {fileID: 2100000, guid: 581b683d96b1cd64ca26649d1231ffe4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pmma Opaque Arctic
+    second: {fileID: 2100000, guid: fa0214e22dae21846bc74b368eea8bdf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pmma Opaque Arctic2
+    second: {fileID: 2100000, guid: 84dbf84a60b194c40942ff7c96542b1a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Porcelain
+    second: {fileID: 2100000, guid: 69f04f53ec2d5314eb780806897d5a96, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RedText
+    second: {fileID: 2100000, guid: 584ca697b88884149b0b825ac64d679f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Text
+    second: {fileID: 2100000, guid: c41aaf7e19eb5e249908e16578944c68, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
