@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.soupday.cc3_unity_tools": "file:C:/Users/sudar/Downloads/Character_Creator_and_iClone_Auto_Setup_1.4.6_for_Unity_HDRP12/Character_Creator_and_iClone_Auto_Setup_1.4.6_for_Unity_HDRP12",
     "com.unity.2d.tilemap": "1.0.0",
     "com.unity.2d.tilemap.extras": "2.2.5",
     "com.unity.cinemachine": "2.8.9",
