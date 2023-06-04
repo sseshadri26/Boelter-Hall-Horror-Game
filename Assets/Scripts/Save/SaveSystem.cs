@@ -17,7 +17,6 @@ public static class SaveSystem
                 _data = LoadGame();
                 if (_data == null)
                 {
-                    Resources.Load<InventoryItemCollectionSO>("PlayerInventory").items = new List<InventoryItemSO>();
                     Debug.Log("This is a new save");
                 }
                 else
