@@ -26,7 +26,7 @@ public class TriggerFlag : MonoBehaviour, IAction
             return;
         }
         
-        Globals.flags[flagName] = requiresKey;
+        Globals.flags[flagName] = flagSetting;
         Debug.Log("Set " + flagName + " to " + Globals.flags[flagName]);
     }
 }

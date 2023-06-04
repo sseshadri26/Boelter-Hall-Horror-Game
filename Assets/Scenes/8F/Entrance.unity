@@ -375,6 +375,23 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4383258444604287699, guid: 88b11e6ded2127c4fb39785f8bedd32b, type: 3}
   m_PrefabInstance: {fileID: 71225536}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &116007515 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4459864850019384750, guid: 005f38b85fc03ec40b17de5b2c91a414, type: 3}
+  m_PrefabInstance: {fileID: 1405734011}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &116007524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 116007515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c0125089f11d4547ae27e87e984f295, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &222038081 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5270045534808637695, guid: 03ef92407dc772546a30daeda1ab0b3d, type: 3}
@@ -10609,11 +10626,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6389317658567166228, guid: 005f38b85fc03ec40b17de5b2c91a414, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 170.15724
+      value: 170.15726
       objectReference: {fileID: 0}
     - target: {fileID: 6389317658567166228, guid: 005f38b85fc03ec40b17de5b2c91a414, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -21.96515
+      value: -21.965157
       objectReference: {fileID: 0}
     - target: {fileID: 8426141393459786674, guid: 005f38b85fc03ec40b17de5b2c91a414, type: 3}
       propertyPath: m_AnchorMax.x

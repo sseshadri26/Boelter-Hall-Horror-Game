@@ -24,6 +24,9 @@ EditorBuildSettings:
     path: Assets/Scenes/5F/5280.unity
     guid: 958f1821b15bc29449e1e462cd6370f2
   - enabled: 1
+    path: Assets/Scenes/5F/5272.unity
+    guid: 1d253edc9d2d02b4e8dacb956f528e05
+  - enabled: 1
     path: Assets/Scenes/Stairwell.unity
     guid: 8ea3c4d141b1df74bbe643663bb6d035
   - enabled: 1
