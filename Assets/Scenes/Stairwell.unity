@@ -1759,13 +1759,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 360651877}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e08e9c12511ca9149bac154e9d9752e0, type: 3}
+  m_Script: {fileID: 11500000, guid: 2de2641886444e0488416259672966c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextScene: 5F Hallway
-  spawnPoint: 3
-  requiresKey: 0
-  keyName: 
+  failMessage: Crap, the door won't open from this side?
 --- !u!1001 &385485429
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12777,7 +12774,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6389317658567166228, guid: 005f38b85fc03ec40b17de5b2c91a414, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 170.15723
+      value: 170.15726
       objectReference: {fileID: 0}
     - target: {fileID: 6389317658567166228, guid: 005f38b85fc03ec40b17de5b2c91a414, type: 3}
       propertyPath: m_AnchoredPosition.y

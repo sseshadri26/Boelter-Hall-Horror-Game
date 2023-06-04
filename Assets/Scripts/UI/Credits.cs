@@ -13,6 +13,7 @@ public class Credits : MonoBehaviour
     void Start()
     {
         Time.timeScale = 1f;
+        Cursor.lockState = CursorLockMode.None;
         GetComponent<RectTransform>().DOAnchorPosY(endPosY, duration).SetEase(Ease.Linear).OnComplete(() => SceneManager.LoadScene(0));
     }
 }
