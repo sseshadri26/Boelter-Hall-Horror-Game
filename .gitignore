@@ -113,3 +113,6 @@ FMOD/Boelter/.cache/*
 fmod_editor.log
 Assets/Videos/Jet Set Radio Future Opening.mp4
 Assets/Videos/Jet Set Radio Future Opening.mp4.meta
+*.ccProject
+Assets/Models/Character Creator/Gupta - Copy.ccProject.meta
+Assets/Models/Character Creator/Gupta.ccProject.meta
