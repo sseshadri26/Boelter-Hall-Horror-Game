@@ -1,0 +1,33 @@
+# Blender 3.5.0 MTL File: 'carey.blend'
+# www.blender.org
+
+newmtl 10308_Metal_Fframe_Reading_Glasses
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 1
+map_Kd C:/Users/sudar/Downloads/10308_Metal_Frame_Reading_Glasses_v2_L3.04f62d26-1002-4256-ba69-44c4e37e0d1e/10308_Metal_Frame_Reading_Glasses_v2_L3.04f62d26-1002-4256-ba69-44c4e37e0d1e/10308_Metal_Frame_Reading_Glasses_V1_Diffuse.jpg
+
+newmtl 10308_Metal_Fframe_Reading_Glasses_Rim
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 0.500000
+illum 1
+map_Kd C:/Users/sudar/Downloads/10308_Metal_Frame_Reading_Glasses_v2_L3.04f62d26-1002-4256-ba69-44c4e37e0d1e/10308_Metal_Frame_Reading_Glasses_v2_L3.04f62d26-1002-4256-ba69-44c4e37e0d1e/10308_Metal_Frame_Reading_Glasses_V1_Diffuse.jpg
+
+newmtl remesh_8_combined_Bake
+Ns 200.000000
+Ka 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd C:/Users/sudar/Clubs/ACM Studio/2023/Boelter Hall Horror Game/Assets/Models/Character Creator/blender final/2/textures/remesh_8_combined_Bake_Diffuse.png
+map_Ks C:/Users/sudar/Clubs/ACM Studio/2023/Boelter Hall Horror Game/Assets/Models/Character Creator/blender final/2/textures/remesh_8_combined_Bake_Specular.png
+map_Bump -bm 1.000000 C:/Users/sudar/Clubs/ACM Studio/2023/Boelter Hall Horror Game/Assets/Models/Character Creator/blender final/2/textures/remesh_8_combined_Bake_Normal.png
