@@ -227,17 +227,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""e3e31b4e-97ea-4896-b5ea-e315d32a7bde"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Interact"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""3abecd73-4c33-4c64-9b91-1fb333ecbe79"",
                     ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
