@@ -16,6 +16,7 @@ public class FMODManager : MonoBehaviour
     // Vars:
     [SerializeField] private bool printDebug;
     public FMODParams globalParams = new FMODParams(true);
+    public int mainBGMID = -1;
     //
     //[SerializeField]
     //[Range(0f, 2f)]
@@ -38,7 +39,9 @@ public class FMODManager : MonoBehaviour
     {
         door_close, door_open, 
         footstep_ground, footstep_ground2, footstep_grass, footstep_gravel, footstep_wood,
-        paper_crumble
+        paper_crumble,
+        music_title, music_opening,
+        menu_scroll, menu_click
     }
     public struct FMODParams
     {
@@ -68,6 +71,10 @@ public class FMODManager : MonoBehaviour
         { SFX.footstep_wood, "event:/footstep_wood" },
         { SFX.paper_crumble, "event:/paper_crumble" },
         { SFX.footstep_ground2, "event:/footstep_ground 2" },
+        { SFX.music_title, "event:/music_title" },
+        { SFX.music_opening, "event:/music_opening" },
+        { SFX.menu_scroll, "event:/menu_scroll" },
+        { SFX.menu_click, "event:/menu_click" },
     };
 
     // BGM Storage:
@@ -82,6 +89,8 @@ public class FMODManager : MonoBehaviour
     void Start()
     {
         eventEmitter = GetComponent<StudioEventEmitter>();
+        mainBGMID = StartBGM(SFX.music_title);
+
     }
 
     // Interface:
@@ -122,9 +131,19 @@ public class FMODManager : MonoBehaviour
         }
         return currentID;
     }
+    public void ChangeBGM(ref int ID, SFX sound)
+    {
+        FMODParams myParams = BGMStorageDict[ID];
+        StopBGM(ID);
+        ID = StartBGM(sound, false, myParams);
+    }
     public void ModifyParams(int ID, ref FMODParams soundParams)
     {
         BGMStorageDict[ID] = soundParams;
+    }
+    public void ChangeMainBGM(SFX sound)
+    {
+        ChangeBGM(ref mainBGMID, sound);
     }
     
     // Utils:
