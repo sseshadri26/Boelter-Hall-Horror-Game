@@ -29,6 +29,7 @@ public class Carey : MonoBehaviour, IAction
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         StartCoroutine("AllowContinueInput");
+        
         transform.DOLookAt(fpc.transform.position, 2f, AxisConstraint.Y);
     }
 
