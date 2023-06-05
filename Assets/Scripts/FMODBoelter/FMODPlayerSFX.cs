@@ -45,6 +45,9 @@ public class FMODPlayerSFX : MonoBehaviour
             case "Porter Room Alt":
                 // Reaping
                 break;
+            default:
+                FMODManager.Instance.ChangeMainBGM(FMODManager.SFX.music_hallway);
+                break;
         }
     }
 
@@ -55,7 +58,7 @@ public class FMODPlayerSFX : MonoBehaviour
         prevSpeed1 = player.rb.velocity.magnitude; // Usual speed is from 4-9.
         float speed = (prevSpeed1 + prevSpeed2 + prevSpeed3) / 3f;
 
-        footstepParams.pitch = Mathf.Lerp(0.9f, 1.0f, (speed - 4f) / (9f - 4f));
+        footstepParams.pitch = Mathf.Lerp(0.9f, 0.95f, (speed - 4f) / (9f - 4f));
         footstepParams.volumePercent = Mathf.Lerp(0.6f, 1.0f, (speed - 4f) / (9f - 4f));
 
         //FMODManager.Instance.ModifyParams(footstepID, ref footstepParams);
@@ -65,7 +68,9 @@ public class FMODPlayerSFX : MonoBehaviour
 
     void playSteps(float speed)
     {
-        float interval = Mathf.Lerp(0.75f, 0.3f, (speed - 4f) / (5f));
+        //float interval = Mathf.Lerp(0.75f, 0.15f, (speed - 4.8f) / (14.88f));
+        float interval = 0.75f / (speed / 4.8f);
+        // 4.8 - 19.68
         timeSinceLastStep += Time.fixedDeltaTime;
 
         // Check if it's time to play the footstep sound

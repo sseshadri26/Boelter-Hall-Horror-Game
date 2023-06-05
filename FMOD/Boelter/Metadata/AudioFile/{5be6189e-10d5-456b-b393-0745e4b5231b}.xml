@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{5be6189e-10d5-456b-b393-0745e4b5231b}">
 		<property name="assetPath">
-			<value>Spooky_SFX_1.wav</value>
+			<value>Imported/Spooky_SFX_1.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>

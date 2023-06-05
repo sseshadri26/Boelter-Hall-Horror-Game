@@ -16,7 +16,8 @@ public class FMODManager : MonoBehaviour
     // Vars:
     [SerializeField] private bool printDebug;
     public FMODParams globalParams = new FMODParams(true);
-    public int mainBGMID;
+    private FMODParams bgmParams = new FMODParams(true);
+    public int mainBGMID = -1;
     //
     //[SerializeField]
     //[Range(0f, 2f)]
@@ -40,7 +41,7 @@ public class FMODManager : MonoBehaviour
         door_close, door_open, 
         footstep_ground, footstep_ground2, footstep_grass, footstep_gravel, footstep_wood,
         paper_crumble,
-        music_title, music_opening,
+        music_title, music_opening, music_hallway,
         menu_scroll, menu_click,
         spooky_1, spooky_2, spooky_3
     }
@@ -74,6 +75,7 @@ public class FMODManager : MonoBehaviour
         { SFX.footstep_ground2, "event:/footstep_ground 2" },
         { SFX.music_title, "event:/music_title" },
         { SFX.music_opening, "event:/music_opening" },
+        { SFX.music_hallway, "event:/music_hallway" },
         { SFX.menu_scroll, "event:/menu_scroll" },
         { SFX.menu_click, "event:/menu_click" },
         { SFX.spooky_1, "event:/spooky_1" },
@@ -93,7 +95,6 @@ public class FMODManager : MonoBehaviour
     void Start()
     {
         eventEmitter = GetComponent<StudioEventEmitter>();
-        mainBGMID = StartBGM(SFX.music_opening);
     }
 
     // Interface:
@@ -138,10 +139,17 @@ public class FMODManager : MonoBehaviour
     {
         BGMStorageDict[ID] = soundParams;
     }
-    public void ChangeMainBGM(SFX sound)
+    public void ChangeMainBGM(SFX sound, float volumePercent = 1f)
     {
+        if (mainBGMID == -1)
+        {
+            bgmParams.volumePercent = volumePercent;
+            mainBGMID = StartBGM(sound, false, bgmParams);
+            return;
+        }
         StopBGM(mainBGMID);
-        mainBGMID = StartBGM(sound);
+        bgmParams.volumePercent = volumePercent;
+        mainBGMID = StartBGM(sound, false, bgmParams);
     }
     
     // Utils:

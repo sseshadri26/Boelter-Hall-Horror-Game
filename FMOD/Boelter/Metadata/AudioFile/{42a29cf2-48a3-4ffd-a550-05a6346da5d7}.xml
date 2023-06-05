@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{42a29cf2-48a3-4ffd-a550-05a6346da5d7}">
 		<property name="assetPath">
-			<value>Spooky_SFX_2.wav</value>
+			<value>Imported/Spooky_SFX_2.wav</value>
 		</property>
 		<property name="isStreaming">
 			<value>true</value>
