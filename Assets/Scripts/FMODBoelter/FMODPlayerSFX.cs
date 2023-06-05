@@ -32,18 +32,12 @@ public class FMODPlayerSFX : MonoBehaviour
             case "SEAS Cafe":
                 // Simpler Times music_seas 0.3
                 FMODManager.Instance.ChangeMainBGM(FMODManager.SFX.music_seas, 0.2f);
-                break; 
+                break;
             case "Intro":
             case "5F Hallway":
                 // Haunted Hallways music_opening 0.4
-                if (Globals.curSpawnPoint == 0)
-                {
-                    FMODManager.Instance.ChangeMainBGM(FMODManager.SFX.music_opening, 0.2f);
-                }
-                else
-                {
-                    goto default;
-                }
+                // FMODManager.Instance.ChangeMainBGM(FMODManager.SFX.music_opening, 0.2f);
+                FMODManager.Instance.ChangeMainBGM(FMODManager.SFX.music_hallway, 0.2f);
                 break;
             case "5272":
                 // Muddled Thoughts music_5272 0.3
@@ -59,18 +53,13 @@ public class FMODPlayerSFX : MonoBehaviour
                 FMODManager.Instance.ChangeMainBGM(FMODManager.SFX.music_porter, 0.2f);
                 break;
             default:
-                FMODManager.Instance.ChangeMainBGM(FMODManager.SFX.music_hallway);
+                FMODManager.Instance.ChangeMainBGM(FMODManager.SFX.music_hallway, 0.2f);
                 break;
         }
     }
 
     void FixedUpdate()
     {
-        if (player == null)
-        {
-            return;
-        }
-
         prevSpeed3 = prevSpeed2;
         prevSpeed2 = prevSpeed1;
         Vector3 horizontalVelocity = new Vector3(player.rb.velocity.x, 0, player.rb.velocity.z);
