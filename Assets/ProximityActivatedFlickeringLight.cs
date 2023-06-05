@@ -63,7 +63,10 @@ public class ProximityActivatedFlickeringLight : MonoBehaviour
 
 
         ourLight.enabled = false;
-        otherLight.enabled = false;
+        if (otherLight != null)
+        {
+            otherLight.enabled = false;
+        }
         if (affectShader)
         {
             mr.material.shader = offShader;
@@ -133,7 +136,11 @@ public class ProximityActivatedFlickeringLight : MonoBehaviour
         }
         // turn the light on forever
         ourLight.enabled = true;
-        otherLight.enabled = true;
+
+        if (otherLight != null)
+        {
+            otherLight.enabled = true;
+        }
 
         if (affectShader)
         {
