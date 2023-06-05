@@ -42,7 +42,17 @@ public class PlayerConfines : MonoBehaviour
         }
 
         // When first loading the scene, move the player to the current start position
-        Transform spawnPoint = GameObject.FindGameObjectWithTag("spawnPointsParent").transform.GetChild(Globals.curSpawnPoint);
+        Transform spawnPoint = GameObject.FindGameObjectWithTag("spawnPointsParent").transform;
+        if (spawnPoint.childCount < Globals.curSpawnPoint)
+        {
+            // Failsafe for bugged spawning (or playing scenes directly when playtesting in Unity)
+            spawnPoint = GameObject.FindGameObjectWithTag("spawnPointsParent").transform.GetChild(0);
+        }
+        else
+        {
+            spawnPoint = GameObject.FindGameObjectWithTag("spawnPointsParent").transform.GetChild(Globals.curSpawnPoint);
+        }
+
         transform.position = spawnPoint.position;
         transform.rotation = spawnPoint.rotation;
     }
