@@ -45,6 +45,7 @@ public class ElevatorCutscene : MonoBehaviour, IAction
         yield return new WaitForSeconds(2f);
 
         transform.DOShakePosition(0.5f, 0.1f).OnComplete(() => stage.DOMoveY(10f, 10f));
+        FMODManager.Instance.ChangeMainBGM(FMODManager.SFX.music_elevator);
         yield return new WaitForSeconds(5f);
 
         Sequence shake = DOTween.Sequence();
@@ -59,7 +60,7 @@ public class ElevatorCutscene : MonoBehaviour, IAction
 
         // Play sound and freeze time (Silent Hill 2 style)
         Globals.curSpawnPoint = spawnPoint;
-        // FMODManager.Instance.PlaySound(FMODManager.SFX.door_open);
+        FMODManager.Instance.PlaySound(FMODManager.SFX.door_open);
         blackScreen.DOFade(1f, 0.75f).SetUpdate(true);
 
         // Load next scene

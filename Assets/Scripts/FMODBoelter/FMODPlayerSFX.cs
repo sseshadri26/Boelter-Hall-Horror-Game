@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Profiling.Memory.Experimental;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -30,20 +31,26 @@ public class FMODPlayerSFX : MonoBehaviour
         switch (SceneManager.GetActiveScene().name)
         {
             case "SEAS Cafe":
-                // Simpler Times
-                break;
+                // Simpler Times music_seas 0.3
+                FMODManager.Instance.ChangeMainBGM(FMODManager.SFX.music_seas, 0.2f);
+                break; 
             case "Intro":
-                // Haunted Hallways
+            case "5F Hallway":
+                // Haunted Hallways music_opening 0.4
+                FMODManager.Instance.ChangeMainBGM(FMODManager.SFX.music_opening, 0.2f);
                 break;
             case "5272":
-                // Muddled Thoughts
+                // Muddled Thoughts music_5272 0.3
+                FMODManager.Instance.ChangeMainBGM(FMODManager.SFX.music_5272, 0.2f);
                 break;
             case "Stairwell":
                 // Outside these Walls FULL
+                FMODManager.Instance.ChangeMainBGM(FMODManager.SFX.music_stairwell, 0.1f);
                 break;
             case "Porter Room":
             case "Porter Room Alt":
-                // Reaping
+                // Reaping music_porter 0.3
+                FMODManager.Instance.ChangeMainBGM(FMODManager.SFX.music_porter, 0.2f);
                 break;
             default:
                 FMODManager.Instance.ChangeMainBGM(FMODManager.SFX.music_hallway);
