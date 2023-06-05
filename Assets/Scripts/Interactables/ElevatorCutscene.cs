@@ -41,6 +41,7 @@ public class ElevatorCutscene : MonoBehaviour, IAction
     private IEnumerator Cutscene()
     {
         anim.SetTrigger("Close");
+        StartCoroutine("FreezePlayer");
         yield return new WaitForSeconds(2f);
 
         transform.DOShakePosition(0.5f, 0.1f).OnComplete(() => stage.DOMoveY(10f, 10f));
