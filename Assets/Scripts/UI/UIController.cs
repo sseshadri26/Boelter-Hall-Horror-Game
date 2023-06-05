@@ -84,11 +84,24 @@ public class UIController : MonoBehaviour
     {
         if (!isMainOpen)
         {
+            // This is an artifact of combining both gameplay and UI controls into
+            // one input asset... nasty
+            // We really should have had a separate input asset only for UI
+            playerInput.controls.Interact.Disable();
+
             main.AnimateOpen(PanelAnimator.PanelPosition.RIGHT, PanelAnimator.PanelAnimationSpeed.NORMAL);
             mainBackground.AnimateOpen(PanelAnimator.PanelPosition.CENTER, PanelAnimator.PanelAnimationSpeed.NORMAL);
         }
         else
         {
+            // REALLY messy code...
+            if (!isPauseOpen)
+            {
+                // This is an artifact of combining both gameplay and UI controls into
+                // one input asset... nasty
+                // We really should have had a separate input asset only for UI
+                playerInput.controls.Interact.Enable();
+            }
             main.AnimateClose(PanelAnimator.PanelPosition.RIGHT, PanelAnimator.PanelAnimationSpeed.NORMAL);
             mainBackground.AnimateClose(PanelAnimator.PanelPosition.CENTER, PanelAnimator.PanelAnimationSpeed.NORMAL);
         }
@@ -116,10 +129,14 @@ public class UIController : MonoBehaviour
         {
             pause.InstantClose();
 
-            // This is an artifact of combining both gameplay and UI controls into
-            // one input asset... nasty
-            // We really should have had a separate input asset only for UI
-            playerInput.controls.Interact.Enable();
+            // REALLY messy code...
+            if (!isMainOpen)
+            {
+                // This is an artifact of combining both gameplay and UI controls into
+                // one input asset... nasty
+                // We really should have had a separate input asset only for UI
+                playerInput.controls.Interact.Enable();
+            }
 
             // Settings is part of the pause panel -- if we had more time, I'd let
             // the pause panel handle the settings panel, but showcase is in two days :((
