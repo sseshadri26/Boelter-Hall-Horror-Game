@@ -22,7 +22,9 @@ public class DoorSetup : MonoBehaviour
         Double_Door_Frame,
         Giant_Door,
         Small_Big_Door,
-        Door1_Backface_Culled
+        Door1_Backface_Culled,
+
+        Stair_Door
     };
 
     [SerializeField]

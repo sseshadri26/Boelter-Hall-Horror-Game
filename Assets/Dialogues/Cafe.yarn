@@ -2,12 +2,18 @@
 tags:
 position: -117,-85
 ---
-Carey: Hi. I'm surprised you found me, a part of me thought you'd be lost in here forever. #line:Cafe1
+<<trigger Carey Talk2>>
+Carey: Hi! I'm surprised you found me, a part of me thought you'd be lost in here forever. #line:Cafe1
+<<trigger Carey Drink>>
 Carey: *Sips* #line:Cafe2
+<<trigger Carey Talk1>>
 Carey: So, you noticed the portals, right? I'm almost certain they were created in one of the labs here at UCLA. They were conducting research on dimensional rifts, and Professor Porter was working with them. #line:Cafe3
+<<trigger Carey Talk1>>
 Carey: But I believe their lab had an accident. The portals spiraled out of control, and anything they touched was ripped open into a dimensional gateway. Everything from that lab is contaminated, even something as small as a piece of paper. You need to find the contamination's source and destroy it. #line:Cafe4
 <<wait 2>>
+<<trigger Carey Talk1>>
 Carey: Well? What are you waiting for? Someone has to fix things. #line:Cafe6
 -> Are you not coming?
+<<trigger Carey Talk2>>
 Carey: Me? No way, it's comfortable here. You can handle this problem yourself. But feel free to ask me if you run into any issues. I am a professor, after all. #line:Cafe7
 ===
