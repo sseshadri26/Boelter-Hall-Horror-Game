@@ -6,7 +6,12 @@ public class GiveUSB : MonoBehaviour
 {
     private void Start()
     {
-        var inventory = Resources.Load<InventoryItemCollectionSO>("PlayerInventory").items = new List<InventoryItemSO>();
+        var inventory = Resources.Load<InventoryItemCollectionSO>("PlayerInventory").items;
+
+        if (inventory == null)
+        {
+            inventory = new List<InventoryItemSO>();
+        }
 
         InventoryItemSO usb = Resources.Load<InventoryItemSO>("Inventory/USB Drive");
         if (usb != null && !inventory.Contains(usb))
