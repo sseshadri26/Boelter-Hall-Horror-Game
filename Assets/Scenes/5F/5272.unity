@@ -17,7 +17,7 @@ RenderSettings:
   m_Fog: 1
   m_FogColor: {r: 0.16037738, g: 0.16037738, b: 0.16037738, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0.05
+  m_FogDensity: 0.07
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0, g: 0, b: 0, a: 1}
@@ -1282,6 +1282,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: {fileID: 11400000, guid: 00d481b6e8f655e4d932ac53c558bf93, type: 2}
+  message: You picked up the key to the SEAS Cafe
 --- !u!65 &315505136
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4580,6 +4581,46 @@ PrefabInstance:
       propertyPath: zSize
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 2057779428054170872, guid: 4e943a38e4b114049a0dbf76e40be52c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.56
+      objectReference: {fileID: 0}
+    - target: {fileID: 2057779428054170872, guid: 4e943a38e4b114049a0dbf76e40be52c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.16673708
+      objectReference: {fileID: 0}
+    - target: {fileID: 2057779428054170872, guid: 4e943a38e4b114049a0dbf76e40be52c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -5.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 2057779428054170872, guid: 4e943a38e4b114049a0dbf76e40be52c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.68138963
+      objectReference: {fileID: 0}
+    - target: {fileID: 2057779428054170872, guid: 4e943a38e4b114049a0dbf76e40be52c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.68138963
+      objectReference: {fileID: 0}
+    - target: {fileID: 2057779428054170872, guid: 4e943a38e4b114049a0dbf76e40be52c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.18896611
+      objectReference: {fileID: 0}
+    - target: {fileID: 2057779428054170872, guid: 4e943a38e4b114049a0dbf76e40be52c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.18896611
+      objectReference: {fileID: 0}
+    - target: {fileID: 2057779428054170872, guid: 4e943a38e4b114049a0dbf76e40be52c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 2057779428054170872, guid: 4e943a38e4b114049a0dbf76e40be52c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -31
+      objectReference: {fileID: 0}
+    - target: {fileID: 2057779428054170873, guid: 4e943a38e4b114049a0dbf76e40be52c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3451279657414398578, guid: 4e943a38e4b114049a0dbf76e40be52c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.5
@@ -4709,6 +4750,46 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6022457707408557825, guid: 4e943a38e4b114049a0dbf76e40be52c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9205239515670213772, guid: 4e943a38e4b114049a0dbf76e40be52c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.433
+      objectReference: {fileID: 0}
+    - target: {fileID: 9205239515670213772, guid: 4e943a38e4b114049a0dbf76e40be52c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.21762848
+      objectReference: {fileID: 0}
+    - target: {fileID: 9205239515670213772, guid: 4e943a38e4b114049a0dbf76e40be52c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.317
+      objectReference: {fileID: 0}
+    - target: {fileID: 9205239515670213772, guid: 4e943a38e4b114049a0dbf76e40be52c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.6625431
+      objectReference: {fileID: 0}
+    - target: {fileID: 9205239515670213772, guid: 4e943a38e4b114049a0dbf76e40be52c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.6625431
+      objectReference: {fileID: 0}
+    - target: {fileID: 9205239515670213772, guid: 4e943a38e4b114049a0dbf76e40be52c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.2470559
+      objectReference: {fileID: 0}
+    - target: {fileID: 9205239515670213772, guid: 4e943a38e4b114049a0dbf76e40be52c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.2470559
+      objectReference: {fileID: 0}
+    - target: {fileID: 9205239515670213772, guid: 4e943a38e4b114049a0dbf76e40be52c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 9205239515670213772, guid: 4e943a38e4b114049a0dbf76e40be52c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -40.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 9205239515670213773, guid: 4e943a38e4b114049a0dbf76e40be52c, type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
@@ -6303,11 +6384,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6389317658567166228, guid: 005f38b85fc03ec40b17de5b2c91a414, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -170.00002
+      value: 170.15723
       objectReference: {fileID: 0}
     - target: {fileID: 6389317658567166228, guid: 005f38b85fc03ec40b17de5b2c91a414, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -21.96481
+      value: -21.964926
       objectReference: {fileID: 0}
     - target: {fileID: 6724376830319377957, guid: 005f38b85fc03ec40b17de5b2c91a414, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -10214,6 +10295,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: {fileID: 11400000, guid: 0a4fe9f012db09145a2f6af6ba87053e, type: 2}
+  message: You picked up the gold key. It came with a cryptic message (view in inventory)
 --- !u!114 &2133502544
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -196,18 +196,21 @@ MonoBehaviour:
 
     Brandon Truong
 
-    Kristal Light
+    Johnny Dai
 
-    Michelle
-    Kim
+    Kristal
+    Light
+
+    Michelle Kim
 
     Michelle Zhao
 
     Nima Veravit
 
-    Johnny Dai
+    Sudarshan Seshadri
 
-    Wren Xu
+    Wren
+    Xu
 
 
 
@@ -215,8 +218,8 @@ MonoBehaviour:
 
     CAST
 
-    Carey
-    Nachenberg                                                As himself
+    Carey Nachenberg                                               
+    As himself
 
 
 
@@ -224,8 +227,7 @@ MonoBehaviour:
 
     MUSIC
 
-    Ryan
-    Schoenburg
+    Ryan Schoenburg
 
 
 
@@ -233,23 +235,23 @@ MonoBehaviour:
 
     PROGRAMMING
 
-    Alex Packer
+    Alex
+    Packer
 
     Aaron Isara
 
-    Aaron
-    Kwan
+    Aaron Kwan
 
     Cole Strain
 
     Felix Ku
 
-    Harry Hinman
+    Harry
+    Hinman
 
     Michael Jiang
 
-    Sudarshan
-    Seshadri
+    Sudarshan Seshadri
 
 
 
@@ -257,18 +259,8 @@ MonoBehaviour:
 
     WRITING
 
-    Caroline Ives
-
-    Cole Strain
-
-    Sudarshan
-    Seshadri
-
-
-
-
-
-    TEAM LEADS
+    Caroline
+    Ives
 
     Cole Strain
 
@@ -278,10 +270,44 @@ MonoBehaviour:
 
 
 
-    SPECIAL
-    THANKS
+    TEAM LEADS
+
+    Cole Strain
+
+    Sudarshan
+    Seshadri
+
+
+
+
+
+    SPECIAL THANKS
 
     ACM Studio at UCLA
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    TO
+    BE CONTINUED...
+
+
+
+
+
 
 
 
@@ -297,8 +323,17 @@ MonoBehaviour:
     THANK YOU FOR PLAYING!
 
 
-    LOOK
-    FORWARD TO FUTURE UPDATES!'
+    LOOK FORWARD
+    TO FUTURE UPDATES!
+
+
+
+
+
+
+
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ad517283d67fa2d4ba8f606044529d92, type: 2}
   m_sharedMaterial: {fileID: -1806083933210561667, guid: ad517283d67fa2d4ba8f606044529d92, type: 2}
@@ -838,7 +873,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   endPosY: 2300
-  duration: 45
+  duration: 60
 --- !u!1 &1781294645
 GameObject:
   m_ObjectHideFlags: 0
