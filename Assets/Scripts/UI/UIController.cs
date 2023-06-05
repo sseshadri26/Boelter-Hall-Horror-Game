@@ -17,6 +17,8 @@ public class UIController : MonoBehaviour
     [Header("Panel Animators")]
     [Tooltip("The pause panel")]
     [SerializeField] PanelAnimator pause;
+    [Tooltip("The settings panel")]
+    [SerializeField] PanelAnimator settings;
     [Tooltip("The panel that will be brought to the center of attention")]
     [SerializeField] PanelAnimator main;
     [Tooltip("The background panel that provides contrast for the main panel")]
@@ -28,6 +30,7 @@ public class UIController : MonoBehaviour
 
     bool isMainOpen = false;
     bool isPauseOpen = false;
+    bool isSettingsOpen = false;
 
 
 
@@ -64,6 +67,8 @@ public class UIController : MonoBehaviour
     /// </summary>
     public GameObject GetOpenPanel()
     {
+        if (isSettingsOpen)
+            return settings.gameObject;
         if (isPauseOpen)
             return pause.gameObject;           // Notice that pause takes priority
         else if (isMainOpen)
@@ -98,13 +103,50 @@ public class UIController : MonoBehaviour
     public void TogglePause()
     {
         if (!isPauseOpen)
+        {
             pause.InstantOpen();
+
+            // This is an artifact of combining both gameplay and UI controls into
+            // one input asset... nasty
+            // We really should have had a separate input asset only for UI
+            playerInput.controls.Interact.Disable();
+        }
+
         else
+        {
             pause.InstantClose();
+
+            // This is an artifact of combining both gameplay and UI controls into
+            // one input asset... nasty
+            // We really should have had a separate input asset only for UI
+            playerInput.controls.Interact.Enable();
+
+            // Settings is part of the pause panel -- if we had more time, I'd let
+            // the pause panel handle the settings panel, but showcase is in two days :((
+            settings.InstantClose();
+            isSettingsOpen = false;
+        }
 
         isPauseOpen = !isPauseOpen;
         stateChanged.RaiseEvent(GetUIState());
     }
+
+    /// <summary>
+    /// Toggle open/closed the settings panel
+    /// </summary>
+    public void ToggleSettings()
+    {
+        if (!isSettingsOpen)
+            settings.InstantOpen();
+        else
+            settings.InstantClose();
+
+        isSettingsOpen = !isSettingsOpen;
+
+        // Technically not a state change the rest of the game should be concerned about
+    }
+
+
     private void HandleToggleMain(InputAction.CallbackContext context) => ToggleMain();
 
     private void HandleTogglePause(InputAction.CallbackContext context) => TogglePause();

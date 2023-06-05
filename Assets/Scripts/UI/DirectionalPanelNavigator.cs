@@ -21,15 +21,15 @@ public class DirectionalPanelNavigator : MonoBehaviour
     void OnEnable()
     {
         input.controls.Movement.performed += HandleNavigation;
-        input.controls.Interact.performed += HandleInteract;
+        input.controls.Submit.performed += HandleSubmit;
     }
     void OnDisable()
     {
         input.controls.Movement.performed -= HandleNavigation;
-        input.controls.Interact.performed -= HandleInteract;
+        input.controls.Submit.performed -= HandleSubmit;
     }
 
-    private void HandleInteract(InputAction.CallbackContext context)
+    private void HandleSubmit(InputAction.CallbackContext context)
     {
         GameObject openPanel = panelController.GetOpenPanel();
         if (openPanel == null) return;
