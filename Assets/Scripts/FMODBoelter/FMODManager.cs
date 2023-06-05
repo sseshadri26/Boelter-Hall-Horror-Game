@@ -93,7 +93,7 @@ public class FMODManager : MonoBehaviour
     void Start()
     {
         eventEmitter = GetComponent<StudioEventEmitter>();
-        mainBGMID = StartBGM(SFX.music_title);
+        mainBGMID = StartBGM(SFX.music_opening);
     }
 
     // Interface:
