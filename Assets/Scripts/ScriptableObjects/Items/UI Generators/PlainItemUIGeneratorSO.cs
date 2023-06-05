@@ -16,6 +16,12 @@ public class PlainItemUIGeneratorSO : ItemUIGeneratorSO
         List<ItemUIResult> results = new List<ItemUIResult>();
         foreach(ItemSO item in plainItemCollectionSO.items)
         {
+            if (item == null)
+            {
+                Debug.LogError("ItemSO is null!");
+                continue;
+            }
+            Debug.Log("Item: " + item.itemName);
             results.Add(new ItemUIResult{reference = item, ui = GenerateListItemUI(item)});
         }
         return results;
@@ -24,7 +30,7 @@ public class PlainItemUIGeneratorSO : ItemUIGeneratorSO
     private TemplateContainer GenerateListItemUI(ItemSO itemData)
     {
         TemplateContainer instance = plainItemUI.Instantiate();
-        instance.Q<Label>(k_ItemName).text = itemData.itemName;
+        instance.Q<Label>(k_ItemName).text = (itemData.itemName != null) ? itemData.itemName : "";
         return instance;
     }
 }
