@@ -24,8 +24,8 @@ public class MapUI : MonoBehaviour, IDirectionControllable
     {
         m_map = document.rootVisualElement.Q<VisualElement>(k_map);
 
-        InitializeMapTextureDictionary();
-        InitializeDisplayedMap();
+        //InitializeMapTextureDictionary();
+        //InitializeDisplayedMap();
 
         // NOTE: As of now, there's nothing we do with the map since
         // it's automatically assigned a graphic in the UXML, but perhaps
