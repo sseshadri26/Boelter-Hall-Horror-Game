@@ -12,5 +12,6 @@ public class PuzzleKey : MonoBehaviour, IAction
 
         inventory.items.Add(key);
         Notification.instance.ShowMessage("A gold key appeared in your pocket...");
+        Destroy(this.gameObject);
     }
 }
