@@ -3,16 +3,16 @@ tags:
 position: -117,-85
 ---
 <<wait 4>>
-Professor: Hello.
-Professor: Thank you for meeting with me today. As you can see, I'm a little swamped here, I could use your help with something.
-Professor: I need you to take this USB to the Internet Room. You know where that is, right? Boelter hall, 3rd floor, room 3420.
+Professor Chatanya Gutpa: Hello.
+Professor Chatanya Gutpa: Thank you for meeting with me today. As you can see, I'm a little swamped here, I could use your help with something.
+Professor Chatanya Gutpa: I need you to take this USB to the Internet Room. You know where that is, right? Boelter hall, 3rd floor, room 3420.
 You: Yes, I know where it is.
 You (thinking): It's where the Internet was basically invented. Most students know where it is. I mean, the engineering majors, at least.
-Professor: Good. I need you to take this USB and plug it into the computer terminal in that room.
+Professor Chatanya Gutpa: Good. I need you to take this USB and plug it into the computer terminal in that room.
 You: Can I ask why?
-Professor: Their memories are full. If our research is correct, the USB will act as an external RAM drive to download more RAM.
+Professor Chatanya Gutpa: Their memories are full. If my research is correct, the USB will download more RAM.
 You (thinking): Download more RAM? Oh well, I guess he knows more than I do.
 -> Take the USB.
-You: Yes, Professor. I'll be back in a minute
+You: Yes, Professor. I'll be back in a minute.
 <<loadScene Entrance 0>>
 ===
