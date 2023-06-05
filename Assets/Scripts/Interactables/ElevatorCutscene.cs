@@ -60,7 +60,7 @@ public class ElevatorCutscene : MonoBehaviour, IAction
 
         // Play sound and freeze time (Silent Hill 2 style)
         Globals.curSpawnPoint = spawnPoint;
-        FMODManager.Instance.PlaySound(FMODManager.SFX.door_open);
+        // FMODManager.Instance.PlaySound(FMODManager.SFX.door_open);
         blackScreen.DOFade(1f, 0.75f).SetUpdate(true);
 
         // Load next scene
