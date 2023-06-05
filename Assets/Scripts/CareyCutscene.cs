@@ -18,7 +18,6 @@ public class CareyCutscene : MonoBehaviour
     public void NachenbergIntro(TV nachTV)
     {
         fpc.controls.Disable();
-        fpc.crosshairColor = Color.clear;
         fpc.pitch = 0f;
 
         StartCoroutine("CareyCallout", nachTV);
@@ -33,7 +32,7 @@ public class CareyCutscene : MonoBehaviour
             .Append(transform.DORotate(new Vector3(0f, 419f, 0f), 1f).SetEase(Ease.InOutQuad).SetDelay(3f))
             .Append(transform.DOMoveX(31f, 2f).SetEase(Ease.Linear))
             .Join(transform.DORotate(new Vector3(0f, 1f, 0f), 2f).SetEase(Ease.InQuad))
-            .OnComplete(() => { nachTV.ActivateIntro(); fpc.crosshairColor = Color.white; });
+            .OnComplete(nachTV.ActivateIntro);
     }
 
     // When Carey yells "HELLO?!" during his intro

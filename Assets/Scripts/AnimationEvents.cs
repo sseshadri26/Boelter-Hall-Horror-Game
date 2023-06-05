@@ -14,6 +14,12 @@ public class AnimationEvents : MonoBehaviour
         anim = GetComponent<Animator>();
 
         anim.SetInteger("Spawnpoint", Globals.curSpawnPoint);
+
+        // Prevent player from opening menu, breaking the cutscene
+        if (Globals.curSpawnPoint == 0)
+        {
+            FirstPersonController.instance.controls.Inventory.Disable();
+        }
     }
 
     public void CallNachenbergIntro()

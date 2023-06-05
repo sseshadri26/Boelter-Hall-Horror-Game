@@ -18,6 +18,7 @@ public static class SaveSystem
                 if (_data == null)
                 {
                     Debug.Log("This is a new save");
+                    Resources.Load<InventoryItemCollectionSO>("PlayerInventory").items = new List<InventoryItemSO>();
                 }
                 else
                 {
@@ -58,6 +59,7 @@ public static class SaveSystem
 
     public static List<InventoryItemSO> GetInventory()
     {
+        Debug.Log("GetInventory called");
         List<InventoryItemSO> loadedInventory = new List<InventoryItemSO>();
         // SpriteAtlas itemSprites = Resources.Load<SpriteAtlas>("Items");
 

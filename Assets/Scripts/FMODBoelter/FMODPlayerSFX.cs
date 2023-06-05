@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class FMODPlayerSFX : MonoBehaviour
 {
@@ -24,6 +25,27 @@ public class FMODPlayerSFX : MonoBehaviour
         //
         spookyParams = new FMODManager.FMODParams(true);
         spookyParams.volumePercent = 0.5f;
+
+        // Play different music depending on the scene that's loaded in
+        switch (SceneManager.GetActiveScene().name)
+        {
+            case "SEAS Cafe":
+                // Simpler Times
+                break;
+            case "Intro":
+                // Haunted Hallways
+                break;
+            case "5272":
+                // Muddled Thoughts
+                break;
+            case "Stairwell":
+                // Outside these Walls FULL
+                break;
+            case "Porter Room":
+            case "Porter Room Alt":
+                // Reaping
+                break;
+        }
     }
 
     void FixedUpdate()
