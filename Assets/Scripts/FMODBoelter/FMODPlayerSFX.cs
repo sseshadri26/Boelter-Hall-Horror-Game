@@ -52,7 +52,8 @@ public class FMODPlayerSFX : MonoBehaviour
     {
         prevSpeed3 = prevSpeed2;
         prevSpeed2 = prevSpeed1;
-        prevSpeed1 = player.rb.velocity.magnitude; // Usual speed is from 4-9.
+        Vector3 horizontalVelocity = new Vector3(player.rb.velocity.x, 0, player.rb.velocity.z);
+        prevSpeed1 = horizontalVelocity.magnitude; // Usual speed is from 4-9.
         float speed = (prevSpeed1 + prevSpeed2 + prevSpeed3) / 3f;
 
         footstepParams.pitch = Mathf.Lerp(0.9f, 1.0f, (speed - 4f) / (9f - 4f));
