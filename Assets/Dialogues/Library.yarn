@@ -12,7 +12,7 @@ Professor Chatanya Gupta: Good. I need you to take this USB and plug it into the
 You: Can I ask why?
 Professor Chatanya Gupta: Their memories are full. If my research is correct, the USB will download more RAM.
 You (thinking): Download more RAM? Oh well, I guess he knows more than I do.
--> Take the USB.
+// -> Take the USB.
 You: Yes, Professor. I'll be back in a minute.
 <<loadScene Entrance 0>>
 ===
