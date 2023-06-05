@@ -86,7 +86,7 @@ public class CheckInteraction : MonoBehaviour
 
                 currentReceiver = hit.transform.gameObject.GetComponent<InteractionReceiver>();
 
-                if (currentReceiver != null)
+                if (currentReceiver != null && currentReceiver.enabled)
                 {
                     //Here you can make something with the interact message
 
