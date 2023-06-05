@@ -8,6 +8,8 @@ public class CareyCutscene : MonoBehaviour
 {
     public AudioClip careyCallout;
 
+    public AudioClip introMusic;
+
     private FirstPersonController fpc;
 
     private void Awake()
@@ -19,7 +21,6 @@ public class CareyCutscene : MonoBehaviour
     {
         fpc.controls.Disable();
         fpc.pitch = 0f;
-
         StartCoroutine("CareyCallout", nachTV);
 
         Sequence sequence = DOTween.Sequence();
@@ -38,9 +39,14 @@ public class CareyCutscene : MonoBehaviour
     // When Carey yells "HELLO?!" during his intro
     private IEnumerator CareyCallout(TV nachTV)
     {
-        yield return new WaitForSeconds(12f);
 
+        yield return new WaitForSeconds(0f);
+        FindObjectOfType<AudioSource>().PlayOneShot(introMusic);
+
+        yield return new WaitForSeconds(12f);
         nachTV.TurnOn();
         FindObjectOfType<AudioSource>().PlayOneShot(careyCallout);
     }
+
+
 }
