@@ -3100,11 +3100,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6389317658567166228, guid: 005f38b85fc03ec40b17de5b2c91a414, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 170.1572
+      value: -170.00005
       objectReference: {fileID: 0}
     - target: {fileID: 6389317658567166228, guid: 005f38b85fc03ec40b17de5b2c91a414, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -21.965145
+      value: -21.965143
       objectReference: {fileID: 0}
     - target: {fileID: 7130859633087567194, guid: 005f38b85fc03ec40b17de5b2c91a414, type: 3}
       propertyPath: m_Enabled
@@ -73757,13 +73757,35 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3551234056718558820, guid: 03ef92407dc772546a30daeda1ab0b3d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 03ef92407dc772546a30daeda1ab0b3d, type: 3}
 --- !u!4 &1897296832 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5270045534808637695, guid: 03ef92407dc772546a30daeda1ab0b3d, type: 3}
   m_PrefabInstance: {fileID: 1897296831}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1897296833 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3114959588712557158, guid: 03ef92407dc772546a30daeda1ab0b3d, type: 3}
+  m_PrefabInstance: {fileID: 1897296831}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1897296834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1897296833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e08e9c12511ca9149bac154e9d9752e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextScene: 5F Hallway
+  spawnPoint: 8
+  requiresKey: 0
+  keyName: 
 --- !u!1001 &1900347535
 PrefabInstance:
   m_ObjectHideFlags: 0

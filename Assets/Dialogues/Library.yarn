@@ -11,7 +11,7 @@ You (thinking): It's where the Internet was basically invented. Most students kn
 Professor: Good. I need you to take this USB and plug it into the computer terminal in that room.
 You: Can I ask why?
 Professor: Their memories are full. If our research is correct, the USB will act as an external RAM drive to download more RAM.
-You (thinking): RAM? Oh well, I guess he knows more than I do.
+You (thinking): Download more RAM? Oh well, I guess he knows more than I do.
 -> Take the USB.
 You: Yes, Professor. I'll be back in a minute
 <<loadScene Entrance 0>>
