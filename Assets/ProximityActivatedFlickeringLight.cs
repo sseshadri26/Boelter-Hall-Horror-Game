@@ -115,10 +115,18 @@ public class ProximityActivatedFlickeringLight : MonoBehaviour
         for (int i = 0; i < 10; i++)
         {
             ourLight.enabled = true;
+            if (affectShader)
+            {
+                mr.material.shader = onShader;
+            }
             // otherLight.enabled = true;
 
             yield return new WaitForSeconds(0.05f);
             ourLight.enabled = false;
+            if (affectShader)
+            {
+                mr.material.shader = offShader;
+            }
             // otherLight.enabled = false;
 
             yield return new WaitForSeconds(0.05f);
