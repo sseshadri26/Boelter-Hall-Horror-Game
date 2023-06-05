@@ -1189,9 +1189,9 @@ GameObject:
   m_Component:
   - component: {fileID: 315505137}
   - component: {fileID: 315505136}
-  - component: {fileID: 315505135}
   - component: {fileID: 315505134}
   - component: {fileID: 315505133}
+  - component: {fileID: 315505138}
   m_Layer: 0
   m_Name: CafeKey
   m_TagString: Untagged
@@ -1269,20 +1269,6 @@ MonoBehaviour:
   destroyOnUse: 1
   holdToInteract: 0
   howLongToHold: 3
---- !u!114 &315505135
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 315505132}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48e795394e46bc54c9496d2529ecdb19, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  key: {fileID: 11400000, guid: 00d481b6e8f655e4d932ac53c558bf93, type: 2}
-  message: You picked up the key to the SEAS Cafe
 --- !u!65 &315505136
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1311,6 +1297,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &315505138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 315505132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48e795394e46bc54c9496d2529ecdb19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: {fileID: 11400000, guid: 00d481b6e8f655e4d932ac53c558bf93, type: 2}
+  message: You picked up the Cafe Key
 --- !u!1001 &322222855
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6388,7 +6388,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6389317658567166228, guid: 005f38b85fc03ec40b17de5b2c91a414, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -21.964926
+      value: -21.964905
       objectReference: {fileID: 0}
     - target: {fileID: 6724376830319377957, guid: 005f38b85fc03ec40b17de5b2c91a414, type: 3}
       propertyPath: m_Materials.Array.data[0]

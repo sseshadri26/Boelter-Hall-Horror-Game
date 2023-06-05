@@ -6,10 +6,22 @@ public class PuzzleKey : MonoBehaviour, IAction
 {
     [SerializeField] private InventoryItemSO key;
     [SerializeField] private string message;
+
+    private InventoryItemCollectionSO inventory;
+
+    private void Start()
+    {
+        inventory = Resources.Load<InventoryItemCollectionSO>("PlayerInventory");
+
+        // If we already have the key, destroy it
+        if (inventory.items.Contains(key))
+        {
+            Destroy(gameObject);
+        }
+    }
+
     public void Activate()
     {
-        InventoryItemCollectionSO inventory = Resources.Load<InventoryItemCollectionSO>("PlayerInventory");
-
         inventory.items.Add(key);
         if (message != null && message != "")
         {

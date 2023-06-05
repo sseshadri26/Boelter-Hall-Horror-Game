@@ -30,6 +30,9 @@ EditorBuildSettings:
     path: Assets/Scenes/5F/Porter Room.unity
     guid: 880d4679a89d1d14fbd1e36703c8cec7
   - enabled: 1
+    path: Assets/Scenes/5F/Porter Room Alt.unity
+    guid: 0d42dfd8c7599e743bf0d8bb8ac10eff
+  - enabled: 1
     path: Assets/Scenes/5F/SEAS Cafe.unity
     guid: ebd6fb4203891934bb1962058eb9b5ed
   - enabled: 1
