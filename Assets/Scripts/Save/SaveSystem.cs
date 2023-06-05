@@ -63,6 +63,12 @@ public static class SaveSystem
 
         for (int i = 0; i < Data.itemNames.Count; i++)
         {
+            InventoryItemSO item = Resources.Load<InventoryItemSO>("Inventory/" + Data.itemNames[i]);
+
+            if (item == null)
+            {
+                Debug.LogError("Could not find " + Data.itemNames[i] + " in \"Assets/Resources/Inventory\"! Make sure it has the same filename as the item's name.");
+            }
             loadedInventory.Add(Resources.Load<InventoryItemSO>("Inventory/" + Data.itemNames[i]));
             // loadedInventory[i].SetItem(Data.itemNames[i], Data.itemDescriptions[i], itemSprites.GetSprite(Data.itemGraphics[i]), Data.itemStatuses[i]);
         }

@@ -5,7 +5,7 @@ position: -117,-85
 <<trigger Carey Talk2>>
 Carey: Hi! I'm surprised you found me, a part of me thought you'd be lost in here forever. #line:Cafe1
 <<trigger Carey Drink>>
-Carey: *Sips* #line:Cafe2
+Carey: *Sips water* #line:Cafe2
 <<trigger Carey Talk1>>
 Carey: So, you noticed the portals, right? I'm almost certain they were created in one of the labs here at UCLA. They were conducting research on dimensional rifts, and Professor Porter was working with them. #line:Cafe3
 <<trigger Carey Talk1>>

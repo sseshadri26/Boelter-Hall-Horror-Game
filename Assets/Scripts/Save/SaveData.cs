@@ -49,6 +49,8 @@ public class SaveData
             // itemDescriptions.Add(item.description);
             // itemGraphics.Add(item.graphic.name);
             // itemStatuses.Add(item.itemStatus);
+
+            // Debug.Log("Adding " + item.itemName + " to save.");
         }
     }
 
