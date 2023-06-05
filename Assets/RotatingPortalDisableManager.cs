@@ -95,6 +95,7 @@ public class RotatingPortalDisableManager : MonoBehaviour
         {
             // Posters.SetActive(true);
             PortalPair.SetActive(true);
+            Posters.SetActive(true);
             portalIsCurrentlyEnabled = true;
 
             foreach (GameObject obj in objectsToEnable)
@@ -120,6 +121,7 @@ public class RotatingPortalDisableManager : MonoBehaviour
         {
             // Posters.SetActive(true);
             PortalPair.SetActive(true);
+            Posters.SetActive(true);
             portalIsCurrentlyEnabled = true;
 
             foreach (GameObject obj in objectsToEnable)
@@ -140,6 +142,7 @@ public class RotatingPortalDisableManager : MonoBehaviour
         {
             // Posters.SetActive(false);
             PortalPair.SetActive(false);
+            Posters.SetActive(false);
             portalIsCurrentlyEnabled = false;
 
 
@@ -168,6 +171,7 @@ public class RotatingPortalDisableManager : MonoBehaviour
         {
             // Posters.SetActive(false);
             PortalPair.SetActive(false);
+            Posters.SetActive(false);
             portalIsCurrentlyEnabled = false;
 
             foreach (GameObject obj in objectsToEnable)

@@ -122,6 +122,7 @@ MonoBehaviour:
   isVisible: 0
   portalRenderer: {fileID: 3451279657550273780}
   col: {fileID: 3451279658446570070}
+  closeToPortal: 0
 --- !u!1 &3451279657550273779
 GameObject:
   m_ObjectHideFlags: 0
@@ -294,6 +295,7 @@ MonoBehaviour:
   isVisible: 0
   portalRenderer: {fileID: 3451279658761171722}
   col: {fileID: 3451279658379948065}
+  closeToPortal: 0
 --- !u!1 &3451279657770507983
 GameObject:
   m_ObjectHideFlags: 0
@@ -847,6 +849,7 @@ MonoBehaviour:
   PortalPair: {fileID: 6523551549316812557}
   portalIsCurrentlyEnabled: 0
   isPermanentlyDisabled: 0
+  linkedPortal: {fileID: 0}
   objectsToEnable: []
   objectsToDisable: []
 --- !u!1 &6523551549316812557
@@ -1181,7 +1184,7 @@ MonoBehaviour:
   - {fileID: 9205239515670213767}
   destroyOnUse: 0
   holdToInteract: 0
-  howLongToHold: 3
+  howLongToHold: 0
 --- !u!114 &6712134618969585907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1470,7 +1473,7 @@ MonoBehaviour:
   - {fileID: 2057779428054170867}
   destroyOnUse: 0
   holdToInteract: 0
-  howLongToHold: 3
+  howLongToHold: 0
 --- !u!114 &6895271030532505441
 MonoBehaviour:
   m_ObjectHideFlags: 0
