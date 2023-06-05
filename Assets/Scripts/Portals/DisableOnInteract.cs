@@ -66,6 +66,7 @@ public class DisableOnInteract : MonoBehaviour, IAction
                 }
             }
 
+            FMODManager.Instance.PlaySound(FMODManager.SFX.paper_crumble);
             PosterToDelete.SetActive(false);
         }
     }

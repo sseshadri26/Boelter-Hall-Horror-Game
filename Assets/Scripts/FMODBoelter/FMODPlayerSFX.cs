@@ -12,12 +12,18 @@ public class FMODPlayerSFX : MonoBehaviour
     float prevSpeed1 = 0f;
     float prevSpeed2 = 0f;
     float prevSpeed3 = 0f;
+    FMODManager.FMODParams spookyParams;
+    int stepsTaken = 0;
+    int stepsThreshold = 50;
 
     void Start()
     {
         player = FindObjectOfType<FirstPersonController>();
         footstepParams = new FMODManager.FMODParams(true);
         //footstepID = FMODManager.Instance.StartBGM(FMODManager.SFX.footstep_ground, false, footstepParams);
+        //
+        spookyParams = new FMODManager.FMODParams(true);
+        spookyParams.volumePercent = 0.5f;
     }
 
     void FixedUpdate()
@@ -45,6 +51,26 @@ public class FMODPlayerSFX : MonoBehaviour
         {
             FMODManager.Instance.PlaySound(FMODManager.SFX.footstep_ground2, false, footstepParams);
             timeSinceLastStep = 0f; // Reset the timer
+            stepsTaken++;
+
+            if (stepsTaken >= stepsThreshold)
+            {
+                int randomNumber = Random.Range(1, 4);
+                if (randomNumber == 1)
+                {
+                    FMODManager.Instance.PlaySound(FMODManager.SFX.spooky_1, false, spookyParams);
+                }
+                if (randomNumber == 2)
+                {
+                    FMODManager.Instance.PlaySound(FMODManager.SFX.spooky_2, false, spookyParams);
+                }
+                if (randomNumber == 3)
+                {
+                    FMODManager.Instance.PlaySound(FMODManager.SFX.spooky_3, false, spookyParams);
+                }
+                stepsTaken = 0;
+                stepsThreshold = Random.Range(100, 250);
+            }
         }
     }
 }
