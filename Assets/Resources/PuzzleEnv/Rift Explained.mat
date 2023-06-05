@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Rift Explained
-  m_Shader: {fileID: 4800000, guid: 1b37d1cf11328ee44a1de83f6c28fbe6, type: 3}
+  m_Shader: {fileID: 4800000, guid: b74de4bc361e610408cf0082d9d78be5, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
