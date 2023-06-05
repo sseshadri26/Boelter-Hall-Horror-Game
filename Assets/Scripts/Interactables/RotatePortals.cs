@@ -8,7 +8,6 @@ using DG.Tweening;
 public class RotatePortals : MonoBehaviour, IAction
 {
     private bool activated = false;
-    private int curPortalPair = Globals.portalPosition5F;
 
     //number of configurations as an enum
     [SerializeField] private int numberOfPortalConfigs = 2;
@@ -24,9 +23,14 @@ public class RotatePortals : MonoBehaviour, IAction
     // Load saved portal configuration.
     public void Start()
     {
-            curPortalPair = Globals.portalPosition5F;
-            // Debug.Log("Setting portal orientation to " + Globals.portalPosition5F + " on scene start");
-            ChangePortals();
+        // Band-Aid fix for portal config save glitch
+        if (Globals.curSpawnPoint == 0)
+        {
+            Globals.portalPosition5F = 0;
+        }
+        
+        // Debug.Log("Setting portal orientation to " + Globals.portalPosition5F + " on scene start");
+        ChangePortals();
     }
 
     public void Activate()
@@ -41,9 +45,8 @@ public class RotatePortals : MonoBehaviour, IAction
         // Jank way of waiting 1 sec before setting activated back to false (no rotation)
         transform.DOBlendableRotateBy(Vector3.zero, 1f).OnComplete(() => activated = false);
 
-        curPortalPair++;
         Globals.portalPosition5F++;
-        if (curPortalPair == numberOfPortalConfigs) curPortalPair = Globals.portalPosition5F = 0;
+        if (Globals.portalPosition5F == numberOfPortalConfigs) Globals.portalPosition5F = 0;
 
         ChangePortals();
     }
@@ -60,7 +63,7 @@ public class RotatePortals : MonoBehaviour, IAction
         // print that we are changing?
         // Debug.Log("Changing portals to " + curPortalPair);
 
-        switch (curPortalPair)
+        switch (Globals.portalPosition5F)
         {
             case 0:
                 foreach (GameObject portal in portalGroup1)

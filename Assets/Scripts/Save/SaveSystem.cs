@@ -19,6 +19,7 @@ public static class SaveSystem
                 {
                     Debug.Log("This is a new save");
                     Resources.Load<InventoryItemCollectionSO>("PlayerInventory").items = new List<InventoryItemSO>();
+                    Globals.portalPosition5F = 0;
                 }
                 else
                 {
