@@ -13,7 +13,7 @@ Carey: But I believe their lab had an accident. The portals spiraled out of cont
 <<wait 2>>
 <<trigger Carey Talk1>>
 Carey: Well? What are you waiting for? Someone has to fix things. #line:Cafe6
-You: Are you not coming?
+You: Are you not coming? #line:SilentProtagMoment
 <<trigger Carey Talk2>>
 Carey: Me? No way, it's comfortable here. You can handle this problem yourself. But feel free to ask me if you run into any issues. I am a professor, after all. #line:Cafe7
 ===
