@@ -134,6 +134,15 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Submit"",
+                    ""type"": ""Button"",
+                    ""id"": ""17f8d6f5-edab-4c46-bbb3-72921363e05c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -227,8 +236,8 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""e3e31b4e-97ea-4896-b5ea-e315d32a7bde"",
-                    ""path"": ""<Mouse>/leftButton"",
+                    ""id"": ""3abecd73-4c33-4c64-9b91-1fb333ecbe79"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -238,8 +247,8 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""3abecd73-4c33-4c64-9b91-1fb333ecbe79"",
-                    ""path"": ""<Keyboard>/e"",
+                    ""id"": ""63012ba6-5346-4ccf-90ea-b160fef1977b"",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -477,6 +486,28 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""action"": ""Map"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8403df31-9463-4a0c-ac69-cfff3d1b0bda"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Submit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cb2f73f7-f5a9-456d-a370-65f01c49354f"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Submit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -497,6 +528,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m_FirstPerson_SprintToggle = m_FirstPerson.FindAction("SprintToggle", throwIfNotFound: true);
         m_FirstPerson_SprintHold = m_FirstPerson.FindAction("SprintHold", throwIfNotFound: true);
         m_FirstPerson_Map = m_FirstPerson.FindAction("Map", throwIfNotFound: true);
+        m_FirstPerson_Submit = m_FirstPerson.FindAction("Submit", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -568,6 +600,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private readonly InputAction m_FirstPerson_SprintToggle;
     private readonly InputAction m_FirstPerson_SprintHold;
     private readonly InputAction m_FirstPerson_Map;
+    private readonly InputAction m_FirstPerson_Submit;
     public struct FirstPersonActions
     {
         private @Controls m_Wrapper;
@@ -584,6 +617,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         public InputAction @SprintToggle => m_Wrapper.m_FirstPerson_SprintToggle;
         public InputAction @SprintHold => m_Wrapper.m_FirstPerson_SprintHold;
         public InputAction @Map => m_Wrapper.m_FirstPerson_Map;
+        public InputAction @Submit => m_Wrapper.m_FirstPerson_Submit;
         public InputActionMap Get() { return m_Wrapper.m_FirstPerson; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -629,6 +663,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Map.started -= m_Wrapper.m_FirstPersonActionsCallbackInterface.OnMap;
                 @Map.performed -= m_Wrapper.m_FirstPersonActionsCallbackInterface.OnMap;
                 @Map.canceled -= m_Wrapper.m_FirstPersonActionsCallbackInterface.OnMap;
+                @Submit.started -= m_Wrapper.m_FirstPersonActionsCallbackInterface.OnSubmit;
+                @Submit.performed -= m_Wrapper.m_FirstPersonActionsCallbackInterface.OnSubmit;
+                @Submit.canceled -= m_Wrapper.m_FirstPersonActionsCallbackInterface.OnSubmit;
             }
             m_Wrapper.m_FirstPersonActionsCallbackInterface = instance;
             if (instance != null)
@@ -669,6 +706,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Map.started += instance.OnMap;
                 @Map.performed += instance.OnMap;
                 @Map.canceled += instance.OnMap;
+                @Submit.started += instance.OnSubmit;
+                @Submit.performed += instance.OnSubmit;
+                @Submit.canceled += instance.OnSubmit;
             }
         }
     }
@@ -687,5 +727,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         void OnSprintToggle(InputAction.CallbackContext context);
         void OnSprintHold(InputAction.CallbackContext context);
         void OnMap(InputAction.CallbackContext context);
+        void OnSubmit(InputAction.CallbackContext context);
     }
 }
