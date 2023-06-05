@@ -240,7 +240,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 170.15724, y: -21.96515}
+  m_AnchoredPosition: {x: 170.15723, y: -21.96515}
   m_SizeDelta: {x: 340, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &6138160395710017806
@@ -788,7 +788,7 @@ MonoBehaviour:
   enableSprint: 1
   unlimitedSprint: 0
   sprintSpeed: 5
-  sprintDuration: 11
+  sprintDuration: 8.6
   sprintCooldown: 0.25
   sprintFOV: 71.7
   sprintFOVStepTime: 10
@@ -857,7 +857,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firstPersonController: {fileID: 4459864850019384740}
-  startSprintSpeed: 6
+  startSprintSpeed: 7
   maxSprintSpeed: 19.8
   sprintAcceleration: 4
   unZoomedFOV: 60
@@ -1601,7 +1601,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 58126041099475403}
   m_HandleRect: {fileID: 1400390682410982951}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -2230,7 +2230,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3846402557977173765}
   m_HandleRect: {fileID: 4831098102940653120}
   m_Direction: 0
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -2327,6 +2327,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   printDebug: 1
+  mainBGMID: 0
 --- !u!114 &9177691253057516962
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2470,7 +2471,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 627922297787029891, guid: a610399082f2b2e4886d4f3f2075a8f8, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -11.2736
+      value: -11.27356
       objectReference: {fileID: 0}
     - target: {fileID: 627922297787029891, guid: a610399082f2b2e4886d4f3f2075a8f8, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -2674,7 +2675,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5689725287202438711, guid: a610399082f2b2e4886d4f3f2075a8f8, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -0.8603058
+      value: -0.86035156
       objectReference: {fileID: 0}
     - target: {fileID: 5689725287202438711, guid: a610399082f2b2e4886d4f3f2075a8f8, type: 3}
       propertyPath: m_AnchoredPosition.y
