@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0051fd9f4d646d9438fd3ab39d58b54d, type: 3}
-  m_Name: Strange Key 1
+  m_Name: Strange Key
   m_EditorClassIdentifier: 
   itemName: Strange Key
   description: Huh?! The key appears when the model is rotated. It has the room number,
