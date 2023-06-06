@@ -1,4 +1,4 @@
-# Boelter-Hall-Horror-Game
+# Boelter
 
 Boelter is a puzzle-horror game that immerses you in the enigmatic setting of UCLA's main Engineering building, Boelter Hall. Assume the role of a determined UCLA student assigned with the critical mission of fixing the internet by inserting a USB drive into the computer concealed within the mysterious internet room. As you navigate the labyrinthine corridors, prepare to confront mind-bending non-Euclidean architecture, unravel numerous intricate puzzles, and gradually uncover the haunting secrets concealed within Boelter Hall's dark history.
 
