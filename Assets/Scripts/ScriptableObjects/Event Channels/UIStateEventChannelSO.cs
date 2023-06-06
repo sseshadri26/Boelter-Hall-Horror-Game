@@ -8,7 +8,7 @@ using UnityEngine;
 /// </summary>
 [CreateAssetMenu(menuName = "ScriptableObjects/Events/UI State Event Channel")]
 public class UIStateEventChannelSO : EventChannelSO<UIState>
-{}
+{ }
 
 public enum UIState
 {

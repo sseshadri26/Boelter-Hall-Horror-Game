@@ -32,18 +32,19 @@ public class FMODPlayerSFX : MonoBehaviour
             case "SEAS Cafe":
                 // Simpler Times music_seas 0.3
                 FMODManager.Instance.ChangeMainBGM(FMODManager.SFX.music_seas, 0.2f);
-                break; 
+                break;
             case "Intro":
             case "5F Hallway":
                 // Haunted Hallways music_opening 0.4
-                if (Globals.curSpawnPoint == 0)
-                {
-                    FMODManager.Instance.ChangeMainBGM(FMODManager.SFX.music_opening, 0.2f);
-                }
-                else
-                {
-                    goto default;
-                }
+                // if (Globals.curSpawnPoint == 0)
+                // {
+                //     FMODManager.Instance.ChangeMainBGM(FMODManager.SFX.music_opening, 0.2f);
+                // }
+                // else
+                // {
+                //     goto default;
+                // }
+                FMODManager.Instance.ChangeMainBGM(FMODManager.SFX.music_hallway);
                 break;
             case "5272":
                 // Muddled Thoughts music_5272 0.3

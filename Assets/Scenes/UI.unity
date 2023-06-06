@@ -945,9 +945,6 @@ MonoBehaviour:
   - name: Inventory
     panel: {fileID: 347355194}
     animator: {fileID: 347355197}
-  - name: Journal
-    panel: {fileID: 1433236015}
-    animator: {fileID: 1433236013}
 --- !u!114 &1534538178
 MonoBehaviour:
   m_ObjectHideFlags: 0
