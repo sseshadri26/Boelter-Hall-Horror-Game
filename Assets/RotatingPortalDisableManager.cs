@@ -24,7 +24,7 @@ public class RotatingPortalDisableManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Posters.SetActive(true);
+        Posters.SetActive(portalIsCurrentlyEnabled);
         PortalPair.SetActive(portalIsCurrentlyEnabled);
     }
 
