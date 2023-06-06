@@ -20,6 +20,7 @@ UserSettings/EditorUserSettings.asset
 /[Oo]bj/
 /[Bb]uild/
 /Boelter (WebGL)/
+/Boelter (Windows)/
 /[Bb]uilds/
 /[Ll]ogs/
 /[Uu]ser[Ss]ettings/
@@ -117,3 +118,5 @@ Assets/Videos/Jet Set Radio Future Opening.mp4.meta
 *.ccProject
 Assets/Models/Character Creator/Gupta - Copy.ccProject.meta
 Assets/Models/Character Creator/Gupta.ccProject.meta
+Boelter (WebGL).zip
+Boelter (Windows).zip
