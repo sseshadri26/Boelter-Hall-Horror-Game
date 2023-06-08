@@ -29,12 +29,12 @@ public class PortalKey : MonoBehaviour, IAction
         if (inventory.items.Contains(portalKey))
         {
             inventory.items.Remove(portalKey);
-            Notification.instance.ShowMessage("The strange key disappeared...");
+            Notification.instance.ShowMessage("The air shifts around you. The strange key disappeared...");
         }
         else
         {
             inventory.items.Add(portalKey);
-            Notification.instance.ShowMessage("A strange key appeared in your pocket...");
+            Notification.instance.ShowMessage("The air shifts around you. A strange key appeared in your pocket...");
         }
     }
 }

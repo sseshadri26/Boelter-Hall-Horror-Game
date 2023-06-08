@@ -34,9 +34,10 @@ public class MainMenu : MonoBehaviour
         // {
         //     blackScreen.DOFade(1f, 0.5f).OnComplete( () => StartCoroutine(Click.LoadYarnScene("Intro")));
         // }
-        
-        blackScreen.DOFade(1f, 0.5f).OnComplete( () => SceneManager.LoadScene("Intro"));
+
+        blackScreen.DOFade(1f, 0.5f).OnComplete(() => SceneManager.LoadScene("Intro"));
         PlayerPrefs.DeleteAll();
+        PlayerPrefs.Save();
     }
 
     public void LoadGame()
@@ -48,18 +49,18 @@ public class MainMenu : MonoBehaviour
         //     YarnCommands.PlayMusic("Music/Gameplay");
         // });
 
-        blackScreen.DOFade(1f, 0.5f).OnComplete( () => SceneManager.LoadScene(SaveSystem.Data.playerScene));
+        blackScreen.DOFade(1f, 0.5f).OnComplete(() => SceneManager.LoadScene(SaveSystem.Data.playerScene));
     }
 
     public void QuitGame()
     {
         // MusicPlayer.audioSource.PlayOneShot(pop);
-        #if (UNITY_EDITOR)
-            UnityEditor.EditorApplication.isPlaying = false;
-        #elif (UNITY_WEBGL)
+#if (UNITY_EDITOR)
+        UnityEditor.EditorApplication.isPlaying = false;
+#elif (UNITY_WEBGL)
             Application.OpenURL("https://olaycolay.itch.io/");
-        #else
+#else
             Application.Quit();
-        #endif
+#endif
     }
 }

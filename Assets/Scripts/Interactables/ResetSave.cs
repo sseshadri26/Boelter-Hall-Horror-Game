@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ResetSave : MonoBehaviour, IAction
-{    
+{
     // Reset Save and an Interactable for devs only
     private void Awake()
     {
@@ -17,12 +17,13 @@ public class ResetSave : MonoBehaviour, IAction
     public void Activate()
     {
         PlayerPrefs.DeleteAll();
-        #if UNITY_EDITOR
+        PlayerPrefs.Save();
+#if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
-        #elif UNITY_WEBPLAYER
+#elif UNITY_WEBPLAYER
         Application.OpenURL("olaycolay.itch.io");
-        #else
+#else
         Application.Quit();
-        #endif
+#endif
     }
 }
