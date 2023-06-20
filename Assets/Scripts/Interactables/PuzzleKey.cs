@@ -11,7 +11,7 @@ public class PuzzleKey : MonoBehaviour, IAction
 
     private void Start()
     {
-        inventory = Resources.Load<InventoryItemCollectionSO>("PlayerInventory");
+        inventory = Globals.inventory;
 
         // If we already have the key, destroy it
         if (inventory.items.Contains(key))

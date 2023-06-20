@@ -13,28 +13,19 @@ public class MainMenu : MonoBehaviour
 
     private void Awake()
     {
-        // YarnCommands.SaveString("Dwayne", "false");
-        // pop = Resources.Load<AudioClip>("SFX/Pop");
-        if (SaveSystem.Data == null)
+        if (!SaveSystem.HasSavedgame())
         {
             GameObject load = GameObject.Find("LoadButton");
             load.GetComponent<Button>().interactable = false;
             // load.GetComponent<Image>().color = Color.gray;
         }
+
+        // Reset all static variables so that starting a new game starts with a blank slate
+        Globals.Reset();
     }
 
     public void NewGame()
     {
-        // MusicPlayer.audioSource.PlayOneShot(pop);
-        // if (PlayerPrefs.GetString("MainSave", "") == "")
-        // {
-        //     blackScreen.DOFade(1f, 0.5f).OnComplete( () => StartCoroutine(Click.LoadYarnScene("NewGame")));
-        // }
-        // else
-        // {
-        //     blackScreen.DOFade(1f, 0.5f).OnComplete( () => StartCoroutine(Click.LoadYarnScene("Intro")));
-        // }
-
         blackScreen.DOFade(1f, 0.5f).OnComplete(() => SceneManager.LoadScene("Intro"));
         PlayerPrefs.DeleteAll();
         PlayerPrefs.Save();
@@ -42,19 +33,15 @@ public class MainMenu : MonoBehaviour
 
     public void LoadGame()
     {
-        // MusicPlayer.audioSource.PlayOneShot(pop);
-        // Inventory.LoadGame();
-        // blackScreen.DOFade(1f, 0.5f).OnComplete( () => { 
-        //     SceneManager.LoadScene("MapScene");
-        //     YarnCommands.PlayMusic("Music/Gameplay");
-        // });
-
-        blackScreen.DOFade(1f, 0.5f).OnComplete(() => SceneManager.LoadScene(SaveSystem.Data.playerScene));
+        if (SaveSystem.HasSavedgame())
+        {
+            SaveSystem.LoadGame();
+            blackScreen.DOFade(1f, 0.5f).OnComplete(() => SceneManager.LoadScene(SaveSystem.GetLoadedScene()));
+        }
     }
 
     public void QuitGame()
     {
-        // MusicPlayer.audioSource.PlayOneShot(pop);
 #if (UNITY_EDITOR)
         UnityEditor.EditorApplication.isPlaying = false;
 #elif (UNITY_WEBGL)

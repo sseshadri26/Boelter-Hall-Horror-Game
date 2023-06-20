@@ -122,7 +122,7 @@ public class FMODManager : MonoBehaviour
             ModifyEmitterEvent(ref eventInstance, ref soundParams, position);
         }
         // Play and release:
-        PrintDebug(sound + " played.");
+        // PrintDebug(sound + " played.");
         eventInstance.start();
         eventInstance.release();
     }

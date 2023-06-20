@@ -14,7 +14,7 @@ public class BreakGlass : MonoBehaviour
         sprint = FindObjectOfType<SprintAccelerationTuning>();
         window = transform.parent.GetComponent<BreakableWindow>();
 
-        if (Globals.GlassBroke)
+        if (YarnFunctions.FlagIsTrue("Glass"))
         {
             baseCollider.enabled = false;
             Destroy(transform.parent.gameObject);
@@ -28,7 +28,7 @@ public class BreakGlass : MonoBehaviour
             return;
         }
 
-        Globals.GlassBroke = true;
+        Globals.flags.Add("Glass", true);
         window.breakWindow();
         baseCollider.enabled = false;
         Destroy(gameObject);

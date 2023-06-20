@@ -6,17 +6,12 @@ public class GiveUSB : MonoBehaviour
 {
     private void Start()
     {
-        var inventory = Resources.Load<InventoryItemCollectionSO>("PlayerInventory").items;
-
-        if (inventory == null)
-        {
-            inventory = new List<InventoryItemSO>();
-        }
+        InventoryItemCollectionSO inventory = Globals.inventory;
 
         InventoryItemSO usb = Resources.Load<InventoryItemSO>("Inventory/USB Drive");
-        if (usb != null && !inventory.Contains(usb))
+        if (usb != null && !inventory.items.Contains(usb))
         {
-            inventory.Add(usb);
+            inventory.items.Add(usb);
         }
     }
 }

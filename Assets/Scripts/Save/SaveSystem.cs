@@ -7,74 +7,53 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public static class SaveSystem
 {
-    private static SaveData _data;
-    public static SaveData Data
-    {
-        get
-        {
-            if (_data == null && !Globals.loaded)
-            {
-                _data = LoadGame();
-                if (_data == null)
-                {
-                    Debug.Log("This is a new save");
-                    Resources.Load<InventoryItemCollectionSO>("PlayerInventory").items = new List<InventoryItemSO>();
-                    Globals.portalPosition5F = 0;
-                    Globals.flags = new Dictionary<string, bool>();
-                }
-                else
-                {
-                    Globals.portalPosition5F = _data.portalPosition;
-                    Globals.curSpawnPoint = _data.playerSpawnpoint;
-                    Resources.Load<InventoryItemCollectionSO>("PlayerInventory").items = GetInventory();
-                    Globals.flags = GetFlags();
-                    // foreach (KeyValuePair<string, bool> entry in Globals.flags)
-                    // {
-                    //     Debug.Log("Key: " + entry.Key + "\tValue: " + entry.Value);
-                    // }
-                }
-                Globals.loaded = true;
-            }
-            return _data;
-        }
+    private static SaveData data;
 
-        set
-        {
-            _data = value;
-        }
-    }
-
-    private static SaveData LoadGame()
+    public static void LoadGame()
     {
-        return JsonUtility.FromJson<SaveData>(PlayerPrefs.GetString("MainSave", ""));
+        data = JsonUtility.FromJson<SaveData>(PlayerPrefs.GetString("MainSave", ""));
+
+        Globals.portalPosition5F = data.portalPosition;
+        Globals.curSpawnPoint = data.playerSpawnpoint;
+        Globals.inventory = Resources.Load<InventoryItemCollectionSO>("PlayerInventory");
+        Globals.inventory.items = GetInventory();
+        // foreach (InventoryItemSO item in Globals.inventory.items)
+        // {
+        //     Debug.Log("Item: " + item);
+        // }
+        Globals.flags = GetFlags();
+        // foreach (KeyValuePair<string, bool> entry in Globals.flags)
+        // {
+        //     Debug.Log("Key: " + entry.Key + "\tValue: " + entry.Value);
+        // }
     }
 
     public static void SaveGame()
     {
-        Data = new SaveData();
-        Data.CopyFromGame();
+        data = new SaveData();
+        data.CopyFromGame();
 
-        string jsonData = JsonUtility.ToJson(Data);
+        string jsonData = JsonUtility.ToJson(data);
 
         PlayerPrefs.SetString("MainSave", jsonData);
     }
 
-    public static List<InventoryItemSO> GetInventory()
+    private static List<InventoryItemSO> GetInventory()
     {
-        Debug.Log("GetInventory called");
+        // Debug.Log("GetInventory called. Item count: " + data.itemNames.Count);
         List<InventoryItemSO> loadedInventory = new List<InventoryItemSO>();
         // SpriteAtlas itemSprites = Resources.Load<SpriteAtlas>("Items");
 
-        for (int i = 0; i < Data.itemNames.Count; i++)
+        for (int i = 0; i < data.itemNames.Count; i++)
         {
-            InventoryItemSO item = Resources.Load<InventoryItemSO>("Inventory/" + Data.itemNames[i]);
+            InventoryItemSO item = Resources.Load<InventoryItemSO>("Inventory/" + data.itemNames[i]);
 
             if (item == null)
             {
-                Debug.LogError("Could not find " + Data.itemNames[i] + " in \"Assets/Resources/Inventory\"! Make sure it has the same filename as the item's name.");
+                Debug.LogError("Could not find " + data.itemNames[i] + " in \"Assets/Resources/Inventory\"! Make sure it has the same filename as the item's name.");
             }
-            loadedInventory.Add(Resources.Load<InventoryItemSO>("Inventory/" + Data.itemNames[i]));
-            // loadedInventory[i].SetItem(Data.itemNames[i], Data.itemDescriptions[i], itemSprites.GetSprite(Data.itemGraphics[i]), Data.itemStatuses[i]);
+            loadedInventory.Add(Resources.Load<InventoryItemSO>("Inventory/" + data.itemNames[i]));
+            // loadedInventory[i].SetItem(_data.itemNames[i], _data.itemDescriptions[i], itemSprites.GetSprite(_data.itemGraphics[i]), _data.itemStatuses[i]);
         }
 
         return loadedInventory;
@@ -82,16 +61,16 @@ public static class SaveSystem
 
     private static Dictionary<string, bool> GetFlags()
     {
-        if (_data.flagKeys.Count != _data.flagValues.Count)
+        if (data.flagKeys.Count != data.flagValues.Count)
         {
             Debug.LogError("Somehow the number of flag keys and values grabbed is inequal!");
             return null;
         }
 
         Dictionary<string, bool> flagsDict = new Dictionary<string, bool>();
-        for (int i = 0; i < _data.flagKeys.Count; i++)
+        for (int i = 0; i < data.flagKeys.Count; i++)
         {
-            flagsDict.Add(_data.flagKeys[i], _data.flagValues[i]);
+            flagsDict.Add(data.flagKeys[i], data.flagValues[i]);
             // Debug.Log("Loaded Key: " + _data.flagKeys[i] + "\tValue: " + _data.flagValues[i]);
         }
 
@@ -101,5 +80,21 @@ public static class SaveSystem
     private static string Path()
     {
         return Application.persistentDataPath + "/save.boelter";
+    }
+
+    public static bool HasSavedgame()
+    {
+        return PlayerPrefs.HasKey("MainSave");
+    }
+
+    public static string GetLoadedScene()
+    {
+        if (!HasSavedgame() || data == null)
+        {
+            Debug.LogError("No saved game or game wasn't loaded!");
+            return "Intro";
+        }
+
+        return data.playerScene;
     }
 }

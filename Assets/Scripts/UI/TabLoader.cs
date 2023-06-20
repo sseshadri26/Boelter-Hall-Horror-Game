@@ -17,7 +17,7 @@ public class TabLoader : MonoBehaviour
     {
         // If the map has been unlocked before this scene was loaded
         // Defer until start to give time for tab panel to be initialized
-        if (Globals.flags.ContainsKey("Map") && Globals.flags["Map"])
+        if (YarnFunctions.FlagIsTrue("Map"))
         {
             tabPanelUI.AddNewTab(mapTabData);
         }

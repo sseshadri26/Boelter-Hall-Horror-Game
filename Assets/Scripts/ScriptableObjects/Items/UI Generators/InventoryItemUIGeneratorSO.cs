@@ -26,9 +26,12 @@ public class InventoryItemUIGeneratorSO : ItemUIGeneratorSO
     public override List<ItemUIResult> GenerateUI()
     {
         List<ItemUIResult> results = new List<ItemUIResult>();
-        foreach(InventoryItemSO inventoryItem in inventorySO.items)
+        inventorySO = Globals.inventory;
+        // Debug.Log("Checking inventory... " + inventorySO.name);
+        foreach (InventoryItemSO inventoryItem in inventorySO.items)
         {
-            results.Add(new ItemUIResult{reference = inventoryItem, ui = GenerateListItemUI(inventoryItem)});
+            // Debug.Log("Item: " + inventoryItem.itemName);
+            results.Add(new ItemUIResult { reference = inventoryItem, ui = GenerateListItemUI(inventoryItem) });
         }
         return results;
     }

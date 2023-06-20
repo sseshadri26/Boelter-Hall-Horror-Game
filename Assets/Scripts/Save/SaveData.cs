@@ -21,7 +21,6 @@ public class SaveData
     public List<bool> flagValues;
 
     public int portalPosition = 0;
-    public bool glassBroke = false;
 
     // Create a SaveData from the static PlayerData class
     public void CopyFromGame()
@@ -41,7 +40,7 @@ public class SaveData
 
     private void SaveInventory()
     {
-        InventoryItemCollectionSO inventory = Resources.Load<InventoryItemCollectionSO>("PlayerInventory");
+        InventoryItemCollectionSO inventory = Globals.inventory;
 
         foreach (InventoryItemSO item in inventory.items)
         {
@@ -70,6 +69,5 @@ public class SaveData
     private void SaveMisc()
     {
         portalPosition = Globals.portalPosition5F;
-        glassBroke = Globals.GlassBroke;
     }
 }

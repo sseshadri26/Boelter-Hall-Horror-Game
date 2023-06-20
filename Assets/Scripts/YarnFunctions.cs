@@ -13,7 +13,7 @@ public static class YarnFunctions
     [YarnFunction("hasItem")]
     public static bool HasItem(string itemName)
     {
-        InventoryItemCollectionSO inventory = Resources.Load<InventoryItemCollectionSO>("PlayerInventory");
+        InventoryItemCollectionSO inventory = Globals.inventory;
 
         foreach (InventoryItemSO item in inventory.items)
         {

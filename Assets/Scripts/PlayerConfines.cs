@@ -35,12 +35,6 @@ public class PlayerConfines : MonoBehaviour
 
         heightToStand = fpc.crouchHeight * col.height;
 
-        // Failsafe for if spawnpoint hasn't been loaded yet
-        if (!Globals.loaded && SaveSystem.Data != null)
-        {
-            Globals.curSpawnPoint = SaveSystem.Data.playerSpawnpoint;
-        }
-
         // When first loading the scene, move the player to the current start position
         Transform spawnPoint = GameObject.FindGameObjectWithTag("spawnPointsParent").transform;
         if (spawnPoint.childCount < Globals.curSpawnPoint)

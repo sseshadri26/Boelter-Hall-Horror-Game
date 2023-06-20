@@ -6,9 +6,9 @@ public class CafeKey : MonoBehaviour, IAction
 {
     [SerializeField] private InventoryItemSO key;
 
-    public void Activate() 
+    public void Activate()
     {
-        InventoryItemCollectionSO inventory = Resources.Load<InventoryItemCollectionSO>("PlayerInventory");
+        InventoryItemCollectionSO inventory = Globals.inventory;
 
         inventory.items.Add(key);
         Notification.instance.ShowMessage("A key appeared in your pocket...");

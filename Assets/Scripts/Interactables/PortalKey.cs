@@ -24,7 +24,7 @@ public class PortalKey : MonoBehaviour, IAction
         // Jank way of waiting 1 sec before setting activated back to false (no rotation)
         transform.DOBlendableRotateBy(Vector3.zero, 1f).OnComplete(() => activated = false);
 
-        InventoryItemCollectionSO inventory = Resources.Load<InventoryItemCollectionSO>("PlayerInventory");
+        InventoryItemCollectionSO inventory = Globals.inventory;
 
         if (inventory.items.Contains(portalKey))
         {
