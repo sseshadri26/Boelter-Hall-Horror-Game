@@ -761,6 +761,7 @@ GameObject:
   - component: {fileID: 7130859633087567194}
   - component: {fileID: 1630818031}
   - component: {fileID: 2111075085781322650}
+  - component: {fileID: 4393740707594134230}
   m_Layer: 2
   m_Name: FirstPersonController-UI-COMPATIBLE
   m_TagString: Player
@@ -955,6 +956,21 @@ MonoBehaviour:
   stepRayLower: {fileID: 810767620866700179}
   stepHeight: 0.3
   stepSmooth: 0.1
+--- !u!114 &4393740707594134230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4459864850019384750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edc93ae5d5cf1b24b914bee360637683, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flickerDuration: 0.04
+  flickerCount: 5
+  flickerStart: 0
 --- !u!1 &4459864850190357393
 GameObject:
   m_ObjectHideFlags: 0
@@ -1204,7 +1220,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0

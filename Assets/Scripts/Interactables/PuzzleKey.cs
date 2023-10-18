@@ -9,6 +9,12 @@ public class PuzzleKey : MonoBehaviour, IAction
 
     private InventoryItemCollectionSO inventory;
 
+    [SerializeField] GameObject OtherKey;
+
+    [SerializeField] GameObject PortalPair;
+
+    [SerializeField] GameObject ObjectsToEnable;
+
     private void Start()
     {
         inventory = Globals.inventory;
@@ -31,6 +37,21 @@ public class PuzzleKey : MonoBehaviour, IAction
         {
             Notification.instance.ShowMessage("A gold key appeared in your pocket...");
         }
+
+        if (OtherKey == null)
+        {
+
+            Globals.flags.Add("Floor5PortalRoomPortal", true);
+
+            PortalPair.GetComponent<RotatingPortalDisableManager>().enabled = true;
+            GameObject.FindWithTag("Player").GetComponent<BlackoutScreen>().flickerStart = true;
+            ObjectsToEnable.SetActive(true);
+
+
+        }
+
         Destroy(this.gameObject);
+
+
     }
 }
