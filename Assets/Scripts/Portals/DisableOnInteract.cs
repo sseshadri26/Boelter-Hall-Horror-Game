@@ -56,18 +56,19 @@ public class DisableOnInteract : MonoBehaviour, IAction
                 Globals.flags.Add(PosterToDelete.name, true);
             }
 
-            if (OtherScript == null || OtherScript.activated)
+            if (OtherScript == null || OtherScript.activated && PortalPair != null)
             {
-                Debug.Log("pass");
-                if (PortalPair != null)
-                {
-                    PortalPair.GetComponent<DisablePortals>().enabled = true;
-                    GameObject.FindWithTag("Player").GetComponent<BlackoutScreen>().flickerStart = true;
-                    // PortalPair.GetComponent<RotatingPortalDisableManager>().PermanentlyDisable();
-                }
+
+                PortalPair.GetComponent<DisablePortals>().enabled = true;
+                GameObject.FindWithTag("Player").GetComponent<BlackoutScreen>().flickerStart = true;
+                // PortalPair.GetComponent<RotatingPortalDisableManager>().PermanentlyDisable();
+
+            }
+            else
+            {
+                FMODManager.Instance.PlaySound(FMODManager.SFX.paper_crumble);
             }
 
-            FMODManager.Instance.PlaySound(FMODManager.SFX.paper_crumble);
             PosterToDelete.SetActive(false);
         }
     }
