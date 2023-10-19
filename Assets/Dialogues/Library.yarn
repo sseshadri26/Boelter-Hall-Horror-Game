@@ -3,16 +3,16 @@ tags:
 position: -117,-85
 ---
 <<wait 4>>
-Professor Chatanya Gupta: Hello.
-Professor Chatanya Gupta: Thank you for meeting with me today. As you can see, I'm a little swamped here, I could use your help with something.
-Professor Chatanya Gupta: I need you to take this USB to the Internet Room. You know where that is, right? Boelter hall, 3rd floor, room 3420.
-You: Yes, I know where it is.
-You (thinking): It's where the Internet was basically invented. Most students know where it is. I mean, the engineering majors, at least.
-Professor Chatanya Gupta: Good. I need you to take this USB and plug it into the computer terminal in that room.
-You: Can I ask why?
-Professor Chatanya Gupta: Their memories are full. If my research is correct, the USB will download more RAM.
-You (thinking): Download more RAM? Oh well, I guess he knows more than I do.
+Professor Chatanya Gupta: Hello. #line:0351ad0 
+Professor Chatanya Gupta: Thank you for meeting with me today. As you can see, I'm a little swamped here, I could use your help with something. #line:0796c48 
+Professor Chatanya Gupta: I need you to take this USB to the Internet Room. You know where that is, right? Boelter hall, 3rd floor, room 3420. #line:0e877e2 
+You: Yes, I know where it is. #line:02a57fd 
+You (thinking): It's where the Internet was basically invented. Most students know where it is. I mean, the engineering majors, at least. #line:0873e5c 
+Professor Chatanya Gupta: Good. I need you to take this USB and plug it into the computer terminal in that room. #line:0aa6aac 
+You: Can I ask why? #line:0d0392e 
+Professor Chatanya Gupta: Their memories are full. If my research is correct, the USB will download more RAM. #line:0892f6b 
+You (thinking): Download more RAM? Oh well, I guess he knows more than I do. #line:0a24d09 
 // -> Take the USB.
-You: Yes, Professor. I'll be back in a minute.
+You: Yes, Professor. I'll be back in a minute. #line:028aa40 
 <<loadScene Entrance 0>>
 ===
