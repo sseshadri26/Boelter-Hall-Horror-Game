@@ -38,9 +38,9 @@ public class FMODManager : MonoBehaviour
     // Structs:
     public enum SFX
     {
-        door_close, door_open, 
+        door_close, door_open,
         footstep_ground, footstep_ground2, footstep_grass, footstep_gravel, footstep_wood,
-        paper_crumble, item_get,
+        paper_crumble, item_get, portal_vanish,
         music_title, music_opening, music_hallway, music_seas, music_5272, music_stairwell, music_porter, music_elevator,
         menu_scroll, menu_click,
         spooky_1, spooky_2, spooky_3
@@ -73,6 +73,7 @@ public class FMODManager : MonoBehaviour
         { SFX.footstep_wood, "event:/footstep_wood" },
         { SFX.paper_crumble, "event:/paper_crumble" },
         { SFX.item_get, "event:/item_get" },
+        { SFX.portal_vanish, "event:/portal_vanish" },
         { SFX.footstep_ground2, "event:/footstep_ground 2" },
         { SFX.music_title, "event:/music_title" },
         { SFX.music_opening, "event:/music_opening" },
@@ -109,6 +110,13 @@ public class FMODManager : MonoBehaviour
         // Plays specified sound @ player:
         PlaySound(sound, transform.position, useDefault, soundParams);
     }
+
+    public void PlaySoundOverrideOtherSounds(SFX sound, bool useDefault = true, FMODParams soundParams = default(FMODParams))
+    {
+        // Plays specified sound @ player:
+        PlaySound(sound, transform.position, useDefault, soundParams);
+    }
+
     public void PlaySound(SFX sound, Vector3 position, bool useDefault = true, FMODParams soundParams = default(FMODParams))
     {
         // Plays specified sound @ location:

@@ -44,8 +44,11 @@ public class BlackoutScreen : MonoBehaviour
 
     private IEnumerator FlickerScreen()
     {
+        FMODManager.Instance.PlaySound(FMODManager.SFX.portal_vanish);
+        yield return new WaitForSeconds(0.08f);
+
         mainCamera.gameObject.SetActive(false);
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(2);
 
         for (int i = 0; i < flickerCount; i++)
         {
