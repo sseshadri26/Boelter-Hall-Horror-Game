@@ -851,7 +851,7 @@ MonoBehaviour:
   crosshairImage: {fileID: 21300000, guid: be4ce60e2c9768c44b9b10b9c5258045, type: 3}
   crosshairColor: {r: 1, g: 1, b: 1, a: 1}
   pitch: 0
-  enableZoom: 0
+  enableZoom: 1
   holdToZoom: 0
   zoomFOV: 30
   zoomStepTime: 5
@@ -862,10 +862,10 @@ MonoBehaviour:
   isSprinting: 0
   enableSprint: 1
   unlimitedSprint: 0
-  sprintSpeed: 5
-  sprintDuration: 8.6
+  sprintSpeed: 8
+  sprintDuration: 7.3
   sprintCooldown: 0.25
-  sprintFOV: 71.7
+  sprintFOV: 60
   sprintFOVStepTime: 10
   useSprintBar: 1
   hideBarWhenFull: 1
@@ -875,7 +875,7 @@ MonoBehaviour:
   sprintBarHeightPercent: 0.02
   enableJump: 0
   jumpPower: 5
-  enableCrouch: 1
+  enableCrouch: 0
   holdToCrouch: 0
   crouchHeight: 0.75
   speedReduction: 0.5
@@ -1514,7 +1514,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7734951866125201753
 Transform:
   m_ObjectHideFlags: 0
@@ -1572,7 +1572,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
-  m_Color: {r: 0.24762517, g: 1, b: 0.22075468, a: 1}
+  m_Color: {r: 0.5377358, g: 0.035712305, b: 0.0033819196, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

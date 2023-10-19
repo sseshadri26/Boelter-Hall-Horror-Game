@@ -15,5 +15,5 @@ MonoBehaviour:
   itemName: Gold Key
   description: "This key was found along with a message: \u201CThe way is clearer
     in the place with two mirrors. To learn more, find my door.\u201D"
-  graphic: {fileID: 21300000, guid: 047036b6a7c969f448820481a04b5361, type: 3}
+  graphic: {fileID: 21300000, guid: 7701a672983925644ad588fc5482a9e7, type: 3}
   itemStatus: 0

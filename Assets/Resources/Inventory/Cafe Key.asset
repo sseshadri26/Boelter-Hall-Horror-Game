@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Cafe Key
   description: This key must be for the SEAS Cafe.
-  graphic: {fileID: 21300000, guid: a05a80465d1fd904697d22e3376eb1fe, type: 3}
+  graphic: {fileID: 21300000, guid: 43b695620f42b4446b23fc3e514be444, type: 3}
   itemStatus: 0

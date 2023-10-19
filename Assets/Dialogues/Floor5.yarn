@@ -23,6 +23,8 @@ Carey: What's up? #line:Wazzup
 -> What did you tell me about the accident at the lab? <<if flagIsTrue("Cafe")>>
     Carey: So, you noticed the portals, right? I'm almost certain they were created in one of the labs here at UCLA. They were conducting research on dimensional rifts, and Professor Porter was working with them. #line:CafeTV1
     Carey: But I believe their lab had an accident. The portals spiraled out of control, and anything they touched was ripped open into a dimensional gateway. Everything from that lab is contaminated, even something as small as a piece of paper. You need to find the contamination's source and destroy it. #line:CafeTV2
+-> What am I doing here anyways?
+    Carey: Well, you're trying to get down to the 3rd floor, right? Good luck!
 
 
 <<jump Floor5>>
