@@ -58,9 +58,11 @@ public class DisableOnInteract : MonoBehaviour, IAction
 
             if (OtherScript == null || OtherScript.activated && PortalPair != null)
             {
-
-                PortalPair.GetComponent<DisablePortals>().enabled = true;
-                GameObject.FindWithTag("Player").GetComponent<BlackoutScreen>().flickerStart = true;
+                if (PortalPair && PortalPair.GetComponent<DisablePortals>() != null)
+                {
+                    PortalPair.GetComponent<DisablePortals>().enabled = true;
+                    GameObject.FindWithTag("Player").GetComponent<BlackoutScreen>().flickerStart = true;
+                }
                 // PortalPair.GetComponent<RotatingPortalDisableManager>().PermanentlyDisable();
 
             }

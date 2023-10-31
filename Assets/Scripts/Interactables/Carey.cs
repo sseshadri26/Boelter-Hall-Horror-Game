@@ -24,7 +24,11 @@ public class Carey : MonoBehaviour, IAction
     // If Carey is activated, talk to him.
     public void Activate()
     {
-        Globals.flags.Add("Cafe", true);
+        if (!Globals.flags.ContainsKey("Cafe"))
+        {
+            Globals.flags.Add("Cafe", true);
+        }
+
         fpc.controls.Disable();
         fpc.dialogueRunner.StartDialogue("Cafe");
         Cursor.lockState = CursorLockMode.None;
