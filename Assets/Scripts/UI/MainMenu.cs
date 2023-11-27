@@ -47,7 +47,7 @@ public class MainMenu : MonoBehaviour
 #elif (UNITY_WEBGL)
             Application.OpenURL("https://olaycolay.itch.io/");
 #else
-            Application.Quit();
+        Application.Quit();
 #endif
     }
 }
